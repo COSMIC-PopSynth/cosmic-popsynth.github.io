@@ -1,0 +1,20 @@
+aCOSMIC package
+===============
+
+Submodules
+----------
+
+.. toctree::
+
+   aCOSMIC.MatchKnuth
+   aCOSMIC.sampleBinariesBulge
+   aCOSMIC.sampleBinariesThickDisk
+   aCOSMIC.sampleBinariesThinDisk
+
+Module contents
+---------------
+
+.. automodule:: aCOSMIC
+    :members:
+    :undoc-members:
+    :show-inheritance:

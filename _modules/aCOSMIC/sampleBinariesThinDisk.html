@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>aCOSMIC.sampleBinariesThinDisk &mdash; aCOSMIC 0+untagged.3.gda3cb89.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="aCOSMIC 0+untagged.3.gda3cb89.dirty documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> aCOSMIC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0+untagged.3.gda3cb89.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Double White Dwarf Accretion with COSMIC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">aCOSMIC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>aCOSMIC.sampleBinariesThinDisk</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for aCOSMIC.sampleBinariesThinDisk</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="c1"># Code: sampleBinaries.py</span>
+<span class="c1"># Version: 1</span>
+<span class="c1"># Version changes: SAMPLE INITIAL BINARIES AND EVOLVE USING BSE</span>
+<span class="c1">#</span>
+<span class="c1"># Input: coreNumber, nBin to draw per epoch, range of epochs, epochLength,</span>
+<span class="c1"># Output: No output; writes to file</span>
+<span class="c1">#</span>
+<span class="c1"># Edited on: 9 Sep 2015</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">aCOSMIC</span> <span class="k">import</span> <span class="n">_popbinTD</span> <span class="k">as</span> <span class="n">_popbin</span>
+
+<span class="c1">##################################################################################</span>
+<span class="c1"># FUNCTION TO SAMPLE THE INITIAL BINARIES</span>
+<span class="c1">##################################################################################</span>
+<div class="viewcode-block" id="sample"><a class="viewcode-back" href="../../api/aCOSMIC.sampleBinariesThinDisk.html#aCOSMIC.sampleBinariesThinDisk.sample">[docs]</a><span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">nCore</span><span class="p">,</span> <span class="n">binID</span><span class="p">,</span> <span class="n">binTYPE</span><span class="p">,</span> <span class="n">nBin</span><span class="p">,</span> <span class="n">rangeEpoch</span><span class="p">,</span> <span class="n">epochLength</span><span class="p">,</span> <span class="n">SFH</span><span class="p">,</span> <span class="n">maxTime</span><span class="p">,</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">met</span><span class="p">):</span>
+
+    <span class="c1"># SET THE RANDOM SEED</span>
+    <span class="c1">##############################################################################    </span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">()</span>
+    
+    <span class="c1"># SET TIME TO TRACK COMPUTATION TIME</span>
+    <span class="c1">##############################################################################</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    
+    <span class="c1"># CONSTANTS</span>
+    <span class="c1">##############################################################################</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="mf">6.67384</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.0</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mf">2.99792458</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+    <span class="n">Rsun</span> <span class="o">=</span> <span class="mf">6.955</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">Msun</span> <span class="o">=</span> <span class="mf">1.9891</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+    <span class="n">sec_in_day</span> <span class="o">=</span> <span class="mf">86400.0</span>
+    
+    <span class="c1"># DECLARE NUMPY ARRAYS TO HOLD THE BINARY PARAMETERS</span>
+    <span class="c1">##############################################################################</span>
+    <span class="n">mass1_pass</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">mass2_pass</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tb_pass</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ecc_pass</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">met_pass</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tphysf_pass</span> <span class="o">=</span> <span class="p">[]</span> 
+    <span class="n">fixedPopLog</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">initialParams</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">epochStart_pass</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">epochMax_pass</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># ASSIGN MINIMUM TOTAL BINARY MASS ACCORDINGLY</span>
+    <span class="c1">##############################################################################</span>
+    <span class="k">if</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">4.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">8.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">8.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">4.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">20.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">20.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">50.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">50.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">50.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">50.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">150.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">11</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">150.0</span> 
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">150.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">13</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">150.0</span>
+    <span class="k">elif</span> <span class="n">binID</span> <span class="o">==</span> <span class="mi">14</span><span class="p">:</span>
+        <span class="n">minMass</span> <span class="o">=</span> <span class="mf">6.0</span>
+        <span class="n">maxMass</span> <span class="o">=</span> <span class="mf">150.0</span>
+            
+    <span class="c1">#print &#39;start sample!&#39;</span>
+    <span class="n">kk</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ll</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rangeEpoch</span><span class="p">:</span>
+        
+        <span class="n">Nbinsave</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">nBinTot</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">Nstars</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">mass_bin_fixed</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">mass_total_fixed</span> <span class="o">=</span> <span class="mi">0</span>
+    
+        <span class="c1"># SET EVOLUTION TIME OF FIXED POPUPLATION</span>
+        <span class="c1">##############################################################################      </span>
+        <span class="n">epochNumber</span> <span class="o">=</span> <span class="n">i</span>
+        
+        <span class="c1"># IF rangeEpoch[1] == 1, THIS REPRESENTS THE DELTA FUNCTION BURST</span>
+        <span class="c1">##############################################################################      </span>
+        
+        <span class="k">if</span> <span class="n">SFH</span> <span class="o">==</span> <span class="s2">&quot; burst&quot;</span><span class="p">:</span>
+            <span class="n">EpochTime</span> <span class="o">=</span> <span class="n">epochLength</span>
+            <span class="n">EpochStart</span> <span class="o">=</span> <span class="n">startTime</span>
+        <span class="c1"># IF NOT, WE USE THE USER SPECIFIED SFR</span>
+        <span class="c1">############################################################################## </span>
+        <span class="k">else</span><span class="p">:</span>    
+            <span class="n">EpochTime</span> <span class="o">=</span> <span class="n">epochNumber</span><span class="o">*</span><span class="n">epochLength</span>
+            <span class="n">EpochStart</span> <span class="o">=</span> <span class="n">maxTime</span> <span class="o">-</span> <span class="n">EpochTime</span>
+    
+        <span class="k">while</span> <span class="n">Nbinsave</span> <span class="o">&lt;</span> <span class="n">nBin</span><span class="p">:</span>
+            <span class="sd">&#39;&#39;&#39;if Nbinsave &gt; 100:</span>
+<span class="sd">                if kk &lt; 1:</span>
+<span class="sd">                    print &#39;at least 100 sampled&#39;, nBin</span>
+<span class="sd">                    kk = 10</span>
+<span class="sd">            if Nbinsave &gt; 1000:</span>
+<span class="sd">                if ll &lt; 1:</span>
+<span class="sd">                    print &#39;at least 1000 sampled&#39;, nBin</span>
+<span class="sd">                    ll = 10&#39;&#39;&#39;</span>
+        
+            <span class="c1"># THE EVOLUTION TIME IS CONSTANT FOR EACH EPOCH OF STAR FORMATION: </span>
+            <span class="c1"># &#39;COEVAL&#39; BINARIES</span>
+            <span class="c1">#########################################################################</span>
+            <span class="n">timeConst</span> <span class="o">=</span> <span class="mf">0.760348964</span>
+            <span class="n">a_0_birth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+            <span class="n">tBirthsample</span> <span class="o">=</span> <span class="o">-</span><span class="mf">7e9</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">a_0_birth</span><span class="o">*</span><span class="n">timeConst</span><span class="p">)</span>
+            <span class="n">tBirthsampleMyr</span> <span class="o">=</span> <span class="n">tBirthsample</span><span class="o">/</span><span class="mf">1.0e6</span>
+            <span class="n">tphysf</span> <span class="o">=</span> <span class="n">maxTime</span> <span class="o">-</span> <span class="n">tBirthsampleMyr</span>
+    
+            <span class="c1"># ALL PDFs TAKEN FROM Yu&amp;Jeffery (2015) EXCEPT THE IMF TAKEN </span>
+            <span class="c1"># FROM kroupa et al (1993)</span>
+            <span class="c1">#########################################################################</span>
+            <span class="n">a_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.9999797</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">a_0</span> <span class="o">&lt;=</span> <span class="mf">0.740074</span><span class="p">:</span>
+                <span class="n">mass_draw</span> <span class="o">=</span> <span class="p">((</span><span class="mf">0.1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="o">/</span><span class="mf">10.0</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">a_0</span><span class="o">/</span><span class="mf">0.968533</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="mf">0.740074</span> <span class="o">&lt;</span> <span class="n">a_0</span> <span class="o">&lt;</span> <span class="mf">0.908422</span><span class="p">:</span>
+                <span class="n">mass_draw</span> <span class="o">=</span> <span class="p">((</span><span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">6.0</span><span class="o">/</span><span class="mf">5.0</span><span class="p">)</span><span class="o">-</span><span class="p">((</span><span class="n">a_0</span><span class="o">-</span><span class="mf">0.740074</span><span class="p">)</span><span class="o">/</span><span class="mf">0.129758</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">5.0</span><span class="o">/</span><span class="mf">6.0</span><span class="p">)</span>                     
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mass_draw</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">((</span><span class="n">a_0</span><span class="o">-</span><span class="mf">0.908422</span><span class="p">)</span><span class="o">/</span><span class="mf">0.0915941</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="o">/</span><span class="mf">17.0</span><span class="p">)</span>       
+            
+            <span class="c1"># COMPUTE BINARY FRACTION ACCORDING TO van Haaften et al.(2009) in appdx </span>
+            <span class="c1">#########################################################################</span>
+            <span class="n">binary_fraction</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mf">4.0</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mass_draw</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>         
+         
+            <span class="n">binary_choose</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">binary_choose</span> <span class="o">&lt;</span> <span class="n">binary_fraction</span><span class="p">:</span>
+                <span class="n">nBinTot</span> <span class="o">=</span> <span class="n">nBinTot</span><span class="o">+</span><span class="mi">1</span>
+                <span class="n">mass1</span> <span class="o">=</span> <span class="n">mass_draw</span>
+            
+                <span class="c1"># SAMPLE MASS RATIO: uniform from 0.001 to 1</span>
+                <span class="c1">######################################################################</span>
+                <span class="c1"># Generate a random number drawn uniformly from 0.001 to 1 </span>
+                <span class="n">mass_ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    
+                <span class="c1"># Compute the secondary from the mass ratio: ratio = M2/M1</span>
+                <span class="n">mass2</span> <span class="o">=</span> <span class="n">mass_ratio</span><span class="o">*</span><span class="n">mass1</span>
+                 
+                    
+                <span class="c1"># SAMPLE SEPARATION:</span>
+                <span class="c1">######################################################################</span>
+                <span class="n">a_0_sep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">a_0_sep</span> <span class="o">&lt;</span> <span class="mf">0.0583333</span><span class="p">:</span>
+                    <span class="n">separation</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span> <span class="p">(</span><span class="n">a_0_sep</span><span class="o">/</span><span class="mf">0.00368058</span><span class="p">),</span> <span class="mi">5</span><span class="o">/</span><span class="mf">6.0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">separation</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a_0_sep</span><span class="o">/</span><span class="mf">0.07</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">10.0</span><span class="p">))</span>
+        
+                <span class="n">sep_m</span> <span class="o">=</span> <span class="n">separation</span><span class="o">*</span><span class="n">Rsun</span>
+        
+                <span class="c1"># Compute the orbital period in seconds using NEWTON III:</span>
+                <span class="n">porb_sec</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span> <span class="mi">4</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">G</span><span class="o">*</span><span class="p">(</span><span class="n">mass1</span><span class="o">+</span><span class="n">mass2</span><span class="p">)</span><span class="o">*</span><span class="n">Msun</span><span class="p">)</span><span class="o">*</span>\
+                                 <span class="nb">pow</span><span class="p">(</span><span class="n">sep_m</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span> <span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+                <span class="c1"># Convert the orbital period from seconds to days for the BSE input:</span>
+                <span class="n">tb</span> <span class="o">=</span> <span class="n">porb_sec</span><span class="o">/</span><span class="n">sec_in_day</span>
+        
+        
+                <span class="c1"># SAMPLE ECCENTRICITY:</span>
+                <span class="c1">######################################################################</span>
+                <span class="n">a_0_ecc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+                <span class="n">ecc</span> <span class="o">=</span> <span class="n">a_0_ecc</span><span class="o">**</span><span class="mf">0.5</span>
+                
+                <span class="c1"># APPEND THE SAMPLED VALUES ACCORDING TO POPULATION FLAGS</span>
+                <span class="c1">######################################################################                   </span>
+                <span class="n">mass_drawn</span> <span class="o">=</span> <span class="n">mass1</span> <span class="o">+</span> <span class="n">mass2</span> 
+                <span class="n">mass_bin_fixed</span> <span class="o">=</span> <span class="n">mass_bin_fixed</span> <span class="o">+</span> <span class="n">mass_drawn</span>
+                 
+                <span class="k">if</span> <span class="n">mass_drawn</span> <span class="o">&gt;</span> <span class="n">minMass</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">mass_drawn</span> <span class="o">&lt;</span> <span class="n">maxMass</span><span class="p">:</span>
+                        <span class="n">Nbinsave</span> <span class="o">=</span> <span class="n">Nbinsave</span><span class="o">+</span><span class="mi">1</span>
+                        <span class="n">epochStart_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">EpochStart</span><span class="p">)</span>
+                        <span class="n">epochMax_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">maxTime</span><span class="p">)</span>
+                        <span class="n">mass1_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mass1</span><span class="p">)</span>
+                        <span class="n">mass2_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mass2</span><span class="p">)</span>
+                        <span class="n">tb_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+                        <span class="n">ecc_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ecc</span><span class="p">)</span>
+                        <span class="n">met_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">met</span><span class="p">)</span>
+                        <span class="n">tphysf_pass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tphysf</span><span class="p">)</span>
+                         
+            <span class="c1"># next iterations!</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mass_drawn</span> <span class="o">=</span> <span class="n">mass_draw</span> 
+                <span class="n">Nstars</span> <span class="o">=</span> <span class="n">Nstars</span> <span class="o">+</span> <span class="mi">1</span>    
+    
+            <span class="n">mass_total_fixed</span> <span class="o">=</span> <span class="n">mass_total_fixed</span> <span class="o">+</span> <span class="n">mass_drawn</span>
+            
+        <span class="n">fixedPopLog</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">epochNumber</span><span class="p">,</span> <span class="n">nBin</span><span class="p">,</span> <span class="n">mass_total_fixed</span><span class="p">,</span> <span class="n">mass_bin_fixed</span><span class="p">))</span>
+            
+    <span class="c1">#print &#39;sample finished!&#39;</span>
+    
+    <span class="c1"># GATHER ALL INITIAL PARAMETERS</span>
+    <span class="c1">##############################################################################</span>
+    <span class="n">initialParams</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">epochStart_pass</span><span class="p">,</span> <span class="n">mass1_pass</span><span class="p">,</span> <span class="n">mass2_pass</span><span class="p">,</span> <span class="n">tb_pass</span><span class="p">,</span> <span class="n">ecc_pass</span><span class="p">,</span> <span class="n">met_pass</span><span class="p">,</span> <span class="n">tphysf_pass</span><span class="p">,</span> <span class="n">epochMax_pass</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+                               
+    <span class="n">rowSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialParams</span><span class="p">)</span>
+                             
+    <span class="c1"># SAVE THE PARAMETERS TO EVOLVE</span>
+    <span class="c1">##################################################################################</span>
+    <span class="n">binariesInFile</span> <span class="o">=</span> <span class="s2">&quot;thinDiskTmp/lambda1/binaries_&quot;</span><span class="o">+</span><span class="n">binTYPE</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nCore</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.in&quot;</span>
+    <span class="n">binaryFile</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">binariesInFile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">binaryFile</span><span class="p">,</span> <span class="n">initialParams</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+    <span class="n">binaryFile</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+    <span class="n">binaryFile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># SAVE THE FIXED POP LOG</span>
+    <span class="c1">##################################################################################</span>
+    <span class="n">fixedPopLogSave</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">fixedPopLog</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s2">&quot;thinDiskTmp/lambda1/fixedPopLog_&quot;</span><span class="o">+</span><span class="n">binTYPE</span><span class="o">+</span><span class="s2">&quot;_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">nCore</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.dat&quot;</span><span class="p">,</span> <span class="n">fixedPopLogSave</span><span class="p">,</span> <span class="n">delimiter</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+
+    <span class="c1"># EVOLVE THE BINARIES WITH POPBIN</span>
+    <span class="c1">##################################################################################</span>
+    <span class="n">nCoreWrite</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">nCore</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">_popbin</span><span class="o">.</span><span class="n">runpopbin</span><span class="p">(</span><span class="n">binariesInFile</span><span class="p">,</span> <span class="n">binID</span><span class="p">,</span> <span class="n">binTYPE</span><span class="p">,</span> <span class="n">nCore</span><span class="p">,</span> <span class="n">nCoreWrite</span><span class="p">)</span></div>
+    
+    
+    <span class="c1">#print &quot;The initial binary sample time from core &quot;+str(nCore)+ \</span>
+          <span class="c1">#&quot; and type &quot;+binTYPE+&quot; is: &quot;, time.time()-start_time, &quot;seconds&quot;</span>
+    
+<span class="c1">######################################################################################</span>
+<span class="c1">######################################################################################</span>
+    
+    
+    
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0+untagged.3.gda3cb89.dirty',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

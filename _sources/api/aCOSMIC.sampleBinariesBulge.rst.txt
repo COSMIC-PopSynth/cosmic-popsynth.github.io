@@ -1,0 +1,4 @@
+.. automodule:: aCOSMIC.sampleBinariesBulge
+    :members:
+    :undoc-members:
+    :show-inheritance:
