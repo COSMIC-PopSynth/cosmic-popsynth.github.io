@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>aCOSMIC package &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
   
 
   
@@ -132,13 +132,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>aCOSMIC package</li>
+      <li>&lt;no title&gt;</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/api/aCOSMIC.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/aCOSMIC.utils.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -151,42 +151,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="acosmic-package">
-<h1>aCOSMIC package<a class="headerlink" href="#acosmic-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="aCOSMIC.sample.html">aCOSMIC.sample package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="aCOSMIC.sample.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="aCOSMIC.sample.sampler.html">aCOSMIC.sample.sampler package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="aCOSMIC.sample.sampler.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="aCOSMIC.sample.sampler.html#module-aCOSMIC.sample.sampler">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="aCOSMIC.sample.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="aCOSMIC.sample.html#module-aCOSMIC.sample">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-</div>
-</div>
-<div class="section" id="module-aCOSMIC">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-aCOSMIC" title="Permalink to this headline">¶</a></h2>
-<p>Gravitational-wave Electromagnetic Optimization</p>
-</div>
-</div>
+  <span class="target" id="module-aCOSMIC.utils"></span><dl class="function">
+<dt id="aCOSMIC.utils.dat_transform">
+<code class="descclassname">aCOSMIC.utils.</code><code class="descname">dat_transform</code><span class="sig-paren">(</span><em>dat</em>, <em>dat_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/utils.html#dat_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.utils.dat_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform a data set to have limits between zero and one using 
+param_transform, then transform to logit space</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aCOSMIC.utils.dat_un_transform">
+<code class="descclassname">aCOSMIC.utils.</code><code class="descname">dat_un_transform</code><span class="sig-paren">(</span><em>dat_sample</em>, <em>dat_set</em>, <em>dat_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/utils.html#dat_un_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.utils.dat_un_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Un-transform data that was transformed in dat_transform</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aCOSMIC.utils.idl_tabulate">
+<code class="descclassname">aCOSMIC.utils.</code><code class="descname">idl_tabulate</code><span class="sig-paren">(</span><em>x</em>, <em>f</em>, <em>p=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/utils.html#idl_tabulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.utils.idl_tabulate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="aCOSMIC.utils.knuth_bw_selector">
+<code class="descclassname">aCOSMIC.utils.</code><code class="descname">knuth_bw_selector</code><span class="sig-paren">(</span><em>dat_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/utils.html#knuth_bw_selector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.utils.knuth_bw_selector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="aCOSMIC.utils.mass_min_max_select">
+<code class="descclassname">aCOSMIC.utils.</code><code class="descname">mass_min_max_select</code><span class="sig-paren">(</span><em>kstar_1</em>, <em>kstar_2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/utils.html#mass_min_max_select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.utils.mass_min_max_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a minimum and maximum mass to filter out binaries in the initial
+parameter sample to reduce the number of unneccessary binaries evolved
+in BSE</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aCOSMIC.utils.param_transform">
+<code class="descclassname">aCOSMIC.utils.</code><code class="descname">param_transform</code><span class="sig-paren">(</span><em>dat</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/utils.html#param_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.utils.param_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a data set to limits between zero and one
+Leaves some wiggle room on the edges of the data set</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="aCOSMIC.utils.rndm">
+<code class="descclassname">aCOSMIC.utils.</code><code class="descname">rndm</code><span class="sig-paren">(</span><em>a</em>, <em>b</em>, <em>g</em>, <em>size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/utils.html#rndm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.utils.rndm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Power-law gen for pdf(x)propto x^{g-1} for a&lt;=x&lt;=b</p>
+</dd></dl>
+
 
 
            </div>

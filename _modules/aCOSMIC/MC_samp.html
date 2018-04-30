@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>aCOSMIC.MC_samp &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> aCOSMIC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0+untagged.257.g57c92fb.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Double White Dwarf Accretion with COSMIC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">aCOSMIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>aCOSMIC.MC_samp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for aCOSMIC.MC_samp</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright (C) Scott Coughlin (2017)</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of aCOSMIC.</span>
+<span class="c1">#</span>
+<span class="c1"># aCOSMIC is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># aCOSMIC is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with aCOSMIC.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&#39;&#39;&#39;MC_samp</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">scipy.special</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Katelyn Breivik &lt;katie.breivik@gmail.com&gt;&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="s1">&#39;Scott Coughlin &lt;scott.coughlin@ligo.org&gt;&#39;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="s1">&#39;MC_samp&#39;</span>
+
+
+<span class="n">G</span> <span class="o">=</span> <span class="mf">6.67384</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.0</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">2.99792458</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+<span class="n">parsec</span> <span class="o">=</span> <span class="mf">3.08567758</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">Rsun</span> <span class="o">=</span> <span class="mf">6.955</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">Msun</span> <span class="o">=</span> <span class="mf">1.9891</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">day</span> <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="n">rsun_in_au</span> <span class="o">=</span> <span class="mf">215.0954</span>
+<span class="n">day_in_year</span> <span class="o">=</span> <span class="mf">365.242</span>
+<span class="n">sec_in_day</span> <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="n">sec_in_hour</span> <span class="o">=</span> <span class="mf">3600.0</span>
+<span class="n">hrs_in_day</span> <span class="o">=</span> <span class="mf">24.0</span>
+<span class="n">sec_in_year</span> <span class="o">=</span> <span class="mf">3.15569</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mf">7.0</span>
+<span class="n">Tobs</span> <span class="o">=</span> <span class="mf">3.15569</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mf">7.0</span>
+<span class="n">geo_mass</span> <span class="o">=</span> <span class="n">G</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># solar coordinates in the galaxy: in parsecs from </span>
+<span class="c1"># (Chaper 8 of Galactic Structure and stellar Pops book) Yoshii (2013)</span>
+<span class="c1">############################################################################</span>
+<span class="n">x_sun</span> <span class="o">=</span> <span class="mf">8000.0</span>
+<span class="n">y_sun</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">z_sun</span> <span class="o">=</span> <span class="mi">25</span>
+
+<div class="viewcode-block" id="mass_weighted_number"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.mass_weighted_number">[docs]</a><span class="k">def</span> <span class="nf">mass_weighted_number</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">total_sampled_mass</span><span class="p">,</span> <span class="n">component_mass</span><span class="p">):</span> 
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Compute the total number of systems in the synthetic catalog</span>
+<span class="sd">    based on the total sampled mass of the simulated system and</span>
+<span class="sd">    the total mass of a given galactic component</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N binaries Fixed: &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">mass_1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Gx component mass: &#39;</span><span class="p">,</span><span class="n">component_mass</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total sampled mass: &#39;</span><span class="p">,</span><span class="n">total_sampled_mass</span><span class="p">)</span> 
+      
+    <span class="n">nSystems</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dat</span><span class="o">.</span><span class="n">mass_1</span><span class="p">)</span><span class="o">*</span><span class="n">component_mass</span><span class="o">/</span><span class="n">total_sampled_mass</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N binaries in Gx: &#39;</span><span class="p">,</span><span class="n">nSystems</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nSystems</span></div>
+
+<div class="viewcode-block" id="select_component_mass"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.select_component_mass">[docs]</a><span class="k">def</span> <span class="nf">select_component_mass</span><span class="p">(</span><span class="n">gx_component</span><span class="p">):</span>
+    <span class="c1"># SET GALACTIC COMPONENT MASS ACCORDING TO MCMILLAN 2011</span>
+    <span class="c1"># FOLLOWING BEST FIT</span>
+    <span class="c1">###########################################################################</span>
+    <span class="k">if</span> <span class="n">gx_component</span> <span class="o">==</span> <span class="s1">&#39;ThinDisk&#39;</span><span class="p">:</span>
+        <span class="n">gx_component_mass</span> <span class="o">=</span> <span class="mf">4.32e10</span>
+    <span class="k">elif</span> <span class="n">gx_component</span> <span class="o">==</span> <span class="s1">&#39;Bulge&#39;</span><span class="p">:</span>
+        <span class="n">gx_component_mass</span> <span class="o">=</span> <span class="mf">8.9e9</span>
+    <span class="k">elif</span> <span class="n">gx_component</span> <span class="o">==</span> <span class="s1">&#39;ThickDisk&#39;</span><span class="p">:</span>
+        <span class="n">gx_component_mass</span> <span class="o">=</span> <span class="mf">1.44e10</span>
+ 
+    <span class="k">return</span> <span class="n">gx_component_mass</span></div>
+
+<div class="viewcode-block" id="sample_sech_squared"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.sample_sech_squared">[docs]</a><span class="k">def</span> <span class="nf">sample_sech_squared</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">scale_height</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="c1"># SAMPLE FROM SECH^2 DIST W/ PROVIDED SCALE HEIGHT FROM -INF to INF</span>
+    <span class="c1">###########################################################################</span>
+    <span class="n">rand_nums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">distributed_nums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctanh</span><span class="p">(</span> <span class="mi">2</span><span class="o">*</span><span class="n">rand_nums</span> <span class="p">)</span> <span class="o">*</span> <span class="n">scale_height</span>
+
+    <span class="k">return</span> <span class="n">distributed_nums</span></div>
+
+<div class="viewcode-block" id="sample_exponential_radial"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.sample_exponential_radial">[docs]</a><span class="k">def</span> <span class="nf">sample_exponential_radial</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">scale_height</span><span class="p">):</span>
+    <span class="c1"># SAMPLE FROM EXP DIST W/ PROVIDED SCALE HEIGHT FROM 0 to INF</span>
+    <span class="c1">###########################################################################</span>
+    <span class="n">rand_nums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">distributed_nums</span> <span class="o">=</span> <span class="n">scale_height</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">rand_nums</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">distributed_nums</span></div>
+
+<div class="viewcode-block" id="sample_exponential_vertical"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.sample_exponential_vertical">[docs]</a><span class="k">def</span> <span class="nf">sample_exponential_vertical</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">scale_height</span><span class="p">):</span>
+    <span class="c1"># SAMPLE FROM EXP DIST W/ PROVIDED SCALE HEIGHT FROM 0 to INF</span>
+    <span class="c1">###########################################################################</span>
+    <span class="n">rand_nums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">distributed_nums</span> <span class="o">=</span> <span class="n">scale_height</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">rand_nums</span><span class="p">)</span>
+
+    <span class="c1"># CHOOSE A POSITION ABOVE AND BELOW THE DISK </span>
+    <span class="c1">###########################################################################</span>
+    <span class="n">pos_neg_choose</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">negInd</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pos_neg_choose</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">distributed_nums</span><span class="p">[</span><span class="n">negInd</span><span class="p">]</span> <span class="o">=</span> <span class="n">distributed_nums</span><span class="p">[</span><span class="n">negInd</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">distributed_nums</span></div>
+
+<div class="viewcode-block" id="sample_exponential_square"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.sample_exponential_square">[docs]</a><span class="k">def</span> <span class="nf">sample_exponential_square</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">scale_height</span><span class="p">):</span>
+    <span class="c1"># SAMPLE FROM EXP(-(X/A)^2) DIST W/ PROVIDED SCALE HEIGHT FROM 0 to INF</span>
+    <span class="c1">###########################################################################</span>
+    <span class="n">rand_nums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">distributed_nums</span> <span class="o">=</span> <span class="n">scale_height</span> <span class="o">*</span> <span class="n">ss</span><span class="o">.</span><span class="n">erfinv</span><span class="p">(</span><span class="n">rand_nums</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">distributed_nums</span></div>
+
+<div class="viewcode-block" id="galactic_position_sample"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.galactic_position_sample">[docs]</a><span class="k">def</span> <span class="nf">galactic_position_sample</span><span class="p">(</span><span class="n">gx_component</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="c1"># SAMPLE FROM VERY SIMPLE DISTRIBUTION FUNCTIONS </span>
+    <span class="c1">###########################################################################</span>
+    <span class="k">if</span> <span class="n">gx_component</span> <span class="o">==</span> <span class="s1">&#39;ThinDisk&#39;</span><span class="p">:</span>
+        <span class="c1"># COMPUTE THE POSITION AND ORIENTATION OF EACH BINARY</span>
+        <span class="c1">#######################################################################</span>
+        <span class="c1"># Assign the radial and vertical positions:</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;double_exp&#39;</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">sample_exponential_radial</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">sample_exponential_vertical</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;sech_squared&#39;</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">sample_exponential_radial</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">sample_sech_squared</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;McMillan&#39;</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">sample_exponential_radial</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">sample_exponential_vertical</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+
+        <span class="c1"># Assign the azimuthal positions:</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        
+        <span class="c1"># convert to cartesian and parsecs:</span>
+        <span class="n">xGX</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+        <span class="n">yGX</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+        <span class="n">zGX</span> <span class="o">=</span> <span class="n">z</span> <span class="o">*</span> <span class="mf">1000.0</span>
+    
+    <span class="k">elif</span> <span class="n">gx_component</span> <span class="o">==</span> <span class="s1">&#39;Bulge&#39;</span><span class="p">:</span>
+
+        <span class="c1"># COMPUTE THE POSITION AND ORIENTATION OF EACH BINARY</span>
+        <span class="c1">#######################################################################</span>
+        <span class="c1"># Assign the radial positions:</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;exp_squared&#39;</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">sample_exponential_square</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+            <span class="c1"># Assign the polar positions (uniform in cos(theta):</span>
+            <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+        
+            <span class="c1"># Assign the azimuthal positions:</span>
+            <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+
+            <span class="c1"># convert to cartesian and parsecs:</span>
+            <span class="n">xGX</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+            <span class="n">yGX</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+            <span class="n">zGX</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+        <span class="k">elif</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;McMillan&#39;</span><span class="p">:</span>
+            <span class="n">r_save</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">z_save</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># sample double exp func and then rejection sample</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">r_save</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+                <span class="n">rcut</span> <span class="o">=</span> <span class="mf">2.1</span>
+                <span class="n">q</span> <span class="o">=</span> <span class="mf">0.5</span>
+                <span class="n">r0</span> <span class="o">=</span> <span class="mf">0.075</span>
+                <span class="n">alpha</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.8</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">prob</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span>
+                <span class="n">sample_func</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">q</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">rcut</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">actual_func</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">z</span><span class="o">/</span><span class="n">q</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="n">r0</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">sample_func</span>
+                <span class="n">indSave</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">prob</span> <span class="o">&lt;</span> <span class="n">actual_func</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">indSave</span><span class="p">:</span>
+                    <span class="n">r_save</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+                    <span class="n">z_save</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">r_save</span><span class="p">[:</span><span class="n">size</span><span class="p">])</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z_save</span><span class="p">[:</span><span class="n">size</span><span class="p">])</span>
+
+            <span class="c1"># Assign the azimuthal positions:</span>
+            <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+            
+            <span class="c1"># convert to cartesian and parsecs:</span>
+            <span class="n">xGX</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+            <span class="n">yGX</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+            <span class="n">zGX</span> <span class="o">=</span> <span class="n">z</span> <span class="o">*</span> <span class="mf">1000.0</span>
+
+    <span class="k">elif</span> <span class="n">gx_component</span> <span class="o">==</span> <span class="s1">&#39;ThickDisk&#39;</span><span class="p">:</span>
+        <span class="c1"># COMPUTE THE POSITION AND ORIENTATION OF EACH BINARY</span>
+        <span class="c1">###############################################################################</span>
+        <span class="c1"># Assign the radial and vertical positions:</span>
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;double_exp&#39;</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">sample_exponential_radial</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">sample_exponential_vertical</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;McMillan&#39;</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">sample_exponential_radial</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">3.31</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">sample_exponential_vertical</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+
+        <span class="c1"># Assign the azimuthal position of the star</span>
+        <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+
+        <span class="c1"># convert to cartesian and parsecs</span>
+        <span class="n">xGX</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">*</span><span class="mf">1000.0</span>
+        <span class="n">yGX</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">*</span><span class="mf">1000.0</span>
+        <span class="n">zGX</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="mf">1000.0</span>
+
+
+    <span class="c1"># compute the distance to Earth/LISA/us in kiloparsecs</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">((</span><span class="n">xGX</span><span class="o">-</span> <span class="n">x_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">yGX</span> <span class="o">-</span> <span class="n">y_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">zGX</span> <span class="o">-</span> <span class="n">z_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">dist_kpc</span> <span class="o">=</span> <span class="n">dist</span><span class="o">/</span><span class="mf">1000.0</span>
+
+    <span class="c1"># assign an inclination, argument of periapsis, and longitude of ascending node</span>
+    <span class="n">inc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+    <span class="n">OMEGA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+    <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+
+         
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">xGX</span><span class="p">,</span> <span class="n">yGX</span><span class="p">,</span> <span class="n">zGX</span><span class="p">,</span> <span class="n">dist_kpc</span><span class="p">,</span> <span class="n">inc</span><span class="p">,</span> <span class="n">OMEGA</span><span class="p">,</span> <span class="n">omega</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="sample"><a class="viewcode-back" href="../../api/aCOSMIC.MC_samp.html#aCOSMIC.MC_samp.sample">[docs]</a><span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">total_sampled_mass</span><span class="p">,</span> <span class="n">gx_component</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;McMillan&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Monte-Carlo samples a galactic realization</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">component_mass</span> <span class="o">=</span> <span class="n">select_component_mass</span><span class="p">(</span><span class="n">gx_component</span><span class="p">)</span>
+    <span class="n">nSystems</span> <span class="o">=</span> <span class="n">mass_weighted_number</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">total_sampled_mass</span><span class="p">,</span> <span class="n">component_mass</span><span class="p">)</span>
+    <span class="n">dat_trans</span> <span class="o">=</span> <span class="n">dat_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+    
+    <span class="c1"># FIRST SAMPLE THE BINARY PARAMETERS FROM THE FIXED POPULATION</span>
+    <span class="c1"># BY GENERATING A KDE FIT</span>
+    <span class="c1">#####################################################################</span>
+    <span class="n">dat_kernel</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">dat_trans</span><span class="p">)</span>
+    <span class="n">binary_sample_dat_trans</span> <span class="o">=</span> <span class="n">dat_kernel</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">nSystems</span><span class="p">)</span>
+    <span class="n">binary_sample_dat</span> <span class="o">=</span> <span class="n">dat_un_transform</span><span class="p">(</span><span class="n">binary_sample_dat_trans</span><span class="p">,</span> <span class="n">dat</span><span class="p">)</span>
+    
+    <span class="c1"># NEXT SAMPLE THE BINARY POSITIONS AND ORIENTATIONS</span>
+    <span class="c1">#####################################################################</span>
+    <span class="n">binary_sample_positions</span> <span class="o">=</span> <span class="n">galactic_position_sample</span><span class="p">(</span><span class="n">gx_component</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">nSystems</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">)</span> 
+
+    <span class="n">full_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">binary_sample_dat</span><span class="p">,</span> <span class="n">binary_sample_positions</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">full_sample</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0+untagged.257.g57c92fb.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

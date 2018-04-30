@@ -1,4 +1,4 @@
-.. automodule:: aCOSMIC.sampleBinariesThinDisk
+.. automodule:: aCOSMIC.sample.initialbinarytable
     :members:
     :undoc-members:
     :show-inheritance:

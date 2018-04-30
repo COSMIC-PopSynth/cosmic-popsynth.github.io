@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>aCOSMIC package &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
   
 
   
@@ -132,13 +132,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>aCOSMIC package</li>
+      <li>&lt;no title&gt;</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/api/aCOSMIC.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/aCOSMIC.sample.sampler.sampler.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -151,42 +151,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="acosmic-package">
-<h1>aCOSMIC package<a class="headerlink" href="#acosmic-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="aCOSMIC.sample.html">aCOSMIC.sample package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="aCOSMIC.sample.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="aCOSMIC.sample.sampler.html">aCOSMIC.sample.sampler package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="aCOSMIC.sample.sampler.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="aCOSMIC.sample.sampler.html#module-aCOSMIC.sample.sampler">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="aCOSMIC.sample.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="aCOSMIC.sample.html#module-aCOSMIC.sample">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-</div>
-</div>
-<div class="section" id="module-aCOSMIC">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-aCOSMIC" title="Permalink to this headline">¶</a></h2>
-<p>Gravitational-wave Electromagnetic Optimization</p>
-</div>
-</div>
+  <span class="target" id="module-aCOSMIC.sample.sampler.sampler"></span><p>Fetch registration for database queries</p>
+<dl class="function">
+<dt id="aCOSMIC.sample.sampler.sampler.get_sampler">
+<code class="descclassname">aCOSMIC.sample.sampler.sampler.</code><code class="descname">get_sampler</code><span class="sig-paren">(</span><em>data_format</em>, <em>data_class</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/sampler.html#get_sampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.sampler.get_sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <code class="xref py py-meth docutils literal notranslate"><span class="pre">sampler()</span></code> function for the given format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data_format</strong> : <cite>str</cite></p>
+<blockquote>
+<div><p>name of the format</p>
+</div></blockquote>
+<p><strong>data_class</strong> : <cite>type</cite></p>
+<blockquote>
+<div><p>the class that the sampler returns</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first"><strong>astropy.io.registry.IORegistryError</strong></p>
+<blockquote class="last">
+<div><p>if not registration is found matching <code class="docutils literal notranslate"><span class="pre">data_format</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="aCOSMIC.sample.sampler.sampler.register_sampler">
+<code class="descclassname">aCOSMIC.sample.sampler.sampler.</code><code class="descname">register_sampler</code><span class="sig-paren">(</span><em>data_format</em>, <em>data_class</em>, <em>function</em>, <em>force=False</em>, <em>usage=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/sampler.html#register_sampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.sampler.register_sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a new method to InitialBinaryTable.sampler() for a given format</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>data_format</strong> : <cite>str</cite></p>
+<blockquote>
+<div><p>name of the format to be registered</p>
+</div></blockquote>
+<p><strong>data_class</strong> : <cite>type</cite></p>
+<blockquote>
+<div><p>the class that the sampler returns</p>
+</div></blockquote>
+<p><strong>function</strong> : <cite>callable</cite></p>
+<blockquote>
+<div><p>the method to call from <code class="xref py py-meth docutils literal notranslate"><span class="pre">InitialBinaryTable.sampler()</span></code></p>
+</div></blockquote>
+<p><strong>force</strong> : <cite>bool</cite>, optional</p>
+<blockquote class="last">
+<div><p>overwrite existing registration for <code class="docutils literal notranslate"><span class="pre">data_format</span></code> if found,
+default: <cite>False</cite></p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 
 
            </div>

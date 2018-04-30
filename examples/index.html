@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Double White Dwarf Accretion with COSMIC &mdash; aCOSMIC 0+untagged.5.gf2e34ae.dirty documentation</title>
+  <title>Double White Dwarf Accretion with COSMIC &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
   
 
   
@@ -25,28 +25,20 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="aCOSMIC 0+untagged.5.gf2e34ae.dirty documentation" href="../index.html"/>
-        <link rel="next" title="Running runFixedPop on the command line" href="../command-line/index.html"/>
-        <link rel="prev" title="Welcome to aCOSMIC’s documentation!" href="../index.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running runFixedPop on the command line" href="../command-line/index.html" />
+    <link rel="prev" title="Welcome to aCOSMIC’s documentation!" href="../index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -68,7 +60,7 @@
             
             
               <div class="version">
-                0+untagged.5.gf2e34ae.dirty
+                0+untagged.257.g57c92fb.dirty
               </div>
             
           
@@ -95,28 +87,15 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Double White Dwarf Accretion with COSMIC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sampling-initial-conditions">Sampling Initial Conditions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#component-and-secondary-mass">Component and Secondary Mass</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#creating-and-evolving-the-system">Creating and Evolving the System</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#supernova">Supernova</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#system-resulting-from-supernova-of-helium-star">System Resulting from Supernova of Helium Star</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#evolving-system-through-galaxy">Evolving System Through Galaxy</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#time-to-merger-peters-1964">Time to Merger Peters 1964</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#distance-of-binary-from-center">Distance of Binary From Center</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#checking-offset">Checking Offset</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-evolving-a-single-binary">Creating and evolving a single binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-evolving-a-binary-grid">Creating and evolving a binary grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-evolving-a-sampled-binary-population">Creating and evolving a sampled binary population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sampling-initial-binary-conditions">Sampling Initial Binary Conditions</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 
             
@@ -128,7 +107,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">aCOSMIC</a>
@@ -136,9 +115,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -186,42 +166,143 @@
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Science</p>
 </div>
-<div class="section" id="sampling-initial-conditions">
-<h2>Sampling Initial Conditions<a class="headerlink" href="#sampling-initial-conditions" title="Permalink to this headline">¶</a></h2>
-<p>More science</p>
-<div class="section" id="component-and-secondary-mass">
-<h3>Component and Secondary Mass<a class="headerlink" href="#component-and-secondary-mass" title="Permalink to this headline">¶</a></h3>
-<p>Even more science</p>
+<div class="section" id="creating-and-evolving-a-single-binary">
+<h2>Creating and evolving a single binary<a class="headerlink" href="#creating-and-evolving-a-single-binary" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">aCOSMIC.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+
+<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">aCOSMIC.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
+
+<span class="gp">In [3]: </span><span class="n">single_binary</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">SingleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">porb</span><span class="o">=</span><span class="mf">25571606.5405</span><span class="p">,</span> <span class="n">ecc</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">tphysf</span><span class="o">=</span><span class="mf">8763.7162809763449</span><span class="p">,</span> <span class="n">kstar1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kstar2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metallicity</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+
+<span class="gp">In [4]: </span><span class="k">print</span><span class="p">(</span><span class="n">single_binary</span><span class="p">)</span>
+<span class="go">kstar1 kstar2 mass1_binary mass2_binary ... ecc  metallicity     tphysf   </span>
+<span class="go">                solMass      solMass    ...                     1e+06 yr  </span>
+<span class="go">------ ------ ------------ ------------ ... ---- ----------- -------------</span>
+<span class="go">     1      1          1.5          1.0 ... 0.05        0.02 8763.71628098</span>
+
+<span class="gp">In [5]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;CK&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;merger&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">}</span>
+
+<span class="gp">In [6]: </span><span class="n">EvolvedBinaryBPP</span><span class="p">,</span> <span class="n">EvolvedBinaryBCM</span> <span class="o">=</span> <span class="n">Evolve</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">=</span><span class="n">single_binary</span><span class="p">,</span> <span class="n">BSEDict</span><span class="o">=</span><span class="n">BSEDict</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="k">print</span><span class="p">(</span><span class="n">EvolvedBinaryBPP</span><span class="p">)</span>
+<span class="go">         tphys    mass_1    mass_2  kstar_1  kstar_2           sep   ecc  \</span>
+<span class="go">0  2729.247559  1.500000  1.000000      2.0      1.0  495568.75000  0.05   </span>
+<span class="go">0  2804.167480  1.499739  1.000000      3.0      1.0  495620.50000  0.05   </span>
+<span class="go">0  2962.613281  1.438740  1.000000      4.0      1.0  508019.37500  0.05   </span>
+<span class="go">0  3094.147705  1.411107  1.000000      5.0      1.0  513843.03125  0.05   </span>
+<span class="go">0  3097.994141  1.375442  1.000000      6.0      1.0  521560.28125  0.05   </span>
+<span class="go">0  3099.306885  0.577039  1.000002     11.0      1.0  788254.50000  0.05   </span>
+<span class="go">0  8763.715820  0.577039  1.000002     11.0      1.0  788254.50000  0.05   </span>
+
+<span class="go">         RROL_1    RROL_2  evol_type  </span>
+<span class="go">0  1.302484e-05  0.000005        2.0  </span>
+<span class="go">0  1.671058e-05  0.000006        2.0  </span>
+<span class="go">0  5.931584e-05  0.000005        2.0  </span>
+<span class="go">0  1.161538e-04  0.000005        2.0  </span>
+<span class="go">0  9.818192e-04  0.000005        2.0  </span>
+<span class="go">0  4.996275e-08  0.000003        2.0  </span>
+<span class="go">0  4.996275e-08  0.000004       10.0  </span>
+
+<span class="gp">In [8]: </span><span class="k">print</span><span class="p">(</span><span class="n">EvolvedBinaryBCM</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 tphys  kstar_1   mass0_1    mass_1   lumin_1     rad_1    teff_1  \</span>
+<span class="go">0     1.00000      1.0  1.500000  1.500000  0.665494  0.157558  3.850864   </span>
+<span class="go">0  8763.71582     11.0  0.577039  0.577039 -5.055805 -1.882955  3.440796   </span>
+
+<span class="go">    massc_1    radc_1        menv_1     ...          ospin_2  deltam_1  \</span>
+<span class="go">0  0.000000  0.000000  1.000000e-10     ...      1053.015991       0.0   </span>
+<span class="go">0  0.577039  0.013093  1.000000e-10     ...       855.219666       0.0   </span>
+
+<span class="go">     RROL_2           porb        sep   ecc  B_0_1  B_0_2  formation_1  \</span>
+<span class="go">0  0.000005   70013.156250  495568.75  0.05    0.0    0.0          0.0   </span>
+<span class="go">0  0.000004  176836.546875  788254.50  0.05    0.0    0.0          0.0   </span>
+
+<span class="go">   formation2  </span>
+<span class="go">0         0.0  </span>
+<span class="go">0         0.0  </span>
+
+<span class="go">[2 rows x 36 columns]</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="creating-and-evolving-the-system">
-<h2>Creating and Evolving the System<a class="headerlink" href="#creating-and-evolving-the-system" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="supernova">
-<h3>Supernova<a class="headerlink" href="#supernova" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="system-resulting-from-supernova-of-helium-star">
-<h4>System Resulting from Supernova of Helium Star<a class="headerlink" href="#system-resulting-from-supernova-of-helium-star" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="creating-and-evolving-a-binary-grid">
+<h2>Creating and evolving a binary grid<a class="headerlink" href="#creating-and-evolving-a-binary-grid" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="kn">from</span> <span class="nn">aCOSMIC.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+
+<span class="gp">In [10]: </span><span class="kn">from</span> <span class="nn">aCOSMIC.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
+
+<span class="gp">In [11]: </span><span class="n">binary_grid</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">MultipleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="n">m2</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.75</span><span class="p">],</span> <span class="n">porb</span><span class="o">=</span><span class="p">[</span><span class="mf">2557160646789.5405</span><span class="p">,</span><span class="mf">2557160646789.5405</span><span class="p">],</span> <span class="n">ecc</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.01</span><span class="p">],</span> <span class="n">tphysf</span><span class="o">=</span><span class="p">[</span><span class="mf">8763.7162809763449</span><span class="p">,</span><span class="mf">10000.7162809763449</span><span class="p">],</span> <span class="n">kstar1</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span> <span class="n">kstar2</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">11</span><span class="p">],</span> <span class="n">metallicity</span><span class="o">=</span><span class="p">[</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.02</span><span class="p">])</span>
+
+<span class="gp">In [12]: </span><span class="k">print</span><span class="p">(</span><span class="n">binary_grid</span><span class="p">)</span>
+<span class="go">kstar1 kstar2 mass1_binary mass2_binary ... ecc  metallicity     tphysf   </span>
+<span class="go">                solMass      solMass    ...                     1e+06 yr  </span>
+<span class="go">------ ------ ------------ ------------ ... ---- ----------- -------------</span>
+<span class="go">    11     11          1.5          1.0 ... 0.05        0.02 8763.71628098</span>
+<span class="go">    12     11          2.0         1.75 ... 0.01        0.02  10000.716281</span>
+
+<span class="gp">In [13]: </span><span class="n">EvolvedBinariesBPP</span><span class="p">,</span> <span class="n">EvolvedBinariesBCM</span>  <span class="o">=</span> <span class="n">Evolve</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">=</span><span class="n">binary_grid</span><span class="p">,</span> <span class="n">BSEDict</span><span class="o">=</span><span class="n">BSEDict</span><span class="p">)</span>
+
+<span class="gp">In [14]: </span><span class="k">print</span><span class="p">(</span><span class="n">EvolvedBinariesBPP</span><span class="p">)</span>
+<span class="go">          tphys    mass_1    mass_2  kstar_1  kstar_2  sep  ecc  RROL_1  \</span>
+<span class="go">0    611.000000  1.500000  1.000000     15.0     15.0  0.0  0.0     0.0   </span>
+<span class="go">1    149.192566  1.242000  0.000000     13.0     15.0  NaN  0.0     NaN   </span>
+<span class="go">1    209.542908       inf      -inf     14.0     15.0  NaN  0.0     NaN   </span>
+<span class="go">1  10000.715820       inf      -inf     14.0     15.0  NaN  0.0     NaN   </span>
+
+<span class="go">   RROL_2  evol_type  </span>
+<span class="go">0    -2.0        9.0  </span>
+<span class="go">1     NaN       12.0  </span>
+<span class="go">1     NaN        2.0  </span>
+<span class="go">1     NaN       10.0  </span>
+
+<span class="gp">In [15]: </span><span class="k">print</span><span class="p">(</span><span class="n">EvolvedBinariesBCM</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    tphys  kstar_1  mass0_1  mass_1  lumin_1  rad_1  teff_1  massc_1  \</span>
+<span class="go">1  10000.71582     14.0      2.0     inf    -10.0    inf    -inf      inf   </span>
+
+<span class="go">   radc_1        menv_1     ...      ospin_2  deltam_1  RROL_2  porb  sep  \</span>
+<span class="go">1     inf  1.000000e-10     ...          0.0      -0.0     NaN   NaN  NaN   </span>
+
+<span class="go">   ecc         B_0_1  B_0_2  formation_1  formation2  </span>
+<span class="go">1  0.0  9.136732e+11    0.0          0.0         0.0  </span>
+
+<span class="go">[1 rows x 36 columns]</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="evolving-system-through-galaxy">
-<h3>Evolving System Through Galaxy<a class="headerlink" href="#evolving-system-through-galaxy" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="time-to-merger-peters-1964">
-<h4>Time to Merger Peters 1964<a class="headerlink" href="#time-to-merger-peters-1964" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="creating-and-evolving-a-sampled-binary-population">
+<h2>Creating and evolving a sampled binary population<a class="headerlink" href="#creating-and-evolving-a-sampled-binary-population" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="kn">from</span> <span class="nn">aCOSMIC.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+
+<span class="gp">In [17]: </span><span class="n">sampled_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-17-8098a51df9dd&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">sampled_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">)</span>
+
+<span class="nn">~/Documents/virtualenvs/aCOSMIC-py35/lib/python3.5/site-packages/aCOSMIC/sample/initialbinarytable.py</span> in <span class="ni">sampler</span><span class="nt">(cls, format_, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span>         <span class="kn">from</span> <span class="nn">.sampler.sampler</span> <span class="kn">import</span> <span class="n">get_sampler</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span>         <span class="n">sampler</span> <span class="o">=</span> <span class="n">get_sampler</span><span class="p">(</span><span class="n">format_</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">188</span>         <span class="k">return</span> <span class="n">sampler</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: get_independent_sampler() missing 7 required positional arguments: &#39;primary_min&#39;, &#39;primary_max&#39;, &#39;primary_model&#39;, &#39;ecc_model&#39;, &#39;SFH_model&#39;, &#39;component_age&#39;, and &#39;size&#39;
+
+<span class="gp">In [18]: </span><span class="k">print</span><span class="p">(</span><span class="n">sampled_binaries</span><span class="p">)</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ---------------------------------------------------------------------------</span>
+<span class="go">NameError                                 Traceback (most recent call last)</span>
+<span class="go">&lt;ipython-input-18-ab8567936206&gt; in &lt;module&gt;()</span>
+<span class="go">----&gt; 1 print(sampled_binaries)</span>
+
+<span class="go">NameError: name &#39;sampled_binaries&#39; is not defined</span>
+</pre></div>
 </div>
-<div class="section" id="distance-of-binary-from-center">
-<h4>Distance of Binary From Center<a class="headerlink" href="#distance-of-binary-from-center" title="Permalink to this headline">¶</a></h4>
 </div>
-</div>
-<div class="section" id="checking-offset">
-<h3>Checking Offset<a class="headerlink" href="#checking-offset" title="Permalink to this headline">¶</a></h3>
-</div>
+<div class="section" id="sampling-initial-binary-conditions">
+<h2>Sampling Initial Binary Conditions<a class="headerlink" href="#sampling-initial-binary-conditions" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -243,7 +324,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -261,7 +342,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.5.gf2e34ae.dirty',
+            VERSION:'0+untagged.257.g57c92fb.dirty',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -279,14 +361,13 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

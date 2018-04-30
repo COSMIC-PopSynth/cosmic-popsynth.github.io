@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>aCOSMIC.MatchKnuth &mdash; aCOSMIC 0+untagged.5.gf2e34ae.dirty documentation</title>
+  <title>aCOSMIC.Match &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
   
 
   
@@ -25,27 +25,18 @@
   
 
   
-  
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="aCOSMIC 0+untagged.5.gf2e34ae.dirty documentation" href="../../index.html"/>
-        <link rel="up" title="Module code" href="../index.html"/> 
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0+untagged.5.gf2e34ae.dirty
+                0+untagged.257.g57c92fb.dirty
               </div>
             
           
@@ -95,7 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Double White Dwarf Accretion with COSMIC</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 
             
@@ -107,7 +98,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">aCOSMIC</a>
@@ -115,9 +106,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -142,12 +134,10 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
-      <li>aCOSMIC.MatchKnuth</li>
+      <li>aCOSMIC.Match</li>
     
     
       <li class="wy-breadcrumbs-aside">
-        
-            
         
       </li>
     
@@ -159,7 +149,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for aCOSMIC.MatchKnuth</h1><div class="highlight"><pre>
+  <h1>Source code for aCOSMIC.Match</h1><div class="highlight"><pre>
 <span></span><span class="ch">#! /usr/bin/env python</span>
 
 <span class="c1"># Code: Match.py</span>
@@ -177,14 +167,14 @@
 
 
 
-<div class="viewcode-block" id="match"><a class="viewcode-back" href="../../api/aCOSMIC.MatchKnuth.html#aCOSMIC.MatchKnuth.match">[docs]</a><span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">dataCm</span><span class="p">,</span> <span class="n">nRuns</span><span class="p">):</span>
+<div class="viewcode-block" id="match"><a class="viewcode-back" href="../../api/aCOSMIC.Match.html#aCOSMIC.Match.match">[docs]</a><span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">dataCm</span><span class="p">,</span> <span class="n">nRuns</span><span class="p">):</span>
 
     <span class="c1"># DEFINE A LIST TO HOLD THE BINNED DATA:   </span>
     <span class="n">histo</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRuns</span><span class="p">)]</span>
     <span class="n">histoBinEdges</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">nRuns</span><span class="p">))]</span>
     <span class="c1"># COMPUTE THE BINWIDTH FOR THE MOST COMPLETE DATA SET:</span>
     <span class="c1"># NOTE: THIS WILL BE THE BINWIDTH FOR ALL THE HISTOGRAMS IN THE HISTO LIST</span>
-    <span class="n">mainHisto</span><span class="p">,</span> <span class="n">binEdges</span> <span class="o">=</span> <span class="n">astroStats</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataCm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">dataCm</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;knuth&#39;</span><span class="p">)</span>
+    <span class="n">mainHisto</span><span class="p">,</span> <span class="n">binEdges</span> <span class="o">=</span> <span class="n">astroStats</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataCm</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">dataCm</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;scott&#39;</span><span class="p">)</span>
     
     <span class="c1"># BIN THE DATA:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRuns</span><span class="p">):</span>
@@ -213,17 +203,19 @@
     <span class="n">nominatorSum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nominatorSum</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float128</span><span class="p">)</span>
     <span class="n">denominator1Sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">denominator1Sum</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float128</span><span class="p">)</span>
     <span class="n">denominator2Sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">denominator2Sum</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float128</span><span class="p">)</span>
-    
+
+
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRuns</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="n">match</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">nominatorSum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denominator1Sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">denominator2Sum</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">binEdges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">binEdges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mf">1e-7</span><span class="p">:</span>
+            <span class="n">match</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">match</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">nominatorSum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denominator1Sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">denominator2Sum</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
         
-    <span class="k">return</span> <span class="n">match</span><span class="p">;</span></div>
+    <span class="k">return</span> <span class="n">match</span><span class="p">,</span> <span class="n">binEdges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">binEdges</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span></div>
 </pre></div>
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -236,7 +228,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -254,7 +246,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0+untagged.5.gf2e34ae.dirty',
+            VERSION:'0+untagged.257.g57c92fb.dirty',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -272,14 +265,13 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> aCOSMIC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0+untagged.257.g57c92fb.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Double White Dwarf Accretion with COSMIC</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">aCOSMIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/aCOSMIC.sample.sampler.independent.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-aCOSMIC.sample.sampler.independent"></span><p><cite>sample</cite></p>
+<dl class="function">
+<dt id="aCOSMIC.sample.sampler.independent.get_independent_sampler">
+<code class="descclassname">aCOSMIC.sample.sampler.independent.</code><code class="descname">get_independent_sampler</code><span class="sig-paren">(</span><em>primary_min</em>, <em>primary_max</em>, <em>primary_model</em>, <em>ecc_model</em>, <em>SFH_model</em>, <em>component_age</em>, <em>size</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#get_independent_sampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.get_independent_sampler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="aCOSMIC.sample.sampler.independent.Sample">
+<em class="property">class </em><code class="descclassname">aCOSMIC.sample.sampler.independent.</code><code class="descname">Sample</code><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.binary_select">
+<code class="descname">binary_select</code><span class="sig-paren">(</span><em>primary_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.binary_select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binary fraction is set by <a class="reference external" href="http://adsabs.harvard.edu/abs/2013A%26A...552A..69V">van Haaften et al.(2009)</a> in appdx</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.sample_SFH">
+<code class="descname">sample_SFH</code><span class="sig-paren">(</span><em>SFH_model='const'</em>, <em>component_age=10000.0</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.sample_SFH"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.sample_SFH" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘const’: Assign an evolution time assuming a constant star formation rate over the age of the MW disk: component_age [Myr]
+‘burst’: Assign an evolution time assuming constant star formation rate for 1Gyr starting at component_age [Myr] in the past</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.sample_ecc">
+<code class="descname">sample_ecc</code><span class="sig-paren">(</span><em>ecc_model='thermal'</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.sample_ecc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.sample_ecc" title="Permalink to this definition">¶</a></dt>
+<dd><p>If model==’thermal’, thermal eccentricity distribution following <a class="reference external" href="http://adsabs.harvard.edu/abs/1975MNRAS.173..729H">Heggie (1975)</a></p>
+<p>If model==’uniform’, Sample eccentricities uniformly between 0 and 1 following ref ref from Aaron Geller</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.sample_porb">
+<code class="descname">sample_porb</code><span class="sig-paren">(</span><em>mass1</em>, <em>mass2</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.sample_porb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.sample_porb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Separation is sampled according to <a class="reference external" href="http://adsabs.harvard.edu/abs/1998MNRAS.296.1019H">Han (1998)</a>
+Separation is then converted to orbital period in days</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.sample_primary">
+<code class="descname">sample_primary</code><span class="sig-paren">(</span><em>primary_min</em>, <em>primary_max</em>, <em>primary_model='kroupa93'</em>, <em>size=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.sample_primary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.sample_primary" title="Permalink to this definition">¶</a></dt>
+<dd><p>sample the larger mass object</p>
+<p>kroupa93 follows Kroupa (1993), normalization comes from
+<a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
+between 0.1 and 100 Msun
+salpter55 follows
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
+between 0.1 and 100 Msun</p>
+<dl class="docutils">
+<dt>Parameters:</dt>
+<dd><dl class="first last docutils">
+<dt>primary_min (float):</dt>
+<dd>Something</dd>
+<dt>primary_max (float):</dt>
+<dd>Something</dd>
+<dt>primary_model (str, optional):</dt>
+<dd>Something Default kroupa93</dd>
+<dt>size (int, optional):</dt>
+<dd>Something</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.sample_secondary">
+<code class="descname">sample_secondary</code><span class="sig-paren">(</span><em>primary_mass</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.sample_secondary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.sample_secondary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Secondary mass is computed from uniform mass ratio distribution draws motivated by
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1992ApJ...401..265M">Mazeh et al. (1992)</a>
+and <a class="reference external" href="http://adsabs.harvard.edu/abs/1994ApJ...429..362G">Goldberg &amp; Mazeh (1994)</a></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.set_kstar">
+<code class="descname">set_kstar</code><span class="sig-paren">(</span><em>mass</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.set_kstar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.set_kstar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize all stars according to: kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="aCOSMIC.sample.sampler.independent.Sample.set_metallicity">
+<code class="descname">set_metallicity</code><span class="sig-paren">(</span><em>component_age</em>, <em>size</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/sample/sampler/independent.html#Sample.set_metallicity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.sample.sampler.independent.Sample.set_metallicity" title="Permalink to this definition">¶</a></dt>
+<dd><p>As a stand in for now, set all systems with component age less that 10 Gyr to solar metallicity and systems with component age greater than 10 Gyr to 0.15 solar metallicity</p>
+</dd></dl>
+
+</dd></dl>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0+untagged.257.g57c92fb.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

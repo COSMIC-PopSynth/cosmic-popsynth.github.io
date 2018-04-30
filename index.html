@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to aCOSMIC’s documentation! &mdash; aCOSMIC 0+untagged.5.gf2e34ae.dirty documentation</title>
+  <title>Welcome to aCOSMIC’s documentation! &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
   
 
   
@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="_static/aCOSMIC-docs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="aCOSMIC 0+untagged.5.gf2e34ae.dirty documentation" href="#"/>
-        <link rel="next" title="Double White Dwarf Accretion with COSMIC" href="examples/index.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/aCOSMIC-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Double White Dwarf Accretion with COSMIC" href="examples/index.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0+untagged.5.gf2e34ae.dirty
+                0+untagged.257.g57c92fb.dirty
               </div>
             
           
@@ -95,7 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Double White Dwarf Accretion with COSMIC</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 
             
@@ -107,7 +99,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">aCOSMIC</a>
@@ -115,9 +107,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -164,7 +157,7 @@
 <div class="section" id="installing-acosmic">
 <h2>Installing aCOSMIC<a class="headerlink" href="#installing-acosmic" title="Permalink to this headline">¶</a></h2>
 <p>The easiest method to install aCOSMIC is using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> directly from the <a class="reference external" href="https://github.com/aCOSMIC/aCOSMIC.git">GitHub repository</a>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/aCOSMIC/aCOSMIC.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/aCOSMIC/aCOSMIC.git
 </pre></div>
 </div>
 </div>
@@ -174,23 +167,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Double White Dwarf Accretion with COSMIC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="examples/index.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/index.html#sampling-initial-conditions">Sampling Initial Conditions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="examples/index.html#component-and-secondary-mass">Component and Secondary Mass</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-the-system">Creating and Evolving the System</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="examples/index.html#supernova">Supernova</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="examples/index.html#system-resulting-from-supernova-of-helium-star">System Resulting from Supernova of Helium Star</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="examples/index.html#evolving-system-through-galaxy">Evolving System Through Galaxy</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="examples/index.html#time-to-merger-peters-1964">Time to Merger Peters 1964</a></li>
-<li class="toctree-l4"><a class="reference internal" href="examples/index.html#distance-of-binary-from-center">Distance of Binary From Center</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="examples/index.html#checking-offset">Checking Offset</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-a-single-binary">Creating and evolving a single binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-a-binary-grid">Creating and evolving a binary grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-a-sampled-binary-population">Creating and evolving a sampled binary population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#sampling-initial-binary-conditions">Sampling Initial Binary Conditions</a></li>
 </ul>
 </li>
 </ul>
@@ -198,6 +178,7 @@
 </div>
 <div class="section" id="how-to-run-acosmic">
 <h2>How to run aCOSMIC<a class="headerlink" href="#how-to-run-acosmic" title="Permalink to this headline">¶</a></h2>
+<p>Here is an example commandline:</p>
 <p>For more details see <a class="reference internal" href="command-line/index.html#command-line"><span class="std std-ref">Running runFixedPop on the command line</span></a>.</p>
 </div>
 <div class="section" id="package-documentation">
@@ -205,141 +186,14 @@
 <p>Please consult these pages for more details on using aCOSMIC:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 </div>
 </div>
 <div class="section" id="fortran">
 <h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="thin-and-thick-disk">
-<h3>Thin and Thick Disk<a class="headerlink" href="#thin-and-thick-disk" title="Permalink to this headline">¶</a></h3>
-<dl class="subroutine">
-<dt id="f/_/runpopbin">
-<em class="property">subroutine  </em><code class="descname">runpopbin</code><span class="sig-paren">(</span><em>binaryfile</em>, <em>binid</em>, <em>bintype</em>, <em>ncore</em>, <em>ncorewrite</em><span class="sig-paren">)</span><a class="headerlink" href="#f/_/runpopbin" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>binaryfile</strong><em> [</em><em>character</em><em>]</em></li>
-<li><strong>binid</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>bintype</strong><em> [</em><em>character</em><em>]</em></li>
-<li><strong>ncore</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ncorewrite</strong><em> [</em><em>character</em><em>]</em></li>
-<li><strong>scm</strong> (50000,14)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>neta</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>merger</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>pts3</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>pts2</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>bwind</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>tflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>eddfac</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>bpp</strong> (80,12)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>bconst</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>ce2flag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>commonenv</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>epsnov</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>hewind</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>idum</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ifflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ceflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>gamma</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>lambda</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>ck</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>xi</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>wdflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>drmax</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>iy</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>bcm</strong> (50000,37)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>idum2</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>acc2</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>pts1</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>alpha1</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>spp</strong> (20,3)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>ir</strong> (32)<em> [</em><em>integer</em><em>]</em></li>
-<li><strong>windflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>fbkickswitch</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ktype</strong> (15,15)<em> [</em><em>integer</em><em>]</em></li>
-<li><strong>dmmax</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>mxns</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>beta</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>nsflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>sigma</strong><em> [</em><em>real</em><em>]</em></li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Call to:</th><td class="field-body"><p class="first last"><code class="xref f f-func docutils literal"><span class="pre">instar()</span></code>, <code class="xref f f-func docutils literal"><span class="pre">zcnsts()</span></code>, <code class="xref f f-func docutils literal"><span class="pre">evolv2()</span></code></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="bulge">
-<h3>Bulge<a class="headerlink" href="#bulge" title="Permalink to this headline">¶</a></h3>
-<dl class="subroutine">
-<dt>
-<em class="property">subroutine  </em><code class="descname">runpopbin</code><span class="sig-paren">(</span><em>binaryfile</em>, <em>binid</em>, <em>bintype</em>, <em>ncore</em>, <em>ncorewrite</em><span class="sig-paren">)</span></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>binaryfile</strong><em> [</em><em>character</em><em>]</em></li>
-<li><strong>binid</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>bintype</strong><em> [</em><em>character</em><em>]</em></li>
-<li><strong>ncore</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ncorewrite</strong><em> [</em><em>character</em><em>]</em></li>
-<li><strong>scm</strong> (50000,14)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>neta</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>merger</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>pts3</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>pts2</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>bwind</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>tflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>eddfac</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>bpp</strong> (80,12)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>bconst</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>ce2flag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>commonenv</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>epsnov</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>hewind</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>idum</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ifflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ceflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>gamma</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>lambda</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>ck</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>xi</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>wdflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>drmax</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>iy</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>bcm</strong> (50000,37)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>idum2</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>acc2</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>pts1</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>alpha1</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>spp</strong> (20,3)<em> [</em><em>real</em><em>]</em></li>
-<li><strong>ir</strong> (32)<em> [</em><em>integer</em><em>]</em></li>
-<li><strong>windflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>fbkickswitch</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>ktype</strong> (15,15)<em> [</em><em>integer</em><em>]</em></li>
-<li><strong>dmmax</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>mxns</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>beta</strong><em> [</em><em>real</em><em>]</em></li>
-<li><strong>nsflag</strong><em> [</em><em>integer</em><em>]</em></li>
-<li><strong>sigma</strong><em> [</em><em>real</em><em>]</em></li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Call to:</th><td class="field-body"><p class="first last"><code class="xref f f-func docutils literal"><span class="pre">instar()</span></code>, <code class="xref f f-func docutils literal"><span class="pre">zcnsts()</span></code>, <code class="xref f f-func docutils literal"><span class="pre">evolv2()</span></code></p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
+<div class="section" id="evolv2">
+<h3>evolv2<a class="headerlink" href="#evolv2" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -354,9 +208,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -376,7 +228,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -394,7 +246,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0+untagged.5.gf2e34ae.dirty',
+            VERSION:'0+untagged.257.g57c92fb.dirty',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -412,14 +265,13 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

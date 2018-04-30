@@ -1,15 +1,24 @@
 aCOSMIC package
 ===============
 
+Subpackages
+-----------
+
+.. toctree::
+
+    aCOSMIC.sample
+
 Submodules
 ----------
 
 .. toctree::
 
-   aCOSMIC.MatchKnuth
-   aCOSMIC.sampleBinariesBulge
-   aCOSMIC.sampleBinariesThickDisk
-   aCOSMIC.sampleBinariesThinDisk
+   aCOSMIC.GW_calcs
+   aCOSMIC.MC_samp
+   aCOSMIC.Match
+   aCOSMIC.evolve
+   aCOSMIC.lisa_sensitivity
+   aCOSMIC.utils
 
 Module contents
 ---------------

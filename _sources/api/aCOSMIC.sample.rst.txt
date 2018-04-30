@@ -1,0 +1,24 @@
+aCOSMIC.sample package
+======================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    aCOSMIC.sample.sampler
+
+Submodules
+----------
+
+.. toctree::
+
+   aCOSMIC.sample.initialbinarytable
+
+Module contents
+---------------
+
+.. automodule:: aCOSMIC.sample
+    :members:
+    :undoc-members:
+    :show-inheritance:

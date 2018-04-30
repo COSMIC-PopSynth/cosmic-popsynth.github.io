@@ -1,0 +1,19 @@
+aCOSMIC.sample.sampler package
+==============================
+
+Submodules
+----------
+
+.. toctree::
+
+   aCOSMIC.sample.sampler.independent
+   aCOSMIC.sample.sampler.multidim
+   aCOSMIC.sample.sampler.sampler
+
+Module contents
+---------------
+
+.. automodule:: aCOSMIC.sample.sampler
+    :members:
+    :undoc-members:
+    :show-inheritance:

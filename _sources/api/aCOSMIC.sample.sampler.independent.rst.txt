@@ -1,4 +1,4 @@
-.. automodule:: aCOSMIC.MatchKnuth
+.. automodule:: aCOSMIC.sample.sampler.independent
     :members:
     :undoc-members:
     :show-inheritance:
