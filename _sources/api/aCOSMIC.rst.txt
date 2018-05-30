@@ -17,6 +17,7 @@ Submodules
    aCOSMIC.MC_samp
    aCOSMIC.Match
    aCOSMIC.evolve
+   aCOSMIC.gxreal
    aCOSMIC.lisa_sensitivity
    aCOSMIC.utils
 

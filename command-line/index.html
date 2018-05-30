@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Running runFixedPop on the command line &mdash; aCOSMIC 0+untagged.257.g57c92fb.dirty documentation</title>
+  <title>Running runFixedPop on the command line &mdash; aCOSMIC 0+untagged.259.g810a3e7.dirty documentation</title>
   
 
   
@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Double White Dwarf Accretion with COSMIC" href="../examples/index.html" /> 
+    <link rel="prev" title="Using COSMIC to evolve binaries with BSE" href="../examples/index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0+untagged.257.g57c92fb.dirty
+                0+untagged.259.g810a3e7.dirty
               </div>
             
           
@@ -84,7 +84,7 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Double White Dwarf Accretion with COSMIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a><ul>
@@ -163,10 +163,41 @@
 <h2>Basic instructions<a class="headerlink" href="#basic-instructions" title="Permalink to this headline">¶</a></h2>
 <p>Basic instructions on running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> can be gained by looking at the <code class="docutils literal notranslate"><span class="pre">--help</span></code> menu:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --help
-  File &quot;/Users/scottcoughlin/Documents/virtualenvs/aCOSMIC-py35/bin/runFixedPop&quot;, line 200
-    print &#39;There are already: &#39;+str(bcm_save.shape[0])+&#39; &#39;+kstar1_range_string+&#39;_&#39;+kstar2_range_string+&#39; binaries evolved&#39;
-                              ^
-SyntaxError: invalid syntax
+usage: runFixedPop [-h]
+                   [--convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]]
+                   --inifile INIFILE --galaxy_component GALAXY_COMPONENT
+                   --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                   --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                   [--Niter NITER] [--Nstep NSTEP] [-n NPROC] [--verbose]
+                   [--initial_samp INITIAL_SAMP]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]
+                        A space separated list of parameters you would like to
+                        varify you have simulated enough binaries for
+  --inifile INIFILE     Name of ini file of params
+  --galaxy_component GALAXY_COMPONENT
+                        Galaxy Components. Options include Bulge ThinDisk and
+                        ThickDisk
+  --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                        Specify the final condition of kstar1, you want
+                        systems to end at for your samples
+  --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                        Specify the final condition of kstar2, you want
+                        systems to end at for your samples
+  --Niter NITER         Number of iterations of binaries to try, will check
+                        ever Nstep for convergence
+  --Nstep NSTEP         Number of binaries to try before checking for
+                        convergence, it will check ever Nstep binaries until
+                        it reach Niter binaries
+  -n NPROC, --nproc NPROC
+                        number of processors
+  --verbose             Run in Verbose Mode
+  --initial_samp INITIAL_SAMP
+                        Specify if independent binary initial conditions:
+                        independent, or following Moe &amp; Di Stefano (2017):
+                        multidim
 </pre></div>
 </div>
 </div>
@@ -185,7 +216,7 @@ SyntaxError: invalid syntax
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../examples/index.html" class="btn btn-neutral" title="Double White Dwarf Accretion with COSMIC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral" title="Using COSMIC to evolve binaries with BSE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -216,7 +247,7 @@ SyntaxError: invalid syntax
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.257.g57c92fb.dirty',
+            VERSION:'0+untagged.259.g810a3e7.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -227,6 +258,7 @@ SyntaxError: invalid syntax
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
