@@ -1,4 +1,0 @@
-.. automodule:: aCOSMIC.Match
-    :members:
-    :undoc-members:
-    :show-inheritance:

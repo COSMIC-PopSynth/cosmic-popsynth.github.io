@@ -1,4 +1,0 @@
-.. automodule:: aCOSMIC.gxreal
-    :members:
-    :undoc-members:
-    :show-inheritance:

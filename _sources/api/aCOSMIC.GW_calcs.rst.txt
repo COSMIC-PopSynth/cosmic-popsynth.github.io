@@ -1,4 +1,0 @@
-.. automodule:: aCOSMIC.GW_calcs
-    :members:
-    :undoc-members:
-    :show-inheritance:

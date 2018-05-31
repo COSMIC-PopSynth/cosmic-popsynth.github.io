@@ -1,4 +1,0 @@
-.. automodule:: aCOSMIC.utils
-    :members:
-    :undoc-members:
-    :show-inheritance:

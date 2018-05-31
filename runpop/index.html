@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Evolve a Milky Way population &mdash; aCOSMIC 0+untagged.286.g52fa9b2 documentation</title>
+  <title>Evolve a Milky Way population &mdash; cosmic 0+untagged.299.gb0e8cc6 documentation</title>
   
 
   
@@ -25,28 +25,20 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="aCOSMIC 0+untagged.286.g52fa9b2 documentation" href="../index.html"/>
-        <link rel="next" title="Running runFixedPop on the command line" href="../command-line/index.html"/>
-        <link rel="prev" title="Using COSMIC to evolve binaries with BSE" href="../examples/index.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running runFixedPop on the command line" href="../command-line/index.html" />
+    <link rel="prev" title="Using COSMIC to evolve binaries with BSE" href="../examples/index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +50,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> aCOSMIC
+            <a href="../index.html" class="icon icon-home"> cosmic
           
 
           
@@ -68,7 +60,7 @@
             
             
               <div class="version">
-                0+untagged.286.g52fa9b2
+                0+untagged.299.gb0e8cc6
               </div>
             
           
@@ -100,7 +92,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 
             
@@ -112,17 +104,18 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">aCOSMIC</a>
+          <a href="../index.html">cosmic</a>
         
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -178,36 +171,36 @@ distinct ways to generate the initial population:</p>
 <div class="section" id="sampling-an-initial-population-with-independently-distributed-parameters">
 <h2>Sampling an initial population with independently distributed parameters<a class="headerlink" href="#sampling-an-initial-population-with-independently-distributed-parameters" title="Permalink to this headline">¶</a></h2>
 <p>The</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">aCOSMIC.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
 <span class="gp">In [2]: </span><span class="n">IBT</span><span class="p">,</span> <span class="n">sampled_mass</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">primary_min</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">primary_max</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa93&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;thermal&#39;</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 
 <span class="gp">In [3]: </span><span class="k">print</span><span class="p">(</span><span class="n">IBT</span><span class="p">)</span>
-<span class="go">kstar1 kstar2     mass1_binary    ... metallicity       tphysf      </span>
-<span class="go">                    solMass       ...                  1e+06 yr     </span>
-<span class="go">------ ------ ------------------- ... ----------- ------------------</span>
-<span class="go">   0.0    0.0  0.4776438492114468 ...        0.02  5502.747138668526</span>
-<span class="go">   0.0    0.0  0.1584160668846578 ...        0.02  7391.400144583074</span>
-<span class="go">   1.0    1.0  1.3765128944682208 ...        0.02  5498.098658889615</span>
-<span class="go">   0.0    0.0  0.2799232568212078 ...        0.02  8008.955094344784</span>
-<span class="go">   0.0    0.0  0.4162904125527755 ...        0.02  5832.695866835419</span>
-<span class="go">   0.0    0.0 0.14151033511323807 ...        0.02  6754.083425915899</span>
-<span class="go">   1.0    1.0  1.5123004809513814 ...        0.02  8211.310161451323</span>
-<span class="go">   1.0    1.0  2.3503930133536786 ...        0.02 1691.9861842775763</span>
-<span class="go">   0.0    0.0 0.22565266532412392 ...        0.02  2048.839303725707</span>
-<span class="go">   0.0    0.0  0.3238471363639984 ...        0.02  6834.468000422882</span>
-<span class="go">   ...    ...                 ... ...         ...                ...</span>
-<span class="go">   0.0    0.0 0.14520990613621504 ...        0.02  8731.362289971648</span>
-<span class="go">   1.0    0.0  0.7261930602222498 ...        0.02 7761.3492983153565</span>
-<span class="go">   0.0    0.0 0.17740017685929146 ...        0.02 1321.3947805397086</span>
-<span class="go">   0.0    0.0 0.16668274372326883 ...        0.02  6334.280338315686</span>
-<span class="go">   0.0    0.0  0.6082386072088296 ...        0.02  562.0708380375439</span>
-<span class="go">   1.0    0.0  0.9434622593758569 ...        0.02  9800.167637872913</span>
-<span class="go">   0.0    0.0  0.4169815900635534 ...        0.02 3223.6170696997115</span>
-<span class="go">   0.0    0.0  0.1389873663414178 ...        0.02  5626.527000291112</span>
-<span class="go">   0.0    0.0  0.1331443120800332 ...        0.02   5354.66467149395</span>
-<span class="go">   0.0    0.0  0.1524050675407909 ...        0.02  1573.465429229277</span>
-<span class="go">Length = 383 rows</span>
+<span class="go">kstar1 kstar2  mass1_binary  ...      ecc       metallicity     tphysf   </span>
+<span class="go">                 solMass     ...                               1e+06 yr  </span>
+<span class="go">------ ------ -------------- ... -------------- ----------- -------------</span>
+<span class="go">   0.0    0.0 0.114142207885 ... 0.836249118967        0.02 2828.42264322</span>
+<span class="go">   1.0    0.0  1.06545326171 ... 0.563294723422        0.02 4989.17392443</span>
+<span class="go">   0.0    0.0 0.674305536228 ... 0.783362907279        0.02 9462.19262359</span>
+<span class="go">   1.0    1.0  1.97551229233 ... 0.806483227685        0.02 5771.70753169</span>
+<span class="go">   0.0    0.0 0.255450353658 ... 0.415823913618        0.02  9657.7718802</span>
+<span class="go">   0.0    0.0 0.292070317846 ... 0.604718479669        0.02 7034.20392646</span>
+<span class="go">   1.0    1.0  1.45872237626 ... 0.904443401209        0.02 9740.62419612</span>
+<span class="go">   0.0    0.0 0.220361657779 ... 0.998987626136        0.02 3926.22263412</span>
+<span class="go">   0.0    0.0 0.230140300966 ... 0.867813537331        0.02 5236.11590938</span>
+<span class="go">   0.0    0.0 0.341430609251 ... 0.831446345779        0.02 75.0495485741</span>
+<span class="go">   ...    ...            ... ...            ...         ...           ...</span>
+<span class="go">   0.0    0.0 0.365427751095 ... 0.750383598848        0.02 5643.64087341</span>
+<span class="go">   0.0    0.0 0.252003071461 ... 0.870015228097        0.02 6047.84505308</span>
+<span class="go">   0.0    0.0 0.126718056314 ... 0.901819148261        0.02 8816.38177511</span>
+<span class="go">   1.0    0.0 0.982259477464 ...   0.6249372566        0.02 2533.99774225</span>
+<span class="go">   0.0    0.0 0.306704278156 ... 0.716043907527        0.02 123.951030592</span>
+<span class="go">   0.0    0.0 0.204027841247 ... 0.978377644041        0.02 2664.20239304</span>
+<span class="go">   0.0    0.0 0.160299118074 ... 0.776615314112        0.02 622.369477399</span>
+<span class="go">   0.0    0.0  0.30382093734 ... 0.863908469432        0.02 1224.05028073</span>
+<span class="go">   0.0    0.0 0.390676089465 ... 0.388831331171        0.02 4418.94705028</span>
+<span class="go">   1.0    0.0  2.55820980045 ... 0.795913490133        0.02 9146.28428566</span>
+<span class="go">Length = 358 rows</span>
 </pre></div>
 </div>
 </div>
@@ -215,9 +208,7 @@ distinct ways to generate the initial population:</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -239,7 +230,7 @@ distinct ways to generate the initial population:</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -257,7 +248,8 @@ distinct ways to generate the initial population:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.286.g52fa9b2',
+            VERSION:'0+untagged.299.gb0e8cc6',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -267,7 +259,7 @@ distinct ways to generate the initial population:</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
@@ -276,14 +268,13 @@ distinct ways to generate the initial population:</p>
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

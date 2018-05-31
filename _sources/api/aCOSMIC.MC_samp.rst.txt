@@ -1,4 +1,0 @@
-.. automodule:: aCOSMIC.MC_samp
-    :members:
-    :undoc-members:
-    :show-inheritance:

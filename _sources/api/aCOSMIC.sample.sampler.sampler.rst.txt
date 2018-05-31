@@ -1,4 +1,0 @@
-.. automodule:: aCOSMIC.sample.sampler.sampler
-    :members:
-    :undoc-members:
-    :show-inheritance:
