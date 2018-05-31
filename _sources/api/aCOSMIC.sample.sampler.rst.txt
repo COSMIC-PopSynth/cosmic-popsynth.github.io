@@ -1,5 +1,5 @@
-aCOSMIC.sample.sampler package
-==============================
+aCOSMIC\.sample\.sampler package
+================================
 
 Submodules
 ----------

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; aCOSMIC 0+untagged.259.g810a3e7.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; aCOSMIC 0+untagged.286.g52fa9b2 documentation</title>
   
 
   
@@ -25,18 +25,26 @@
   
 
   
+  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+  
+
+  
+    <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="aCOSMIC 0+untagged.286.g52fa9b2 documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +66,7 @@
             
             
               <div class="version">
-                0+untagged.259.g810a3e7.dirty
+                0+untagged.286.g52fa9b2
               </div>
             
           
@@ -84,9 +92,10 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a Milky Way population</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 
             
@@ -98,7 +107,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">aCOSMIC</a>
@@ -106,10 +115,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -151,11 +159,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <span class="target" id="module-aCOSMIC.evolve"></span><p><cite>sample</cite></p>
+  <span class="target" id="module-aCOSMIC.evolve"></span><p><cite>evolve</cite></p>
 <dl class="class">
 <dt id="aCOSMIC.evolve.Evolve">
 <em class="property">class </em><code class="descclassname">aCOSMIC.evolve.</code><code class="descname">Evolve</code><a class="reference internal" href="../_modules/aCOSMIC/evolve.html#Evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.evolve.Evolve" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">astropy.table.table.Table</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">astropy.table.table.Table</span></code></p>
 <dl class="classmethod">
 <dt id="aCOSMIC.evolve.Evolve.evolve">
 <em class="property">classmethod </em><code class="descname">evolve</code><span class="sig-paren">(</span><em>initialbinarytable</em>, <em>BSEDict</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aCOSMIC/evolve.html#Evolve.evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#aCOSMIC.evolve.Evolve.evolve" title="Permalink to this definition">¶</a></dt>
@@ -169,16 +177,10 @@ we evolve the system.</p>
 <blockquote>
 <div><p>number of CPUs to use for parallel file reading</p>
 </div></blockquote>
-<dl class="docutils">
-<dt><strong>kwargs:</strong></dt>
-<dd></dd>
-</dl>
+<p><strong>kwargs:</strong></p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
-<dt><strong>An evolved binary</strong></dt>
-<dd></dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">An evolved binary</p>
 </td>
 </tr>
 </tbody>
@@ -190,7 +192,9 @@ we evolve the system.</p>
 
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -203,7 +207,7 @@ we evolve the system.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -221,8 +225,7 @@ we evolve the system.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.259.g810a3e7.dirty',
-            LANGUAGE:'None',
+            VERSION:'0+untagged.286.g52fa9b2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -232,7 +235,7 @@ we evolve the system.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
@@ -241,13 +244,14 @@ we evolve the system.</p>
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

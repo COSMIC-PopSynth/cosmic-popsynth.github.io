@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>aCOSMIC.lisa_sensitivity &mdash; aCOSMIC 0+untagged.259.g810a3e7.dirty documentation</title>
+  <title>aCOSMIC.lisa_sensitivity &mdash; aCOSMIC 0+untagged.286.g52fa9b2 documentation</title>
   
 
   
@@ -25,18 +25,27 @@
   
 
   
+  
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+  
+
+  
+    <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="aCOSMIC 0+untagged.286.g52fa9b2 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +67,7 @@
             
             
               <div class="version">
-                0+untagged.259.g810a3e7.dirty
+                0+untagged.286.g52fa9b2
               </div>
             
           
@@ -84,9 +93,10 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a Milky Way population</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 
             
@@ -98,7 +108,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">aCOSMIC</a>
@@ -106,10 +116,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -138,6 +147,8 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
         
       </li>
     
@@ -173,7 +184,7 @@
 <span class="c1"># Astrophysical Noise is Merged Instrumental + White Dwarf Noise</span>
 
 <span class="c1"># f [Hz] 	 hf [Hz^(-1/2)]</span>
-<span class="n">_LISA_DATA</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="n">_LISA_DATA</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">9.765035e-08 8.230539e-12</span>
 <span class="s2">9.992561e-08 7.859994e-12</span>
 <span class="s2">1.022538e-07 7.506140e-12</span>
@@ -1074,7 +1085,7 @@
 <span class="s2">1.032165e+00 7.245126e-19</span>
 <span class="s2">1.035444e+00 7.208922e-19</span>
 <span class="s2">1.038733e+00 7.581927e-19</span>
-<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 
 <div class="viewcode-block" id="lisa_sensitivity"><a class="viewcode-back" href="../../api/aCOSMIC.lisa_sensitivity.html#aCOSMIC.lisa_sensitivity.lisa_sensitivity">[docs]</a><span class="k">def</span> <span class="nf">lisa_sensitivity</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39;Computes LISA sensitivity curve according to `Larson, Hiscock, and Hellings (2000) &lt;http://adsabs.harvard.edu/abs/2000PhRvD..62f2001L&gt;`_</span>
@@ -1103,7 +1114,9 @@
 </pre></div>
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -1116,7 +1129,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1134,8 +1147,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0+untagged.259.g810a3e7.dirty',
-            LANGUAGE:'None',
+            VERSION:'0+untagged.286.g52fa9b2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -1145,7 +1157,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
@@ -1154,13 +1166,14 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
   
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

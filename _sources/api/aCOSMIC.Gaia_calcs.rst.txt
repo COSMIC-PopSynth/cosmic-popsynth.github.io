@@ -1,0 +1,4 @@
+.. automodule:: aCOSMIC.Gaia_calcs
+    :members:
+    :undoc-members:
+    :show-inheritance:

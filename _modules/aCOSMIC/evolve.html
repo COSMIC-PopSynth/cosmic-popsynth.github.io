@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>aCOSMIC.evolve &mdash; aCOSMIC 0+untagged.259.g810a3e7.dirty documentation</title>
+  <title>aCOSMIC.evolve &mdash; aCOSMIC 0+untagged.286.g52fa9b2 documentation</title>
   
 
   
@@ -25,18 +25,27 @@
   
 
   
+  
     <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
-    <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+  
+
+  
+    <link rel="stylesheet" href="../../_static/aCOSMIC-docs.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="aCOSMIC 0+untagged.286.g52fa9b2 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
    
   <div class="wy-grid-for-nav">
@@ -58,7 +67,7 @@
             
             
               <div class="version">
-                0+untagged.259.g810a3e7.dirty
+                0+untagged.286.g52fa9b2
               </div>
             
           
@@ -84,9 +93,10 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a Milky Way population</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
 </ul>
 
             
@@ -98,7 +108,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" aria-label="top navigation">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">aCOSMIC</a>
@@ -106,10 +116,9 @@
       </nav>
 
 
+      
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
           
 
 
@@ -138,6 +147,8 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
         
       </li>
     
@@ -168,7 +179,7 @@
 <span class="c1"># You should have received a copy of the GNU General Public License</span>
 <span class="c1"># along with aCOSMIC.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 
-<span class="sd">&quot;&quot;&quot;`sample`</span>
+<span class="sd">&quot;&quot;&quot;`evolve`</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -194,8 +205,8 @@
 <span class="sd">        initialize Evolve</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
-<div class="viewcode-block" id="Evolve.evolve"><a class="viewcode-back" href="../../api/aCOSMIC.evolve.html#aCOSMIC.evolve.Evolve.evolve">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">initialbinarytable</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="Evolve.evolve"><a class="viewcode-back" href="../../api/aCOSMIC.evolve.html#aCOSMIC.evolve.Evolve.evolve">[docs]</a>    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">initialbinarytable</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;After setting a number of initial conditions</span>
 <span class="sd">        we evolve the system.</span>
 
@@ -253,8 +264,9 @@
                                         <span class="n">f</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span>
                                         <span class="n">f</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">29</span><span class="p">],</span>
                                         <span class="n">f</span><span class="p">[</span><span class="mi">30</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">32</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">33</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">34</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">36</span><span class="p">])</span>
+
                 <span class="n">bpp_tmp</span> <span class="o">=</span> <span class="n">tmp1</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">tmp1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),:]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-                <span class="n">bcm_tmp</span> <span class="o">=</span> <span class="n">tmp2</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">tmp2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),:]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">bcm_tmp</span> <span class="o">=</span> <span class="n">tmp2</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">tmp2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">),:]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bpp_tmp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">bpp_columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">35</span><span class="p">])]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bpp_tmp</span><span class="p">)),</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bcm_tmp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">bcm_columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">35</span><span class="p">])]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_tmp</span><span class="p">))</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">nproc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -283,7 +295,9 @@
 </pre></div>
 
            </div>
-           
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -296,7 +310,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -314,8 +328,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0+untagged.259.g810a3e7.dirty',
-            LANGUAGE:'None',
+            VERSION:'0+untagged.286.g52fa9b2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -325,7 +338,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
@@ -334,13 +347,14 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
   
 
+  
+  
   <script type="text/javascript">
       jQuery(function () {
-          
-          SphinxRtdTheme.Navigation.enableSticky();
-          
+          SphinxRtdTheme.StickyNav.enable();
       });
-  </script> 
+  </script>
+   
 
 </body>
 </html>

@@ -14,6 +14,7 @@ Submodules
 .. toctree::
 
    aCOSMIC.GW_calcs
+   aCOSMIC.Gaia_calcs
    aCOSMIC.MC_samp
    aCOSMIC.Match
    aCOSMIC.evolve

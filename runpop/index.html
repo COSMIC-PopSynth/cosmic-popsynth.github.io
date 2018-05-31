@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Evolve a Milky Way population &mdash; aCOSMIC 0+untagged.286.g52fa9b2 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/aCOSMIC-docs.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="aCOSMIC 0+untagged.286.g52fa9b2 documentation" href="../index.html"/>
+        <link rel="next" title="Running runFixedPop on the command line" href="../command-line/index.html"/>
+        <link rel="prev" title="Using COSMIC to evolve binaries with BSE" href="../examples/index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> aCOSMIC
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0+untagged.286.g52fa9b2
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Evolve a Milky Way population</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sampling-an-initial-population-with-independently-distributed-parameters">Sampling an initial population with independently distributed parameters</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">aCOSMIC</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Evolve a Milky Way population</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/runpop/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="evolve-a-milky-way-population">
+<span id="runpop"></span><h1>Evolve a Milky Way population<a class="headerlink" href="#evolve-a-milky-way-population" title="Permalink to this headline">¶</a></h1>
+<p>To generate a Milky Way like population, we need to generate an initial set of
+binaries that is representative of a population born in the Milky Way. This means
+we need to supply several arguments to our initial binary sampler. There are two
+distinct ways to generate the initial population:</p>
+<ol class="arabic simple">
+<li>assume all binary paramters are independent of one another</li>
+<li>try to account for parameter dependencies</li>
+</ol>
+<p>We consider both cases below.</p>
+<div class="section" id="sampling-an-initial-population-with-independently-distributed-parameters">
+<h2>Sampling an initial population with independently distributed parameters<a class="headerlink" href="#sampling-an-initial-population-with-independently-distributed-parameters" title="Permalink to this headline">¶</a></h2>
+<p>The</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">aCOSMIC.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+
+<span class="gp">In [2]: </span><span class="n">IBT</span><span class="p">,</span> <span class="n">sampled_mass</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">primary_min</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">primary_max</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa93&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;thermal&#39;</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="k">print</span><span class="p">(</span><span class="n">IBT</span><span class="p">)</span>
+<span class="go">kstar1 kstar2     mass1_binary    ... metallicity       tphysf      </span>
+<span class="go">                    solMass       ...                  1e+06 yr     </span>
+<span class="go">------ ------ ------------------- ... ----------- ------------------</span>
+<span class="go">   0.0    0.0  0.4776438492114468 ...        0.02  5502.747138668526</span>
+<span class="go">   0.0    0.0  0.1584160668846578 ...        0.02  7391.400144583074</span>
+<span class="go">   1.0    1.0  1.3765128944682208 ...        0.02  5498.098658889615</span>
+<span class="go">   0.0    0.0  0.2799232568212078 ...        0.02  8008.955094344784</span>
+<span class="go">   0.0    0.0  0.4162904125527755 ...        0.02  5832.695866835419</span>
+<span class="go">   0.0    0.0 0.14151033511323807 ...        0.02  6754.083425915899</span>
+<span class="go">   1.0    1.0  1.5123004809513814 ...        0.02  8211.310161451323</span>
+<span class="go">   1.0    1.0  2.3503930133536786 ...        0.02 1691.9861842775763</span>
+<span class="go">   0.0    0.0 0.22565266532412392 ...        0.02  2048.839303725707</span>
+<span class="go">   0.0    0.0  0.3238471363639984 ...        0.02  6834.468000422882</span>
+<span class="go">   ...    ...                 ... ...         ...                ...</span>
+<span class="go">   0.0    0.0 0.14520990613621504 ...        0.02  8731.362289971648</span>
+<span class="go">   1.0    0.0  0.7261930602222498 ...        0.02 7761.3492983153565</span>
+<span class="go">   0.0    0.0 0.17740017685929146 ...        0.02 1321.3947805397086</span>
+<span class="go">   0.0    0.0 0.16668274372326883 ...        0.02  6334.280338315686</span>
+<span class="go">   0.0    0.0  0.6082386072088296 ...        0.02  562.0708380375439</span>
+<span class="go">   1.0    0.0  0.9434622593758569 ...        0.02  9800.167637872913</span>
+<span class="go">   0.0    0.0  0.4169815900635534 ...        0.02 3223.6170696997115</span>
+<span class="go">   0.0    0.0  0.1389873663414178 ...        0.02  5626.527000291112</span>
+<span class="go">   0.0    0.0  0.1331443120800332 ...        0.02   5354.66467149395</span>
+<span class="go">   0.0    0.0  0.1524050675407909 ...        0.02  1573.465429229277</span>
+<span class="go">Length = 383 rows</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../command-line/index.html" class="btn btn-neutral float-right" title="Running runFixedPop on the command line" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../examples/index.html" class="btn btn-neutral" title="Using COSMIC to evolve binaries with BSE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0+untagged.286.g52fa9b2',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
