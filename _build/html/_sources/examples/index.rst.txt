@@ -108,7 +108,7 @@ Now let's initialize and evolve systems that could form GW150914 and GW170817
 
 The BPP and BCM arrays are returned as pandas DataFrames which assign an index to each binary system we evolve. We can access each binary as follows
 
-.. iptyon:: 
+.. ipython:: 
 
     In [12]: print(EvolvedBinariesBPP.loc[0])
 
