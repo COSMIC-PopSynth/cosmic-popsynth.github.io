@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to cosmic’s documentation! &mdash; cosmic 0+untagged.299.gb0e8cc6 documentation</title>
+  <title>Welcome to cosmic’s documentation! &mdash; cosmic 0+untagged.334.g4baa772.dirty documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0+untagged.299.gb0e8cc6
+                0+untagged.334.g4baa772.dirty
               </div>
             
           
@@ -85,10 +85,7 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runpop/index.html">Evolve a Milky Way population by hand</a></li>
 </ul>
 
             
@@ -155,12 +152,15 @@
             
   <div class="section" id="welcome-to-cosmic-s-documentation">
 <h1>Welcome to cosmic’s documentation!<a class="headerlink" href="#welcome-to-cosmic-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>cosmic is a rapid binary population synthesis suite with a special purpose of generating realistic Milky Way compact binary populations.</p>
+<p>cosmic currently implements binary evolutionary processes using BSE (<a class="reference external" href="http://adsabs.harvard.edu/abs/2002MNRAS.329..897H">Hurley et al. (2002)</a>). Several modifications have been applied to BSE to account for recent updates to binary evolution especially important to compact binary formation (e.g. metallicity-dependent stellar winds or black hole natal kick strengths). For a detailed discussion of these modifications, see Breivik et al. (2018), <a class="reference external" href="http://adsabs.harvard.edu/abs/2016PhRvD..93h4029R">Rodriguez et al (2016)</a>, and <a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...779...72D">Dominik et al (2013)</a>.</p>
 <div class="section" id="installing-cosmic">
 <h2>Installing cosmic<a class="headerlink" href="#installing-cosmic" title="Permalink to this headline">¶</a></h2>
 <p>The easiest method to install cosmic is using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> directly from the <a class="reference external" href="https://github.com/COSMIC-PopSynth/COSMIC.git">GitHub repository</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/COSMIC-PopSynth/COSMIC.git
 </pre></div>
 </div>
+<p>For more details on how to use cosmic, see <a class="reference internal" href="examples/index.html#examples"><span class="std std-ref">Using COSMIC to evolve binaries with BSE</span></a> and <a class="reference internal" href="runpop/index.html#runpop"><span class="std std-ref">Evolve a Milky Way population by hand</span></a>.</p>
 </div>
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
@@ -170,39 +170,22 @@
 <li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-a-single-binary">Creating and evolving a single binary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-multiple-binaries">Creating and evolving multiple binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-a-grid-of-binaries">Creating and evolving a grid of binaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/index.html#creating-and-evolving-a-sampled-binary-population">Creating and evolving a sampled binary population</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples/index.html#sampling-initial-binary-conditions">Sampling Initial Binary Conditions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="runpop/index.html">Evolve a Milky Way population</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="runpop/index.html">Evolve a Milky Way population by hand</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="runpop/index.html#sampling-an-initial-population-with-independently-distributed-parameters">Sampling an initial population with independently distributed parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="runpop/index.html#sampling-an-initial-population-with-multidimensional-parameter-distributions">Sampling an initial population with multidimensional parameter distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="runpop/index.html#evolving-an-initial-binary-population-with-the-evolve-class">Evolving an initial binary population with the Evolve class</a></li>
 </ul>
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="how-to-run-cosmic">
-<h2>How to run cosmic<a class="headerlink" href="#how-to-run-cosmic" title="Permalink to this headline">¶</a></h2>
-<p>Here is an example commandline:</p>
-<p>For more details see <a class="reference internal" href="command-line/index.html#command-line"><span class="std std-ref">Running runFixedPop on the command line</span></a>.</p>
 </div>
 <div class="section" id="package-documentation">
 <h2>Package documentation<a class="headerlink" href="#package-documentation" title="Permalink to this headline">¶</a></h2>
 <p>Please consult these pages for more details on using cosmic:</p>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
-</ul>
 </div>
-</div>
-<div class="section" id="fortran">
-<h2>Fortran<a class="headerlink" href="#fortran" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="evolv2">
-<h3>evolv2<a class="headerlink" href="#evolv2" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
 <li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
@@ -251,7 +234,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0+untagged.299.gb0e8cc6',
+            VERSION:'0+untagged.334.g4baa772.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

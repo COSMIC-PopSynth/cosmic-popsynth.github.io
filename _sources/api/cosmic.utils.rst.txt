@@ -1,3 +1,16 @@
+cosmic.utils package
+====================
+
+Submodules
+----------
+
+.. toctree::
+
+   cosmic.utils.log
+
+Module contents
+---------------
+
 .. automodule:: cosmic.utils
     :members:
     :undoc-members:

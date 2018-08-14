@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.sample.sampler.multidim &mdash; cosmic 0+untagged.299.gb0e8cc6 documentation</title>
+  <title>cosmic.sample.sampler.multidim &mdash; cosmic 0+untagged.334.g4baa772.dirty documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0+untagged.299.gb0e8cc6
+                0+untagged.334.g4baa772.dirty
               </div>
             
           
@@ -84,10 +84,7 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../command-line/index.html">Running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../runpop/index.html">Evolve a Milky Way population by hand</a></li>
 </ul>
 
             
@@ -272,48 +269,38 @@
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        M1min (float):</span>
-<span class="sd">            minimum primary mass to sample in Msun</span>
+<span class="sd">        M1min : float</span>
+<span class="sd">            minimum primary mass to sample [Msun]</span>
 <span class="sd">            DEFAULT: 0.08</span>
-
-<span class="sd">        M2min (float):</span>
-<span class="sd">            minimum secondary mass to sample in Msun</span>
+<span class="sd">        M2min : float</span>
+<span class="sd">            minimum secondary mass to sample [Msun]</span>
 <span class="sd">            DEFAULT: 0.08</span>
-
-<span class="sd">        M1max (float):</span>
-<span class="sd">            maximum primary mass to sample in Msun</span>
+<span class="sd">        M1max : float</span>
+<span class="sd">            maximum primary mass to sample [Msun]</span>
 <span class="sd">            DEFAULT: 150.0</span>
-
-<span class="sd">        M2max (float):</span>
-<span class="sd">            maximum primary mass to sample in Msun</span>
+<span class="sd">        M2max : float</span>
+<span class="sd">            maximum primary mass to sample [Msun]</span>
 <span class="sd">            DEFAULT: 150.0</span>
-
-<span class="sd">        rand_seed (int):</span>
+<span class="sd">        rand_seed : int</span>
 <span class="sd">            random seed generator </span>
 <span class="sd">            DEFAULT: 0</span>
-
-<span class="sd">        size (int, optional):</span>
+<span class="sd">        size : int, optional</span>
 <span class="sd">            number of evolution times to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        primary_mass_list (array):</span>
+<span class="sd">        primary_mass_list : array</span>
 <span class="sd">            array of primary masses with size=size</span>
-
-<span class="sd">        secondary_mass_list (array):</span>
+<span class="sd">        secondary_mass_list : array</span>
 <span class="sd">            array of secondary masses with size=size</span>
-<span class="sd">        </span>
-<span class="sd">        porb_list (array):</span>
+<span class="sd">        porb_list : array</span>
 <span class="sd">            array of orbital periods in days with size=size</span>
-<span class="sd">        </span>
-<span class="sd">        ecc_list (array):</span>
+<span class="sd">        ecc_list : array</span>
 <span class="sd">            array of eccentricities with size=size</span>
-<span class="sd">        </span>
-<span class="sd">        total_mass (float):</span>
+<span class="sd">        total_mass : float</span>
 <span class="sd">            total mass including single and binary stars </span>
 <span class="sd">            required to generate the initial population</span>
-<span class="sd">     </span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1">#Tabulate probably density functions of periods,</span>
         <span class="c1">#mass ratios, and eccentricities based on</span>
@@ -746,30 +733,24 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        SFH_model (string):</span>
+<span class="sd">        SFH_model : string</span>
 <span class="sd">            &#39;const&#39; assigns an evolution time assuming a constant star</span>
 <span class="sd">            formation rate over the age of the MW disk: component_age [Myr]</span>
-
 <span class="sd">            &#39;burst&#39; assigns an evolution time assuming a burst of constant</span>
 <span class="sd">            star formation for 1Gyr starting at component_age [Myr] in the past</span>
-
 <span class="sd">            Default: &#39;const&#39;</span>
-
-<span class="sd">        component_age (float):</span>
+<span class="sd">        component_age : float</span>
 <span class="sd">            age of the Galactic component [Myr]</span>
-
 <span class="sd">            Default: 10000.0</span>
-
-<span class="sd">        size (int, optional):</span>
+<span class="sd">        size : int, optional</span>
 <span class="sd">            number of evolution times to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        tphys (array):</span>
+<span class="sd">        tphys : array</span>
 <span class="sd">            array of evolution times of size=size</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
 
         <span class="k">if</span> <span class="n">SFH_model</span><span class="o">==</span><span class="s1">&#39;const&#39;</span><span class="p">:</span>
 
@@ -786,12 +767,12 @@
 <span class="sd">                                </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        mass (array):</span>
+<span class="sd">        mass : array</span>
 <span class="sd">            array of masses</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        kstar (array):</span>
+<span class="sd">        kstar : array</span>
 <span class="sd">            array of initial stellar types</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         
@@ -812,16 +793,15 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        component_age (float):</span>
+<span class="sd">        component_age : float</span>
 <span class="sd">            age of the Galactic component [Myr]</span>
-
-<span class="sd">        size (int, optional):</span>
+<span class="sd">        size : int, optional</span>
 <span class="sd">            number of evolution times to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        metallicity (array):</span>
+<span class="sd">        metallicity : array</span>
 <span class="sd">            array of metallicity values with size=size</span>
 <span class="sd">        &quot;&quot;&quot;</span>
             
@@ -865,7 +845,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'0+untagged.299.gb0e8cc6',
+            VERSION:'0+untagged.334.g4baa772.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
