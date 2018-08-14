@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.evolve &mdash; cosmic 0+untagged.298.g7fbc8e7.dirty documentation</title>
+  <title>cosmic.evolve &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.298.g7fbc8e7.dirty documentation" href="../../index.html"/>
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0+untagged.298.g7fbc8e7.dirty
+                0+untagged.339.g0cc9bd3.dirty
               </div>
             
           
@@ -92,11 +92,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -190,7 +188,7 @@
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Katelyn Breivik &lt;katie.breivik@gmail.com&gt;&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="s1">&#39;Scott Coughlin &lt;scott.coughlin@ligo.org&gt;&#39;</span>
-<span class="n">__all__</span> <span class="o">=</span> <span class="s1">&#39;Evolve&#39;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Evolve&#39;</span><span class="p">]</span>
 
 
 <span class="n">bpp_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tphys&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span> <span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_1&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_2&#39;</span><span class="p">,</span> <span class="s1">&#39;evol_type&#39;</span><span class="p">]</span>
@@ -219,7 +217,12 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        An evolved binary</span>
+<span class="sd">        output_bpp : DataFrame</span>
+<span class="sd">            Evolutionary history of each binary</span>
+<span class="sd">        output_bcm : DataFrame</span>
+<span class="sd">            Final state of each binary</span>
+<span class="sd">        initialbinarytable : DataFrame</span>
+<span class="sd">            Initial conditions for each binary</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">idx</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">nproc</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;nproc&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
@@ -251,10 +254,10 @@
         <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;merger&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;merger&#39;</span><span class="p">]</span>
         <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;windflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;windflag&#39;</span><span class="p">]</span>
         <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;dtp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;tphysf&#39;</span><span class="p">]</span>
-        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;indexes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
         <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;randomseed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
 
-        <span class="n">initial_conditions</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">as_array</span><span class="p">()</span> 
+        <span class="n">initial_conditions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">)</span> 
 
         <span class="c1"># define multiprocessing method</span>
         <span class="k">def</span> <span class="nf">_evolve_single_system</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
@@ -291,7 +294,7 @@
         <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
             <span class="n">output_bpp</span> <span class="o">=</span> <span class="n">output_bpp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
             <span class="n">output_bcm</span> <span class="o">=</span> <span class="n">output_bcm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">output_bpp</span><span class="p">,</span> <span class="n">output_bcm</span></div></div>
+        <span class="k">return</span> <span class="n">output_bpp</span><span class="p">,</span> <span class="n">output_bcm</span><span class="p">,</span> <span class="n">initialbinarytable</span> </div></div>
 </pre></div>
 
            </div>
@@ -328,7 +331,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0+untagged.298.g7fbc8e7.dirty',
+            VERSION:'0+untagged.339.g0cc9bd3.dirty',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

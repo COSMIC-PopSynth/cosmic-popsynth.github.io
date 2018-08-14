@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.sample.sampler.independent &mdash; cosmic 0+untagged.298.g7fbc8e7.dirty documentation</title>
+  <title>cosmic.sample.sampler.independent &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.298.g7fbc8e7.dirty documentation" href="../../../../index.html"/>
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0+untagged.298.g7fbc8e7.dirty
+                0+untagged.339.g0cc9bd3.dirty
               </div>
             
           
@@ -92,11 +92,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../runpop/index.html">Evolve a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -255,37 +253,36 @@
 <span class="sd">        `Salpeter (1955) &lt;http://adsabs.harvard.edu/abs/1955ApJ...121..161S&gt;`_</span>
 <span class="sd">        between 0.1 and 100 Msun</span>
 
-<span class="sd">        Parameters:</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        primary_min : float</span>
+<span class="sd">            minimum initial primary mass [Msun]</span>
 <span class="sd">            </span>
-<span class="sd">            primary_min (float):</span>
-<span class="sd">                minimum initial primary mass</span>
+<span class="sd">        primary_max : float</span>
+<span class="sd">            maximum initial primary mass [Msun]</span>
 <span class="sd">            </span>
-<span class="sd">            primary_max (float):</span>
-<span class="sd">                maximum initial primary mass</span>
-<span class="sd">            </span>
-<span class="sd">            primary_model (str, optional):</span>
-<span class="sd">                model for mass distribution; choose from:</span>
+<span class="sd">        primary_model : str, optional</span>
+<span class="sd">            model for mass distribution; choose from:</span>
 <span class="sd">                </span>
-<span class="sd">                kroupa93 follows Kroupa (1993), normalization comes from</span>
-<span class="sd">                `Hurley 2002 &lt;https://arxiv.org/abs/astro-ph/0201220&gt;`_</span>
-<span class="sd">                valid for masses between 0.1 and 100 Msun</span>
+<span class="sd">            kroupa93 follows Kroupa (1993), normalization comes from</span>
+<span class="sd">            `Hurley 2002 &lt;https://arxiv.org/abs/astro-ph/0201220&gt;`_</span>
+<span class="sd">            valid for masses between 0.1 and 100 Msun</span>
 <span class="sd">            </span>
-<span class="sd">                salpter55 follows</span>
-<span class="sd">                `Salpeter (1955) &lt;http://adsabs.harvard.edu/abs/1955ApJ...121..161S&gt;`_</span>
-<span class="sd">                valid for masses between 0.1 and 100 Msun</span>
+<span class="sd">            salpter55 follows</span>
+<span class="sd">            `Salpeter (1955) &lt;http://adsabs.harvard.edu/abs/1955ApJ...121..161S&gt;`_</span>
+<span class="sd">            valid for masses between 0.1 and 100 Msun</span>
 <span class="sd">                </span>
-<span class="sd">                Default kroupa93</span>
-<span class="sd">            </span>
-<span class="sd">            size (int, optional):</span>
-<span class="sd">                number of initial primary masses to sample</span>
-<span class="sd">                NOTE: this is set in runFixedPop call as Nstep</span>
+<span class="sd">            Default kroupa93</span>
+<span class="sd">        size : int, optional                </span>
+<span class="sd">            number of initial primary masses to sample</span>
+<span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            </span>
-<span class="sd">            a_0 (array):</span>
-<span class="sd">                all sampled primary masses</span>
-<span class="sd">            total_sampled_mass:</span>
-<span class="sd">                the total amount of mass sampled</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        a_0 : array</span>
+<span class="sd">            Sampled primary masses</span>
+<span class="sd">        total_sampled_mass : float</span>
+<span class="sd">            Total amount of mass sampled</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">primary_model</span><span class="o">==</span><span class="s1">&#39;kroupa93&#39;</span><span class="p">:</span>
@@ -342,12 +339,12 @@
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        primary_mass (array):</span>
+<span class="sd">        primary_mass : array</span>
 <span class="sd">            sets the maximum secondary mass (for a maximum mass ratio of 1)</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        secondary_mass (array):</span>
+<span class="sd">        secondary_mass : array</span>
 <span class="sd">            sampled secondary masses with array size matching size of</span>
 <span class="sd">            primary_mass</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -365,14 +362,14 @@
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        primary_mass (array):</span>
-<span class="sd">            mass that determines the binary fraction</span>
+<span class="sd">        primary_mass : array</span>
+<span class="sd">            Mass that determines the binary fraction</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        primary_mass[binaryIdx] (array):</span>
+<span class="sd">        primary_mass[binaryIdx] : array</span>
 <span class="sd">            primary masses that will have a binary companion</span>
-<span class="sd">        primary_mass[singleIdx] (array):</span>
+<span class="sd">        primary_mass[singleIdx] : array</span>
 <span class="sd">            primary masses that will be single stars</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -392,14 +389,14 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        mass1 (array):</span>
+<span class="sd">        mass1 : array</span>
 <span class="sd">            primary masses</span>
-<span class="sd">        mass2 (array):</span>
+<span class="sd">        mass2 : array</span>
 <span class="sd">            secondary masses</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        porb_sec/sec_in_day (array):</span>
+<span class="sd">        porb_sec/sec_in_day : array</span>
 <span class="sd">            orbital period with array size equalling array size </span>
 <span class="sd">            of mass1 and mass2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -425,21 +422,19 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        ecc_model (string): </span>
+<span class="sd">        ecc_model : string</span>
 <span class="sd">            &#39;thermal&#39; samples from a  thermal eccentricity distribution following </span>
 <span class="sd">            `Heggie (1975) &lt;http://adsabs.harvard.edu/abs/1975MNRAS.173..729H&gt;`_</span>
-
 <span class="sd">            &#39;uniform&#39; samples from a uniform eccentricity distribution</span>
-<span class="sd">        </span>
 <span class="sd">            DEFAULT = &#39;thermal&#39;</span>
 <span class="sd">        </span>
-<span class="sd">        size (int, optional):</span>
+<span class="sd">        size : int, optional</span>
 <span class="sd">            number of eccentricities to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ecc (array):</span>
+<span class="sd">        ecc : array</span>
 <span class="sd">            array of sampled eccentricities with size=size</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -462,27 +457,22 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        SFH_model (string):</span>
+<span class="sd">        SFH_model : str</span>
 <span class="sd">            &#39;const&#39; assigns an evolution time assuming a constant star</span>
-<span class="sd">            formation rate over the age of the MW disk: component_age [Myr]</span>
-<span class="sd">            </span>
+<span class="sd">            formation rate over the age of the MW disk: component_age [Myr]  </span>
 <span class="sd">            &#39;burst&#39; assigns an evolution time assuming a burst of constant</span>
 <span class="sd">            star formation for 1Gyr starting at component_age [Myr] in the past</span>
-<span class="sd">            </span>
 <span class="sd">            DEFAULT: &#39;const&#39;</span>
 
-<span class="sd">        component_age (float):</span>
-<span class="sd">            age of the Galactic component [Myr]</span>
-<span class="sd">           </span>
-<span class="sd">            DEFAULT: 10000.0</span>
-
-<span class="sd">        size (int, optional):</span>
+<span class="sd">        component_age: float</span>
+<span class="sd">            age of the Galactic component [Myr]; DEFAULT: 10000.0</span>
+<span class="sd">        size : int, optional</span>
 <span class="sd">            number of evolution times to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        tphys (array):</span>
+<span class="sd">        tphys : array</span>
 <span class="sd">            array of evolution times of size=size</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -502,12 +492,12 @@
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        mass (array):</span>
+<span class="sd">        mass : array</span>
 <span class="sd">            array of masses</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        kstar (array):</span>
+<span class="sd">        kstar : array</span>
 <span class="sd">            array of initial stellar types</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -528,16 +518,16 @@
 <span class="sd">        </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        component_age (float):</span>
+<span class="sd">        component_age : float</span>
 <span class="sd">            age of the Galactic component [Myr]</span>
 
-<span class="sd">        size (int, optional):</span>
+<span class="sd">        size : int, optional</span>
 <span class="sd">            number of evolution times to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        metallicity (array):</span>
+<span class="sd">        metallicity : array</span>
 <span class="sd">            array of metallicity values with size=size</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -583,7 +573,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'0+untagged.298.g7fbc8e7.dirty',
+            VERSION:'0+untagged.339.g0cc9bd3.dirty',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

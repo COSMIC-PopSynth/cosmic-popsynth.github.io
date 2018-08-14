@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.298.g7fbc8e7.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.298.g7fbc8e7.dirty documentation" href="../index.html"/> 
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0+untagged.298.g7fbc8e7.dirty
+                0+untagged.339.g0cc9bd3.dirty
               </div>
             
           
@@ -91,11 +91,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -164,22 +162,22 @@
 <dt id="cosmic.utils.dat_transform">
 <code class="descclassname">cosmic.utils.</code><code class="descname">dat_transform</code><span class="sig-paren">(</span><em>dat</em>, <em>dat_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/utils.html#dat_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.utils.dat_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform a data set to have limits between zero and one using 
-param_transform, then transform to logit space</p>
+param_transform, then transform to log space</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dat (DataFrame):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dat &#8221; DataFrame</strong></p>
 <blockquote>
 <div><p>Data to transform to eventually perform KDE</p>
 </div></blockquote>
-<p><strong>dat_list (list):</strong></p>
+<p><strong>dat_list</strong> : list</p>
 <blockquote>
 <div><p>List of DataFrame columns to include in transformation</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dat_trans (array):</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>dat_trans</strong> : array</p>
 <blockquote class="last">
 <div><p>Transformed data for columns in dat_list</p>
 </div></blockquote>
@@ -197,21 +195,21 @@ param_transform, then transform to logit space</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dat_sample (array):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dat_sample</strong> : array</p>
 <blockquote>
 <div><p>Data sampled from kde generated with transformed data</p>
 </div></blockquote>
-<p><strong>dat_set (DataFrame):</strong></p>
+<p><strong>dat_set</strong> : DataFrame</p>
 <blockquote>
 <div><p>Un-transformed data (same as dat in dat_transform)</p>
 </div></blockquote>
-<p><strong>dat_list (list):</strong></p>
+<p><strong>dat_list</strong> : list</p>
 <blockquote>
 <div><p>List of DataFrame columns to include in transformation</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dat (array):</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>dat</strong> : array</p>
 <blockquote class="last">
 <div><p>Array of data sampled from kde that is transformed back to 
 bounds of the un-transformed data set the kde is generated from</p>
@@ -227,6 +225,33 @@ bounds of the un-transformed data set the kde is generated from</p>
 <code class="descclassname">cosmic.utils.</code><code class="descname">idl_tabulate</code><span class="sig-paren">(</span><em>x</em>, <em>f</em>, <em>p=5</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/utils.html#idl_tabulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.utils.idl_tabulate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function that replicates the IDL int_tabulated function
 which performs a p-point integration on a tabulated set of data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>x</strong> : array</p>
+<blockquote>
+<div><p>tabulated x-value data</p>
+</div></blockquote>
+<p><strong>f</strong> : array</p>
+<blockquote>
+<div><p>tabulated f-value data, same size as x</p>
+</div></blockquote>
+<p><strong>p</strong> : int</p>
+<blockquote>
+<div><p>number of chunks to divide tabulated data into
+Default: 5</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>ret</strong> : float</p>
+<blockquote class="last">
+<div><p>Integration result</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -238,13 +263,13 @@ If Knuth&#8217;s rule raises error, Scott&#8217;s rule is used</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dat_list (list):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dat_list</strong> : list</p>
 <blockquote>
 <div><p>List of data arrays that will be used to generate a kde</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">bw_min (float):</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>bw_min</strong> : float</p>
 <blockquote class="last">
 <div><p>Minimum of bandwidths for all of the data arrays in dat_list</p>
 </div></blockquote>
@@ -264,19 +289,31 @@ in BSE</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">min_mass[0] (float):</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>kstar_1</strong> : int, list</p>
+<blockquote>
+<div><p>BSE stellar type for the primary
+or minimum and maximum stellar types for the primary</p>
+</div></blockquote>
+<p><strong>kstar_2</strong> : int, list</p>
+<blockquote>
+<div><p>BSE stellar type for the secondary 
+or minimum and maximum stellar types for the secondary</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>min_mass[0]</strong> : float</p>
 <blockquote>
 <div><p>minimum primary mass for initial sample</p>
 </div></blockquote>
-<p>max_mass[0] (float):</p>
+<p><strong>max_mass[0]</strong> : float</p>
 <blockquote>
 <div><p>maximum primary mass for initial sample</p>
 </div></blockquote>
-<p>min_mass[1] (float):</p>
+<p><strong>min_mass[1]</strong> : float</p>
 <blockquote>
 <div><p>minimum secondary mass for initial sample</p>
 </div></blockquote>
-<p>max_mass[1] (float):</p>
+<p><strong>max_mass[1]</strong> : float</p>
 <blockquote class="last">
 <div><p>maximum secondary mass for initial sample</p>
 </div></blockquote>
@@ -295,7 +332,13 @@ Leaves some wiggle room on the edges of the data set</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">dat_trans (array):</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>dat</strong> : array</p>
+<blockquote>
+<div><p>array of data to transform between 0 and 1</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>datTransformed</strong> : array</p>
 <blockquote class="last">
 <div><p>array of data with limits between 0 and 1</p>
 </div></blockquote>
@@ -313,8 +356,29 @@ Leaves some wiggle room on the edges of the data set</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Array of data sampled from power law distribution with params</p>
-<p class="last">fixed by inputs</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a</strong> : float</p>
+<blockquote>
+<div><p>Minimum of range for power law</p>
+</div></blockquote>
+<p><strong>b</strong> : float</p>
+<blockquote>
+<div><p>Maximum of range for power law</p>
+</div></blockquote>
+<p><strong>g</strong> : float</p>
+<blockquote>
+<div><p>Index for power law</p>
+</div></blockquote>
+<p><strong>size</strong> : int</p>
+<blockquote>
+<div><p>Number of data points to draw</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>power</strong> : array</p>
+<blockquote class="last">
+<div><p>Array of data sampled from power law distribution with params
+fixed by inputs</p>
+</div></blockquote>
 </td>
 </tr>
 </tbody>
@@ -357,7 +421,7 @@ Leaves some wiggle room on the edges of the data set</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.298.g7fbc8e7.dirty',
+            VERSION:'0+untagged.339.g0cc9bd3.dirty',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

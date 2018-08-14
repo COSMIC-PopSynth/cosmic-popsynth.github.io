@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.298.g7fbc8e7.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.298.g7fbc8e7.dirty documentation" href="../index.html"/> 
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0+untagged.298.g7fbc8e7.dirty
+                0+untagged.339.g0cc9bd3.dirty
               </div>
             
           
@@ -91,11 +91,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -177,55 +175,55 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>M1min (float):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>M1min</strong> : float</p>
 <blockquote>
-<div><p>minimum primary mass to sample in Msun
+<div><p>minimum primary mass to sample [Msun]
 DEFAULT: 0.08</p>
 </div></blockquote>
-<p><strong>M2min (float):</strong></p>
+<p><strong>M2min</strong> : float</p>
 <blockquote>
-<div><p>minimum secondary mass to sample in Msun
+<div><p>minimum secondary mass to sample [Msun]
 DEFAULT: 0.08</p>
 </div></blockquote>
-<p><strong>M1max (float):</strong></p>
+<p><strong>M1max</strong> : float</p>
 <blockquote>
-<div><p>maximum primary mass to sample in Msun
+<div><p>maximum primary mass to sample [Msun]
 DEFAULT: 150.0</p>
 </div></blockquote>
-<p><strong>M2max (float):</strong></p>
+<p><strong>M2max</strong> : float</p>
 <blockquote>
-<div><p>maximum primary mass to sample in Msun
+<div><p>maximum primary mass to sample [Msun]
 DEFAULT: 150.0</p>
 </div></blockquote>
-<p><strong>rand_seed (int):</strong></p>
+<p><strong>rand_seed</strong> : int</p>
 <blockquote>
 <div><p>random seed generator 
 DEFAULT: 0</p>
 </div></blockquote>
-<p><strong>size (int, optional):</strong></p>
+<p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of evolution times to sample
 NOTE: this is set in runFixedPop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">primary_mass_list (array):</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>primary_mass_list</strong> : array</p>
 <blockquote>
 <div><p>array of primary masses with size=size</p>
 </div></blockquote>
-<p>secondary_mass_list (array):</p>
+<p><strong>secondary_mass_list</strong> : array</p>
 <blockquote>
 <div><p>array of secondary masses with size=size</p>
 </div></blockquote>
-<p>porb_list (array):</p>
+<p><strong>porb_list</strong> : array</p>
 <blockquote>
 <div><p>array of orbital periods in days with size=size</p>
 </div></blockquote>
-<p>ecc_list (array):</p>
+<p><strong>ecc_list</strong> : array</p>
 <blockquote>
 <div><p>array of eccentricities with size=size</p>
 </div></blockquote>
-<p>total_mass (float):</p>
+<p><strong>total_mass</strong> : float</p>
 <blockquote class="last">
 <div><p>total mass including single and binary stars 
 required to generate the initial population</p>
@@ -246,27 +244,27 @@ The default is a MW thin disk constant evolution over 10000 Myr</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>SFH_model (string):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>SFH_model</strong> : string</p>
 <blockquote>
 <div><p>&#8216;const&#8217; assigns an evolution time assuming a constant star
-formation rate over the age of the MW disk: component_age [Myr]</p>
-<p>&#8216;burst&#8217; assigns an evolution time assuming a burst of constant
-star formation for 1Gyr starting at component_age [Myr] in the past</p>
-<p>Default: &#8216;const&#8217;</p>
+formation rate over the age of the MW disk: component_age [Myr]
+&#8216;burst&#8217; assigns an evolution time assuming a burst of constant
+star formation for 1Gyr starting at component_age [Myr] in the past
+Default: &#8216;const&#8217;</p>
 </div></blockquote>
-<p><strong>component_age (float):</strong></p>
+<p><strong>component_age</strong> : float</p>
 <blockquote>
-<div><p>age of the Galactic component [Myr]</p>
-<p>Default: 10000.0</p>
+<div><p>age of the Galactic component [Myr]
+Default: 10000.0</p>
 </div></blockquote>
-<p><strong>size (int, optional):</strong></p>
+<p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of evolution times to sample
 NOTE: this is set in runFixedPop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">tphys (array):</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>tphys</strong> : array</p>
 <blockquote class="last">
 <div><p>array of evolution times of size=size</p>
 </div></blockquote>
@@ -285,13 +283,13 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mass (array):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>mass</strong> : array</p>
 <blockquote>
 <div><p>array of masses</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">kstar (array):</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>kstar</strong> : array</p>
 <blockquote class="last">
 <div><p>array of initial stellar types</p>
 </div></blockquote>
@@ -311,18 +309,18 @@ component age greater than 10 Gyr to 0.15 solar metallicity</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>component_age (float):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>component_age</strong> : float</p>
 <blockquote>
 <div><p>age of the Galactic component [Myr]</p>
 </div></blockquote>
-<p><strong>size (int, optional):</strong></p>
+<p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of evolution times to sample
 NOTE: this is set in runFixedPop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">metallicity (array):</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>metallicity</strong> : array</p>
 <blockquote class="last">
 <div><p>array of metallicity values with size=size</p>
 </div></blockquote>
@@ -370,7 +368,7 @@ NOTE: this is set in runFixedPop call as Nstep</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.298.g7fbc8e7.dirty',
+            VERSION:'0+untagged.339.g0cc9bd3.dirty',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

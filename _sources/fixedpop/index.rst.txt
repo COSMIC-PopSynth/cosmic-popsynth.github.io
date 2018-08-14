@@ -1,0 +1,21 @@
+.. _fixedpop:
+
+##############################################
+Evolve a Milky Way population the `cosmic` way
+##############################################
+There are two executables that are installed when you pip install cosmic:
+
+* runFixedPop
+
+* gxRealization
+
+These two executables generate the two components of a cosmic Milky Way population. The `fixed population` is generated first and is designed to fully describe the population of binaries that results from a user specified star formation history (SFH) and binary evolution model. The arguments necessary to run the runFixedPop executable can be found using the help command:
+
+.. code-block:: bash
+
+   $ runFixedPop -h 
+
+.. program-output:: runFixedPop -h 
+
+There are currently two SFHs implemented in cosmic: constant over the course of a user specified amount of time or a burst spanning 1 Gyr at a user specified amount of time in the past. New implementations of SFHs will be added to the sample_SFH modules in the independent and multidim samplers. 
+

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
+  <title>Evolve a Milky Way population the cosmic way &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,8 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../index.html"/> 
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../index.html"/>
+        <link rel="prev" title="Evolve a binary population by hand" href="../runpop/index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -90,10 +91,10 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a binary population by hand</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -138,13 +139,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>Evolve a Milky Way population the <cite>cosmic</cite> way</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/api/cosmic.lisa_sensitivity.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/fixedpop/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -157,18 +158,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <span class="target" id="module-cosmic.lisa_sensitivity"></span><dl class="function">
-<dt id="cosmic.lisa_sensitivity.lisa_root_psd">
-<code class="descclassname">cosmic.lisa_sensitivity.</code><code class="descname">lisa_root_psd</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/lisa_sensitivity.html#lisa_root_psd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.lisa_sensitivity.lisa_root_psd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes LISA sensitivity curve according to <a class="reference external" href="https://arxiv.org/pdf/1803.01944.pdf">Cornish and Robson 2018</a></p>
-</dd></dl>
+  <div class="section" id="evolve-a-milky-way-population-the-cosmic-way">
+<span id="fixedpop"></span><h1>Evolve a Milky Way population the <cite>cosmic</cite> way<a class="headerlink" href="#evolve-a-milky-way-population-the-cosmic-way" title="Permalink to this headline">¶</a></h1>
+<p>There are two executables that are installed when you pip install cosmic:</p>
+<ul class="simple">
+<li>runFixedPop</li>
+<li>gxRealization</li>
+</ul>
+<p>These two executables generate the two components of a cosmic Milky Way population. The <cite>fixed population</cite> is generated first and is designed to fully describe the population of binaries that results from a user specified star formation history (SFH) and binary evolution model. The arguments necessary to run the runFixedPop executable can be found using the help command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ runFixedPop -h
+</pre></div>
+</div>
+<div class="highlight-text"><div class="highlight"><pre><span></span>usage: runFixedPop [-h]
+                   [--convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]]
+                   --inifile INIFILE --galaxy_component GALAXY_COMPONENT
+                   --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                   --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                   [--Niter NITER] [--Nstep NSTEP] [-n NPROC] [--verbose]
+                   [--initial_samp INITIAL_SAMP]
 
-<dl class="function">
-<dt id="cosmic.lisa_sensitivity.lisa_sensitivity">
-<code class="descclassname">cosmic.lisa_sensitivity.</code><code class="descname">lisa_sensitivity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/lisa_sensitivity.html#lisa_sensitivity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.lisa_sensitivity.lisa_sensitivity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes LISA sensitivity curve according to <a class="reference external" href="http://adsabs.harvard.edu/abs/2000PhRvD..62f2001L">Larson, Hiscock, and Hellings (2000)</a></p>
-</dd></dl>
-
+optional arguments:
+  -h, --help            show this help message and exit
+  --convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]
+                        A space separated list of parameters you would like to
+                        varify you have simulated enough binaries for
+  --inifile INIFILE     Name of ini file of params
+  --galaxy_component GALAXY_COMPONENT
+                        Galaxy Components. Options include Bulge ThinDisk and
+                        ThickDisk
+  --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                        Specify the final condition of kstar1, you want
+                        systems to end at for your samples
+  --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                        Specify the final condition of kstar2, you want
+                        systems to end at for your samples
+  --Niter NITER         Number of iterations of binaries to try, will check
+                        ever Nstep for convergence
+  --Nstep NSTEP         Number of binaries to try before checking for
+                        convergence, it will check ever Nstep binaries until
+                        it reach Niter binaries
+  -n NPROC, --nproc NPROC
+                        number of processors
+  --verbose             Run in Verbose Mode
+  --initial_samp INITIAL_SAMP
+                        Specify if independent binary initial conditions:
+                        independent, or following Moe &amp; Di Stefano (2017):
+                        multidim
+</pre></div>
+</div>
+<p>There are currently two SFHs implemented in cosmic: constant over the course of a user specified amount of time or a burst spanning 1 Gyr at a user specified amount of time in the past. New implementations of SFHs will be added to the sample_SFH modules in the independent and multidim samplers.</p>
+</div>
 
 
            </div>
@@ -177,6 +216,13 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../runpop/index.html" class="btn btn-neutral" title="Evolve a binary population by hand" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

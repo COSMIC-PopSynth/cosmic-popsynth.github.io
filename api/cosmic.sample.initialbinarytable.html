@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.298.g7fbc8e7.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.298.g7fbc8e7.dirty documentation" href="../index.html"/> 
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                0+untagged.298.g7fbc8e7.dirty
+                0+untagged.339.g0cc9bd3.dirty
               </div>
             
           
@@ -91,11 +91,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Evolve a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -162,72 +160,104 @@
   <span class="target" id="module-cosmic.sample.initialbinarytable"></span><p><cite>InitialBinaryTable</cite></p>
 <dl class="class">
 <dt id="cosmic.sample.initialbinarytable.InitialBinaryTable">
-<em class="property">class </em><code class="descclassname">cosmic.sample.initialbinarytable.</code><code class="descname">InitialBinaryTable</code><span class="sig-paren">(</span><em>data=None</em>, <em>masked=None</em>, <em>names=None</em>, <em>dtype=None</em>, <em>meta=None</em>, <em>copy=True</em>, <em>rows=None</em>, <em>copy_indices=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/sample/initialbinarytable.html#InitialBinaryTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">astropy.table.table.Table</span></code></p>
-<dl class="classmethod">
+<em class="property">class </em><code class="descclassname">cosmic.sample.initialbinarytable.</code><code class="descname">InitialBinaryTable</code><a class="reference internal" href="../_modules/cosmic/sample/initialbinarytable.html#InitialBinaryTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="classmethod">
 <dt id="cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary">
 <em class="property">classmethod </em><code class="descname">MultipleBinary</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>porb</em>, <em>ecc</em>, <em>tphysf</em>, <em>kstar1</em>, <em>kstar2</em>, <em>metallicity</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/sample/initialbinarytable.html#InitialBinaryTable.MultipleBinary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a grid of binaries</p>
-<p>Parameters:</p>
+<dd><p>Create multiple binaries
+Parameters
+&#8212;&#8212;&#8212;-
+m1 : float</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>m1 (array) :</dt>
-<dd>This is the mass in solar masses of the larger object</dd>
-<dt>m2 (array) :</dt>
-<dd>This is the mass in solar masses of the smaller object</dd>
-<dt>porb (array) :</dt>
-<dd>This is the orbital period in days</dd>
-<dt>ecc (array) :</dt>
-<dd>Eccentricity This value is between 0 and 1</dd>
-<dt>tphysf (array) :</dt>
-<dd>How long to evolve the binary in millions of years</dd>
-<dt>kstar1 (array) :</dt>
+<div>Primary mass [Msun]</div></blockquote>
+<dl class="docutils">
+<dt>m2 <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Secondary mass [Msun]</dd>
+<dt>porb <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Orbital period [days]</dd>
+<dt>ecc <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Eccentricity</dd>
+<dt>tphysf <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Time to evolve the binary [Myr]</dd>
+<dt>kstar1 <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
 <dd>0-14 Initial stellar type of the larger object; 
 main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</dd>
-<dt>kstar2 (array) :</dt>
+<dt>kstar2 <span class="classifier-delimiter">:</span> <span class="classifier">array</span></dt>
 <dd>0-14 Initial stellar type of the smaller object; 
 main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</dd>
-<dt>metallicity (array):</dt>
-<dd>metallicity of the galaxy where the binary lives.</dd>
+<dt>metallicity:float</dt>
+<dd>Metallicity of the binaries; Z_sun = 0.02</dd>
 </dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>bin_dat</strong> : DataFrame</p>
+<blockquote>
+<div><p>Contains initial conditions of multiple binaries</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd><cite>BinaryGrid</cite></dd>
-</dl>
+<p><strong>sampled_mass</strong> : int</p>
+<blockquote class="last">
+<div><p>Total mass of population conatining the initial binaries [Msun]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="classmethod">
 <dt id="cosmic.sample.initialbinarytable.InitialBinaryTable.SingleBinary">
 <em class="property">classmethod </em><code class="descname">SingleBinary</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>porb</em>, <em>ecc</em>, <em>tphysf</em>, <em>kstar1</em>, <em>kstar2</em>, <em>metallicity</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/sample/initialbinarytable.html#InitialBinaryTable.SingleBinary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable.SingleBinary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create single binary</p>
-<p>Parameters:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : float</p>
 <blockquote>
-<div><dl class="docutils">
-<dt>m1 (float) :</dt>
-<dd>This is the mass in solar masses of the larger object</dd>
-<dt>m2 (float) :</dt>
-<dd>This is the mass in solar masses of the smaller object</dd>
-<dt>porb (float) :</dt>
-<dd>This is the orbital period in days</dd>
-<dt>ecc (float) :</dt>
-<dd>Eccentricity This value is between 0 and 1</dd>
-<dt>tphysf (float) :</dt>
-<dd>How long to evolve the binary in millions of years</dd>
-<dt>kstar1 (array) :</dt>
-<dd>0-14 Initial stellar type of the larger object; 
-main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</dd>
-<dt>kstar2 (array) :</dt>
-<dd>0-14 Initial stellar type of the smaller object; 
-main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</dd>
-<dt>metallicity (float):</dt>
-<dd>metallicity of the galaxy where the binary lives.</dd>
-</dl>
+<div><p>Primary mass [Msun]</p>
 </div></blockquote>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd><cite>SingleBinary</cite></dd>
-</dl>
+<p><strong>m2</strong> : float</p>
+<blockquote>
+<div><p>Secondary mass [Msun]</p>
+</div></blockquote>
+<p><strong>porb</strong> : float</p>
+<blockquote>
+<div><p>Orbital period [days]</p>
+</div></blockquote>
+<p><strong>ecc</strong> : float</p>
+<blockquote>
+<div><p>Eccentricity</p>
+</div></blockquote>
+<p><strong>tphysf</strong> : float</p>
+<blockquote>
+<div><p>Time to evolve the binary [Myr]</p>
+</div></blockquote>
+<p><strong>kstar1</strong> : array</p>
+<blockquote>
+<div><p>0-14 Initial stellar type of the larger object; 
+main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
+</div></blockquote>
+<p><strong>kstar2</strong> : array</p>
+<blockquote>
+<div><p>0-14 Initial stellar type of the smaller object; 
+main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
+</div></blockquote>
+<p><strong>metallicity:float</strong></p>
+<blockquote>
+<div><p>Metallicity of the binaries; Z_sun = 0.02</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>SingleBinary</strong> : DataFrame</p>
+<blockquote class="last">
+<div><p>Single binary initial conditions</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="classmethod">
@@ -238,10 +268,9 @@ main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</dd>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>format (str):</strong></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>format</strong> : str</p>
 <blockquote>
-<div><p>the method name; should choose from &#8216;independent&#8217; 
-or &#8216;multidim&#8217;</p>
+<div><p>the method name; Choose from &#8216;independent&#8217; or &#8216;multidim&#8217;</p>
 </div></blockquote>
 <p><strong>*args</strong></p>
 <blockquote>
@@ -304,7 +333,7 @@ to see the arguments necessary for the independent sample</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.298.g7fbc8e7.dirty',
+            VERSION:'0+untagged.339.g0cc9bd3.dirty',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

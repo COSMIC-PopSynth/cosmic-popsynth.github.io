@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.utils &mdash; cosmic 0+untagged.298.g7fbc8e7.dirty documentation</title>
+  <title>cosmic.utils &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.298.g7fbc8e7.dirty documentation" href="../../index.html"/>
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0+untagged.298.g7fbc8e7.dirty
+                0+untagged.339.g0cc9bd3.dirty
               </div>
             
           
@@ -92,11 +92,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -191,30 +189,25 @@
 <span class="sd">    parameter sample to reduce the number of unneccessary binaries evolved</span>
 <span class="sd">    in BSE</span>
 
-<span class="sd">    Paramters</span>
-<span class="sd">    ---------</span>
-<span class="sd">    kstar_1 (int, list): </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    kstar_1 : int, list </span>
 <span class="sd">        BSE stellar type for the primary</span>
 <span class="sd">        or minimum and maximum stellar types for the primary</span>
-
-<span class="sd">    kstar_2 (int, list):</span>
+<span class="sd">    kstar_2 : int, list</span>
 <span class="sd">        BSE stellar type for the secondary </span>
 <span class="sd">        or minimum and maximum stellar types for the secondary</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    min_mass[0] (float):</span>
+<span class="sd">    min_mass[0] : float </span>
 <span class="sd">        minimum primary mass for initial sample</span>
-<span class="sd">        </span>
-<span class="sd">    max_mass[0] (float):</span>
+<span class="sd">    max_mass[0] : float</span>
 <span class="sd">        maximum primary mass for initial sample</span>
-
-<span class="sd">    min_mass[1] (float):</span>
+<span class="sd">    min_mass[1] : float</span>
 <span class="sd">        minimum secondary mass for initial sample</span>
-<span class="sd">    </span>
-<span class="sd">    max_mass[1] (float):</span>
+<span class="sd">    max_mass[1] : float</span>
 <span class="sd">        maximum secondary mass for initial sample</span>
-<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">primary_max</span> <span class="o">=</span> <span class="mf">150.0</span>
@@ -278,20 +271,19 @@
     <span class="sd">&quot;&quot;&quot;Function that replicates the IDL int_tabulated function</span>
 <span class="sd">    which performs a p-point integration on a tabulated set of data</span>
 
-<span class="sd">    Paramters</span>
-<span class="sd">    ---------</span>
-<span class="sd">    x (array):</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array</span>
 <span class="sd">        tabulated x-value data</span>
-
-<span class="sd">    f (array):</span>
+<span class="sd">    f : array</span>
 <span class="sd">        tabulated f-value data, same size as x</span>
-<span class="sd">        </span>
-<span class="sd">    p (int):</span>
+<span class="sd">    p : int</span>
 <span class="sd">        number of chunks to divide tabulated data into</span>
 <span class="sd">        Default: 5</span>
+<span class="sd">   </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    ret (float):</span>
+<span class="sd">    ret : float</span>
 <span class="sd">        Integration result</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -310,25 +302,22 @@
 <div class="viewcode-block" id="rndm"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.rndm">[docs]</a><span class="k">def</span> <span class="nf">rndm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Power-law generator for pdf(x)\propto x^{g-1} for a&lt;=x&lt;=b</span>
 <span class="sd">    </span>
-<span class="sd">    Paramters</span>
-<span class="sd">    ---------</span>
-<span class="sd">    a (float):</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : float</span>
 <span class="sd">        Minimum of range for power law</span>
-
-<span class="sd">    b (float):</span>
+<span class="sd">    b : float</span>
 <span class="sd">        Maximum of range for power law</span>
-
-<span class="sd">    g (float):</span>
+<span class="sd">    g : float</span>
 <span class="sd">        Index for power law</span>
-
-<span class="sd">    size (int):</span>
+<span class="sd">    size : int</span>
 <span class="sd">        Number of data points to draw</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Array of data sampled from power law distribution with params</span>
-<span class="sd">    fixed by inputs</span>
-
+<span class="sd">    power : array</span>
+<span class="sd">        Array of data sampled from power law distribution with params</span>
+<span class="sd">        fixed by inputs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
@@ -339,51 +328,56 @@
     <span class="sd">&quot;&quot;&quot;Transforms a data set to limits between zero and one</span>
 <span class="sd">    Leaves some wiggle room on the edges of the data set</span>
 <span class="sd">    </span>
-<span class="sd">    Paramters</span>
-<span class="sd">    ---------</span>
-<span class="sd">    dat (array):</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dat : array</span>
 <span class="sd">        array of data to transform between 0 and 1</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    dat_trans (array):</span>
+<span class="sd">    datTransformed : array</span>
 <span class="sd">        array of data with limits between 0 and 1</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">datMin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">-</span><span class="mf">0.000001</span>
     <span class="n">datMax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">+</span><span class="mf">0.000001</span>
-    <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
-
+    <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+        <span class="n">datMin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">-</span><span class="mf">0.000001</span>
+        <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">datMin</span> <span class="o">=</span> <span class="mf">1e-7</span> 
+        <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
+        <span class="n">datZeroed</span><span class="p">[</span><span class="n">datZeroed</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
+         
+    
     <span class="n">datTransformed</span> <span class="o">=</span> <span class="n">datZeroed</span><span class="o">/</span><span class="p">((</span><span class="n">datMax</span><span class="o">-</span><span class="n">datMin</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">datTransformed</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="n">datTransformed</span><span class="p">[</span><span class="n">datTransformed</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="mf">1e-6</span>
     <span class="k">return</span> <span class="n">datTransformed</span></div>
 
 
 <div class="viewcode-block" id="dat_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.dat_transform">[docs]</a><span class="k">def</span> <span class="nf">dat_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">dat_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transform a data set to have limits between zero and one using </span>
-<span class="sd">    param_transform, then transform to logit space</span>
+<span class="sd">    param_transform, then transform to log space</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    dat (DataFrame):</span>
+<span class="sd">    dat &quot; DataFrame</span>
 <span class="sd">        Data to transform to eventually perform KDE</span>
-
-<span class="sd">    dat_list (list):</span>
+<span class="sd">    dat_list : list</span>
 <span class="sd">        List of DataFrame columns to include in transformation</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    dat_trans (array):</span>
+<span class="sd">    dat_trans : array</span>
 <span class="sd">        Transformed data for columns in dat_list</span>
 <span class="sd">    &quot;&quot;&quot;</span> 
-
 
     <span class="n">dat_trans</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">dat_list</span><span class="p">:</span>
         <span class="n">dat_trans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="n">column</span><span class="p">]))</span>
     
-    <span class="n">dat_trans</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">dat_trans</span><span class="p">]))</span>
-
+    <span class="n">dat_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">dat_trans</span><span class="p">]))</span>
+    
     <span class="k">return</span> <span class="n">dat_trans</span></div>
 
 <div class="viewcode-block" id="dat_un_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.dat_un_transform">[docs]</a><span class="k">def</span> <span class="nf">dat_un_transform</span><span class="p">(</span><span class="n">dat_sample</span><span class="p">,</span> <span class="n">dat_set</span><span class="p">,</span> <span class="n">dat_list</span><span class="p">):</span>
@@ -391,25 +385,22 @@
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    dat_sample (array):</span>
+<span class="sd">    dat_sample : array</span>
 <span class="sd">        Data sampled from kde generated with transformed data</span>
-
-<span class="sd">    dat_set (DataFrame):</span>
+<span class="sd">    dat_set : DataFrame</span>
 <span class="sd">        Un-transformed data (same as dat in dat_transform)</span>
-
-<span class="sd">    dat_list (list):</span>
+<span class="sd">    dat_list : list</span>
 <span class="sd">        List of DataFrame columns to include in transformation</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    dat (array):</span>
+<span class="sd">    dat : array</span>
 <span class="sd">        Array of data sampled from kde that is transformed back to </span>
 <span class="sd">        bounds of the un-transformed data set the kde is generated from </span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
     
-    <span class="n">dat_exp</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">dat_sample</span><span class="p">)</span>
+    <span class="n">dat_exp</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">dat_sample</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">column</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dat_list</span><span class="p">)),</span><span class="n">dat_list</span><span class="p">):</span>
         <span class="n">dat_untrans</span> <span class="o">=</span> <span class="n">dat_exp</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span><span class="o">*</span>\
                    <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">dat_set</span><span class="p">[</span><span class="n">column</span><span class="p">])</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat_set</span><span class="p">[</span><span class="n">column</span><span class="p">]))</span> <span class="o">+</span>\
@@ -426,12 +417,12 @@
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    dat_list (list):</span>
+<span class="sd">    dat_list : list</span>
 <span class="sd">        List of data arrays that will be used to generate a kde</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    bw_min (float):</span>
+<span class="sd">    bw_min : float</span>
 <span class="sd">        Minimum of bandwidths for all of the data arrays in dat_list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -443,12 +434,8 @@
             <span class="nb">print</span> <span class="s1">&#39;Using Scott Rule!!&#39;</span>
             <span class="n">bw</span> <span class="o">=</span> <span class="n">astrostats</span><span class="o">.</span><span class="n">scott_bin_width</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
         <span class="n">bw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
-        
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">bw_list</span><span class="p">)</span></div>
-                      
         
-
-
 </pre></div>
 
            </div>
@@ -485,7 +472,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0+untagged.298.g7fbc8e7.dirty',
+            VERSION:'0+untagged.339.g0cc9bd3.dirty',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,

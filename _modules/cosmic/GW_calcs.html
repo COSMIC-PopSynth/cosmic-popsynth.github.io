@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.GW_calcs &mdash; cosmic 0+untagged.298.g7fbc8e7.dirty documentation</title>
+  <title>cosmic.GW_calcs &mdash; cosmic 0+untagged.339.g0cc9bd3.dirty documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.298.g7fbc8e7.dirty documentation" href="../../index.html"/>
+    <link rel="top" title="cosmic 0+untagged.339.g0cc9bd3.dirty documentation" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0+untagged.298.g7fbc8e7.dirty
+                0+untagged.339.g0cc9bd3.dirty
               </div>
             
           
@@ -92,11 +92,9 @@
             
             
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a Milky Way population</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../command-line/index.html">Running <code class="docutils literal"><span class="pre">runFixedPop</span></code> on the command line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using cosmic to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fixedpop/index.html">Evolve a Milky Way population the <cite>cosmic</cite> way</a></li>
 </ul>
 
             
@@ -193,7 +191,7 @@
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Katelyn Breivik &lt;katie.breivik@gmail.com&gt;&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="s1">&#39;Scott Coughlin &lt;scott.coughlin@ligo.org&gt;&#39;</span>
-<span class="n">__all__</span> <span class="o">=</span> <span class="s1">&#39;GW_calcs&#39;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;m_chirp&#39;</span><span class="p">,</span> <span class="s1">&#39;peak_gw_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;peters_gfac&#39;</span><span class="p">,</span> <span class="s1">&#39;LISA_SNR&#39;</span><span class="p">,</span> <span class="s1">&#39;LISA_PSD&#39;</span><span class="p">,</span> <span class="s1">&#39;compute_foreground&#39;</span><span class="p">]</span>
 
 <span class="n">G</span> <span class="o">=</span> <span class="mf">6.67384e-11</span>
 <span class="n">c</span> <span class="o">=</span> <span class="mf">2.99792458e8</span>
@@ -208,21 +206,23 @@
 <span class="n">hrs_in_day</span> <span class="o">=</span> <span class="mf">24.0</span>
 <span class="n">sec_in_year</span> <span class="o">=</span> <span class="mf">3.15569e7</span>
 <span class="n">geo_mass</span> <span class="o">=</span> <span class="n">G</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">x_sun</span> <span class="o">=</span> <span class="mf">8.5</span>
+<span class="n">y_sun</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">z_sun</span> <span class="o">=</span> <span class="mf">0.02</span>
 
 <div class="viewcode-block" id="m_chirp"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.m_chirp">[docs]</a><span class="k">def</span> <span class="nf">m_chirp</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Computes the chirp mass in the units of mass supplied</span>
 <span class="sd">   </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    m1 (float or array):</span>
+<span class="sd">    m1 : float or array</span>
 <span class="sd">        primary mass</span>
-<span class="sd">  </span>
-<span class="sd">    m2 (float or array):    </span>
+<span class="sd">    m2 : float or array    </span>
 <span class="sd">        secondary mass</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    m_chirp (float or array):</span>
+<span class="sd">    mchirp : float or array</span>
 <span class="sd">        chirp mass in units of mass supplied</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">m1</span><span class="o">*</span><span class="n">m2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">3.</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span></div>
@@ -231,23 +231,20 @@
     <span class="sd">&quot;&quot;&quot;Computes the peak gravitational-wave frequency for an</span>
 <span class="sd">    eccentric binary system. Units are SI</span>
 
-<span class="sd">    Paramters</span>
-<span class="sd">    ---------</span>
-<span class="sd">    m1 (float or array):</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : float or array</span>
 <span class="sd">        primary mass [kg]</span>
-<span class="sd">  </span>
-<span class="sd">    m2 (float or array):    </span>
+<span class="sd">    m2 : float or array    </span>
 <span class="sd">        secondary mass [kg]</span>
-
-<span class="sd">    ecc (float or array):</span>
+<span class="sd">    ecc : float or array</span>
 <span class="sd">        eccentricity</span>
-
-<span class="sd">    porb (float or array):</span>
+<span class="sd">    porb : float or array</span>
 <span class="sd">        orbital period [s]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    f_gw_peak (floar or array):</span>
+<span class="sd">    f_gw_peak : float or array</span>
 <span class="sd">        peak gravitational-wave frequency [Hz]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -262,15 +259,14 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    ecc (float or array):</span>
+<span class="sd">    ecc : float or array</span>
 <span class="sd">        eccentricity</span>
-
-<span class="sd">    n_harmonic (int):</span>
+<span class="sd">    n_harmonic : int</span>
 <span class="sd">        number of frequency harmonics to include</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    g_fac_squared (array):</span>
+<span class="sd">    g_fac_squared : array</span>
 <span class="sd">        array of g_n/n**2</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">g_fac_squared</span> <span class="o">=</span> <span class="p">[]</span>    
@@ -285,7 +281,29 @@
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">g_fac_squared</span><span class="p">)</span></div>
  
-<div class="viewcode-block" id="LISA_SNR"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.LISA_SNR">[docs]</a><span class="k">def</span> <span class="nf">LISA_SNR</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">n_harmonic</span><span class="p">,</span> <span class="n">Tobs</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">LISA_combo</span><span class="p">(</span><span class="n">foreground_dat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the combination of the population foreground and LISA PSD</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    foreground_dat : DataFrame</span>
+<span class="sd">        gw_freq [Hz], PSD [Hz^-1]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    LISA_curve_combo : interpolation</span>
+<span class="sd">        gw_freq [Hz], PSD [Hz^-1]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># LISA mission: 2.5 million km arms</span>
+    <span class="n">LISA_psd</span> <span class="o">=</span> <span class="n">lisa_sensitivity</span><span class="o">.</span><span class="n">lisa_root_psd</span><span class="p">()</span>
+    <span class="n">LISA_curve</span> <span class="o">=</span> <span class="n">LISA_psd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">foreground_dat</span><span class="o">.</span><span class="n">freq</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">LISA_curve_foreground</span> <span class="o">=</span> <span class="n">LISA_curve</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">foreground_dat</span><span class="o">.</span><span class="n">PSD</span><span class="p">)</span>
+    <span class="n">LISA_combo_interp</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">foreground_dat</span><span class="o">.</span><span class="n">freq</span><span class="p">),</span> <span class="n">LISA_curve_foreground</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">LISA_combo_interp</span>
+
+
+<div class="viewcode-block" id="LISA_SNR"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.LISA_SNR">[docs]</a><span class="k">def</span> <span class="nf">LISA_SNR</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">xGx</span><span class="p">,</span> <span class="n">yGx</span><span class="p">,</span> <span class="n">zGx</span><span class="p">,</span> <span class="n">n_harmonic</span><span class="p">,</span> <span class="n">Tobs</span><span class="p">,</span> <span class="n">foreground_dat</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Computes the LISA signal-to-noise ratio with inputs in SI units</span>
 <span class="sd">    with a LISA mission of 4 yr and 2.5 million km arms</span>
 <span class="sd">    Note that this does not take into account the Galactic binary foreground</span>
@@ -293,73 +311,60 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    m1 (float or array):</span>
+<span class="sd">    m1 : Series</span>
 <span class="sd">        primary mass [kg]</span>
-<span class="sd">  </span>
-<span class="sd">    m2 (float or array):    </span>
+<span class="sd">    m2 : Series </span>
 <span class="sd">        secondary mass [kg]</span>
-
-<span class="sd">    porb (float or array):</span>
+<span class="sd">    porb : Series</span>
 <span class="sd">        orbital period [s]</span>
-
-<span class="sd">    ecc (float or array):</span>
+<span class="sd">    ecc : Series</span>
 <span class="sd">        eccentricity</span>
-
-<span class="sd">    dist (float or array):</span>
-<span class="sd">        Solar-centric distance [m]</span>
-
-<span class="sd">    n_harmonic (int):</span>
+<span class="sd">    xGx, yGx, zGx : Series</span>
+<span class="sd">        Galactocentric distance [kpc]</span>
+<span class="sd">    n_harmonic : int</span>
 <span class="sd">        number of frequency harmonics to include</span>
-
-<span class="sd">    Tobs (float):</span>
-<span class="sd">            LISA observation time in seconds</span>
+<span class="sd">    Tobs : float</span>
+<span class="sd">        LISA observation time in seconds</span>
+<span class="sd">    foreground_dat : DataFrame</span>
+<span class="sd">        gw_freq [Hz], PSD [Hz^-1]   </span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    SNR_dat (DataFrame):</span>
+<span class="sd">    SNR_dat : DataFrame</span>
 <span class="sd">        DataFrame with columns [&#39;freq&#39;, &#39;SNR&#39;] where</span>
 <span class="sd">        freq = gravitational-wave frequency in Hz and </span>
 <span class="sd">        SNR = LISA signal-to-noise ratio </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># LISA mission: 2.5 million km arms</span>
-    <span class="n">LISA_psd</span> <span class="o">=</span> <span class="n">lisa_sensitivity</span><span class="o">.</span><span class="n">lisa_root_psd</span><span class="p">()</span>
-    
+    <span class="n">LISA_combo_interp</span> <span class="o">=</span> <span class="n">LISA_combo</span><span class="p">(</span><span class="n">foreground_dat</span><span class="p">)</span> 
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">((</span><span class="n">xGx</span><span class="o">-</span><span class="n">x_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">yGx</span><span class="o">-</span><span class="n">y_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">zGx</span><span class="o">-</span><span class="n">z_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="o">*</span><span class="n">parsec</span><span class="o">*</span><span class="mf">1000.0</span>
     <span class="n">mChirp</span> <span class="o">=</span> <span class="n">m_chirp</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span>
     <span class="n">h_0</span> <span class="o">=</span> <span class="mi">8</span><span class="o">*</span><span class="n">G</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">mChirp</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">porb</span><span class="p">))</span><span class="o">*</span><span class="n">mChirp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
-    <span class="n">h_0_squared</span> <span class="o">=</span> <span class="n">h_0</span><span class="o">**</span><span class="mi">2</span>
-  
-    <span class="n">SNR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mChirp</span><span class="p">))</span>
-    <span class="n">gw_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mChirp</span><span class="p">))</span>
-
-    <span class="n">ind_ecc</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ecc</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">ind_circ</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ecc</span> <span class="o">&lt;=</span> <span class="mf">0.1</span><span class="p">)</span>
-
-    <span class="n">SNR</span><span class="p">[</span><span class="n">ind_circ</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">h_0_squared</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_circ</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">Tobs</span> <span class="o">/</span> <span class="n">LISA_psd</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">porb</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_circ</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">gw_freq</span><span class="p">[</span><span class="n">ind_circ</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">porb</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_circ</span><span class="p">])</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ind_ecc</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">peters_g_factor</span> <span class="o">=</span> <span class="n">peters_gfac</span><span class="p">(</span><span class="n">ecc</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">],</span> <span class="n">n_harmonic</span><span class="p">)</span>
-        <span class="n">GW_freq_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_harmonic</span><span class="p">)</span><span class="o">/</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">porb</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
-        <span class="n">GW_freq_flat</span> <span class="o">=</span> <span class="n">GW_freq_array</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-        <span class="n">LISA_curve_eval_flat</span> <span class="o">=</span> <span class="n">LISA_psd</span><span class="p">(</span><span class="n">GW_freq_flat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-        <span class="n">LISA_curve_eval</span> <span class="o">=</span> <span class="n">LISA_curve_eval_flat</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_harmonic</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">ind_ecc</span><span class="p">)))</span>
-
-        <span class="n">h_0_squared_ecc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_harmonic</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">h_0_squared</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
-        <span class="n">SNR_squared</span> <span class="o">=</span> <span class="n">h_0_squared_ecc</span> <span class="o">*</span> <span class="n">Tobs</span> <span class="o">*</span> <span class="n">peters_g_factor</span> <span class="o">/</span> <span class="n">LISA_curve_eval</span>
-
-        <span class="n">SNR</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">SNR_squared</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span>
-        <span class="n">gw_freq</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">]</span> <span class="o">=</span> <span class="n">peak_gw_freq</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">],</span> <span class="n">m2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">],</span> <span class="n">ecc</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">],</span> <span class="n">porb</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">])</span>    
-    <span class="n">SNR_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">gw_freq</span><span class="p">,</span> <span class="n">SNR</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;gw_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;SNR&#39;</span><span class="p">])</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">SNR_dat</span><span class="o">.</span><span class="n">SNR</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">SNR_dat</span> <span class="o">=</span> <span class="n">SNR_dat</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">SNR_dat</span><span class="o">.</span><span class="n">SNR</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">]</span>
+    <span class="n">h_0_squared</span> <span class="o">=</span> <span class="n">h_0</span><span class="o">**</span><span class="mi">2</span> 
+    <span class="k">if</span> <span class="n">ecc</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+        <span class="n">n_harmonic</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">peters_g_factor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">GW_freq_array</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">porb</span>
+        <span class="n">LISA_curve_eval</span> <span class="o">=</span> <span class="n">LISA_combo_interp</span><span class="p">(</span><span class="n">GW_freq_array</span><span class="p">)</span>
+        <span class="n">h_0_squared_dat</span> <span class="o">=</span> <span class="n">h_0_squared</span><span class="o">*</span><span class="n">peters_g_factor</span>
+        <span class="n">SNR</span> <span class="o">=</span> <span class="p">(</span><span class="n">h_0_squared_dat</span> <span class="o">*</span> <span class="n">Tobs</span> <span class="o">/</span> <span class="n">LISA_curve_eval</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">SNR_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;gw_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;SNR&#39;</span><span class="p">])</span>
+        <span class="n">peters_g_factor</span> <span class="o">=</span> <span class="n">peters_gfac</span><span class="p">(</span><span class="n">ecc</span><span class="p">,</span> <span class="n">n_harmonic</span><span class="p">)</span>
+        <span class="n">GW_freq_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_harmonic</span><span class="p">)</span><span class="o">/</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">porb</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">GW_freq_flat</span> <span class="o">=</span> <span class="n">GW_freq_array</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">LISA_curve_eval_flat</span> <span class="o">=</span> <span class="n">LISA_combo_interp</span><span class="p">(</span><span class="n">GW_freq_flat</span><span class="p">)</span>
+        <span class="n">LISA_curve_eval</span> <span class="o">=</span> <span class="n">LISA_curve_eval_flat</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_harmonic</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ecc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+        <span class="n">h_0_squared_dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_harmonic</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">h_0_squared</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">peters_g_factor</span>
+        <span class="n">SNR_squared</span> <span class="o">=</span> <span class="n">h_0_squared_dat</span> <span class="o">*</span> <span class="n">Tobs</span> <span class="o">/</span> <span class="n">LISA_curve_eval</span>
+        <span class="n">SNR</span> <span class="o">=</span> <span class="p">(</span><span class="n">SNR_squared</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">gw_freq</span> <span class="o">=</span> <span class="n">peak_gw_freq</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">porb</span><span class="p">)</span>    
+    <span class="n">SNR_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">gw_freq</span><span class="p">,</span> <span class="n">SNR</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;gw_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;SNR&#39;</span><span class="p">])</span>
     
     <span class="k">return</span> <span class="n">SNR_dat</span></div>
 
 
-<div class="viewcode-block" id="LISA_PSD"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.LISA_PSD">[docs]</a><span class="k">def</span> <span class="nf">LISA_PSD</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">n_harmonic</span><span class="p">,</span> <span class="n">Tobs</span><span class="p">):</span>
+<div class="viewcode-block" id="LISA_PSD"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.LISA_PSD">[docs]</a><span class="k">def</span> <span class="nf">LISA_PSD</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">xGx</span><span class="p">,</span> <span class="n">yGx</span><span class="p">,</span> <span class="n">zGx</span><span class="p">,</span> <span class="n">n_harmonic</span><span class="p">,</span> <span class="n">Tobs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Computes the LISA power spectral density with inputs in SI units</span>
 <span class="sd">    with a LISA mission of Tobs [sec] and 2.5 million km arms</span>
 <span class="sd">    Note that this does not take into account the Galactic binary foreground</span>
@@ -367,60 +372,56 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    m1 (float or array):</span>
-<span class="sd">        primary mass [kg]</span>
-<span class="sd">  </span>
-<span class="sd">    m2 (float or array):    </span>
-<span class="sd">        secondary mass [kg]</span>
-
-<span class="sd">    porb (float or array):</span>
+<span class="sd">    m1 : Series </span>
+<span class="sd">        primary mass [msun]</span>
+<span class="sd">    m2 : Series    </span>
+<span class="sd">        secondary mass [msun]</span>
+<span class="sd">    porb : Series</span>
 <span class="sd">        orbital period [s]</span>
-
-<span class="sd">    ecc (float or array):</span>
+<span class="sd">    ecc : Series</span>
 <span class="sd">        eccentricity</span>
-
-<span class="sd">    dist (float or array):</span>
-<span class="sd">        Solar-centric distance [m]</span>
-
-<span class="sd">    n_harmonic (int):</span>
+<span class="sd">    xGx, yGx, zGx : Series</span>
+<span class="sd">        Galactocentric distance [kpc]</span>
+<span class="sd">    n_harmonic : int</span>
 <span class="sd">        number of frequency harmonics to include</span>
-
-<span class="sd">    Tobs (float):</span>
-<span class="sd">            LISA observation time in seconds</span>
+<span class="sd">    Tobs : float</span>
+<span class="sd">            LISA observation time [s]</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    PSD_dat (DataFrame):</span>
+<span class="sd">    PSD_dat : DataFrame</span>
 <span class="sd">        DataFrame with columns [&#39;freq&#39;, &#39;PSD&#39;] where</span>
-<span class="sd">        freq = gravitational wave frequency in Hz</span>
-<span class="sd">        SNR = LISA signal-to-noise ratio </span>
+<span class="sd">        freq = gravitational wave frequency [Hz]</span>
+<span class="sd">        PSD = LISA Power Spectral Density  </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1"># LISA mission: 2.5 million km arms</span>
     <span class="n">LISA_psd</span> <span class="o">=</span> <span class="n">lisa_sensitivity</span><span class="o">.</span><span class="n">lisa_root_psd</span><span class="p">()</span>
-    
-    <span class="n">mChirp</span> <span class="o">=</span> <span class="n">m_chirp</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">((</span><span class="n">xGx</span><span class="o">-</span><span class="n">x_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">yGx</span><span class="o">-</span><span class="n">y_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">zGx</span><span class="o">-</span><span class="n">z_sun</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="o">*</span><span class="n">parsec</span><span class="o">*</span><span class="mf">1000.0</span>
+    <span class="n">mChirp</span> <span class="o">=</span> <span class="n">m_chirp</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span><span class="o">*</span><span class="n">Msun</span>
+
+
     <span class="n">h_0</span> <span class="o">=</span> <span class="mi">8</span><span class="o">*</span><span class="n">G</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">mChirp</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">porb</span><span class="p">))</span><span class="o">*</span><span class="n">mChirp</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
     <span class="n">h_0_squared</span> <span class="o">=</span> <span class="n">h_0</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">if</span> <span class="n">ecc</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">1e-4</span><span class="p">:</span>
+        <span class="n">n_harmonic</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">peters_g_factor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">GW_freq_flat</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="n">porb</span>
+        <span class="n">LISA_curve_eval</span> <span class="o">=</span> <span class="n">LISA_psd</span><span class="p">(</span><span class="n">GW_freq_flat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">h_0_squared_dat</span> <span class="o">=</span> <span class="n">h_0_squared</span><span class="o">*</span><span class="n">peters_g_factor</span>
+        <span class="n">psd</span> <span class="o">=</span> <span class="n">h_0_squared_dat</span> <span class="o">*</span> <span class="n">Tobs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">peters_g_factor</span> <span class="o">=</span> <span class="n">peters_gfac</span><span class="p">(</span><span class="n">ecc</span><span class="p">,</span> <span class="n">n_harmonic</span><span class="p">)</span>
+        <span class="n">GW_freq_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_harmonic</span><span class="p">)</span><span class="o">/</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">porb</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">GW_freq_flat</span> <span class="o">=</span> <span class="n">GW_freq_array</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">LISA_curve_eval_flat</span> <span class="o">=</span> <span class="n">LISA_psd</span><span class="p">(</span><span class="n">GW_freq_flat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">LISA_curve_eval</span> <span class="o">=</span> <span class="n">LISA_curve_eval_flat</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">n_harmonic</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">ecc</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
-    <span class="n">freq</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">psd</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">h_0_squared_dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">h</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_harmonic</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">h_0_squared</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">peters_g_factor</span>
+        <span class="n">PSD</span> <span class="o">=</span> <span class="n">h_0_squared_dat</span> <span class="o">*</span> <span class="n">Tobs</span> 
+        <span class="n">psd</span> <span class="o">=</span> <span class="n">PSD</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
-    <span class="n">ind_ecc</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ecc</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">ind_circ</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ecc</span> <span class="o">&lt;=</span> <span class="mf">0.1</span><span class="p">)</span>
-
-    <span class="n">power</span> <span class="o">=</span> <span class="n">h_0_squared</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_circ</span><span class="p">]</span> <span class="o">*</span> <span class="mf">1.0</span><span class="o">/</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">Tobs</span>
-    
-    <span class="n">psd</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
-    <span class="n">freq</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">porb</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_circ</span><span class="p">]))</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ind_ecc</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">peters_g_factor</span> <span class="o">=</span> <span class="n">peters_gfac</span><span class="p">(</span><span class="n">ecc</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ind_ecc</span><span class="p">],</span> <span class="n">n_harmonic</span><span class="p">)</span>
-        <span class="n">power</span> <span class="o">=</span> <span class="n">h_0_squared_ecc</span> <span class="o">*</span> <span class="n">Tobs</span> <span class="o">*</span> <span class="n">peters_g_factor</span>
-        <span class="n">power_flat</span> <span class="o">=</span> <span class="n">power</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-
-        <span class="n">psd</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">power_flat</span><span class="p">)</span>
-        <span class="n">freq</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">GW_freq_flat</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">GW_freq_flat</span>
     <span class="n">PSD_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">freq</span><span class="p">,</span> <span class="n">psd</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="s1">&#39;PSD&#39;</span><span class="p">])</span>
     
     <span class="k">return</span> <span class="n">PSD_dat</span> </div>
@@ -432,24 +433,23 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    psd_dat (DataFrame):</span>
+<span class="sd">    psd_dat : DataFrame</span>
 <span class="sd">        DataFrame with columns [&#39;freq&#39;, &#39;PSD&#39;] where </span>
-<span class="sd">        freq = gravitational-wave frequency in Hz</span>
+<span class="sd">        freq = gravitational-wave frequency [Hz]</span>
 <span class="sd">        PSD = LISA power spectral density</span>
-
 <span class="sd">    Tobs (float):</span>
-<span class="sd">        LISA observation time in seconds; Default=4 yr</span>
+<span class="sd">        LISA observation time [s]; Default=4 yr</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    foreground_dat (DataFrame):</span>
+<span class="sd">    foreground_dat : DataFrame</span>
 <span class="sd">        DataFrame with columns [&#39;freq&#39;, &#39;PSD&#39;] where </span>
-<span class="sd">        freq = gravitational-wave frequency of LISA frequency bins in Hz</span>
-<span class="sd">        PSD = LISA power spectral density at each LISA frequency</span>
+<span class="sd">        freq = gravitational-wave frequency of LISA frequency bins [Hz]</span>
+<span class="sd">        PSD = LISA power spectral density of foreground</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">binwidth</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">Tobs</span>
-    <span class="n">freqBinsLISA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5e-4</span><span class="p">,</span><span class="mf">1e-2</span><span class="p">,</span><span class="n">binwidth</span><span class="p">)</span>
+    <span class="n">freqBinsLISA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">5e-6</span><span class="p">,</span><span class="mf">1e-1</span><span class="p">,</span><span class="n">binwidth</span><span class="p">)</span>
     <span class="n">binIndices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">psd_dat</span><span class="o">.</span><span class="n">freq</span><span class="p">,</span> <span class="n">freqBinsLISA</span><span class="p">)</span>
     <span class="n">psd_dat</span><span class="p">[</span><span class="s1">&#39;digits&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">binIndices</span>
     <span class="n">power_sum</span> <span class="o">=</span> <span class="n">psd_dat</span><span class="p">[[</span><span class="s1">&#39;PSD&#39;</span><span class="p">,</span> <span class="s1">&#39;digits&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;digits&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;PSD&#39;</span><span class="p">]</span>
@@ -494,7 +494,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'0+untagged.298.g7fbc8e7.dirty',
+            VERSION:'0+untagged.339.g0cc9bd3.dirty',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
