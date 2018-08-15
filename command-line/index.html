@@ -155,29 +155,223 @@
 <h2>Basic instructions<a class="headerlink" href="#basic-instructions" title="Permalink to this headline">¶</a></h2>
 <p>Basic instructions on running <code class="docutils literal notranslate"><span class="pre">runFixedPop</span></code> can be gained by looking at the <code class="docutils literal notranslate"><span class="pre">--help</span></code> menu:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --help
-Traceback (most recent call last):
-  File &quot;/Users/scottcoughlin/anaconda/bin/runFixedPop&quot;, line 4, in &lt;module&gt;
-    __import__(&#39;pkg_resources&#39;).require(&#39;aCOSMIC==0+untagged.48.g40a1e6f.dirty&#39;)
-  File &quot;/Users/scottcoughlin/anaconda/lib/python2.7/site-packages/pkg_resources/__init__.py&quot;, line 3074, in &lt;module&gt;
-    @_call_aside
-  File &quot;/Users/scottcoughlin/anaconda/lib/python2.7/site-packages/pkg_resources/__init__.py&quot;, line 3058, in _call_aside
-    f(*args, **kwargs)
-  File &quot;/Users/scottcoughlin/anaconda/lib/python2.7/site-packages/pkg_resources/__init__.py&quot;, line 3087, in _initialize_master_working_set
-    working_set = WorkingSet._build_master()
-  File &quot;/Users/scottcoughlin/anaconda/lib/python2.7/site-packages/pkg_resources/__init__.py&quot;, line 664, in _build_master
-    ws.require(__requires__)
-  File &quot;/Users/scottcoughlin/anaconda/lib/python2.7/site-packages/pkg_resources/__init__.py&quot;, line 981, in require
-    needed = self.resolve(parse_requirements(requirements))
-  File &quot;/Users/scottcoughlin/anaconda/lib/python2.7/site-packages/pkg_resources/__init__.py&quot;, line 867, in resolve
-    raise DistributionNotFound(req, requirers)
-pkg_resources.DistributionNotFound: The &#39;aCOSMIC==0+untagged.48.g40a1e6f.dirty&#39; distribution was not found and is required by the application
+/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+usage: runFixedPop [-h]
+                   [--convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]]
+                   --inifile INIFILE --galaxy_component GALAXY_COMPONENT
+                   --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                   --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                   [--Niter NITER] [--Nstep NSTEP] [-n NPROC] [--verbose]
+                   [--initial_samp INITIAL_SAMP]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]
+                        A space separated list of parameters you would like to
+                        varify you have simulated enough binaries for
+  --inifile INIFILE     Name of ini file of params
+  --galaxy_component GALAXY_COMPONENT
+                        Galaxy Components. Options include Bulge ThinDisk and
+                        ThickDisk
+  --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                        Specify the final condition of kstar1, you want
+                        systems to end at for your samples
+  --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                        Specify the final condition of kstar2, you want
+                        systems to end at for your samples
+  --Niter NITER         Number of iterations of binaries to try, will check
+                        ever Nstep for convergence
+  --Nstep NSTEP         Number of binaries to try before checking for
+                        convergence, it will check ever Nstep binaries until
+                        it reach Niter binaries
+  -n NPROC, --nproc NPROC
+                        number of processors
+  --verbose             Run in Verbose Mode
+  --initial_samp INITIAL_SAMP
+                        Specify if independent binary initial conditions:
+                        independent, or following Moe &amp; Di Stefano (2017):
+                        multidim
 </pre></div>
 </div>
 </div>
-<div class="section" id="detailed-instructions">
-<h2>Detailed instructions<a class="headerlink" href="#detailed-instructions" title="Permalink to this headline">¶</a></h2>
-<p>A few of the command-line options require special formatting, use the reference below for more detailed info.</p>
 </div>
+<div class="section" id="evolve-a-milky-way-population-the-cosmic-way">
+<h1>Evolve a Milky Way population the <cite>cosmic</cite> way<a class="headerlink" href="#evolve-a-milky-way-population-the-cosmic-way" title="Permalink to this headline">¶</a></h1>
+<p>There are two executables that are installed when you pip install cosmic:</p>
+<ul class="simple">
+<li>runFixedPop</li>
+<li>gxRealization</li>
+</ul>
+<p>These two executables generate the two components of a cosmic Milky Way population.</p>
+<p>The <cite>fixed population</cite> is generated first and is designed to fully describe the population of binaries that results from a user specified star formation history (SFH) and binary evolution model. The arguments necessary to run the runFixedPop executable can be found using the help command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop -h
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+usage: runFixedPop [-h]
+                   [--convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]]
+                   --inifile INIFILE --galaxy_component GALAXY_COMPONENT
+                   --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                   --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                   [--Niter NITER] [--Nstep NSTEP] [-n NPROC] [--verbose]
+                   [--initial_samp INITIAL_SAMP]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]
+                        A space separated list of parameters you would like to
+                        varify you have simulated enough binaries for
+  --inifile INIFILE     Name of ini file of params
+  --galaxy_component GALAXY_COMPONENT
+                        Galaxy Components. Options include Bulge ThinDisk and
+                        ThickDisk
+  --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                        Specify the final condition of kstar1, you want
+                        systems to end at for your samples
+  --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                        Specify the final condition of kstar2, you want
+                        systems to end at for your samples
+  --Niter NITER         Number of iterations of binaries to try, will check
+                        ever Nstep for convergence
+  --Nstep NSTEP         Number of binaries to try before checking for
+                        convergence, it will check ever Nstep binaries until
+                        it reach Niter binaries
+  -n NPROC, --nproc NPROC
+                        number of processors
+  --verbose             Run in Verbose Mode
+  --initial_samp INITIAL_SAMP
+                        Specify if independent binary initial conditions:
+                        independent, or following Moe &amp; Di Stefano (2017):
+                        multidim
+</pre></div>
+</div>
+<p>There are currently three SFHs implemented in cosmic, one each for the Milky Way thin disk, thick disk and bulge. Their assumptions are as follows:</p>
+<ul class="simple">
+<li>ThinDisk : constant star formation over 10 Gyr; the metallicity for the thin disk is traditionally set to solar</li>
+<li>ThickDisk : a 1 Gyr burst of constant star formation 11 Gyr in the past; the metallicity for the thick disk is traditionally set to be subsolar, we reccommend 15% solar</li>
+<li>Bulge : a 1 Gyr burst of constant 10 Gyr in the past; the metallicity for the bulge is traditionally set to solar</li>
+</ul>
+<p>New implementations of SFHs will be added to the sample_SFH modules in the independent and multidim samplers.</p>
+<p>Below is an example command line call for runFixedPop:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">10</span> <span class="m">11</span> --inifile examples/Params.ini --galaxy_component ThinDisk --metallicity <span class="m">0</span>.02 --convergence-params mass_1 mass_2 porb ecc --initial_samp multidim --Nstep <span class="m">5000</span> --Niter <span class="m">10000000</span> -n <span class="m">1</span>
+</pre></div>
+</div>
+<p>Let’s break down each argument:</p>
+<ul class="simple">
+<li>–final_ktar1 11 –final_kstar2 10 11 : this tells cosmic that we want to keep all systems where the primary star is a CO WD and the secondary star is either a CO or He WD.</li>
+<li>–inifile examples/Params.ini : this tells cosmic where to look for the BSE flags that set the binary evolution model</li>
+<li>–galaxy_component ThinDisk : this tells cosmic that we want to run a Milky Way thin disk, which will implement constant star formation history over 10 Gyr</li>
+<li>–metallicity 0.02 : this tells cosmic to use solar metallicity for every binary we evolve</li>
+<li>–convergence-params mass_1 mass_2 porb ecc : this tells cosmic to watch how the distributions of the masses, orbital period, and eccentricity of the binaries change with each iterated population</li>
+<li>–initial_samp multidim : this tells cosmic to initialize the binaries with multidimensional parameter distributions according to Moe &amp; Di Stefano 2017</li>
+<li>–Nstep 5000 –Niter 10000000 -n 1 : this tells cosmic to use 1 processor to evolve a maximum of 1e7 systems and check in every 5000 systems to track how the shape of the distributions of the parameters specified in convergence-params change</li>
+</ul>
+<p>The stop conditions for runFixedPop are that the shape of the parameter distributions of interest converge, quantified by the match criteria of Breivik &amp; Larson 2018 or the number of binaries evolved exceeds Niter.</p>
+<p>The output of runFixed pop is the <cite>fixed population</cite>, an hdf5 file with a naming scheme that tells you the Galactic component and final kstars of the population; the data file created by the runFixedPop call above is: dat_ThinDisk_11_10_11.h5.</p>
+<p>The fixed population contains three pandas DataFrames accessed by the following keys:</p>
+<ul class="simple">
+<li>bcm : The final state of the converged population at the present epoch</li>
+<li>bpp : The evolutionary history of the systems in the bcm data set</li>
+<li>initCond : The initial conditions for each binary in the bcm data set</li>
+</ul>
+<p>Each of these DataFrames shares a common ‘binary_number’ column which can be used to index the population.</p>
+<p>The gxRealization exectuable uses the fixed population and a model for the spatial distribution of systems in a given Galactic component to Monte Carlo sample synthetic Milky Way population realizations. The necessary arguments for the gxRealization executable can be accessed using the help:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gxRealization -h
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+/Users/scottcoughlin/anaconda/envs/cosmic/lib/python3.5/importlib/_bootstrap.py:222: RuntimeWarning: numpy.dtype size changed, may indicate binary incompatibility. Expected 96, got 88
+  return f(*args, **kwds)
+usage: gxRealization [-h] --galaxy_component GALAXY_COMPONENT --dist_model
+                     DIST_MODEL --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                     --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                     [--N_realizations N_REALIZATIONS] [-n NPROC]
+                     [--gx_save GX_SAVE] [--HG_save HG_SAVE]
+                     [--LISA_calc LISA_CALC] [--verbose]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --galaxy_component GALAXY_COMPONENT
+                        Galaxy Components. Options include Bulge ThinDisk and
+                        ThickDisk
+  --dist_model DIST_MODEL
+                        Galaxy distribution model. fiducial is McMillan (2010)
+  --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                        Specify the final condition of kstar1, you want
+                        systems to end at for your samples
+  --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                        Specify the final condition of kstar2, you want
+                        systems to end at for your samples
+  --N_realizations N_REALIZATIONS
+                        Number of Galactic realziations to sample
+  -n NPROC, --nproc NPROC
+                        number of processors
+  --gx_save GX_SAVE     Save the galaxy realizations; MAY GENERATE LARGE DATA
+                        SETS
+  --HG_save HG_SAVE     Save systems which undergo common envelope w/ HG star
+                        secondary
+  --LISA_calc LISA_CALC
+                        Save the SNR and PSD of the population in the LISA
+                        band
+  --verbose             Run in Verbose Mode
+</pre></div>
+</div>
+<p>cosmic has several different models to spatially distribute binary sources in the Galaxy, depending on the –galaxy_component selection. These choices are detailed below, however, in <cite>all cases</cite> the orbital inclination, longitude of the ascending node, and the argument of periapse are randomized.</p>
+<p>There are three models to choose from with a ThinDisk population, where the differences between each model lie in the distbrituion of binaries above and below the disk and the scaling factor of each distribution. The radial distribution of binaries is always an exponential decay, though the scaling can vary from model to model. The azimuthal distribution is always uniform.</p>
+<ul class="simple">
+<li>‘sech_squared’ : Radial exponential decay distribution with scale factor of 2.5 kpc and sech_squared distribution with scale factor of 0.3 kpc; consistent with Nelemans et al. 2001</li>
+<li>‘double_exp’ : Radial and vertical exponential decay distributions, with a scale factor of 2.5 kpc radially and 0.3 kpc vertically</li>
+<li>‘McMillan’ : Radial and vertical exponential decay distributions, with a scale factor of 2.9 kpc radially and 0.3 kpc vertically; cosisten with McMillan 2011</li>
+</ul>
+<p>There are two models to choose from with a Bulge population.</p>
+<ul class="simple">
+<li>‘exp_squared’ : Radial exponential squared decay distribution with a scale factor of 0.5 kpc, uniform azimuthal distribution and uniform in cos polar distribution; conisisten with Nelemans et al. 2001</li>
+<li>‘McMillan’ : Three dimensional distribution consistent with McMillan 2011</li>
+</ul>
+<p>There are two models to choose from with a ThickDisk population. Both use exponentional decay distributions for the radial and vertical directions and uniform azimuthal distribution, but differ in the choice of scale factor.</p>
+<ul class="simple">
+<li>‘double_exp’ : Radial and vertical exponential decay distributions with radial scale factor of 2.5 kpc and vertical scale factor of 1 kpc</li>
+<li>‘McMillan’ : Radial and vertical exponential decay distributions with radial scale factor of 3.1 kpc and vertical scale factor of 0.9 kpc</li>
+</ul>
+<p>There are two models to choose from with a ThickDisk population. Both use exponentional decay distributions for the radial and vertical directions and uniform azimuthal distribution, but differ in the choice of scale factor.</p>
+<ul class="simple">
+<li>‘double_exp’ : Radial and vertical exponential decay distributions with radial scale factor of 2.5 kpc and vertical scale factor of 1 kpc</li>
+<li>‘McMillan’ : Radial and vertical exponential decay distributions with radial scale factor of 3.1 kpc and vertical scale factor of 0.9 kpc</li>
+</ul>
+<p>Below is a sample command line input to run 100 Galactic realizations for a thin disk population of white dwarf binaries with a CO WD primary and CO or He WD secondary.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$  --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">10</span> <span class="m">11</span> --galaxy_component ThinDisk --dist_model McMillan --N_realizations <span class="m">100</span> --gx_save True --HG_save False --LISA_calc True -n <span class="m">1</span>
+</pre></div>
+</div>
+<p>Let’s break down each argument:</p>
+<ul class="simple">
+<li>–final_ktar1 11 –final_kstar2 10 11 : this tells cosmic that we want to keep all systems where the primary star is a CO WD and the secondary star is either a CO or He WD.</li>
+<li>–galaxy_component ThinDisk –dist_model McMillan : this tells cosmic to distribute the thin disk sources according to McMillan 2011</li>
+<li>–N_realizations 100 : this tells cosmic to generate 100 thin disk realizations</li>
+<li>–gx_save True : this tells cosmic to save the galactic realizations - NOTE: this can generate large amounts of data (~3.5G per realization) for large populations (e.g. white dwarf binaries) and large numbers of galactic realizations</li>
+<li>–HG_save False : this tells cosmic to ignore any systems that undergo a common envelope while the secondary is on the Hertzsprung Gap; these systems are expected to merge - see Belczynski et al. 2008 for more details</li>
+<li>–LISA_calc True : this tells cosmic to compute the LISA power spectral density and signal to noise ratio - WARNING: this is still under construction</li>
+<li>-n : this tells cosmic to use 1 processor - NOTE: multiprocessing is available!</li>
+</ul>
+<p>The output of gxRealization is file for every Galactic realization created where each realization file is an hdf5 file with a naming scheme that tells you the Galctic realization number, the Galactic component, and final kstars of the population; the 0th realization data file created by the gxRealization call above is: gxReal_0_ThinDisk_11_10_11.h5.</p>
+<p>Each realization contains up to four pandas DataFrames accessed by the following keys:</p>
+<ul class="simple">
+<li>gx_dat : The full realization, including binary parameters, spatial distribution, and binary orientation</li>
+<li>SNR : The LISA signal to noise ratio data including the gravitational wave frequency and SNR</li>
+<li>PSD : The LISA signal to power spectral density data including the gravitational wave frequency and PSD</li>
+<li>foreground : The LISA foreground from the Galactic realization</li>
+</ul>
+<p>The SNR, PSD, and foreground data sets are only available if the LISA_calc flag is set to True. WARNING - if you set gx_save to False and LISA_calc to False you will get no output!</p>
 </div>
 
 
