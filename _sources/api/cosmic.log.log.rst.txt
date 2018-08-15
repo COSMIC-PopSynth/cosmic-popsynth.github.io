@@ -1,0 +1,4 @@
+.. automodule:: cosmic.log.log
+    :members:
+    :undoc-members:
+    :show-inheritance:

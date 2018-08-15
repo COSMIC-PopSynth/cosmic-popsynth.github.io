@@ -1,0 +1,17 @@
+cosmic.log package
+==================
+
+Submodules
+----------
+
+.. toctree::
+
+   cosmic.log.log
+
+Module contents
+---------------
+
+.. automodule:: cosmic.log
+    :members:
+    :undoc-members:
+    :show-inheritance:

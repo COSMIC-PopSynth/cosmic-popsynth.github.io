@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Welcome to cosmic’s documentation! &mdash; cosmic 0.1.0+1.g6c85c50.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install/index.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0+1.g6c85c50.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runpop/index.html">Evolve a Milky Way population by hand</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Welcome to cosmic’s documentation!</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="welcome-to-cosmic-s-documentation">
+<h1>Welcome to cosmic’s documentation!<a class="headerlink" href="#welcome-to-cosmic-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>cosmic is a rapid binary population synthesis suite with a special purpose of generating realistic Milky Way compact binary populations.</p>
+<p>cosmic currently implements binary evolutionary processes using BSE (<a class="reference external" href="http://adsabs.harvard.edu/abs/2002MNRAS.329..897H">Hurley et al. (2002)</a>). Several modifications have been applied to BSE to account for recent updates to binary evolution especially important to compact binary formation (e.g. metallicity-dependent stellar winds or black hole natal kick strengths). For a detailed discussion of these modifications, see Breivik et al. (2018), <a class="reference external" href="http://adsabs.harvard.edu/abs/2016PhRvD..93h4029R">Rodriguez et al (2016)</a>, and <a class="reference external" href="http://adsabs.harvard.edu/abs/2013ApJ...779...72D">Dominik et al (2013)</a>.</p>
+<div class="section" id="installing-cosmic">
+<h2>Installing cosmic<a class="headerlink" href="#installing-cosmic" title="Permalink to this headline">¶</a></h2>
+<p>The easiest method to install cosmic is using <a class="reference external" href="https://pip.pypa.io/en/stable/">pip</a> directly from the <a class="reference external" href="https://github.com/COSMIC-PopSynth/COSMIC.git">GitHub repository</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/COSMIC-PopSynth/COSMIC.git
+</pre></div>
+</div>
+<p>For more details on how to use cosmic, see <a class="reference internal" href="examples/index.html#examples"><span class="std std-ref">Using COSMIC to evolve binaries with BSE</span></a> and <a class="reference internal" href="runpop/index.html#runpop"><span class="std std-ref">Evolve a Milky Way population by hand</span></a>.</p>
+<div class="section" id="how-to-run-a-fixed-population">
+<h3>How to run a fixed population<a class="headerlink" href="#how-to-run-a-fixed-population" title="Permalink to this headline">¶</a></h3>
+<p>One of the main product of this package is the command-line executable <cite>runFixedPop</cite>,
+which takes an excess noise time makes an omega scan of the event and classifies the image.</p>
+<p>To run an analysis:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">11</span> --galaxy_component ThinDisk --initial_samp multidim --Nstep <span class="m">500</span> --Niter <span class="m">10000</span> -n <span class="m">1</span> --inifile my-config-file.ini
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">./my-config-file.ini</span></code> is the path of your BSE configuration file.
+In the <cite>examples</cite> folder is an example of an ini file.</p>
+<p>For a full list of command-line argument and options, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --help
+</pre></div>
+</div>
+<p>For more details see <a class="reference internal" href="command-line/index.html#runfixedpop"><span class="std std-ref">Running runFixedPop on the command line</span></a>.</p>
+</div>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="runpop/index.html">Evolve a Milky Way population by hand</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="package-documentation">
+<h2>Package documentation<a class="headerlink" href="#package-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Please consult these pages for more details on using cosmic:</p>
+<div class="toctree-wrapper compound">
+</div>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="install/index.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0+1.g6c85c50.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

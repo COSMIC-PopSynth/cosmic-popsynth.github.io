@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cosmic.evolve &mdash; cosmic 0.1.0+1.g6c85c50.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0+1.g6c85c50.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using COSMIC to evolve binaries with BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Evolve a Milky Way population by hand</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>cosmic.evolve</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cosmic.evolve</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright (C) Scott Coughlin (2017)</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of cosmic.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with cosmic.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;`evolve`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">gwpy.utils</span> <span class="k">import</span> <span class="n">mp</span> <span class="k">as</span> <span class="n">mp_utils</span>
+<span class="kn">from</span> <span class="nn">cosmic</span> <span class="k">import</span> <span class="n">_evolvebin</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">astropy.table</span> <span class="k">import</span> <span class="n">Table</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Katelyn Breivik &lt;katie.breivik@gmail.com&gt;&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="s1">&#39;Scott Coughlin &lt;scott.coughlin@ligo.org&gt;&#39;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Evolve&#39;</span><span class="p">]</span>
+
+
+<span class="n">bpp_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tphys&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span> <span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_1&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_2&#39;</span><span class="p">,</span> <span class="s1">&#39;evol_type&#39;</span><span class="p">]</span>
+<span class="n">bcm_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tphys&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass0_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;lumin_1&#39;</span><span class="p">,</span> <span class="s1">&#39;rad_1&#39;</span><span class="p">,</span> <span class="s1">&#39;teff_1&#39;</span><span class="p">,</span> <span class="s1">&#39;massc_1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;radc_1&#39;</span><span class="p">,</span> <span class="s1">&#39;menv_1&#39;</span><span class="p">,</span> <span class="s1">&#39;renv_1&#39;</span><span class="p">,</span> <span class="s1">&#39;epoch_1&#39;</span><span class="p">,</span> <span class="s1">&#39;ospin_1&#39;</span><span class="p">,</span> <span class="s1">&#39;deltam_1&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span> <span class="s1">&#39;mass0_2&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span>
+<span class="s1">&#39;lumin_2&#39;</span><span class="p">,</span> <span class="s1">&#39;rad_2&#39;</span><span class="p">,</span> <span class="s1">&#39;teff_2&#39;</span><span class="p">,</span> <span class="s1">&#39;massc_2&#39;</span><span class="p">,</span> <span class="s1">&#39;radc_2&#39;</span><span class="p">,</span> <span class="s1">&#39;menv_2&#39;</span><span class="p">,</span> <span class="s1">&#39;renv_2&#39;</span><span class="p">,</span> <span class="s1">&#39;epoch_2&#39;</span><span class="p">,</span> <span class="s1">&#39;ospin_2&#39;</span><span class="p">,</span> <span class="s1">&#39;deltam_1&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_2&#39;</span><span class="p">,</span>
+<span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;B_0_1&#39;</span><span class="p">,</span> <span class="s1">&#39;B_0_2&#39;</span><span class="p">,</span> <span class="s1">&#39;formation_1&#39;</span><span class="p">,</span> <span class="s1">&#39;formation2&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Evolve"><a class="viewcode-back" href="../../api/cosmic.evolve.html#cosmic.evolve.Evolve">[docs]</a><span class="k">class</span> <span class="nc">Evolve</span><span class="p">(</span><span class="n">Table</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">():</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        initialize Evolve</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="Evolve.evolve"><a class="viewcode-back" href="../../api/cosmic.evolve.html#cosmic.evolve.Evolve.evolve">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">initialbinarytable</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;After setting a number of initial conditions</span>
+<span class="sd">        we evolve the system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        nproc : `int`, optional, default: 1</span>
+<span class="sd">            number of CPUs to use for parallel file reading</span>
+
+<span class="sd">        kwargs: </span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output_bpp : DataFrame</span>
+<span class="sd">            Evolutionary history of each binary</span>
+<span class="sd">        output_bcm : DataFrame</span>
+<span class="sd">            Final state of each binary</span>
+<span class="sd">        initialbinarytable : DataFrame</span>
+<span class="sd">            Initial conditions for each binary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">nproc</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;nproc&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;neta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;neta&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;bwind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;bwind&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;hewind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;hewind&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;alpha1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;alpha1&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;lambdaf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;lambdaf&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;ceflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;ceflag&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;tflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;tflag&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;ifflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;ifflag&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;wdflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;wdflag&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;bhflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;bhflag&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;nsflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;nsflag&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;mxns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;mxns&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;pts1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;pts1&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;pts2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;pts2&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;pts3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;pts3&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;sigma&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;xi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;xi&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;acc2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;acc2&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;epsnov&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;epsnov&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;eddfac&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;eddfac&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;bconst&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;bconst&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;CK&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;CK&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;merger&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;merger&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;windflag&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;windflag&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;dtp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;tphysf&#39;</span><span class="p">]</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;binary_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+        <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;randomseed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+
+        <span class="n">initial_conditions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">)</span> 
+
+        <span class="c1"># define multiprocessing method</span>
+        <span class="k">def</span> <span class="nf">_evolve_single_system</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># kstar, mass, orbital period (days), eccentricity, metaliccity, evolution time (millions of years)</span>
+                <span class="p">[</span><span class="n">tmp1</span><span class="p">,</span> <span class="n">tmp2</span><span class="p">]</span> <span class="o">=</span> <span class="n">_evolvebin</span><span class="o">.</span><span class="n">evolv2</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+                                        <span class="n">f</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span>
+                                        <span class="n">f</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">29</span><span class="p">],</span>
+                                        <span class="n">f</span><span class="p">[</span><span class="mi">30</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">32</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">33</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">34</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">36</span><span class="p">])</span>
+
+                <span class="n">bpp_tmp</span> <span class="o">=</span> <span class="n">tmp1</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">tmp1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">),:]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">bcm_tmp</span> <span class="o">=</span> <span class="n">tmp2</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">tmp2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">),:]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+                <span class="n">bpp_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bpp_tmp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">bpp_columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">35</span><span class="p">])]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bpp_tmp</span><span class="p">))</span>
+                <span class="n">bpp_tmp</span><span class="p">[</span><span class="s1">&#39;binary_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">35</span><span class="p">])</span>
+
+                <span class="n">bcm_tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bcm_tmp</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">bcm_columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">35</span><span class="p">])]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_tmp</span><span class="p">))</span>
+                <span class="n">bcm_tmp</span><span class="p">[</span><span class="s1">&#39;binary_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">35</span><span class="p">])</span>
+
+                <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">bpp_tmp</span><span class="p">,</span> <span class="n">bcm_tmp</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">nproc</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">e</span>
+        <span class="c1"># evolve sysyems</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">mp_utils</span><span class="o">.</span><span class="n">multiprocess_with_queues</span><span class="p">(</span>
+            <span class="n">nproc</span><span class="p">,</span> <span class="n">_evolve_single_system</span><span class="p">,</span> <span class="n">initial_conditions</span><span class="p">,</span> <span class="n">raise_exceptions</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># raise exceptions (from multiprocessing, single process raises inline)</span>
+        <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">):</span>
+                <span class="n">x</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Failed to evolve </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)),)</span>
+                <span class="k">raise</span> <span class="n">x</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">):</span>
+                <span class="n">y</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Failed to evolve </span><span class="si">%s</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)),)</span>
+                <span class="k">raise</span> <span class="n">y</span>
+
+        <span class="n">output_bpp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="n">output_bcm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+            <span class="n">output_bpp</span> <span class="o">=</span> <span class="n">output_bpp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">output_bcm</span> <span class="o">=</span> <span class="n">output_bcm</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_bpp</span><span class="p">,</span> <span class="n">output_bcm</span><span class="p">,</span> <span class="n">initialbinarytable</span> </div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1.0+1.g6c85c50.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
