@@ -1,4 +1,0 @@
-.. automodule:: cosmic.utils
-    :members:
-    :undoc-members:
-    :show-inheritance:
