@@ -122,7 +122,7 @@ The multidimensional sample is generated as follows:
 
 .. ipython::
 
-    In [5]: InitialBinaries, sampled_mass = InitialBinaryTable.sampler('multidim', ['11'], ['11'], 2, 1, 'const', 10000.0, 0.02, 10)
+    In [5]: InitialBinaries, sampled_mass = InitialBinaryTable.sampler('multidim', [11], [11], 2, 1, 'const', 10000.0, 0.02, 10)
 
     In [6]: print(InitialBinaries)
 
