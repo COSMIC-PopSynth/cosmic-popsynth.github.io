@@ -1,5 +1,5 @@
-cosmic\.sample package
-======================
+cosmic.sample package
+=====================
 
 Subpackages
 -----------

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.370.geaeea39.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 0+untagged.379.gc27d8f6 documentation</title>
   
 
   
@@ -24,27 +24,18 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.370.geaeea39.dirty documentation" href="../index.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -66,7 +57,7 @@
             
             
               <div class="version">
-                0+untagged.370.geaeea39.dirty
+                0+untagged.379.gc27d8f6
               </div>
             
           
@@ -91,6 +82,7 @@
             
             
               <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
@@ -105,7 +97,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">cosmic</a>
@@ -113,9 +105,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -161,12 +154,13 @@
 <dl class="class">
 <dt id="cosmic.sample.initialbinarytable.InitialBinaryTable">
 <em class="property">class </em><code class="descclassname">cosmic.sample.initialbinarytable.</code><code class="descname">InitialBinaryTable</code><a class="reference internal" href="../_modules/cosmic/sample/initialbinarytable.html#InitialBinaryTable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="classmethod">
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="classmethod">
 <dt id="cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary">
 <em class="property">classmethod </em><code class="descname">MultipleBinary</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>porb</em>, <em>ecc</em>, <em>tphysf</em>, <em>kstar1</em>, <em>kstar2</em>, <em>metallicity</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/sample/initialbinarytable.html#InitialBinaryTable.MultipleBinary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create multiple binaries
 Parameters
-&#8212;&#8212;&#8212;-
+———-
 m1 : float</p>
 <blockquote>
 <div>Primary mass [Msun]</div></blockquote>
@@ -270,25 +264,34 @@ main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>format</strong> : str</p>
 <blockquote>
-<div><p>the method name; Choose from &#8216;independent&#8217; or &#8216;multidim&#8217;</p>
+<div><p>the method name; Choose from ‘independent’ or ‘multidim’</p>
 </div></blockquote>
 <p><strong>*args</strong></p>
 <blockquote>
 <div><p>the arguments necessary for the registered sample 
-method; see help(InitialBinaryTable.sampler(&#8216;independent&#8217;)
+method; see help(InitialBinaryTable.sampler(‘independent’)
 to see the arguments necessary for the independent sample</p>
 </div></blockquote>
-<p><strong>The available named formats are:</strong></p>
-<p><strong>=========== ...</strong></p>
+<dl class="docutils">
+<dt><strong>The available named formats are:</strong></dt>
+<dd></dd>
+</dl>
+<p><strong>=========== …</strong></p>
 <blockquote>
-<div><p>Format   ...</p>
+<div><p>Format   …</p>
 </div></blockquote>
-<p><strong>=========== ...</strong></p>
-<p><strong>independent ...</strong></p>
+<dl class="docutils">
+<dt><strong>=========== …</strong></dt>
+<dd></dd>
+</dl>
+<p><strong>independent …</strong></p>
 <blockquote>
-<div><p>multidim ...</p>
+<div><p>multidim …</p>
 </div></blockquote>
-<p class="last"><strong>=========== ...</strong></p>
+<dl class="last docutils">
+<dt><strong>=========== …</strong></dt>
+<dd></dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -300,9 +303,7 @@ to see the arguments necessary for the independent sample</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -315,7 +316,7 @@ to see the arguments necessary for the independent sample</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -333,7 +334,8 @@ to see the arguments necessary for the independent sample</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.370.geaeea39.dirty',
+            VERSION:'0+untagged.379.gc27d8f6',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -343,23 +345,17 @@ to see the arguments necessary for the independent sample</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

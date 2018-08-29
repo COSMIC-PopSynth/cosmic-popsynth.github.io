@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using cosmic to run BSE &mdash; cosmic 0+untagged.370.geaeea39.dirty documentation</title>
+  <title>Using cosmic to run BSE &mdash; cosmic 0+untagged.379.gc27d8f6 documentation</title>
   
 
   
@@ -24,29 +24,20 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-    <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="cosmic 0+untagged.370.geaeea39.dirty documentation" href="../index.html"/>
-        <link rel="next" title="Generate a binary population by hand" href="../runpop/index.html"/>
-        <link rel="prev" title="Welcome to cosmic’s documentation!" href="../index.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Generate a binary population by hand" href="../runpop/index.html" />
+    <link rel="prev" title="Installation" href="../install/index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -68,7 +59,7 @@
             
             
               <div class="version">
-                0+untagged.370.geaeea39.dirty
+                0+untagged.379.gc27d8f6
               </div>
             
           
@@ -93,6 +84,7 @@
             
             
               <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Using cosmic to run BSE</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#single-binary">single binary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multiple-binaries">multiple binaries</a></li>
@@ -112,7 +104,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">cosmic</a>
@@ -120,9 +112,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -167,9 +160,9 @@
   <div class="section" id="using-cosmic-to-run-bse">
 <span id="examples"></span><h1>Using cosmic to run BSE<a class="headerlink" href="#using-cosmic-to-run-bse" title="Permalink to this headline">¶</a></h1>
 <p>cosmic can evolve binaries for several different use cases. Below
-you&#8217;ll find examples to run a single binary system, multiple binary
+you’ll find examples to run a single binary system, multiple binary
 systems or a grid of binaries.</p>
-<p>See &#8216;Running a Milky Way population&#8217; below for the process to simulate
+<p>See ‘Running a Milky Way population’ below for the process to simulate
 a population of binaries consistent with a user-supplied star formation
 history for a single compact object population (e.g. BH-BH) or a range
 of compact object populations (e.g. combinations of BH, NS, WD) as
@@ -179,7 +172,7 @@ described in Breivik+2018.</p>
 <p>Below is the process to initialize and evolve a binary that
 could have formed a GW150914-like binary. First, import the modules in cosmic
 that initialize and evolve the binary.</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
 <span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">cosmic.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
 </pre></div>
@@ -187,16 +180,16 @@ that initialize and evolve the binary.</p>
 <p>To initialize the a single binary, populate the SingleBinary method in the
 InitialBinaryTable class. Each initialized binary requires several parameters:</p>
 <ul class="simple">
-<li>m1 : ZAMS mass of the primary star in <span class="math">\(M_{\odot}\)</span></li>
-<li>m2 : ZAMS mass of the secondary star in <span class="math">\(M_{\odot}\)</span></li>
+<li>m1 : ZAMS mass of the primary star in <span class="math notranslate nohighlight">\(M_{\odot}\)</span></li>
+<li>m2 : ZAMS mass of the secondary star in <span class="math notranslate nohighlight">\(M_{\odot}\)</span></li>
 <li>porb : initial orbital period in days</li>
 <li>ecc : initial eccentricity</li>
 <li>tphysf : total evolution time of the binary in Myr</li>
 <li>kstar1 : initial primary stellar type, following the BSE convention</li>
 <li>kstar2 : initial secondary stellar type, following the BSE convention</li>
-<li>metallicity : metallicity fraction (e.g. <span class="math">\(Z_{\odot}=0.02\)</span>)</li>
+<li>metallicity : metallicity fraction (e.g. <span class="math notranslate nohighlight">\(Z_{\odot}=0.02\)</span>)</li>
 </ul>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">single_binary</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">SingleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="mf">85.0</span><span class="p">,</span> <span class="n">porb</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">ecc</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">tphysf</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">kstar1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kstar2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metallicity</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">single_binary</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">SingleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="mf">85.0</span><span class="p">,</span> <span class="n">porb</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">ecc</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">tphysf</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">kstar1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kstar2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metallicity</span><span class="o">=</span><span class="mf">0.005</span><span class="p">)</span>
 
 <span class="gp">In [4]: </span><span class="k">print</span><span class="p">(</span><span class="n">single_binary</span><span class="p">)</span>
 <span class="go">   kstar_1  kstar_2  mass1_binary  mass2_binary     porb   ecc  metallicity   tphysf</span>
@@ -210,33 +203,32 @@ if you need to change the binary evolution prescriptions.</p>
 <p>If you are unfamiliar with these prescriptions, it is highly
 advised to either run the defaults from the cosmic install (which are consistent
 with <a class="reference external" href="http://adsabs.harvard.edu/abs/2018PhRvL.120o1101R">Rodriguez+2018</a> and <cite>Kremer+2018 &lt;http://adsabs.harvard.edu/abs/2018PhRvL.120s1103K&gt;</cite>) or refer to <a class="reference external" href="http://adsabs.harvard.edu/abs/2002MNRAS.329..897H">Hurley+2002</a>.</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;CK&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;merger&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">}</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;CK&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;merger&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Once the binary is initialized and the BSE model is set, the system is evolved with the
 the Evolve class, which calls the evolv2.f subroutine in the BSE source code.</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">bpp</span><span class="p">,</span> <span class="n">bcm</span><span class="p">,</span> <span class="n">initC</span> <span class="o">=</span> <span class="n">Evolve</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">=</span><span class="n">single_binary</span><span class="p">,</span> <span class="n">BSEDict</span><span class="o">=</span><span class="n">BSEDict</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">bpp</span><span class="p">,</span> <span class="n">bcm</span><span class="p">,</span> <span class="n">initC</span> <span class="o">=</span> <span class="n">Evolve</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">=</span><span class="n">single_binary</span><span class="p">,</span> <span class="n">BSEDict</span><span class="o">=</span><span class="n">BSEDict</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For every evolved binary system, BSE generates two arrays, which are stored as pandas DataFrames in cosmic:</p>
 <ul class="simple">
-<li>bpp - contains binary parameters at important stages in the binary&#8217;s evolution, including stellar evolutionary phase changes or mass transfer episodes.</li>
-<li>bcm - contains several binary parameters at user specified time steps during the binary&#8217;s evolution. The default setting in cosmic is to output the final stage of the binary at the evolution time specified by the user.</li>
+<li>bpp - contains binary parameters at important stages in the binary’s evolution, including stellar evolutionary phase changes or mass transfer episodes.</li>
+<li>bcm - contains several binary parameters at user specified time steps during the binary’s evolution. The default setting in cosmic is to output the final stage of the binary at the evolution time specified by the user.</li>
 </ul>
 <p>You can see the different parameters included in each DataFrame using the columns attribute of the DataFrame:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="go">Index([u&#39;tphys&#39;, u&#39;mass_1&#39;, u&#39;mass_2&#39;, u&#39;kstar_1&#39;, u&#39;kstar_2&#39;, u&#39;sep&#39;, u&#39;ecc&#39;,</span>
-<span class="go">       u&#39;RROL_1&#39;, u&#39;RROL_2&#39;, u&#39;evol_type&#39;, u&#39;bin_num&#39;],</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="go">Index([&#39;tphys&#39;, &#39;mass_1&#39;, &#39;mass_2&#39;, &#39;kstar_1&#39;, &#39;kstar_2&#39;, &#39;sep&#39;, &#39;ecc&#39;,</span>
+<span class="go">       &#39;RROL_1&#39;, &#39;RROL_2&#39;, &#39;evol_type&#39;, &#39;bin_num&#39;],</span>
 <span class="go">      dtype=&#39;object&#39;)</span>
 
 <span class="gp">In [8]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-<span class="go">Index([u&#39;tphys&#39;, u&#39;kstar_1&#39;, u&#39;mass0_1&#39;, u&#39;mass_1&#39;, u&#39;lumin_1&#39;, u&#39;rad_1&#39;,</span>
-<span class="go">       u&#39;teff_1&#39;, u&#39;massc_1&#39;, u&#39;radc_1&#39;, u&#39;menv_1&#39;, u&#39;renv_1&#39;, u&#39;epoch_1&#39;,</span>
-<span class="go">       u&#39;ospin_1&#39;, u&#39;deltam_1&#39;, u&#39;RROL_1&#39;, u&#39;kstar_2&#39;, u&#39;mass0_2&#39;, u&#39;mass_2&#39;,</span>
-<span class="go">       u&#39;lumin_2&#39;, u&#39;rad_2&#39;, u&#39;teff_2&#39;, u&#39;massc_2&#39;, u&#39;radc_2&#39;, u&#39;menv_2&#39;,</span>
-<span class="go">       u&#39;renv_2&#39;, u&#39;epoch_2&#39;, u&#39;ospin_2&#39;, u&#39;deltam_2&#39;, u&#39;RROL_2&#39;, u&#39;porb&#39;,</span>
-<span class="go">       u&#39;sep&#39;, u&#39;ecc&#39;, u&#39;B_0_1&#39;, u&#39;B_0_2&#39;, u&#39;formation_1&#39;, u&#39;formation_2&#39;,</span>
-<span class="go">       u&#39;bin_num&#39;],</span>
+<span class="go">                                                                                                                                                  Index([&#39;tphys&#39;, &#39;kstar_1&#39;, &#39;mass0_1&#39;, &#39;mass_1&#39;, &#39;lumin_1&#39;, &#39;rad_1&#39;, &#39;teff_1&#39;,</span>
+<span class="go">       &#39;massc_1&#39;, &#39;radc_1&#39;, &#39;menv_1&#39;, &#39;renv_1&#39;, &#39;epoch_1&#39;, &#39;ospin_1&#39;,</span>
+<span class="go">       &#39;deltam_1&#39;, &#39;RROL_1&#39;, &#39;kstar_2&#39;, &#39;mass0_2&#39;, &#39;mass_2&#39;, &#39;lumin_2&#39;,</span>
+<span class="go">       &#39;rad_2&#39;, &#39;teff_2&#39;, &#39;massc_2&#39;, &#39;radc_2&#39;, &#39;menv_2&#39;, &#39;renv_2&#39;, &#39;epoch_2&#39;,</span>
+<span class="go">       &#39;ospin_2&#39;, &#39;deltam_2&#39;, &#39;RROL_2&#39;, &#39;porb&#39;, &#39;sep&#39;, &#39;ecc&#39;, &#39;B_0_1&#39;, &#39;B_0_2&#39;,</span>
+<span class="go">       &#39;formation_1&#39;, &#39;formation_2&#39;, &#39;bin_num&#39;],</span>
 <span class="go">      dtype=&#39;object&#39;)</span>
 </pre></div>
 </div>
@@ -298,7 +290,7 @@ the Evolve class, which calls the evolv2.f subroutine in the BSE source code.</p
 </tbody>
 </table>
 <p>Each of the parameters in bpp or bcm can be accessed in the usual way for DataFrames.</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">mass_1</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">mass_1</span><span class="p">)</span>
 <span class="go">0    81.285751</span>
 <span class="go">0    80.903564</span>
 <span class="go">0    58.322552</span>
@@ -306,25 +298,25 @@ the Evolve class, which calls the evolv2.f subroutine in the BSE source code.</p
 <span class="go">0    40.236759</span>
 <span class="go">0    32.135002</span>
 <span class="go">0    32.135002</span>
-<span class="go">0    33.153683</span>
-<span class="go">0    33.153683</span>
-<span class="go">0    33.153683</span>
-<span class="go">0    33.153683</span>
+<span class="go">0    33.154934</span>
+<span class="go">0    33.154934</span>
+<span class="go">0    33.154934</span>
+<span class="go">0    33.154934</span>
 <span class="go">Name: mass_1, dtype: float32</span>
 
 <span class="gp">In [10]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="p">[[</span><span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;evol_type&#39;</span><span class="p">]])</span>
-<span class="go">      mass_1     mass_2  kstar_1  kstar_2           sep  evol_type</span>
+<span class="go">                                                                                                                                                                                                        mass_1     mass_2  kstar_1  kstar_2           sep  evol_type</span>
 <span class="go">0  81.285751  74.653419      2.0      1.0  13202.627930        2.0</span>
 <span class="go">0  80.903564  74.651352      4.0      1.0  13231.824219        2.0</span>
 <span class="go">0  58.322552  77.368729      4.0      2.0   7954.829590        2.0</span>
 <span class="go">0  57.888699  77.091217      4.0      4.0   7937.292480        2.0</span>
 <span class="go">0  40.236759  62.846184      7.0      4.0   7687.253906        2.0</span>
-<span class="go">0  32.135002  51.802776     14.0      4.0   8925.476562        2.0</span>
-<span class="go">0  32.135002  51.802776     14.0      4.0   8920.385742       12.0</span>
-<span class="go">0  33.153683  37.935349     14.0      4.0   9803.675781       13.0</span>
-<span class="go">0  33.153683  37.933193     14.0      7.0   9803.972656        2.0</span>
-<span class="go">0  33.153683  30.255676     14.0     14.0  10994.162109        2.0</span>
-<span class="go">0  33.153683  30.255676     14.0     14.0  10987.891602       10.0</span>
+<span class="go">0  32.135002  51.802776     14.0      4.0   8904.562500        2.0</span>
+<span class="go">0  32.135002  51.802776     14.0      4.0   8899.484375       12.0</span>
+<span class="go">0  33.154934  37.935349     14.0      4.0   9785.242188       13.0</span>
+<span class="go">0  33.154934  37.933193     14.0      7.0   9785.538086        2.0</span>
+<span class="go">0  33.154934  30.255676     14.0     14.0  11042.559570        2.0</span>
+<span class="go">0  33.154934  30.255676     14.0     14.0  11036.261719       10.0</span>
 </pre></div>
 </div>
 </div>
@@ -332,7 +324,7 @@ the Evolve class, which calls the evolv2.f subroutine in the BSE source code.</p
 <h2>multiple binaries<a class="headerlink" href="#multiple-binaries" title="Permalink to this headline">¶</a></h2>
 <p>Multiple systems can also be initialized and evolved; below is an example for systems
 that could form GW150914 and GW170817 - like binaries.</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">binary_set</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">MultipleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="p">[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">11.8</span><span class="p">],</span> <span class="n">m2</span><span class="o">=</span><span class="p">[</span><span class="mf">85.0</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">],</span> <span class="n">porb</span><span class="o">=</span><span class="p">[</span><span class="mf">10000.0</span><span class="p">,</span><span class="mf">2211.0</span><span class="p">],</span> <span class="n">ecc</span><span class="o">=</span><span class="p">[</span><span class="mf">0.65</span><span class="p">,</span><span class="mf">0.55</span><span class="p">],</span> <span class="n">tphysf</span><span class="o">=</span><span class="p">[</span><span class="mf">13700.0</span><span class="p">,</span><span class="mf">13700.0</span><span class="p">],</span> <span class="n">kstar1</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">kstar2</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">metallicity</span><span class="o">=</span><span class="p">[</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.02</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">binary_set</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">MultipleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="p">[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">11.8</span><span class="p">],</span> <span class="n">m2</span><span class="o">=</span><span class="p">[</span><span class="mf">85.0</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">],</span> <span class="n">porb</span><span class="o">=</span><span class="p">[</span><span class="mf">10000.0</span><span class="p">,</span><span class="mf">2211.0</span><span class="p">],</span> <span class="n">ecc</span><span class="o">=</span><span class="p">[</span><span class="mf">0.65</span><span class="p">,</span><span class="mf">0.55</span><span class="p">],</span> <span class="n">tphysf</span><span class="o">=</span><span class="p">[</span><span class="mf">13700.0</span><span class="p">,</span><span class="mf">13700.0</span><span class="p">],</span> <span class="n">kstar1</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">kstar2</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">metallicity</span><span class="o">=</span><span class="p">[</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.02</span><span class="p">])</span>
 
 <span class="gp">In [12]: </span><span class="k">print</span><span class="p">(</span><span class="n">binary_set</span><span class="p">)</span>
 <span class="go">   kstar_1  kstar_2  mass1_binary  mass2_binary     porb   ecc  metallicity   tphysf</span>
@@ -344,36 +336,36 @@ that could form GW150914 and GW170817 - like binaries.</p>
 </div>
 <p>Note that the BSEDict did not be reinitialized since the BSE model did not change.</p>
 <p>As before, bpp, bcm, and initC are returned as pandas DataFrames which assign an index to each binary system we evolve. We can access each binary as follows</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="go">          tphys     mass_1     mass_2  kstar_1  kstar_2           sep       ecc        RROL_1        RROL_2  evol_type  bin_num</span>
 <span class="go">0      3.539424  81.285751  74.653419      2.0      1.0  13202.627930  0.650000  1.005299e-02  1.034637e-02        2.0        0</span>
 <span class="go">0      3.542245  80.903564  74.651352      4.0      1.0  13231.824219  0.649952  3.284497e-01  1.036355e-02        2.0        0</span>
 <span class="go">0      3.692785  58.322552  77.368729      4.0      2.0   7954.829590  0.215328  7.017462e-01  1.495773e-02        2.0        0</span>
 <span class="go">0      3.695719  57.888699  77.091217      4.0      4.0   7937.292480  0.207083  7.061003e-01  5.033159e-01        2.0        0</span>
 <span class="go">0      3.822689  40.236759  62.846184      7.0      4.0   7687.253906  0.041354  8.560074e-04  5.654252e-01        2.0        0</span>
-<span class="go">0      3.896312  32.135002  51.802776     14.0      4.0   8924.425781  0.073924  4.511340e-08  5.251278e-01        2.0        0</span>
-<span class="go">0      3.896312  32.135002  51.802776     14.0      4.0   8919.335938  0.073924  4.513914e-08  5.254275e-01       12.0        0</span>
-<span class="go">0      3.988761  33.153748  37.935349     14.0      4.0   9802.750000  0.067330  3.903996e-08  5.754956e-04       13.0        0</span>
-<span class="go">0      3.991157  33.153748  37.933193     14.0      7.0   9803.046875  0.067330  3.903826e-08  5.667834e-04        2.0        0</span>
-<span class="go">0      4.058433  33.153748  30.255676     14.0     14.0  10990.946289  0.063388  3.306014e-08  3.145790e-08        2.0        0</span>
-<span class="go">0  13700.000000  33.153748  30.255676     14.0     14.0  10984.677734  0.063388  3.307901e-08  3.147585e-08       10.0        0</span>
+<span class="go">0      3.896312  32.135002  51.802776     14.0      4.0   8876.287109  0.008436  4.535806e-08  5.279757e-01        2.0        0</span>
+<span class="go">0      3.896312  32.135002  51.802776     14.0      4.0   8871.224609  0.008436  4.538395e-08  5.282770e-01       12.0        0</span>
+<span class="go">0      3.988761  33.156631  37.935349     14.0      4.0   9760.284180  0.007687  3.921243e-08  5.780107e-04       13.0        0</span>
+<span class="go">0      3.991157  33.156631  37.933193     14.0      7.0   9760.579102  0.007687  3.921073e-08  5.692604e-04        2.0        0</span>
+<span class="go">0      4.058433  33.156631  30.255676     14.0     14.0  10980.437500  0.054103  3.309401e-08  3.148864e-08        2.0        0</span>
+<span class="go">0  13700.000000  33.156631  30.255676     14.0     14.0  10974.174805  0.054103  3.311290e-08  3.150661e-08       10.0        0</span>
 
 <span class="gp">In [15]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">tphys          1.370000e+04</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                tphys          1.370000e+04</span>
 <span class="go">kstar_1        1.400000e+01</span>
 <span class="go">mass0_1        3.570556e+01</span>
-<span class="go">mass_1         3.315375e+01</span>
+<span class="go">mass_1         3.315663e+01</span>
 <span class="go">lumin_1       -1.000000e+01</span>
-<span class="go">rad_1         -3.852102e+00</span>
-<span class="go">teff_1         3.189320e+00</span>
-<span class="go">massc_1        3.315375e+01</span>
-<span class="go">radc_1         1.405719e-04</span>
+<span class="go">rad_1         -3.852064e+00</span>
+<span class="go">teff_1         3.189301e+00</span>
+<span class="go">massc_1        3.315663e+01</span>
+<span class="go">radc_1         1.405841e-04</span>
 <span class="go">menv_1         1.000000e-10</span>
 <span class="go">renv_1         1.000000e-10</span>
 <span class="go">epoch_1        3.896312e+00</span>
-<span class="go">ospin_1        6.808813e+10</span>
+<span class="go">ospin_1        6.807330e+10</span>
 <span class="go">deltam_1       0.000000e+00</span>
-<span class="go">RROL_1         3.307901e-08</span>
+<span class="go">RROL_1         3.311290e-08</span>
 <span class="go">kstar_2        1.400000e+01</span>
 <span class="go">mass0_2        3.361742e+01</span>
 <span class="go">mass_2         3.025568e+01</span>
@@ -387,10 +379,10 @@ that could form GW150914 and GW170817 - like binaries.</p>
 <span class="go">epoch_2        4.058433e+00</span>
 <span class="go">ospin_2        2.000000e+08</span>
 <span class="go">deltam_2       0.000000e+00</span>
-<span class="go">RROL_2         3.147585e-08</span>
-<span class="go">porb           4.587730e+01</span>
-<span class="go">sep            1.098468e+04</span>
-<span class="go">ecc            6.338830e-02</span>
+<span class="go">RROL_2         3.150661e-08</span>
+<span class="go">porb           4.581048e+01</span>
+<span class="go">sep            1.097417e+04</span>
+<span class="go">ecc            5.410292e-02</span>
 <span class="go">B_0_1          0.000000e+00</span>
 <span class="go">B_0_2          0.000000e+00</span>
 <span class="go">formation_1    4.000000e+00</span>
@@ -399,7 +391,7 @@ that could form GW150914 and GW170817 - like binaries.</p>
 <span class="go">Name: 0, dtype: float64</span>
 
 <span class="gp">In [16]: </span><span class="k">print</span><span class="p">(</span><span class="n">initC</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">kstar_1              1.000</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    kstar_1              1.000</span>
 <span class="go">kstar_2              1.000</span>
 <span class="go">mass1_binary       100.000</span>
 <span class="go">mass2_binary        85.000</span>
@@ -435,11 +427,11 @@ that could form GW150914 and GW170817 - like binaries.</p>
 <span class="go">windflag             3.000</span>
 <span class="go">dtp              13700.000</span>
 <span class="go">bin_num              0.000</span>
-<span class="go">randomseed      170781.000</span>
+<span class="go">randomseed      849321.000</span>
 <span class="go">Name: 0, dtype: float64</span>
 
 <span class="gp">In [17]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="go">          tphys     mass_1     mass_2  kstar_1  kstar_2          sep       ecc    RROL_1    RROL_2  evol_type  bin_num</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             tphys     mass_1     mass_2  kstar_1  kstar_2          sep       ecc    RROL_1    RROL_2  evol_type  bin_num</span>
 <span class="go">1     18.370079  11.539012  10.920103      2.0      1.0  2067.293213  0.550000  0.013098  0.011845        2.0        1</span>
 <span class="go">1     18.414549  11.535031  10.918655      3.0      1.0  2067.102783  0.549847  0.320684  0.011907        2.0        1</span>
 <span class="go">1     18.418736  11.533226  10.918734      4.0      1.0  1538.879028  0.368827  0.830848  0.016002        2.0        1</span>
@@ -450,7 +442,7 @@ that could form GW150914 and GW170817 - like binaries.</p>
 <span class="go">1     20.539921  10.838659  10.846658      5.0      4.0  1336.012939  0.000000  1.000985  0.789003        3.0        1</span>
 <span class="go">1     20.539921   3.507449   2.503015      8.0      7.0    22.768700  0.000000  1.000985  0.789003        7.0        1</span>
 <span class="go">1     20.539921   3.507449   2.503015      8.0      7.0    22.768700  0.000000  0.055446  0.048941        4.0        1</span>
-<span class="go">1     20.667528   1.427157   2.502159     13.0      7.0    -6.630791  4.485596  0.000000 -2.000000       11.0        1</span>
+<span class="go">1     20.667528   1.427157   2.502159     13.0      7.0    -7.405688  4.120879  0.000000 -2.000000       11.0        1</span>
 <span class="go">1     23.736431   1.427157   2.353076     13.0      8.0     0.000000 -1.000000  0.000100  0.000100        2.0        1</span>
 <span class="go">1     24.015068   1.427157   1.427157     13.0     13.0     0.000000 -1.000000  0.000100  0.000100        2.0        1</span>
 <span class="go">1  13700.000000   1.427157   1.427157     13.0     13.0     0.000000 -1.000000  0.000100  0.000100       10.0        1</span>
@@ -463,7 +455,7 @@ that could form GW150914 and GW170817 - like binaries.</p>
 changing a single paramter affects the evolved binary. Here we evolve
 the same system that produces a GW150914-like binary, but run over several initial orbital
 periods spaced evenly in log space.</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">n_grid</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">n_grid</span> <span class="o">=</span> <span class="mi">10</span>
 
 <span class="gp">In [19]: </span><span class="n">binary_grid</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">MultipleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_grid</span><span class="p">)</span><span class="o">*</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_grid</span><span class="p">)</span><span class="o">*</span><span class="mf">85.0</span><span class="p">,</span> <span class="n">porb</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">n_grid</span><span class="p">),</span> <span class="n">ecc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_grid</span><span class="p">)</span><span class="o">*</span><span class="mf">0.65</span><span class="p">,</span> <span class="n">tphysf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_grid</span><span class="p">)</span><span class="o">*</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">kstar1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_grid</span><span class="p">),</span> <span class="n">kstar2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_grid</span><span class="p">),</span> <span class="n">metallicity</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_grid</span><span class="p">)</span><span class="o">*</span><span class="mf">0.005</span><span class="p">)</span>
 
@@ -519,47 +511,47 @@ periods spaced evenly in log space.</p>
 <span class="go">7       3.693443   58.223885  75.026810      4.0      2.0   34987.121094  0.642503  1.585641e-01  3.284682e-03        2.0        7</span>
 <span class="go">7       3.696452   57.773354  74.661827      4.0      4.0   35165.476562  0.642286  1.583672e-01  1.117287e-01        2.0        7</span>
 <span class="go">7       3.826238   40.275768  55.936047      7.0      4.0   45886.691406  0.631788  1.394308e-04  9.784314e-02        2.0        7</span>
-<span class="go">7       3.897142   31.765312  45.300362     14.0      4.0   57217.066406  0.633512  6.751748e-09  8.394911e-02        2.0        7</span>
-<span class="go">7       3.897142   31.765312  45.300362     14.0      4.0   57184.433594  0.633512  6.755601e-09  8.399702e-02       12.0        7</span>
-<span class="go">7       3.958405   31.828329  36.110931     14.0      7.0   64520.843750  0.632336  5.683021e-09  8.410501e-05        2.0        7</span>
-<span class="go">7       4.059460   31.828329  27.606371     14.0     14.0   71341.343750  0.615676  4.834245e-09  4.474671e-09        2.0        7</span>
-<span class="go">7   13700.000000   31.828329  27.606371     14.0     14.0   71300.656250  0.615676  4.837004e-09  4.477224e-09       10.0        7</span>
+<span class="go">7       3.897142   31.765312  45.300362     14.0      4.0   55924.757812  0.622498  6.907768e-09  8.588901e-02        2.0        7</span>
+<span class="go">7       3.897142   31.765312  45.300362     14.0      4.0   55892.859375  0.622498  6.911709e-09  8.593802e-02       12.0        7</span>
+<span class="go">7       3.958405   31.830116  36.110931     14.0      7.0   63059.457031  0.621310  5.814974e-09  8.605521e-05        2.0        7</span>
+<span class="go">7       4.059460   31.830116  27.606371     14.0     14.0   71658.171875  0.617973  4.813081e-09  4.454945e-09        2.0        7</span>
+<span class="go">7   13700.000000   31.830116  27.606371     14.0     14.0   71617.296875  0.617973  4.815828e-09  4.457487e-09       10.0        7</span>
 <span class="go">8       3.539424   81.285751  74.653419      2.0      1.0   43569.136719  0.650000  3.046328e-03  3.135230e-03        2.0        8</span>
 <span class="go">8       3.542245   80.903557  74.646515      4.0      1.0   43676.566406  0.649993  9.950244e-02  3.139429e-03        2.0        8</span>
 <span class="go">8       3.693542   58.208958  74.717941      4.0      2.0   50178.496094  0.646217  1.104695e-01  2.279573e-03        2.0        8</span>
 <span class="go">8       3.696562   57.756500  74.343040      4.0      4.0   50463.835938  0.646104  1.102659e-01  7.768241e-02        2.0        8</span>
 <span class="go">8       3.824501   40.255722  55.561405      7.0      4.0   67583.390625  0.640495  9.451298e-05  6.633570e-02        2.0        8</span>
-<span class="go">8       3.896916   31.637928  44.699051     14.0      4.0   83036.718750  0.631667  4.623282e-09  5.786014e-02        2.0        8</span>
-<span class="go">8       3.896916   31.637928  44.699051     14.0      4.0   82989.359375  0.631667  4.625920e-09  5.789316e-02       12.0        8</span>
-<span class="go">8       3.955691   31.669273  35.882828     14.0      7.0   93582.210938  0.631080  3.897410e-09  5.779930e-05        2.0        8</span>
-<span class="go">8       4.059904   31.669273  27.344931     14.0     14.0  106128.734375  0.626207  3.230163e-09  2.982592e-09        2.0        8</span>
-<span class="go">8   13700.000000   31.669273  27.344931     14.0     14.0  106068.203125  0.626207  3.232006e-09  2.984294e-09       10.0        8</span>
+<span class="go">8       3.896916   31.637928  44.699051     14.0      4.0   85248.773438  0.643893  4.503315e-09  5.635877e-02        2.0        8</span>
+<span class="go">8       3.896916   31.637928  44.699051     14.0      4.0   85200.156250  0.643893  4.505885e-09  5.639093e-02       12.0        8</span>
+<span class="go">8       3.955691   31.668219  35.882828     14.0      7.0   96079.437500  0.643315  3.796014e-09  5.629660e-05        2.0        8</span>
+<span class="go">8       4.059904   31.668219  27.344931     14.0     14.0  106136.703125  0.626203  3.229837e-09  2.982345e-09        2.0        8</span>
+<span class="go">8   13700.000000   31.668219  27.344931     14.0     14.0  106076.164062  0.626203  3.231680e-09  2.984047e-09       10.0        8</span>
 <span class="go">9       3.539424   81.285751  74.653419      2.0      1.0   61281.175781  0.650000  2.165851e-03  2.229057e-03        2.0        9</span>
 <span class="go">9       3.542245   80.903557  74.646149      4.0      1.0   61433.449219  0.649996  7.074192e-02  2.231989e-03        2.0        9</span>
 <span class="go">9       3.693603   58.199936  74.534050      4.0      2.0   71301.078125  0.647912  7.770587e-02  1.600471e-03        2.0        9</span>
 <span class="go">9       3.696628   57.746403  74.153320      4.0      4.0   71729.117188  0.647850  7.753741e-02  5.457863e-02        2.0        9</span>
 <span class="go">9       3.823424   40.243732  55.357288      7.0      4.0   97420.960938  0.644803  6.550681e-05  4.596999e-02        2.0        9</span>
-<span class="go">9       3.896777   31.562492  44.354340     14.0      4.0  122497.023438  0.644686  3.122478e-09  3.922226e-02        2.0        9</span>
-<span class="go">9       3.896777   31.562492  44.354340     14.0      4.0  122427.156250  0.644686  3.124260e-09  3.924464e-02       12.0        9</span>
-<span class="go">9       3.953040   31.577806  35.914944     14.0      4.0  137629.015625  0.644392  2.644760e-09  4.792899e-04       13.0        9</span>
-<span class="go">9       3.957223   31.577806  35.805672     14.0      7.0  137852.843750  0.644392  2.638592e-09  3.918522e-05        2.0        9</span>
-<span class="go">9       4.060441   31.577806  27.332706     14.0     14.0  155494.625000  0.637605  2.199495e-09  2.033617e-09        2.0        9</span>
-<span class="go">9   13700.000000   31.577806  27.332706     14.0     14.0  155405.937500  0.637605  2.200750e-09  2.034778e-09       10.0        9</span>
+<span class="go">9       3.896777   31.562492  44.354340     14.0      4.0  118263.828125  0.628254  3.234246e-09  4.062620e-02        2.0        9</span>
+<span class="go">9       3.896777   31.562492  44.354340     14.0      4.0  118196.375000  0.628254  3.236092e-09  4.064938e-02       12.0        9</span>
+<span class="go">9       3.953040   31.578554  35.914944     14.0      4.0  132868.437500  0.627953  2.739570e-09  4.964651e-04       13.0        9</span>
+<span class="go">9       3.957223   31.578554  35.805672     14.0      7.0  133084.515625  0.627953  2.733181e-09  4.058941e-05        2.0        9</span>
+<span class="go">9       4.060441   31.578554  27.332706     14.0     14.0  156760.109375  0.641379  2.181779e-09  2.017212e-09        2.0        9</span>
+<span class="go">9   13700.000000   31.578554  27.332706     14.0     14.0  156670.703125  0.641379  2.183024e-09  2.018363e-09       10.0        9</span>
 
 <span class="go">[106 rows x 11 columns]</span>
 
 <span class="gp">In [23]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="p">)</span>
-<span class="go">     tphys  kstar_1     mass0_1     mass_1  lumin_1     rad_1   ...          ecc  B_0_1  B_0_2  formation_1  formation_2  bin_num</span>
-<span class="go">0  13700.0     14.0  123.666199  64.018585    -10.0 -3.566328   ...    -1.000000    0.0    0.0          4.0          0.0        0</span>
-<span class="go">1  13700.0     14.0  113.318703  55.783169    -10.0 -3.626131   ...    -1.000000    0.0    0.0          4.0          0.0        1</span>
-<span class="go">2  13700.0     14.0   32.826221  33.209957    -10.0 -3.851366   ...     0.052502    0.0    0.0          4.0          4.0        2</span>
-<span class="go">3  13700.0     14.0   29.557175  26.601465    -10.0 -3.947729   ...     0.098521    0.0    0.0          4.0          4.0        3</span>
-<span class="go">4  13700.0     14.0   36.111050  34.279732    -10.0 -3.837597   ...     0.046941    0.0    0.0          4.0          4.0        4</span>
-<span class="go">5  13700.0     14.0   35.298576  32.309776    -10.0 -3.863300   ...     0.293130    0.0    0.0          4.0          4.0        5</span>
-<span class="go">6  13700.0     14.0   35.413120  32.021843    -10.0 -3.867188   ...     0.618165    0.0    0.0          4.0          4.0        6</span>
-<span class="go">7  13700.0     14.0   35.294792  31.828329    -10.0 -3.869820   ...     0.615676    0.0    0.0          4.0          4.0        7</span>
-<span class="go">8  13700.0     14.0   35.153252  31.669273    -10.0 -3.871996   ...     0.626207    0.0    0.0          4.0          4.0        8</span>
-<span class="go">9  13700.0     14.0   35.069435  31.577806    -10.0 -3.873252   ...     0.637605    0.0    0.0          4.0          4.0        9</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        tphys  kstar_1     mass0_1     mass_1  lumin_1     rad_1    teff_1    massc_1    radc_1        menv_1        renv_1   ...          ospin_2  deltam_2        RROL_2         porb            sep       ecc  B_0_1  B_0_2  formation_1  formation_2  bin_num</span>
+<span class="go">0  13700.0     14.0  123.666199  64.018585    -10.0 -3.566328  3.046434  64.018585  0.000271  1.000000e-10  1.000000e-10   ...     1.774639e+01  0.000027 -1.000000e+00     3.752180       0.000000 -1.000000    0.0    0.0          4.0          0.0        0</span>
+<span class="go">1  13700.0     14.0  113.318703  55.783169    -10.0 -3.626131  3.076335  55.783169  0.000237  1.000000e-10  1.000000e-10   ...     1.771926e+01  0.000027 -1.000000e+00     6.327971       0.000000 -1.000000    0.0    0.0          4.0          0.0        1</span>
+<span class="go">2  13700.0     14.0   32.826221  33.209957    -10.0 -3.851366  3.188952  33.209957  0.000141  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  1.112574e-07     6.798903    3068.914307  0.052502    0.0    0.0          4.0          4.0        2</span>
+<span class="go">3  13700.0     14.0   29.557175  26.601465    -10.0 -3.947729  3.237134  26.601465  0.000113  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  4.272556e-07     0.671076     601.063293  0.091466    0.0    0.0          4.0          4.0        3</span>
+<span class="go">4  13700.0     14.0   36.111050  34.279732    -10.0 -3.837597  3.182068  34.279732  0.000145  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  5.296315e-08    21.673527    6734.496094  0.058505    0.0    0.0          4.0          4.0        4</span>
+<span class="go">5  13700.0     14.0   35.298576  32.284115    -10.0 -3.863645  3.195092  32.284115  0.000137  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  1.800694e-08   102.873184   18641.093750  0.369377    0.0    0.0          4.0          4.0        5</span>
+<span class="go">6  13700.0     14.0   35.413120  32.020638    -10.0 -3.867204  3.196872  32.020638  0.000136  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  7.461952e-09   370.054718   43397.195312  0.571861    0.0    0.0          4.0          4.0        6</span>
+<span class="go">7  13700.0     14.0   35.294792  31.830116    -10.0 -3.869796  3.198168  31.830116  0.000135  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  4.457487e-09   788.849548   71617.296875  0.617973    0.0    0.0          4.0          4.0        7</span>
+<span class="go">8  13700.0     14.0   35.153252  31.668219    -10.0 -3.872010  3.199275  31.668219  0.000134  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  2.984047e-09  1427.072876  106076.164062  0.626203    0.0    0.0          4.0          4.0        8</span>
+<span class="go">9  13700.0     14.0   35.069435  31.578554    -10.0 -3.873242  3.199891  31.578554  0.000134  1.000000e-10  1.000000e-10   ...     2.000000e+08  0.000000  2.018363e-09  2563.753906  156670.703125  0.641379    0.0    0.0          4.0          4.0        9</span>
 
 <span class="go">[10 rows x 37 columns]</span>
 </pre></div>
@@ -569,9 +561,7 @@ periods spaced evenly in log space.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -580,7 +570,7 @@ periods spaced evenly in log space.</p>
         <a href="../runpop/index.html" class="btn btn-neutral float-right" title="Generate a binary population by hand" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="Welcome to cosmic’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../install/index.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -593,7 +583,7 @@ periods spaced evenly in log space.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -611,7 +601,8 @@ periods spaced evenly in log space.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.370.geaeea39.dirty',
+            VERSION:'0+untagged.379.gc27d8f6',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -621,23 +612,17 @@ periods spaced evenly in log space.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

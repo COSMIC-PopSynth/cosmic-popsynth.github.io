@@ -1,4 +1,4 @@
-.. automodule:: cosmic.interp_arrays
+.. automodule:: cosmic.log.log
     :members:
     :undoc-members:
     :show-inheritance:
