@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a population the cosmic way &mdash; cosmic 0+untagged.379.gc27d8f6 documentation</title>
+  <title>Generate a population the cosmic way &mdash; cosmic 0+untagged.390.g8dafa79.dirty documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0+untagged.379.gc27d8f6
+                0+untagged.390.g8dafa79.dirty
               </div>
             
           
@@ -102,7 +102,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#thickdisk">ThickDisk</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Sample command line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Sample command line</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#output-of-gxrealization">Output of gxRealization</a></li>
 </ul>
 </li>
@@ -183,7 +183,7 @@
 <div class="section" id="runfixedpop">
 <h2>runFixedPop<a class="headerlink" href="#runfixedpop" title="Permalink to this headline">¶</a></h2>
 <p>The <cite>fixed population</cite> is generated first and is designed to fully describe the population of binaries that results from a user specified star formation history (SFH) and binary evolution model (BSEDict, specified in an inifile). The arguments necessary to run the runFixedPop executable can be found using the help command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop -h
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>runFixedPop -h
 </pre></div>
 </div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: runFixedPop [-h] --inifile INIFILE --final_kstar1 FINAL_KSTAR1
@@ -191,15 +191,15 @@
                    [FINAL_KSTAR2 ...]
                    [--convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]]
                    [--initial_samp INITIAL_SAMP] --galaxy_component
-                   GALAXY_COMPONENT [--metallicity METALLICITY]
-                   [--porb_cut PORB_CUT] [--Niter NITER] [--Nstep NSTEP]
-                   [-n NPROC] [--verbose]
+                   GALAXY_COMPONENT --metallicity METALLICITY --porb_cut
+                   PORB_CUT [--Niter NITER] [--Nstep NSTEP] [-n NPROC]
+                   [--verbose]
 
 optional arguments:
   -h, --help            show this help message and exit
   --inifile INIFILE     Name of ini file of params
   --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
-                        Specify the final condition of kstar1 , you want
+                        Specify the final condition of kstar1, you want
                         systems to end at for your samples
   --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
                         Specify the final condition of kstar2, you want
@@ -240,17 +240,18 @@ optional arguments:
 <div class="section" id="sample-command-line">
 <h4>Sample command line<a class="headerlink" href="#sample-command-line" title="Permalink to this headline">¶</a></h4>
 <p>Below is an example command line call for runFixedPop:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">10</span> <span class="m">11</span> --inifile examples/Params.ini --galaxy_component ThinDisk --metallicity <span class="m">0</span>.02 --convergence-params mass_1 mass_2 porb ecc --initial_samp multidim --Nstep <span class="m">5000</span> --Niter <span class="m">10000000</span> -n <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>runFixedPop --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">10</span> <span class="m">11</span> --inifile examples/Params.ini --galaxy_component ThinDisk --metallicity <span class="m">0</span>.02 --convergence-params mass_1 mass_2 porb ecc --initial_samp multidim --porb_cut <span class="m">5</span> --Nstep <span class="m">5000</span> --Niter <span class="m">10000000</span> -n <span class="m">1</span>
 </pre></div>
 </div>
-<p>A breakdown of each argument follos:</p>
+<p>A breakdown of each argument follows:</p>
 <ul class="simple">
-<li>–final_ktar1 11 –final_kstar2 10 11 : this tells cosmic to keep all systems where the primary star is a CO WD and the secondary star is either a CO or He WD.</li>
+<li>—final_ktar1 11 —final_kstar2 10 11 : this tells cosmic to keep all systems where the primary star is a CO WD and the secondary star is either a CO or He WD.</li>
 <li>–inifile examples/Params.ini : this tells cosmic where to look for the BSE flags that set the binary evolution model</li>
 <li>–galaxy_component ThinDisk : this tells cosmic to run a Milky Way thin disk, which will implement constant star formation history over 10 Gyr</li>
 <li>–metallicity 0.02 : this tells cosmic to use solar metallicity for every binary evolved</li>
 <li>–convergence-params mass_1 mass_2 porb ecc : this tells cosmic to watch how the distributions of the masses, orbital period, and eccentricity of the binaries change with each iterated population</li>
-<li>–initial_samp multidim : this tells cosmic to initialize the binaries with multidimensional parameter distributions according to Moe &amp; Di Stefano 2017</li>
+<li>–initial_samp multidim : this tells cosmic to initialize the binaries with multidimensional parameter distributions according to <a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJS..230...15M">Moe &amp; Di Stefano 2017</a></li>
+<li>—porb_cut: this tells cosmit to only retain systems with an orbital period less than 1e5 seconds</li>
 <li>–Nstep 5000 –Niter 10000000 -n 1 : this tells cosmic to use 1 processor to evolve a maximum of 1e7 systems and check in every 5000 systems to track how the shape of the distributions of the parameters specified in convergence-params change</li>
 </ul>
 <p>There are two stop conditions for runFixedPop:</p>
@@ -275,7 +276,7 @@ optional arguments:
 <div class="section" id="gxrealization">
 <h2>gxRealization<a class="headerlink" href="#gxrealization" title="Permalink to this headline">¶</a></h2>
 <p>The gxRealization exectuable uses the fixed population and a model for the spatial distribution of systems in a given Galactic component to Monte Carlo sample synthetic Milky Way population realizations. The necessary arguments for the gxRealization executable can be accessed using the help:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gxRealization -h
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gxRealization -h
 </pre></div>
 </div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: gxRealization [-h] --galaxy_component GALAXY_COMPONENT --dist_model
@@ -318,17 +319,17 @@ optional arguments:
 <h4>ThinDisk<a class="headerlink" href="#thindisk" title="Permalink to this headline">¶</a></h4>
 <p>There are three models to choose from with a ThinDisk population, where the differences between each model lie in the distbrituion of binaries above and below the disk and the scaling factor of each distribution. The radial distribution of binaries is always an exponential decay, though the scaling can vary from model to model. The azimuthal distribution is always uniform.</p>
 <ul class="simple">
-<li>‘sech_squared’ : Radial exponential decay distribution with scale factor of 2.5 kpc and sech_squared distribution with scale factor of 0.3 kpc; consistent with Nelemans et al. 2001</li>
+<li>‘sech_squared’ : Radial exponential decay distribution with scale factor of 2.5 kpc and sech_squared distribution with scale factor of 0.3 kpc; consistent with <a class="reference external" href="http://adsabs.harvard.edu/abs/2001A%26A...375..890N">Nelemans+2001</a></li>
 <li>‘double_exp’ : Radial and vertical exponential decay distributions, with a scale factor of 2.5 kpc radially and 0.3 kpc vertically</li>
-<li>‘McMillan’ : Radial and vertical exponential decay distributions, with a scale factor of 2.9 kpc radially and 0.3 kpc vertically; cosisten with McMillan 2011</li>
+<li>‘McMillan’ : Radial and vertical exponential decay distributions, with a scale factor of 2.9 kpc radially and 0.3 kpc vertically; consistent with <a class="reference external" href="http://adsabs.harvard.edu/abs/2011MNRAS.414.2446M">McMillan 2011</a></li>
 </ul>
 </div>
 <div class="section" id="bulge">
 <h4>Bulge<a class="headerlink" href="#bulge" title="Permalink to this headline">¶</a></h4>
 <p>There are two models to choose from with a Bulge population.</p>
 <ul class="simple">
-<li>‘exp_squared’ : Radial exponential squared decay distribution with a scale factor of 0.5 kpc, uniform azimuthal distribution and uniform in cos polar distribution; conisisten with Nelemans et al. 2001</li>
-<li>‘McMillan’ : Three dimensional distribution consistent with McMillan 2011</li>
+<li>‘exp_squared’ : Radial exponential squared decay distribution with a scale factor of 0.5 kpc, uniform azimuthal distribution and uniform in cos polar distribution; consistent with <a class="reference external" href="http://adsabs.harvard.edu/abs/2001A%26A...375..890N">Nelemans+2001</a></li>
+<li>‘McMillan’ : Three dimensional distribution consistent with <a class="reference external" href="http://adsabs.harvard.edu/abs/2011MNRAS.414.2446M">McMillan 2011</a></li>
 </ul>
 </div>
 <div class="section" id="thickdisk">
@@ -336,14 +337,14 @@ optional arguments:
 <p>There are two models to choose from with a ThickDisk population. Both use exponentional decay distributions for the radial and vertical directions and uniform azimuthal distribution, but differ in the choice of scale factor.</p>
 <ul class="simple">
 <li>‘double_exp’ : Radial and vertical exponential decay distributions with radial scale factor of 2.5 kpc and vertical scale factor of 1 kpc</li>
-<li>‘McMillan’ : Radial and vertical exponential decay distributions with radial scale factor of 3.1 kpc and vertical scale factor of 0.9 kpc</li>
+<li>‘McMillan’ : Radial and vertical exponential decay distributions with radial scale factor of 3.1 kpc and vertical scale factor of 0.9 kpc, consistent with <a class="reference external" href="http://adsabs.harvard.edu/abs/2011MNRAS.414.2446M">McMillan 2011</a></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id2">
-<h3>Sample command line<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id5">
+<h3>Sample command line<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Below is a sample command line input to run 100 Galactic realizations for a thin disk population of white dwarf binaries with a CO WD primary and CO or He WD secondary.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$  --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">10</span> <span class="m">11</span> --galaxy_component ThinDisk --dist_model McMillan --N_realizations <span class="m">100</span> --gx_save True --HG_save False --LISA_calc True -n <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gxRealization --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">10</span> <span class="m">11</span> --galaxy_component ThinDisk --dist_model McMillan --N_realizations <span class="m">100</span> --gx_save True --HG_save False --LISA_calc True -n <span class="m">1</span>
 </pre></div>
 </div>
 <p>Let’s break down each argument:</p>
@@ -410,7 +411,7 @@ optional arguments:
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.379.gc27d8f6',
+            VERSION:'0+untagged.390.g8dafa79.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

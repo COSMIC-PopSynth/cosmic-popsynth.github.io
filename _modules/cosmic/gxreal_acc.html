@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cosmic.gxreal_acc &mdash; cosmic 0+untagged.390.g8dafa79.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0+untagged.390.g8dafa79.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Generate a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>cosmic.gxreal_acc</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cosmic.gxreal_acc</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright (C) Scott Coughlin (2017)</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of cosmic.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with cosmic.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;`gxreal_acc`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">cosmic.MC_samp</span> <span class="k">as</span> <span class="nn">MC_sample</span>
+<span class="kn">import</span> <span class="nn">cosmic.utils</span> <span class="k">as</span> <span class="nn">utils</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">cosmic.GW_calcs</span> <span class="k">as</span> <span class="nn">GW_calcs</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Katelyn Breivik &lt;katie.breivik@gmail.com&gt;&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="s1">&#39;Scott Coughlin &lt;scott.coughlin@ligo.org&gt;&#39;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GxReal&#39;</span><span class="p">]</span>
+
+<span class="n">G</span> <span class="o">=</span> <span class="mf">6.67384e-11</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">2.99792458e8</span>
+<span class="n">parsec</span> <span class="o">=</span> <span class="mf">3.08567758e16</span>
+<span class="n">Rsun</span> <span class="o">=</span> <span class="mf">6.955e8</span>
+<span class="n">Msun</span> <span class="o">=</span> <span class="mf">1.9891e30</span>
+<span class="n">day</span> <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="n">rsun_in_au</span> <span class="o">=</span> <span class="mf">215.0954</span>
+<span class="n">day_in_year</span> <span class="o">=</span> <span class="mf">365.242</span>
+<span class="n">sec_in_day</span> <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="n">sec_in_hour</span> <span class="o">=</span> <span class="mf">3600.0</span>
+<span class="n">hrs_in_day</span> <span class="o">=</span> <span class="mf">24.0</span>
+<span class="n">sec_in_year</span> <span class="o">=</span> <span class="mf">3.15569e7</span>
+
+<div class="viewcode-block" id="GxReal"><a class="viewcode-back" href="../../api/cosmic.gxreal_acc.html#cosmic.gxreal_acc.GxReal">[docs]</a><span class="k">class</span> <span class="nc">GxReal</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fixed_pop</span><span class="p">,</span> <span class="n">m_tot_samp</span><span class="p">,</span> <span class="n">gx_model</span><span class="p">,</span> <span class="n">gx_component</span><span class="p">,</span> <span class="n">dat_list</span><span class="p">,</span> <span class="n">MT_interp</span><span class="p">,</span> <span class="n">RL_interp</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Initialize GxReal</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixed_pop</span> <span class="o">=</span> <span class="n">fixed_pop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fixed_mass</span> <span class="o">=</span> <span class="n">m_tot_samp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gx_model</span> <span class="o">=</span> <span class="n">gx_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gx_component</span> <span class="o">=</span> <span class="n">gx_component</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dat_list</span> <span class="o">=</span> <span class="n">dat_list</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span> <span class="o">=</span> <span class="n">MT_interp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RL_interp</span> <span class="o">=</span> <span class="n">RL_interp</span>
+
+        <span class="k">return</span>
+
+
+<div class="viewcode-block" id="GxReal.compute_n_sample"><a class="viewcode-back" href="../../api/cosmic.gxreal_acc.html#cosmic.gxreal_acc.GxReal.compute_n_sample">[docs]</a>    <span class="k">def</span> <span class="nf">compute_n_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Use the fixed population and total mass sampled to generate the </span>
+<span class="sd">        fixed population to compute the number of systems in the Milky Way</span>
+<span class="sd">        realization</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fixedpop : DataFrame</span>
+<span class="sd">            Contains binary parameters from an evolved population</span>
+<span class="sd">            generated by the runFixedPop executable</span>
+<span class="sd">        fixed_mass : float</span>
+<span class="sd">            Total mass sampled to generate the fixed population</span>
+<span class="sd">        gx_component : str</span>
+<span class="sd">            Milky Way component for which we are generating the population</span>
+<span class="sd">            realization; choose from &#39;ThinDisk&#39;, &#39;ThickDisk&#39;, &#39;Bulge&#39;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        n_samp : int</span>
+<span class="sd">            The number of systems in the Milky Way realization</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Compute the mass weighted number of systems </span>
+        <span class="c1"># in a realistic Milky Way pop</span>
+        <span class="c1">#######################################################################</span>
+        <span class="n">component_mass</span> <span class="o">=</span> <span class="n">MC_sample</span><span class="o">.</span><span class="n">select_component_mass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gx_component</span><span class="p">)</span>
+        <span class="n">n_samp</span> <span class="o">=</span> <span class="n">MC_sample</span><span class="o">.</span><span class="n">mass_weighted_number</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fixed_pop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_mass</span><span class="p">,</span> <span class="n">component_mass</span><span class="p">)</span>
+                 
+        <span class="k">return</span> <span class="n">n_samp</span></div>
+
+
+<div class="viewcode-block" id="GxReal.sample_population"><a class="viewcode-back" href="../../api/cosmic.gxreal_acc.html#cosmic.gxreal_acc.GxReal.sample_population">[docs]</a>    <span class="k">def</span> <span class="nf">sample_population</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Once the fixed population is evolved, we Monte-Carlo</span>
+<span class="sd">        sample the binary parameters to generate a Milky Way realization.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fixedpop : DataFrame </span>
+<span class="sd">            Contains binary parameters from an evolved population</span>
+<span class="sd">            generated by the runFixedPop executable</span>
+<span class="sd">        n_samp : int</span>
+<span class="sd">            The number of systems in the Milky Way realization</span>
+<span class="sd">        gx_component : str</span>
+<span class="sd">            Milky Way component for which we are generating the population </span>
+<span class="sd">            realization; choose from &#39;ThinDisk&#39;, &#39;ThickDisk&#39;, &#39;Bulge&#39;</span>
+<span class="sd">        gx_model : str</span>
+<span class="sd">            Model for spatial distribution of binaries in the Galactic </span>
+<span class="sd">            component; Default=&#39;McMillan&#39;       </span>
+<span class="sd">        dat_list : list</span>
+<span class="sd">            List containing the parameters to MC sample to generate the </span>
+<span class="sd">            Galactic realization</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        realization : DataFrame</span>
+<span class="sd">            Milky Way population realization of size n_samp</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;n_samp&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_samp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_n_sample</span><span class="p">()</span>
+
+        <span class="c1"># Based on the user supplied filter flags, filter the</span>
+        <span class="c1"># population to reduce the sample to only the relevant population</span>
+        <span class="c1">#######################################################################</span>
+        <span class="c1"># Transform the fixed population to have limits between 0 and 1</span>
+        <span class="c1"># then transform to logit space to maintain the population boundaries</span>
+        <span class="c1"># and create a KDE using knuth&#39;s rule to select the bandwidth</span>
+        <span class="c1">#######################################################################</span>
+        <span class="n">dat_kde</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">dat_transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fixed_pop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat_list</span><span class="p">)</span>   
+        <span class="n">bw</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">knuth_bw_selector</span><span class="p">(</span><span class="n">dat_kde</span><span class="p">)</span>
+        <span class="n">dat_kernel</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">gaussian_kde</span><span class="p">(</span><span class="n">dat_kde</span><span class="p">,</span> <span class="n">bw_method</span><span class="o">=</span><span class="n">bw</span><span class="p">)</span>
+   
+        <span class="c1"># Sample from the KDE</span>
+        <span class="c1">#######################################################################</span>
+        <span class="n">binary_dat_trans</span> <span class="o">=</span> <span class="n">dat_kernel</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_samp</span><span class="p">)</span>
+
+        <span class="n">binary_dat_MT</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">dat_un_transform</span><span class="p">(</span><span class="n">binary_dat_trans</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fixed_pop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dat_list</span><span class="p">)</span>
+        <span class="n">binary_dat_MT</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">binary_dat_MT</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dat_list</span><span class="p">)</span>        
+
+        <span class="c1"># Evolve the binary through it&#39;s mass transfer track</span>
+        <span class="c1">#######################################################################</span>
+        <span class="n">bin_dat</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">MT_time</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="o">-</span><span class="n">binary_dat_MT</span><span class="o">.</span><span class="n">tphys</span><span class="o">/</span><span class="mf">1e3</span><span class="p">)</span><span class="o">*</span><span class="mf">1e9</span>
+        <span class="n">index_evolve</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">MT_time</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">MT_time</span> <span class="o">&lt;</span> <span class="mf">1e8</span><span class="p">))</span>
+        <span class="n">binary_dat_MT</span> <span class="o">=</span> <span class="n">binary_dat_MT</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index_evolve</span><span class="p">]</span>
+        <span class="n">binary_dat_MT</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MT_time</span><span class="p">[</span><span class="n">index_evolve</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">binary_dat_MT</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">index1</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;mass_1&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">index1</span><span class="p">]</span>
+
+            <span class="n">index2</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;mass_2&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[:,</span><span class="mi">3</span><span class="p">])</span>
+            
+            <span class="c1">#At this point, we should have the proper interpolation selected given </span>
+            <span class="c1">#the masses of the donor and accretor</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">yIndex</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">index2</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The masses at MT onset are outside the interpolation&#39;</span><span class="p">)</span>
+
+            <span class="n">tEndDI</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">mDonorInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">mAccretorInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+            <span class="n">fgwInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">fdot_GRInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">7</span><span class="p">]</span>
+            <span class="n">fdot_MTInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">8</span><span class="p">]</span>
+            <span class="n">fdot_tidesInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+            <span class="n">fdot_totalInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+            <span class="n">dSpinInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">11</span><span class="p">]</span>
+            <span class="n">aSpinInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+            <span class="n">MdotPlusExcessInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">13</span><span class="p">]</span>
+            <span class="n">MdotInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">14</span><span class="p">]</span>
+            <span class="n">MdotEddInterp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">MT_interp</span><span class="p">[</span><span class="n">yIndex</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>
+            
+            <span class="n">mDonorToday</span> <span class="o">=</span> <span class="n">mDonorInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">mAccretorToday</span> <span class="o">=</span> <span class="n">mAccretorInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">fgwToday</span> <span class="o">=</span> <span class="n">fgwInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">fdot_GRtoday</span> <span class="o">=</span> <span class="n">fdot_GRInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">fdot_MTtoday</span> <span class="o">=</span> <span class="n">fdot_MTInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">fdot_tidesToday</span> <span class="o">=</span> <span class="n">fdot_tidesInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">fdot_totalToday</span> <span class="o">=</span> <span class="n">fdot_totalInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">dSpinToday</span> <span class="o">=</span> <span class="n">dSpinInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">aSpinToday</span> <span class="o">=</span> <span class="n">aSpinInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">MdotPlusExcessToday</span> <span class="o">=</span> <span class="n">MdotPlusExcessInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">MdotToday</span> <span class="o">=</span> <span class="n">MdotInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+            <span class="n">MdotEddToday</span> <span class="o">=</span> <span class="n">MdotEddInterp</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">])</span>
+
+            <span class="c1">#Compute the Roche Lobe following Sepinsky+2007</span>
+            <span class="c1">###################################################</span>
+            <span class="n">Rfac</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">RL_interp</span><span class="p">(</span><span class="n">mDonorToday</span><span class="o">/</span><span class="n">mAccretorToday</span><span class="p">)</span>
+            <span class="n">forb</span> <span class="o">=</span> <span class="n">fgwToday</span><span class="o">/</span><span class="mf">2.</span>
+            <span class="n">porbYr</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">forb</span><span class="o">*</span><span class="n">sec_in_year</span><span class="p">)</span>
+            <span class="n">sepAU</span> <span class="o">=</span> <span class="p">(</span><span class="n">porbYr</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">mDonorToday</span><span class="o">+</span><span class="n">mAccretorToday</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
+            <span class="n">RocheLobeAU</span> <span class="o">=</span> <span class="n">Rfac</span><span class="o">*</span><span class="n">sepAU</span>
+
+            <span class="n">bin_dat</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;t_born1&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;t_born2&#39;</span><span class="p">],</span>\
+                            <span class="n">mAccretorToday</span><span class="p">,</span> <span class="n">mDonorToday</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">porbYr</span><span class="o">*</span><span class="n">sec_in_year</span><span class="p">),</span>\
+                            <span class="n">fdot_GRtoday</span><span class="p">,</span> <span class="n">fdot_MTtoday</span><span class="p">,</span> <span class="n">fdot_tidesToday</span><span class="p">,</span>\
+                            <span class="n">fdot_totalToday</span><span class="p">,</span> <span class="n">dSpinToday</span><span class="p">,</span> <span class="n">aSpinToday</span><span class="p">,</span>\
+                            <span class="n">MdotPlusExcessToday</span><span class="p">,</span> <span class="n">MdotToday</span><span class="p">,</span> <span class="n">MdotEddToday</span><span class="p">,</span>\
+                            <span class="n">RocheLobeAU</span><span class="p">])</span>
+        <span class="n">bin_dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bin_dat</span><span class="p">)</span>
+        <span class="n">bin_dat_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MT_time&#39;</span><span class="p">,</span> <span class="s1">&#39;t_born1&#39;</span><span class="p">,</span> <span class="s1">&#39;t_born2&#39;</span><span class="p">,</span>\
+                           <span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span> <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;fdot_gr&#39;</span><span class="p">,</span>\
+                           <span class="s1">&#39;fdot_mt&#39;</span><span class="p">,</span> <span class="s1">&#39;fdot_tides&#39;</span><span class="p">,</span> <span class="s1">&#39;fdot_total&#39;</span><span class="p">,</span>\
+                           <span class="s1">&#39;spin_1&#39;</span><span class="p">,</span> <span class="s1">&#39;spin_2&#39;</span><span class="p">,</span> <span class="s1">&#39;Mdot_plus_excess&#39;</span><span class="p">,</span>\
+                           <span class="s1">&#39;Mdot&#39;</span><span class="p">,</span> <span class="s1">&#39;Mdot_edd&#39;</span><span class="p">,</span> <span class="s1">&#39;RL_au&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Sample positions and orientations for each sampled binary</span>
+        <span class="c1">#######################################################################</span>
+        <span class="n">xGx</span><span class="p">,</span> <span class="n">yGx</span><span class="p">,</span> <span class="n">zGx</span><span class="p">,</span> <span class="n">inc</span><span class="p">,</span> <span class="n">OMEGA</span><span class="p">,</span> <span class="n">omega</span> <span class="o">=</span> <span class="n">MC_sample</span><span class="o">.</span><span class="n">galactic_positions</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gx_component</span><span class="p">,</span>\
+                                                        <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bin_dat</span><span class="p">),</span>\
+                                                        <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gx_model</span><span class="p">)</span>
+
+        <span class="n">binary_sample_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">xGx</span><span class="p">,</span> <span class="n">yGx</span><span class="p">,</span> <span class="n">zGx</span><span class="p">,</span> <span class="n">inc</span><span class="p">,</span> <span class="n">OMEGA</span><span class="p">,</span> <span class="n">omega</span><span class="p">])</span> 
+        <span class="c1"># Create a single DataFrame for the Galactic realization</span>
+        <span class="c1">#######################################################################</span>
+        <span class="n">full_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">bin_dat</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">binary_sample_positions</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">column_list</span> <span class="o">=</span> <span class="n">bin_dat_columns</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;xGx&#39;</span><span class="p">,</span> <span class="s1">&#39;yGx&#39;</span><span class="p">,</span> <span class="s1">&#39;zGx&#39;</span><span class="p">,</span> <span class="s1">&#39;inc&#39;</span><span class="p">,</span> <span class="s1">&#39;OMEGA&#39;</span><span class="p">,</span> <span class="s1">&#39;omega&#39;</span><span class="p">]</span>
+        <span class="n">realization</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">full_sample</span><span class="p">,</span>\
+                                   <span class="n">columns</span> <span class="o">=</span> <span class="n">column_list</span><span class="p">)</span> 
+
+        <span class="k">return</span> <span class="n">realization</span></div>
+
+<div class="viewcode-block" id="GxReal.LISA_obs"><a class="viewcode-back" href="../../api/cosmic.gxreal_acc.html#cosmic.gxreal_acc.GxReal.LISA_obs">[docs]</a>    <span class="k">def</span> <span class="nf">LISA_obs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T_obs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Computes the gravitational wave signal from the population</span>
+<span class="sd">        that will be observable by LISA, including SNR and PSD according</span>
+<span class="sd">        to the user input</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        realization : DataFrame</span>
+<span class="sd">            Milky Way population realization of size n_samp</span>
+<span class="sd">        T_obs : float</span>
+<span class="sd">            LISA observation time in seconds</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        PSD_dat : DataFrame</span>
+<span class="sd">            DataFrame containing the power spectral density for all systems</span>
+<span class="sd">            in realization </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Compute the PSD</span>
+        <span class="c1">#######################################################################</span>
+        <span class="n">PSD_dat</span> <span class="o">=</span> <span class="n">GW_calcs</span><span class="o">.</span><span class="n">LISA_PSD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">realization</span><span class="o">.</span><span class="n">mass_1</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">realization</span><span class="o">.</span><span class="n">mass_2</span><span class="p">,</span>
+                                     <span class="mi">10</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">realization</span><span class="o">.</span><span class="n">porb</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">realization</span><span class="o">.</span><span class="n">ecc</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">realization</span><span class="o">.</span><span class="n">xGx</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">realization</span><span class="o">.</span><span class="n">yGx</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">realization</span><span class="o">.</span><span class="n">zGx</span><span class="p">,</span>
+                                     <span class="mi">150</span><span class="p">,</span> <span class="n">T_obs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PSD_dat</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0+untagged.390.g8dafa79.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

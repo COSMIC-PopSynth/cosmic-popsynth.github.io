@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to cosmic’s documentation! &mdash; cosmic 0+untagged.379.gc27d8f6 documentation</title>
+  <title>Welcome to cosmic’s documentation! &mdash; cosmic 0+untagged.390.g8dafa79.dirty documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                0+untagged.379.gc27d8f6
+                0+untagged.390.g8dafa79.dirty
               </div>
             
           
@@ -178,22 +178,16 @@ pip install git+https://github.com/COSMIC-PopSynth/COSMIC.git
 </div>
 </div>
 </div>
-<div class="section" id="using-cosmic-to-evolve-binaries">
-<h2>Using cosmic to evolve binaries<a class="headerlink" href="#using-cosmic-to-evolve-binaries" title="Permalink to this headline">¶</a></h2>
-<p>For more details on how to use cosmic, see <a class="reference internal" href="examples/index.html#examples"><span class="std std-ref">Using cosmic to run BSE</span></a>, <a class="reference internal" href="runpop/index.html#runpop"><span class="std std-ref">Generate a binary population by hand</span></a>, and <a class="reference internal" href="fixedpop/index.html#fixedpop"><span class="std std-ref">Generate a population the cosmic way</span></a>.</p>
-<p>One of the main product of this package is the command-line executable <cite>runFixedPop</cite>,
-which takes an excess noise time makes an omega scan of the event and classifies the image.</p>
-<p>To run an analysis:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --final_kstar1 <span class="m">11</span> --final_kstar2 <span class="m">11</span> --galaxy_component ThinDisk --initial_samp multidim --Nstep <span class="m">500</span> --Niter <span class="m">10000</span> -n <span class="m">1</span> --inifile my-config-file.ini
-</pre></div>
-</div>
-<p>where <code class="docutils literal notranslate"><span class="pre">./my-config-file.ini</span></code> is the path of your BSE configuration file.
-In the <cite>examples</cite> folder is an example of an ini file.</p>
-<p>For a full list of command-line argument and options, run</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ runFixedPop --help
-</pre></div>
-</div>
-<p>For more details see <span class="xref std std-ref">runFixedPop</span>.</p>
+<div class="section" id="using-cosmic">
+<h2>Using cosmic<a class="headerlink" href="#using-cosmic" title="Permalink to this headline">¶</a></h2>
+<p>cosmic’s primary purpose is to generate synthetic Milky Way populations.
+This is done through two executables that are installed when cosmic is installed:</p>
+<ul class="simple">
+<li>runFixedPop</li>
+<li>gxRealization</li>
+</ul>
+<p>For more information on how to use these executables in the command line, see ref:<cite>fixedpop</cite>.</p>
+<p>For more details on how to use cosmic to run BSE in python, see <a class="reference internal" href="examples/index.html#examples"><span class="std std-ref">Using cosmic to run BSE</span></a> and <a class="reference internal" href="runpop/index.html#runpop"><span class="std std-ref">Generate a binary population by hand</span></a>.</p>
 </div>
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
@@ -274,7 +268,7 @@ In the <cite>examples</cite> folder is an example of an ini file.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0+untagged.379.gc27d8f6',
+            VERSION:'0+untagged.390.g8dafa79.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

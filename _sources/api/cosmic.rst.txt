@@ -6,7 +6,6 @@ Subpackages
 
 .. toctree::
 
-    cosmic.log
     cosmic.sample
 
 Submodules
@@ -19,6 +18,8 @@ Submodules
    cosmic.Match
    cosmic.evolve
    cosmic.gxreal
+   cosmic.gxreal_acc
+   cosmic.interp_arrays
    cosmic.lisa_sensitivity
    cosmic.utils
 

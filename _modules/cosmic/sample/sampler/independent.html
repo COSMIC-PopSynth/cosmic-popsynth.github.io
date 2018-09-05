@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.sample.sampler.independent &mdash; cosmic 0+untagged.379.gc27d8f6 documentation</title>
+  <title>cosmic.sample.sampler.independent &mdash; cosmic 0+untagged.390.g8dafa79.dirty documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                0+untagged.379.gc27d8f6
+                0+untagged.390.g8dafa79.dirty
               </div>
             
           
@@ -372,8 +372,10 @@
 
 
 <div class="viewcode-block" id="Sample.sample_porb"><a class="viewcode-back" href="../../../../api/cosmic.sample.sampler.independent.html#cosmic.sample.sampler.independent.Sample.sample_porb">[docs]</a>    <span class="k">def</span> <span class="nf">sample_porb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass1</span><span class="p">,</span> <span class="n">mass2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sample the semi-major axis according to </span>
-<span class="sd">        `Han (1998) &lt;http://adsabs.harvard.edu/abs/1998MNRAS.296.1019H&gt;`_</span>
+        <span class="sd">&quot;&quot;&quot;Sample the semi-major axis flat in log space from RROL &lt; 0.5 up </span>
+<span class="sd">        to 1e5 Rsun according to </span>
+<span class="sd">        `Abt (1983) &lt;http://adsabs.harvard.edu/abs/1983ARA%26A..21..343A&gt;`_</span>
+<span class="sd">        and consistent with Dominik+2012,2013</span>
 <span class="sd">        and then converted to orbital period in days using Kepler III</span>
 
 <span class="sd">        Parameters</span>
@@ -389,15 +391,26 @@
 <span class="sd">            orbital period with array size equalling array size </span>
 <span class="sd">            of mass1 and mass2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">mass2</span><span class="o">/</span><span class="n">mass1</span>
+        <span class="n">RL_fac</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.49</span><span class="o">*</span><span class="n">q</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">q</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">q</span><span class="o">**</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span>       
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ind_lo</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mass1</span> <span class="o">&lt;</span> <span class="mf">1.66</span><span class="p">)</span>
+            <span class="n">ind_hi</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mass1</span> <span class="o">&gt;=</span> <span class="mf">1.66</span><span class="p">)</span>
 
-        <span class="n">a_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-        <span class="n">low_cutoff</span> <span class="o">=</span> <span class="mf">0.0583333</span>
-        <span class="n">lowIdx</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">a_0</span> <span class="o">&lt;=</span> <span class="n">low_cutoff</span><span class="p">)</span>
-        <span class="n">hiIdx</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">a_0</span> <span class="o">&gt;</span> <span class="n">low_cutoff</span><span class="p">)</span>
+            <span class="n">rad1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mass1</span><span class="p">))</span>
+            <span class="n">rad1</span><span class="p">[</span><span class="n">ind_lo</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.06</span><span class="o">*</span><span class="n">mass1</span><span class="p">[</span><span class="n">ind_lo</span><span class="p">]</span><span class="o">**</span><span class="mf">0.945</span>
+            <span class="n">rad1</span><span class="p">[</span><span class="n">ind_hi</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.33</span><span class="o">*</span><span class="n">mass1</span><span class="p">[</span><span class="n">ind_hi</span><span class="p">]</span><span class="o">**</span><span class="mf">0.555</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mass1</span> <span class="o">&lt;</span> <span class="mf">1.66</span><span class="p">:</span>
+                <span class="n">rad1</span> <span class="o">=</span> <span class="mf">1.06</span><span class="o">*</span><span class="n">mass1</span><span class="o">**</span><span class="mf">0.945</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rad1</span> <span class="o">=</span> <span class="mf">1.33</span><span class="o">*</span><span class="n">mass1</span><span class="o">**</span><span class="mf">0.555</span>
 
-        <span class="n">a_0</span><span class="p">[</span><span class="n">lowIdx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_0</span><span class="p">[</span><span class="n">lowIdx</span><span class="p">]</span><span class="o">/</span><span class="mf">0.00368058</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mf">6.0</span><span class="p">)</span>
-        <span class="n">a_0</span><span class="p">[</span><span class="n">hiIdx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a_0</span><span class="p">[</span><span class="n">hiIdx</span><span class="p">]</span><span class="o">/</span><span class="mf">0.07</span><span class="o">+</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">10.0</span><span class="p">))</span>
+        <span class="n">a_min</span> <span class="o">=</span> <span class="n">rad1</span><span class="o">/</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">RL_fac</span><span class="p">)</span>
+        <span class="n">a_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a_min</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1e5</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
 
+        <span class="c1"># convert out of log space</span>
+        <span class="n">a_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a_0</span><span class="p">)</span>
         <span class="c1"># convert to meters</span>
         <span class="n">a_0</span> <span class="o">=</span> <span class="n">a_0</span><span class="o">*</span><span class="n">Rsun</span>
 
@@ -539,7 +552,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'0+untagged.379.gc27d8f6',
+            VERSION:'0+untagged.390.g8dafa79.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
