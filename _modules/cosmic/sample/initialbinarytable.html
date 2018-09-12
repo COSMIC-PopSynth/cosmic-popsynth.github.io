@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.sample.initialbinarytable &mdash; cosmic 0+untagged.390.g8dafa79.dirty documentation</title>
+  <title>cosmic.sample.initialbinarytable &mdash; cosmic 1.0.0 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                0+untagged.390.g8dafa79.dirty
+                1.0.0
               </div>
             
           
@@ -276,6 +276,7 @@
 <span class="sd">            Total mass of population conatining the initial binaries [Msun]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sampled_mass</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;sampled_mass&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">n_sampled</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;n_sampled&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">bin_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span>       
                                           <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span>       
                                           <span class="n">metallicity</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>       
@@ -283,7 +284,10 @@
                                           <span class="s1">&#39;mass1_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;mass2_binary&#39;</span><span class="p">,</span>    
                                           <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;metallicity&#39;</span><span class="p">,</span>                                                    <span class="s1">&#39;tphysf&#39;</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">sampled_mass</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">bin_dat</span><span class="p">,</span> <span class="n">sampled_mass</span>
+            <span class="k">if</span> <span class="n">n_sampled</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">bin_dat</span><span class="p">,</span> <span class="n">sampled_mass</span><span class="p">,</span> <span class="n">n_sampled</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">bin_dat</span><span class="p">,</span> <span class="n">sampled_mass</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">bin_dat</span></div>
 
@@ -339,7 +343,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0+untagged.390.g8dafa79.dirty',
+            VERSION:'1.0.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
