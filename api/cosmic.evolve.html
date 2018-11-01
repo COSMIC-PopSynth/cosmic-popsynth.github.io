@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 1.0.1 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 1.0.2+26.g35d5ddf.dirty documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.1
+                1.0.2+26.g35d5ddf.dirty
               </div>
             
           
@@ -168,10 +168,15 @@ we evolve the system.</p>
 <blockquote>
 <div><p>number of CPUs to use for parallel file reading</p>
 </div></blockquote>
-<dl class="docutils">
-<dt><strong>kwargs:</strong></dt>
-<dd></dd>
-</dl>
+<p><strong>idx</strong> : <cite>int</cite>, optional, default: 0</p>
+<blockquote>
+<div><p>initial index of the bcm/bpp arrays</p>
+</div></blockquote>
+<p><strong>dtp</strong> : <cite>float</cite>, optional: default: tphysf</p>
+<blockquote>
+<div><p>timestep size in Myr for bcm output where tphysf
+is total evolution time in Myr</p>
+</div></blockquote>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output_bpp</strong> : DataFrame</p>
@@ -228,7 +233,7 @@ we evolve the system.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.1',
+            VERSION:'1.0.2+26.g35d5ddf.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

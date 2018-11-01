@@ -1,0 +1,4 @@
+.. automodule:: cosmic.gxreal_acc
+    :members:
+    :undoc-members:
+    :show-inheritance:
