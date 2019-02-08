@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 1.0.2+26.g35d5ddf.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 1.0.2+109.gd8e36c3.dirty documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+26.g35d5ddf.dirty
+                1.0.2+109.gd8e36c3.dirty
               </div>
             
           
@@ -152,6 +152,56 @@
             
   <span class="target" id="module-cosmic.utils"></span><p><cite>utils</cite></p>
 <dl class="function">
+<dt id="cosmic.utils.bcm_conv_select">
+<code class="descclassname">cosmic.utils.</code><code class="descname">bcm_conv_select</code><span class="sig-paren">(</span><em>bcm_save_tot</em>, <em>bcm_save_last</em>, <em>method</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/utils.html#bcm_conv_select"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.utils.bcm_conv_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select bcm data for special convergence cases</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>bcm_save_tot</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><blockquote>
+<div><p>bcm dataframe containing all saved bcm data</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>bcm_save_last <span class="classifier-delimiter">:</span> <span class="classifier"><cite>pandas.DataFrame</cite></span></dt>
+<dd><p class="first last">bcm dataframe containing bcm data from last
+iteration</p>
+</dd>
+<dt>method <span class="classifier-delimiter">:</span> <span class="classifier"><cite>dict</cite>,</span></dt>
+<dd><p class="first last">one or more methods by which to filter the
+bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'LISA_convergence'</span> <span class="pre">:</span> <span class="pre">True}</span></code>;
+This means you want to only compute the convergence
+over the region specified for the LISA_convergence
+method below</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>Returns</strong></dt>
+<dd></dd>
+</dl>
+<p><strong>——-</strong></p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>bcm_conv_tot <span class="classifier-delimiter">:</span> <span class="classifier"><cite>pandas.DataFrame</cite></span></dt>
+<dd><p class="first last">filtered bcm dataframe containing all saved bcm
+data</p>
+</dd>
+<dt>bcm_conv_last <span class="classifier-delimiter">:</span> <span class="classifier"><cite>pandas.DataFrame</cite></span></dt>
+<dd><p class="first last">filtered bcm dataframe containing saved bcm
+data from last iteration</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="cosmic.utils.dat_transform">
 <code class="descclassname">cosmic.utils.</code><code class="descname">dat_transform</code><span class="sig-paren">(</span><em>dat</em>, <em>dat_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/utils.html#dat_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.utils.dat_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transform a data set to have limits between zero and one using 
@@ -206,6 +256,48 @@ param_transform, then transform to log space</p>
 <blockquote class="last">
 <div><p>Array of data sampled from kde that is transformed back to 
 bounds of the un-transformed data set the kde is generated from</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.utils.filter_bpp_bcm">
+<code class="descclassname">cosmic.utils.</code><code class="descname">filter_bpp_bcm</code><span class="sig-paren">(</span><em>bcm</em>, <em>bpp</em>, <em>method</em>, <em>kstar1_range</em>, <em>kstar2_range</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/utils.html#filter_bpp_bcm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.utils.filter_bpp_bcm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the output of bpp and bcm</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>bcm</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><blockquote>
+<div><p>bcm dataframe</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>bpp <span class="classifier-delimiter">:</span> <span class="classifier"><cite>pandas.DataFrame</cite></span></dt>
+<dd><p class="first last">bpp dataframe</p>
+</dd>
+<dt>method <span class="classifier-delimiter">:</span> <span class="classifier"><cite>dict</cite>,</span></dt>
+<dd><p class="first last">one or more methods by which to filter the
+bpp or bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'disrupted_binaries'</span> <span class="pre">:</span> <span class="pre">False}</span></code>;
+This means you do <em>not</em> want disrupted_binaries in your table</p>
+</dd>
+<dt>kstar1_range <span class="classifier-delimiter">:</span> <span class="classifier"><cite>list</cite></span></dt>
+<dd><p class="first last">list containing all kstar1 values to retain</p>
+</dd>
+<dt>kstar2_range <span class="classifier-delimiter">:</span> <span class="classifier"><cite>list</cite></span></dt>
+<dd><p class="first last">list containing all kstar2 values to retain</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>bcm</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote class="last">
+<div><p>filtered bcm dataframe</p>
 </div></blockquote>
 </td>
 </tr>
@@ -412,7 +504,7 @@ fixed by inputs</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.2+26.g35d5ddf.dirty',
+            VERSION:'1.0.2+109.gd8e36c3.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.utils &mdash; cosmic 1.0.2+26.g35d5ddf.dirty documentation</title>
+  <title>cosmic.utils &mdash; cosmic 1.0.2+109.gd8e36c3.dirty documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+26.g35d5ddf.dirty
+                1.0.2+109.gd8e36c3.dirty
               </div>
             
           
@@ -173,6 +173,142 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.special</span> <span class="k">as</span> <span class="nn">ss</span>
 <span class="kn">import</span> <span class="nn">astropy.stats</span> <span class="k">as</span> <span class="nn">astrostats</span>
+
+<div class="viewcode-block" id="filter_bpp_bcm"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.filter_bpp_bcm">[docs]</a><span class="k">def</span> <span class="nf">filter_bpp_bcm</span><span class="p">(</span><span class="n">bcm</span><span class="p">,</span> <span class="n">bpp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">kstar1_range</span><span class="p">,</span> <span class="n">kstar2_range</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Filter the output of bpp and bcm</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        bcm : `pandas.DataFrame`</span>
+<span class="sd">            bcm dataframe</span>
+
+<span class="sd">        bpp : `pandas.DataFrame`</span>
+<span class="sd">            bpp dataframe</span>
+
+<span class="sd">        method : `dict`,</span>
+<span class="sd">            one or more methods by which to filter the</span>
+<span class="sd">            bpp or bcm table, e.g. ``{&#39;disrupted_binaries&#39; : False}``;</span>
+<span class="sd">            This means you do *not* want disrupted_binaries in your table</span>
+<span class="sd">        kstar1_range : `list`</span>
+<span class="sd">            list containing all kstar1 values to retain</span>
+<span class="sd">        kstar2_range : `list`</span>
+<span class="sd">            list containing all kstar2 values to retain</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        bcm : `pandas.DataFrame`</span>
+<span class="sd">            filtered bcm dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;select_final_state&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;binary_state&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;merger_type&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;LISA_sources&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You have supplied an &quot;</span>
+                         <span class="s2">&quot;unknown method to filter out &quot;</span>
+                         <span class="s2">&quot;the bpp or bcm array. Known methods are &quot;</span>
+                         <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">))</span>
+
+    <span class="n">bin_num_save</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">meth</span><span class="p">,</span> <span class="n">use</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="kn">import</span> <span class="nn">pdb</span>
+        <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">use</span><span class="p">:</span>
+            <span class="n">idx_save</span> <span class="o">=</span> <span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">]))</span> <span class="o">&amp;</span>
+                                <span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">&amp;</span>
+                                <span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">evol_type</span> <span class="o">==</span> <span class="mf">3.0</span><span class="p">)]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">idx_save</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;select_final_state&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;bin_num&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tphys</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;binary_state&#39;</span><span class="p">):</span>
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">use</span><span class="p">)]</span>
+            
+            <span class="c1"># CREATE A LIST OF BIN_NUM INDICES TO APPEND TO</span>
+            <span class="n">bin_num_save</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span>
+                <span class="n">bcm_0</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)]</span>
+                <span class="n">bin_num_save</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bcm_0</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bcm_0</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar1_range</span><span class="p">))</span> <span class="o">&amp;</span>
+                                              <span class="p">(</span><span class="n">bcm_0</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar2_range</span><span class="p">))]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="k">if</span> <span class="mi">1</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span>
+                <span class="n">bcm_1</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="n">bpp_1</span> <span class="o">=</span> <span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bpp</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bcm_1</span><span class="o">.</span><span class="n">bin_num</span><span class="p">)]</span>
+                <span class="n">bin_num_save</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar1_range</span><span class="p">))</span> <span class="o">&amp;</span>
+                                              <span class="p">(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar2_range</span><span class="p">))</span> <span class="o">&amp;</span>
+                                              <span class="p">(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">evol_type</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+            <span class="k">if</span> <span class="mi">2</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span>
+                <span class="c1"># SHOULD BE DISRUPTED AND kstar_1.isin(kstar1_range) and kstar_2.isin(kstar2_range)</span>
+                <span class="n">bcm_2</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>
+                <span class="n">bin_num_save</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bcm_2</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bcm_2</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar1_range</span><span class="p">))</span> <span class="o">&amp;</span>
+                                              <span class="p">(</span><span class="n">bcm_2</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar2_range</span><span class="p">))]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>              
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bin_num_save</span><span class="p">)]</span>  
+              
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;merger_type&#39;</span><span class="p">):</span>
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">merger_type</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">use</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;LISA_sources&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">method</span><span class="p">[</span><span class="s1">&#39;binary_state&#39;</span><span class="p">]:</span>
+                <span class="n">bcm_0</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">bcm_0_LISAflag</span> <span class="o">=</span> <span class="n">bcm_0</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_0</span><span class="o">.</span><span class="n">porb</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">bin_num</span>
+                <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bcm_0_LISAflag</span><span class="p">)]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must have bin state = 0 for LISA&quot;</span> 
+                                 <span class="s2">&quot;sources filter&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bcm</span></div>
+
+<div class="viewcode-block" id="bcm_conv_select"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.bcm_conv_select">[docs]</a><span class="k">def</span> <span class="nf">bcm_conv_select</span><span class="p">(</span><span class="n">bcm_save_tot</span><span class="p">,</span> <span class="n">bcm_save_last</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Select bcm data for special convergence cases</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        bcm_save_tot : `pandas.DataFrame`</span>
+<span class="sd">            bcm dataframe containing all saved bcm data</span>
+
+<span class="sd">        bcm_save_last : `pandas.DataFrame`</span>
+<span class="sd">            bcm dataframe containing bcm data from last</span>
+<span class="sd">            iteration </span>
+
+<span class="sd">        method : `dict`,</span>
+<span class="sd">            one or more methods by which to filter the</span>
+<span class="sd">            bcm table, e.g. ``{&#39;LISA_convergence&#39; : True}``;</span>
+<span class="sd">            This means you want to only compute the convergence</span>
+<span class="sd">            over the region specified for the LISA_convergence</span>
+<span class="sd">            method below</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        bcm_conv_tot : `pandas.DataFrame`</span>
+<span class="sd">            filtered bcm dataframe containing all saved bcm</span>
+<span class="sd">            data</span>
+<span class="sd">        </span>
+<span class="sd">        bcm_conv_last : `pandas.DataFrame`</span>
+<span class="sd">            filtered bcm dataframe containing saved bcm</span>
+<span class="sd">            data from last iteration</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LISA_convergence&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You have supplied an &quot;</span>
+                         <span class="s2">&quot;unknown method to filter the &quot;</span>
+                         <span class="s2">&quot;bcm array for convergence. Known methods are &quot;</span>
+                         <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">))</span>
+    <span class="n">bcm_conv_tot</span> <span class="o">=</span> <span class="n">bcm_save_tot</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_tot</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_last</span><span class="p">):</span>
+        <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_save_last</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_save_tot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_tot</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_last</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">meth</span><span class="p">,</span> <span class="n">use</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;LISA_convergence&#39;</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+            <span class="n">bcm_conv_tot</span> <span class="o">=</span> <span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">porb</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
+            <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_conv_last</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_conv_last</span><span class="o">.</span><span class="n">porb</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
+
+    <span class="c1"># If it is the first iteration, divide the bcm array in two</span>
+    <span class="c1"># for convergence computation</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_tot</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_last</span><span class="p">):</span>
+        <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_tot</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+   
+    <span class="k">return</span> <span class="n">bcm_conv_tot</span><span class="p">,</span> <span class="n">bcm_conv_last</span></div>
 
 <div class="viewcode-block" id="mass_min_max_select"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.mass_min_max_select">[docs]</a><span class="k">def</span> <span class="nf">mass_min_max_select</span><span class="p">(</span><span class="n">kstar_1</span><span class="p">,</span> <span class="n">kstar_2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Select a minimum and maximum mass to filter out binaries in the initial</span>
@@ -329,19 +465,15 @@
 <span class="sd">        array of data with limits between 0 and 1</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">datMax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">+</span><span class="mf">0.000001</span>
-    <span class="k">if</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-6</span><span class="p">:</span>
-        <span class="n">datMin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">-</span><span class="mf">0.000001</span>
-        <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">datMin</span> <span class="o">=</span> <span class="mf">1e-6</span>
-        <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
-        <span class="n">datZeroed</span><span class="p">[</span><span class="n">datZeroed</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
-         
+    <span class="n">datMax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+    <span class="n">datMin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>    
+    <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
     
     <span class="n">datTransformed</span> <span class="o">=</span> <span class="n">datZeroed</span><span class="o">/</span><span class="p">((</span><span class="n">datMax</span><span class="o">-</span><span class="n">datMin</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">datTransformed</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
         <span class="n">datTransformed</span><span class="p">[</span><span class="n">datTransformed</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="mf">1e-6</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">datTransformed</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">datTransformed</span><span class="p">[</span><span class="n">datTransformed</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
     <span class="k">return</span> <span class="n">datTransformed</span></div>
 
 
@@ -457,7 +589,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.0.2+26.g35d5ddf.dirty',
+            VERSION:'1.0.2+109.gd8e36c3.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

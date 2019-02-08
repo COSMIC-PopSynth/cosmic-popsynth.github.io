@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.sample.sampler.independent &mdash; cosmic 1.0.2+26.g35d5ddf.dirty documentation</title>
+  <title>cosmic.sample.sampler.independent &mdash; cosmic 1.0.2+109.gd8e36c3.dirty documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+26.g35d5ddf.dirty
+                1.0.2+109.gd8e36c3.dirty
               </div>
             
           
@@ -205,9 +205,13 @@
 
 
 <div class="viewcode-block" id="get_independent_sampler"><a class="viewcode-back" href="../../../../api/cosmic.sample.sampler.independent.html#cosmic.sample.sampler.independent.get_independent_sampler">[docs]</a><span class="k">def</span> <span class="nf">get_independent_sampler</span><span class="p">(</span><span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">primary_model</span><span class="p">,</span> <span class="n">ecc_model</span><span class="p">,</span> <span class="n">SFH_model</span><span class="p">,</span> <span class="n">component_age</span><span class="p">,</span> <span class="n">met</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">final_kstar1</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="n">final_kstar1</span> <span class="o">=</span> <span class="p">[</span><span class="n">final_kstar1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">final_kstar2</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+        <span class="n">final_kstar2</span> <span class="o">=</span> <span class="p">[</span><span class="n">final_kstar2</span><span class="p">]</span>
     <span class="n">sampled_mass</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">primary_min</span><span class="p">,</span> <span class="n">primary_max</span><span class="p">,</span> <span class="n">secondary_min</span><span class="p">,</span> <span class="n">secondary_max</span> <span class="o">=</span> <span class="n">mass_min_max_select</span><span class="p">(</span><span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">)</span>
-    <span class="n">initconditions</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">()</span>    
+    <span class="n">initconditions</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">()</span>
     <span class="n">mass1</span><span class="p">,</span> <span class="n">total_mass1</span> <span class="o">=</span> <span class="n">initconditions</span><span class="o">.</span><span class="n">sample_primary</span><span class="p">(</span><span class="n">primary_min</span><span class="p">,</span> <span class="n">primary_max</span><span class="p">,</span> <span class="n">primary_model</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
     <span class="c1"># add in the total sampled primary mass</span>
     <span class="n">sampled_mass</span> <span class="o">+=</span> <span class="n">total_mass1</span>
@@ -222,8 +226,8 @@
     <span class="n">metallicity</span><span class="p">[</span><span class="n">metallicity</span> <span class="o">&gt;</span> <span class="mf">0.03</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.03</span>
     <span class="n">kstar1</span> <span class="o">=</span> <span class="n">initconditions</span><span class="o">.</span><span class="n">set_kstar</span><span class="p">(</span><span class="n">mass1_binary</span><span class="p">)</span>
     <span class="n">kstar2</span> <span class="o">=</span> <span class="n">initconditions</span><span class="o">.</span><span class="n">set_kstar</span><span class="p">(</span><span class="n">mass2_binary</span><span class="p">)</span>
-    
-    <span class="k">return</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">MultipleBinary</span><span class="p">(</span><span class="n">mass1_binary</span><span class="p">,</span> <span class="n">mass2_binary</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">,</span> <span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span> <span class="n">metallicity</span><span class="p">,</span> <span class="n">sampled_mass</span><span class="o">=</span><span class="n">sampled_mass</span><span class="p">,</span> <span class="n">n_sampled</span><span class="o">=</span><span class="n">size</span><span class="p">)</span></div>
+
+    <span class="k">return</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">MultipleBinary</span><span class="p">(</span><span class="n">mass1_binary</span><span class="p">,</span> <span class="n">mass2_binary</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">,</span> <span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span> <span class="n">metallicity</span><span class="p">),</span> <span class="n">sampled_mass</span><span class="p">,</span> <span class="n">size</span></div>
 
 
 
@@ -248,23 +252,23 @@
 <span class="sd">        ----------</span>
 <span class="sd">        primary_min : float</span>
 <span class="sd">            minimum initial primary mass [Msun]</span>
-<span class="sd">            </span>
+
 <span class="sd">        primary_max : float</span>
 <span class="sd">            maximum initial primary mass [Msun]</span>
-<span class="sd">            </span>
+
 <span class="sd">        primary_model : str, optional</span>
 <span class="sd">            model for mass distribution; choose from:</span>
-<span class="sd">                </span>
+
 <span class="sd">            kroupa93 follows Kroupa (1993), normalization comes from</span>
 <span class="sd">            `Hurley 2002 &lt;https://arxiv.org/abs/astro-ph/0201220&gt;`_</span>
 <span class="sd">            valid for masses between 0.1 and 100 Msun</span>
-<span class="sd">            </span>
+
 <span class="sd">            salpter55 follows</span>
 <span class="sd">            `Salpeter (1955) &lt;http://adsabs.harvard.edu/abs/1955ApJ...121..161S&gt;`_</span>
 <span class="sd">            valid for masses between 0.1 and 100 Msun</span>
-<span class="sd">                </span>
+
 <span class="sd">            Default kroupa93</span>
-<span class="sd">        size : int, optional                </span>
+<span class="sd">        size : int, optional</span>
 <span class="sd">            number of initial primary masses to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
 
@@ -327,7 +331,7 @@
         <span class="sd">&quot;&quot;&quot;Sample a secondary mass using draws from a uniform mass ratio distribution motivated by</span>
 <span class="sd">        `Mazeh et al. (1992) &lt;http://adsabs.harvard.edu/abs/1992ApJ...401..265M&gt;`_</span>
 <span class="sd">        and `Goldberg &amp; Mazeh (1994) &lt;http://adsabs.harvard.edu/abs/1994ApJ...429..362G&gt;`_</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        primary_mass : array</span>
@@ -339,7 +343,7 @@
 <span class="sd">            sampled secondary masses with array size matching size of</span>
 <span class="sd">            primary_mass</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        
+
         <span class="n">a_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">primary_mass</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
         <span class="n">secondary_mass</span> <span class="o">=</span> <span class="n">primary_mass</span><span class="o">*</span><span class="n">a_0</span>
 
@@ -347,10 +351,10 @@
 
 
 <div class="viewcode-block" id="Sample.binary_select"><a class="viewcode-back" href="../../../../api/cosmic.sample.sampler.independent.html#cosmic.sample.sampler.independent.Sample.binary_select">[docs]</a>    <span class="k">def</span> <span class="nf">binary_select</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_mass</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Select the which primary masses will have a compution using a </span>
-<span class="sd">        primary-mass dependent binary fraction following </span>
+        <span class="sd">&quot;&quot;&quot;Select the which primary masses will have a compution using a</span>
+<span class="sd">        primary-mass dependent binary fraction following</span>
 <span class="sd">        `van Haaften et al.(2009) &lt;http://adsabs.harvard.edu/abs/2013A%26A...552A..69V&gt;`_ in appdx</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        primary_mass : array</span>
@@ -374,8 +378,8 @@
 
 
 <div class="viewcode-block" id="Sample.sample_porb"><a class="viewcode-back" href="../../../../api/cosmic.sample.sampler.independent.html#cosmic.sample.sampler.independent.Sample.sample_porb">[docs]</a>    <span class="k">def</span> <span class="nf">sample_porb</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass1</span><span class="p">,</span> <span class="n">mass2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Sample the semi-major axis flat in log space from RROL &lt; 0.5 up </span>
-<span class="sd">        to 1e5 Rsun according to </span>
+        <span class="sd">&quot;&quot;&quot;Sample the semi-major axis flat in log space from RROL &lt; 0.5 up</span>
+<span class="sd">        to 1e5 Rsun according to</span>
 <span class="sd">        `Abt (1983) &lt;http://adsabs.harvard.edu/abs/1983ARA%26A..21..343A&gt;`_</span>
 <span class="sd">        and consistent with Dominik+2012,2013</span>
 <span class="sd">        and then converted to orbital period in days using Kepler III</span>
@@ -390,11 +394,14 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        porb_sec/sec_in_day : array</span>
-<span class="sd">            orbital period with array size equalling array size </span>
+<span class="sd">            orbital period with array size equalling array size</span>
 <span class="sd">            of mass1 and mass2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">q</span> <span class="o">=</span> <span class="n">mass2</span><span class="o">/</span><span class="n">mass1</span>
-        <span class="n">RL_fac</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.49</span><span class="o">*</span><span class="n">q</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">q</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">q</span><span class="o">**</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span>       
+        <span class="n">RL_fac</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.49</span><span class="o">*</span><span class="n">q</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">q</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">q</span><span class="o">**</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span>
+        
+        <span class="n">q2</span> <span class="o">=</span> <span class="n">mass1</span><span class="o">/</span><span class="n">mass2</span>
+        <span class="n">RL_fac2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.49</span><span class="o">*</span><span class="n">q2</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">q2</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">q2</span><span class="o">**</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">))</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">ind_lo</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mass1</span> <span class="o">&lt;</span> <span class="mf">1.66</span><span class="p">)</span>
             <span class="n">ind_hi</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mass1</span> <span class="o">&gt;=</span> <span class="mf">1.66</span><span class="p">)</span>
@@ -408,7 +415,20 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">rad1</span> <span class="o">=</span> <span class="mf">1.33</span><span class="o">*</span><span class="n">mass1</span><span class="o">**</span><span class="mf">0.555</span>
 
-        <span class="n">a_min</span> <span class="o">=</span> <span class="n">rad1</span><span class="o">/</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">RL_fac</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ind_lo</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mass2</span> <span class="o">&lt;</span> <span class="mf">1.66</span><span class="p">)</span>
+            <span class="n">ind_hi</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mass2</span> <span class="o">&gt;=</span> <span class="mf">1.66</span><span class="p">)</span>
+
+            <span class="n">rad2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">mass2</span><span class="p">))</span>
+            <span class="n">rad2</span><span class="p">[</span><span class="n">ind_lo</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.06</span><span class="o">*</span><span class="n">mass2</span><span class="p">[</span><span class="n">ind_lo</span><span class="p">]</span><span class="o">**</span><span class="mf">0.945</span>
+            <span class="n">rad2</span><span class="p">[</span><span class="n">ind_hi</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.33</span><span class="o">*</span><span class="n">mass2</span><span class="p">[</span><span class="n">ind_hi</span><span class="p">]</span><span class="o">**</span><span class="mf">0.555</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mass2</span> <span class="o">&lt;</span> <span class="mf">1.66</span><span class="p">:</span>
+                <span class="n">rad2</span> <span class="o">=</span> <span class="mf">1.06</span><span class="o">*</span><span class="n">mass1</span><span class="o">**</span><span class="mf">0.945</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rad2</span> <span class="o">=</span> <span class="mf">1.33</span><span class="o">*</span><span class="n">mass1</span><span class="o">**</span><span class="mf">0.555</span>
+
+        <span class="n">a_min</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">rad1</span><span class="o">/</span><span class="n">RL_fac</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">rad2</span><span class="o">/</span><span class="n">RL_fac2</span>
         <span class="n">a_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a_min</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1e5</span><span class="p">),</span> <span class="n">size</span><span class="p">)</span>
 
         <span class="c1"># convert out of log space</span>
@@ -427,11 +447,11 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        ecc_model : string</span>
-<span class="sd">            &#39;thermal&#39; samples from a  thermal eccentricity distribution following </span>
+<span class="sd">            &#39;thermal&#39; samples from a  thermal eccentricity distribution following</span>
 <span class="sd">            `Heggie (1975) &lt;http://adsabs.harvard.edu/abs/1975MNRAS.173..729H&gt;`_</span>
 <span class="sd">            &#39;uniform&#39; samples from a uniform eccentricity distribution</span>
 <span class="sd">            DEFAULT = &#39;thermal&#39;</span>
-<span class="sd">        </span>
+
 <span class="sd">        size : int, optional</span>
 <span class="sd">            number of eccentricities to sample</span>
 <span class="sd">            NOTE: this is set in runFixedPop call as Nstep</span>
@@ -456,14 +476,14 @@
 
 <div class="viewcode-block" id="Sample.sample_SFH"><a class="viewcode-back" href="../../../../api/cosmic.sample.sampler.independent.html#cosmic.sample.sampler.independent.Sample.sample_SFH">[docs]</a>    <span class="k">def</span> <span class="nf">sample_SFH</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sample an evolution time for each binary based on a user-specified</span>
-<span class="sd">        star formation history (SFH) and Galactic component age. </span>
+<span class="sd">        star formation history (SFH) and Galactic component age.</span>
 <span class="sd">        The default is a MW thin disk constant evolution over 10000 Myr</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        SFH_model : str</span>
 <span class="sd">            &#39;const&#39; assigns an evolution time assuming a constant star</span>
-<span class="sd">            formation rate over the age of the MW disk: component_age [Myr]  </span>
+<span class="sd">            formation rate over the age of the MW disk: component_age [Myr]</span>
 <span class="sd">            &#39;burst&#39; assigns an evolution time assuming a burst of constant</span>
 <span class="sd">            star formation for 1Gyr starting at component_age [Myr] in the past</span>
 <span class="sd">            &#39;delta_burst&#39; assignes a t=0 evolution time until component age</span>
@@ -505,12 +525,12 @@
             <span class="kn">import</span> <span class="nn">cosmic.FIRE</span> <span class="k">as</span> <span class="nn">FIRE</span>
             <span class="n">tphys</span><span class="p">,</span> <span class="n">metallicity</span> <span class="o">=</span> <span class="n">FIRE</span><span class="o">.</span><span class="n">SFH</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">tphys</span><span class="p">,</span> <span class="n">metallicity</span></div>
-          
-    
+
+
 <div class="viewcode-block" id="Sample.set_kstar"><a class="viewcode-back" href="../../../../api/cosmic.sample.sampler.independent.html#cosmic.sample.sampler.independent.Sample.set_kstar">[docs]</a>    <span class="k">def</span> <span class="nf">set_kstar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mass</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize stellar types according to BSE classification</span>
 <span class="sd">        kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        mass : array</span>
@@ -566,7 +586,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'1.0.2+26.g35d5ddf.dirty',
+            VERSION:'1.0.2+109.gd8e36c3.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
