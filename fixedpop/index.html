@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a population the cosmic way &mdash; cosmic 1.0.2+109.gd8e36c3.dirty documentation</title>
+  <title>Generate a population the cosmic way &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                1.0.2+109.gd8e36c3.dirty
+                1.0.2+119.g78d15b7
               </div>
             
           
@@ -294,13 +294,39 @@ The <cite>filters</cite> subsection allows you to specify how you would like to 
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gxRealization -h
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;/anaconda/envs/python36/bin/gxRealization&quot;, line 32, in &lt;module&gt;
-    import cosmic.gxreal as gxreal
-  File &quot;/anaconda/envs/python36/lib/python3.6/site-packages/cosmic/gxreal.py&quot;, line 148
-    if not &#39;ecc&#39; in self.dat_list):
-                                 ^
-SyntaxError: invalid syntax
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/anaconda/envs/python36/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+usage: gxRealization [-h] --galaxy_component GALAXY_COMPONENT --dist_model
+                     DIST_MODEL --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                     --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                     [--N_realizations N_REALIZATIONS] [-n NPROC]
+                     [--gx_save GX_SAVE] [--HG_save HG_SAVE]
+                     [--LISA_calc LISA_CALC] [--verbose]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --galaxy_component GALAXY_COMPONENT
+                        Galaxy Components. Options include Bulge ThinDisk and
+                        ThickDisk
+  --dist_model DIST_MODEL
+                        Galaxy distribution model. fiducial is McMillan (2010)
+  --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
+                        Specify the final condition of kstar1, you want
+                        systems to end at for your samples
+  --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
+                        Specify the final condition of kstar2, you want
+                        systems to end at for your samples
+  --N_realizations N_REALIZATIONS
+                        Number of Galactic realziations to sample
+  -n NPROC, --nproc NPROC
+                        number of processors
+  --gx_save GX_SAVE     Save the galaxy realizations; MAY GENERATE LARGE DATA
+                        SETS
+  --HG_save HG_SAVE     Save systems which undergo common envelope w/ HG star
+                        secondary
+  --LISA_calc LISA_CALC
+                        Save the PSD of the population in the LISA band
+  --verbose             Run in Verbose Mode
 </pre></div>
 </div>
 <div class="section" id="id1">
@@ -402,7 +428,7 @@ SyntaxError: invalid syntax
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.2+109.gd8e36c3.dirty',
+            VERSION:'1.0.2+119.g78d15b7',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

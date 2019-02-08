@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 1.0.2+109.gd8e36c3.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+109.gd8e36c3.dirty
+                1.0.2+119.g78d15b7
               </div>
             
           
@@ -150,7 +150,168 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <span class="target" id="module-cosmic.gxreal"></span><p><cite>gxreal</cite></p>
+<dl class="class">
+<dt id="cosmic.gxreal.GxReal">
+<em class="property">class </em><code class="descclassname">cosmic.gxreal.</code><code class="descname">GxReal</code><span class="sig-paren">(</span><em>fixed_pop</em>, <em>m_tot_samp</em>, <em>gx_model</em>, <em>gx_component</em>, <em>dat_list</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/gxreal.html#GxReal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.gxreal.GxReal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="method">
+<dt id="cosmic.gxreal.GxReal.LISA_full_obs">
+<code class="descname">LISA_full_obs</code><span class="sig-paren">(</span><em>T_obs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/gxreal.html#GxReal.LISA_full_obs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.gxreal.GxReal.LISA_full_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the gravitational wave signal from the population
+that will be observable by LISA, including SNR and PSD according
+to the user input</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>realization</strong> : DataFrame</p>
+<blockquote>
+<div><p>Milky Way population realization of size n_samp</p>
+</div></blockquote>
+<p><strong>T_obs</strong> : float</p>
+<blockquote>
+<div><p>LISA observation time in seconds</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>SNR_dat</strong> : DataFrame</p>
+<blockquote>
+<div><p>DataFrame containing signal to noise ratios for all systems 
+in realization</p>
+</div></blockquote>
+<p><strong>PSD_dat</strong> : DataFrame</p>
+<blockquote>
+<div><p>DataFrame containing the power spectral density for all systems 
+in realization</p>
+</div></blockquote>
+<p><strong>foreground_dat</strong> : DataFrame</p>
+<blockquote class="last">
+<div><p>DataFrame containing power spectral density of the population
+over a set of frequency bins with width set by the LISA 
+observation time</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cosmic.gxreal.GxReal.LISA_obs">
+<code class="descname">LISA_obs</code><span class="sig-paren">(</span><em>T_obs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/gxreal.html#GxReal.LISA_obs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.gxreal.GxReal.LISA_obs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the gravitational wave signal from the population
+that will be observable by LISA, including SNR and PSD according
+to the user input</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>realization</strong> : DataFrame</p>
+<blockquote>
+<div><p>Milky Way population realization of size n_samp</p>
+</div></blockquote>
+<p><strong>T_obs</strong> : float</p>
+<blockquote>
+<div><p>LISA observation time in seconds</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>PSD_dat</strong> : DataFrame</p>
+<blockquote class="last">
+<div><p>DataFrame containing the power spectral density for all systems
+in realization</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cosmic.gxreal.GxReal.compute_n_sample">
+<code class="descname">compute_n_sample</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/gxreal.html#GxReal.compute_n_sample"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.gxreal.GxReal.compute_n_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the fixed population and total mass sampled to generate the 
+fixed population to compute the number of systems in the Milky Way
+realization</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fixedpop</strong> : DataFrame</p>
+<blockquote>
+<div><p>Contains binary parameters from an evolved population
+generated by the runFixedPop executable</p>
+</div></blockquote>
+<p><strong>fixed_mass</strong> : float</p>
+<blockquote>
+<div><p>Total mass sampled to generate the fixed population</p>
+</div></blockquote>
+<p><strong>gx_component</strong> : str</p>
+<blockquote>
+<div><p>Milky Way component for which we are generating the population
+realization; choose from ‘ThinDisk’, ‘ThickDisk’, ‘Bulge’</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>n_samp</strong> : int</p>
+<blockquote class="last">
+<div><p>The number of systems in the Milky Way realization</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cosmic.gxreal.GxReal.sample_population">
+<code class="descname">sample_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/gxreal.html#GxReal.sample_population"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.gxreal.GxReal.sample_population" title="Permalink to this definition">¶</a></dt>
+<dd><p>Once the fixed population is evolved, we Monte-Carlo
+sample the binary parameters to generate a Milky Way realization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>fixedpop</strong> : DataFrame</p>
+<blockquote>
+<div><p>Contains binary parameters from an evolved population
+generated by the runFixedPop executable</p>
+</div></blockquote>
+<p><strong>n_samp</strong> : int</p>
+<blockquote>
+<div><p>The number of systems in the Milky Way realization</p>
+</div></blockquote>
+<p><strong>gx_component</strong> : str</p>
+<blockquote>
+<div><p>Milky Way component for which we are generating the population 
+realization; choose from ‘ThinDisk’, ‘ThickDisk’, ‘Bulge’</p>
+</div></blockquote>
+<p><strong>gx_model</strong> : str</p>
+<blockquote>
+<div><p>Model for spatial distribution of binaries in the Galactic 
+component; Default=’McMillan’</p>
+</div></blockquote>
+<p><strong>dat_list</strong> : list</p>
+<blockquote>
+<div><p>List containing the parameters to MC sample to generate the 
+Galactic realization</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>realization</strong> : DataFrame</p>
+<blockquote class="last">
+<div><p>Milky Way population realization of size n_samp</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+
 
            </div>
            
@@ -184,7 +345,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.2+109.gd8e36c3.dirty',
+            VERSION:'1.0.2+119.g78d15b7',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.utils &mdash; cosmic 1.0.2+109.gd8e36c3.dirty documentation</title>
+  <title>cosmic.utils &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+109.gd8e36c3.dirty
+                1.0.2+119.g78d15b7
               </div>
             
           
@@ -179,25 +179,27 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        bcm : `pandas.DataFrame`</span>
-<span class="sd">            bcm dataframe</span>
+<span class="sd">    bcm : `pandas.DataFrame`</span>
+<span class="sd">        bcm dataframe</span>
 
-<span class="sd">        bpp : `pandas.DataFrame`</span>
-<span class="sd">            bpp dataframe</span>
+<span class="sd">    bpp : `pandas.DataFrame`</span>
+<span class="sd">        bpp dataframe</span>
 
-<span class="sd">        method : `dict`,</span>
-<span class="sd">            one or more methods by which to filter the</span>
-<span class="sd">            bpp or bcm table, e.g. ``{&#39;disrupted_binaries&#39; : False}``;</span>
-<span class="sd">            This means you do *not* want disrupted_binaries in your table</span>
-<span class="sd">        kstar1_range : `list`</span>
-<span class="sd">            list containing all kstar1 values to retain</span>
-<span class="sd">        kstar2_range : `list`</span>
-<span class="sd">            list containing all kstar2 values to retain</span>
+<span class="sd">    method : `dict`,</span>
+<span class="sd">        one or more methods by which to filter the</span>
+<span class="sd">        bpp or bcm table, e.g. ``{&#39;disrupted_binaries&#39; : False}``;</span>
+<span class="sd">        This means you do *not* want disrupted_binaries in your table</span>
+<span class="sd">    </span>
+<span class="sd">    kstar1_range : `list`</span>
+<span class="sd">        list containing all kstar1 values to retain</span>
+<span class="sd">    </span>
+<span class="sd">    kstar2_range : `list`</span>
+<span class="sd">        list containing all kstar2 values to retain</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        bcm : `pandas.DataFrame`</span>
-<span class="sd">            filtered bcm dataframe</span>
+<span class="sd">    bcm : `pandas.DataFrame`</span>
+<span class="sd">        filtered bcm dataframe</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span><span class="p">,</span>
                       <span class="s1">&#39;select_final_state&#39;</span><span class="p">,</span>
@@ -211,10 +213,7 @@
                          <span class="s2">&quot;the bpp or bcm array. Known methods are &quot;</span>
                          <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">))</span>
 
-    <span class="n">bin_num_save</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">meth</span><span class="p">,</span> <span class="n">use</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-        <span class="kn">import</span> <span class="nn">pdb</span>
-        <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">use</span><span class="p">:</span>
             <span class="n">idx_save</span> <span class="o">=</span> <span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">]))</span> <span class="o">&amp;</span>
                                 <span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">&amp;</span>
@@ -262,28 +261,29 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        bcm_save_tot : `pandas.DataFrame`</span>
-<span class="sd">            bcm dataframe containing all saved bcm data</span>
+<span class="sd">    bcm_save_tot : `pandas.DataFrame`</span>
+<span class="sd">        bcm dataframe containing all saved bcm data</span>
 
-<span class="sd">        bcm_save_last : `pandas.DataFrame`</span>
-<span class="sd">            bcm dataframe containing bcm data from last</span>
-<span class="sd">            iteration </span>
+<span class="sd">    bcm_save_last : `pandas.DataFrame`</span>
+<span class="sd">        bcm dataframe containing bcm data from last</span>
+<span class="sd">        iteration </span>
 
-<span class="sd">        method : `dict`,</span>
-<span class="sd">            one or more methods by which to filter the</span>
-<span class="sd">            bcm table, e.g. ``{&#39;LISA_convergence&#39; : True}``;</span>
-<span class="sd">            This means you want to only compute the convergence</span>
-<span class="sd">            over the region specified for the LISA_convergence</span>
-<span class="sd">            method below</span>
+<span class="sd">    method : `dict`,</span>
+<span class="sd">        one or more methods by which to filter the</span>
+<span class="sd">        bcm table, e.g. ``{&#39;LISA_convergence&#39; : True}``;</span>
+<span class="sd">        This means you want to only compute the convergence</span>
+<span class="sd">        over the region specified for the LISA_convergence</span>
+<span class="sd">        method below</span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        bcm_conv_tot : `pandas.DataFrame`</span>
-<span class="sd">            filtered bcm dataframe containing all saved bcm</span>
-<span class="sd">            data</span>
+<span class="sd">    bcm_conv_tot : `pandas.DataFrame`</span>
+<span class="sd">        filtered bcm dataframe containing all saved bcm</span>
+<span class="sd">        data</span>
 <span class="sd">        </span>
-<span class="sd">        bcm_conv_last : `pandas.DataFrame`</span>
-<span class="sd">            filtered bcm dataframe containing saved bcm</span>
-<span class="sd">            data from last iteration</span>
+<span class="sd">    bcm_conv_last : `pandas.DataFrame`</span>
+<span class="sd">        filtered bcm dataframe containing saved bcm</span>
+<span class="sd">        data from last iteration</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LISA_convergence&#39;</span><span class="p">]</span>
@@ -589,7 +589,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.0.2+109.gd8e36c3.dirty',
+            VERSION:'1.0.2+119.g78d15b7',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
