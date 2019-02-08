@@ -192,24 +192,67 @@ You can access the available models using the independent sampler help call:</p>
 <p>The final_kstar1 and final_kstar2 parameters are lists that contain the kstar types
 that you would like the final population to contain.</p>
 <p>The final kstar is the final state of the binary system we are interested in and is based on the BSE kstar naming conventions. The conventions are as follows:</p>
-<ul class="simple">
-<li>0 :        MS, &lt; 0.7 Msun</li>
-<li>1 :        MS, &gt; 0.7 Msun</li>
-<li>2 :        Hertzsprung Gap</li>
-<li>3 :        First Giant Branch</li>
-<li>4 :        Core Helium Burning</li>
-<li>5 :        Early Asymptotic Giant Branch</li>
-<li>6 :        Thermally Pulsing AGB</li>
-<li>7 :        Naked Helium Star MS</li>
-<li>8 :        Naked Helium Star Hertzsprung Gap</li>
-<li>9 :        Naked Helium Star Giant Branch</li>
-<li>10 :        Helium White Dwarf</li>
-<li>11 :        Carbon/Oxygen White Dwarf</li>
-<li>12 :        Oxygen/Neon White Dwarf</li>
-<li>13 :        Neutron Star</li>
-<li>14 :        Black Hole</li>
-<li>15 :        Massless Remnant</li>
-</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">kstar</th>
+<th class="head">evolutionary stage</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>MS, &lt; 0.7 Msun</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>MS, &gt; 0.7 Msun</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Hertzsprung Gap</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>First Giant Branch</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Core Helium Burning</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Early Asymptotic Giant Branch</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Thermally Pulsing AGB</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>Naked Helium Star MS</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Naked Helium Star Hertzsprung Gap</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>Naked Helium Star Giant Branch</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>Helium White Dwarf</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>Carbon/Oxygen White Dwarf</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>Oxygen/Neon White Dwarf</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td>Neutron Star</td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td>Black Hole</td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td>Massless Remnant</td>
+</tr>
+</tbody>
+</table>
 <p>Thus, if you want to generate a
 population containing double white dwarfs with CO and ONe WD primaries and He-WD secondaries,
 the final kstar inputs would be:</p>
@@ -260,70 +303,70 @@ history (SFH) below:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">sampled_mass</span><span class="p">,</span> <span class="n">n_sampled</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa93&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;thermal&#39;</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
 <span class="gp">In [8]: </span><span class="k">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">     kstar_1  kstar_2     ...       metallicity       tphysf</span>
-<span class="go">0        1.0      1.0     ...              0.02  3526.000864</span>
-<span class="go">1        1.0      1.0     ...              0.02  9920.392279</span>
-<span class="go">2        1.0      1.0     ...              0.02  1920.997520</span>
-<span class="go">3        1.0      1.0     ...              0.02  7737.680213</span>
-<span class="go">4        1.0      1.0     ...              0.02  9252.955421</span>
-<span class="go">5        1.0      1.0     ...              0.02  3370.170197</span>
-<span class="go">6        1.0      1.0     ...              0.02   595.466822</span>
-<span class="go">7        1.0      1.0     ...              0.02   347.339969</span>
-<span class="go">8        1.0      1.0     ...              0.02  7562.187278</span>
-<span class="go">9        1.0      1.0     ...              0.02  1084.821435</span>
-<span class="go">10       1.0      1.0     ...              0.02  6656.446861</span>
-<span class="go">11       1.0      1.0     ...              0.02  8753.335403</span>
-<span class="go">12       1.0      1.0     ...              0.02  2118.620218</span>
-<span class="go">13       1.0      1.0     ...              0.02  1083.040861</span>
-<span class="go">14       1.0      0.0     ...              0.02  5212.936001</span>
-<span class="go">15       1.0      1.0     ...              0.02  7199.537609</span>
-<span class="go">16       1.0      1.0     ...              0.02  3580.220937</span>
-<span class="go">17       1.0      1.0     ...              0.02  3137.096260</span>
-<span class="go">18       1.0      1.0     ...              0.02  7202.028264</span>
-<span class="go">19       1.0      0.0     ...              0.02  7424.133966</span>
-<span class="go">20       1.0      0.0     ...              0.02    13.382259</span>
-<span class="go">21       1.0      1.0     ...              0.02  6179.971281</span>
-<span class="go">22       1.0      0.0     ...              0.02  3800.380624</span>
-<span class="go">23       1.0      1.0     ...              0.02  2878.680102</span>
-<span class="go">24       1.0      1.0     ...              0.02  6867.967007</span>
-<span class="go">25       1.0      1.0     ...              0.02  5894.950117</span>
-<span class="go">26       1.0      1.0     ...              0.02  2266.171579</span>
-<span class="go">27       1.0      1.0     ...              0.02  2549.846666</span>
-<span class="go">28       1.0      1.0     ...              0.02  9188.257647</span>
-<span class="go">29       1.0      1.0     ...              0.02  4533.525869</span>
-<span class="go">..       ...      ...     ...               ...          ...</span>
-<span class="go">138      1.0      1.0     ...              0.02  4807.737961</span>
-<span class="go">139      1.0      0.0     ...              0.02  5047.928542</span>
-<span class="go">140      1.0      1.0     ...              0.02   387.905026</span>
-<span class="go">141      1.0      1.0     ...              0.02  8295.064792</span>
-<span class="go">142      1.0      1.0     ...              0.02  7596.036739</span>
-<span class="go">143      1.0      1.0     ...              0.02  7419.358336</span>
-<span class="go">144      1.0      1.0     ...              0.02  6786.799035</span>
-<span class="go">145      1.0      0.0     ...              0.02  6582.241582</span>
-<span class="go">146      1.0      1.0     ...              0.02  1692.107734</span>
-<span class="go">147      1.0      0.0     ...              0.02  6311.902739</span>
-<span class="go">148      1.0      1.0     ...              0.02  6374.250697</span>
-<span class="go">149      1.0      1.0     ...              0.02  6359.693814</span>
-<span class="go">150      1.0      0.0     ...              0.02  9333.671617</span>
-<span class="go">151      1.0      1.0     ...              0.02  6391.477368</span>
-<span class="go">152      1.0      0.0     ...              0.02   256.078553</span>
-<span class="go">153      1.0      1.0     ...              0.02  5278.408087</span>
-<span class="go">154      1.0      1.0     ...              0.02  5161.061881</span>
-<span class="go">155      1.0      1.0     ...              0.02  2832.576552</span>
-<span class="go">156      1.0      1.0     ...              0.02  6458.330310</span>
-<span class="go">157      1.0      1.0     ...              0.02  3783.018333</span>
-<span class="go">158      1.0      1.0     ...              0.02  2076.757105</span>
-<span class="go">159      1.0      1.0     ...              0.02  6765.913147</span>
-<span class="go">160      1.0      1.0     ...              0.02  1179.788772</span>
-<span class="go">161      1.0      1.0     ...              0.02  5769.658131</span>
-<span class="go">162      1.0      1.0     ...              0.02  9853.341536</span>
-<span class="go">163      1.0      1.0     ...              0.02  6140.343702</span>
-<span class="go">164      1.0      1.0     ...              0.02  5496.208552</span>
-<span class="go">165      1.0      0.0     ...              0.02  3205.090194</span>
-<span class="go">166      1.0      1.0     ...              0.02  5878.820347</span>
-<span class="go">167      1.0      0.0     ...              0.02  6968.084193</span>
+<span class="go">     kstar_1  kstar_2  mass1_binary     ...            ecc  metallicity       tphysf</span>
+<span class="go">0        1.0      1.0     16.057560     ...       0.467749         0.02  9184.021350</span>
+<span class="go">1        1.0      0.0      6.535794     ...       0.999293         0.02  1094.006206</span>
+<span class="go">2        1.0      1.0      4.960997     ...       0.650271         0.02  1856.998954</span>
+<span class="go">3        1.0      1.0      3.080383     ...       0.613019         0.02  7588.007951</span>
+<span class="go">4        1.0      1.0      2.694350     ...       0.959532         0.02   583.164514</span>
+<span class="go">5        1.0      1.0     13.687904     ...       0.782597         0.02  6434.452357</span>
+<span class="go">6        1.0      1.0     19.550331     ...       0.443027         0.02  1055.237642</span>
+<span class="go">7        1.0      1.0      2.055097     ...       0.828000         0.02  7603.909810</span>
+<span class="go">8        1.0      1.0      2.150135     ...       0.234554         0.02  3425.814953</span>
+<span class="go">9        1.0      1.0      3.717800     ...       0.282615         0.02  4785.111246</span>
+<span class="go">10       1.0      1.0      2.443209     ...       0.803055         0.02  1084.355244</span>
+<span class="go">11       1.0      1.0      6.214475     ...       0.943753         0.02  6799.490850</span>
+<span class="go">12       1.0      1.0     14.074522     ...       0.640248         0.02  4899.707465</span>
+<span class="go">13       1.0      1.0      5.809128     ...       0.769889         0.02  9526.716653</span>
+<span class="go">14       1.0      1.0     17.201265     ...       0.873009         0.02  9332.307446</span>
+<span class="go">15       1.0      1.0      5.446741     ...       0.705423         0.02  1928.081800</span>
+<span class="go">16       1.0      1.0      2.459193     ...       0.974814         0.02  1712.989898</span>
+<span class="go">17       1.0      1.0      4.273203     ...       0.403974         0.02  2744.211275</span>
+<span class="go">18       1.0      1.0      3.194817     ...       0.843895         0.02  9572.832899</span>
+<span class="go">19       1.0      1.0      2.252769     ...       0.836614         0.02  6847.146586</span>
+<span class="go">20       1.0      1.0      2.119193     ...       0.880870         0.02  8075.354805</span>
+<span class="go">21       1.0      1.0      4.480939     ...       0.819370         0.02  1385.971740</span>
+<span class="go">22       1.0      0.0      3.244790     ...       0.362079         0.02  6895.582007</span>
+<span class="go">23       1.0      1.0      3.633504     ...       0.402490         0.02  1315.649161</span>
+<span class="go">24       1.0      0.0      2.085432     ...       0.939969         0.02   714.459096</span>
+<span class="go">25       1.0      1.0      4.162287     ...       0.640046         0.02  9631.550339</span>
+<span class="go">26       1.0      1.0      3.198675     ...       0.321864         0.02   548.773313</span>
+<span class="go">27       1.0      0.0      2.402656     ...       0.931354         0.02  3459.349221</span>
+<span class="go">28       1.0      1.0      9.416136     ...       0.629547         0.02  6677.471445</span>
+<span class="go">29       1.0      0.0      3.394139     ...       0.974728         0.02  5255.053498</span>
+<span class="go">..       ...      ...           ...     ...            ...          ...          ...</span>
+<span class="go">144      1.0      1.0      5.510970     ...       0.691870         0.02  6169.936415</span>
+<span class="go">145      1.0      1.0      2.838034     ...       0.677564         0.02  3760.962101</span>
+<span class="go">146      1.0      0.0      2.186075     ...       0.846619         0.02  4470.976665</span>
+<span class="go">147      1.0      1.0      2.026715     ...       0.328167         0.02  1698.061207</span>
+<span class="go">148      1.0      1.0      2.270822     ...       0.873994         0.02  7043.445162</span>
+<span class="go">149      1.0      1.0      3.340199     ...       0.423307         0.02   576.760648</span>
+<span class="go">150      1.0      1.0      3.372594     ...       0.948615         0.02  3738.239433</span>
+<span class="go">151      1.0      1.0      3.003164     ...       0.498405         0.02  3339.712237</span>
+<span class="go">152      1.0      1.0      3.509922     ...       0.813820         0.02  5654.551447</span>
+<span class="go">153      1.0      1.0      4.285809     ...       0.406371         0.02  2667.705111</span>
+<span class="go">154      1.0      0.0      2.090906     ...       0.305569         0.02  8700.446896</span>
+<span class="go">155      1.0      1.0     14.402746     ...       0.712136         0.02  4362.486524</span>
+<span class="go">156      1.0      1.0      3.650271     ...       0.164639         0.02  7554.677262</span>
+<span class="go">157      1.0      1.0      3.582478     ...       0.859897         0.02  6931.666378</span>
+<span class="go">158      1.0      1.0      2.131667     ...       0.889975         0.02  5102.832384</span>
+<span class="go">159      1.0      1.0      6.683447     ...       0.295921         0.02  6518.745744</span>
+<span class="go">160      1.0      1.0      2.320805     ...       0.674669         0.02  2197.079249</span>
+<span class="go">161      1.0      1.0     17.089618     ...       0.727472         0.02  4104.515775</span>
+<span class="go">162      1.0      1.0      2.745473     ...       0.610387         0.02  9546.823621</span>
+<span class="go">163      1.0      0.0      2.373849     ...       0.879009         0.02  1022.516530</span>
+<span class="go">164      1.0      1.0     12.013349     ...       0.275331         0.02  4278.053507</span>
+<span class="go">165      1.0      0.0      3.253118     ...       0.788428         0.02  3194.001719</span>
+<span class="go">166      1.0      1.0      4.756357     ...       0.903718         0.02  2232.627955</span>
+<span class="go">167      1.0      1.0      2.725271     ...       0.857186         0.02  3455.060261</span>
+<span class="go">168      1.0      0.0      2.753793     ...       0.714221         0.02   644.650152</span>
+<span class="go">169      1.0      1.0      2.107319     ...       0.613859         0.02  2725.903513</span>
+<span class="go">170      1.0      1.0      2.928708     ...       0.860393         0.02  7939.522192</span>
+<span class="go">171      1.0      1.0      3.780444     ...       0.144609         0.02  1100.788367</span>
+<span class="go">172      1.0      1.0      8.663706     ...       0.880411         0.02  5303.668615</span>
+<span class="go">173      1.0      1.0      2.093532     ...       0.476366         0.02  8962.760072</span>
 
-<span class="go">[168 rows x 8 columns]</span>
+<span class="go">[174 rows x 8 columns]</span>
 </pre></div>
 </div>
 <p>NOTE: the length of the initial binary data set, InitialBinaries, does not match
@@ -353,17 +396,17 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">sampled_mass</span><span class="p">,</span> <span class="n">n_sampled</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;multidim&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="mf">10000.0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
 <span class="gp">In [13]: </span><span class="k">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">   kstar_1  kstar_2     ...       metallicity       tphysf</span>
-<span class="go">0      1.0      1.0     ...              0.02  5858.018706</span>
-<span class="go">1      1.0      1.0     ...              0.02  9327.704041</span>
-<span class="go">2      1.0      1.0     ...              0.02  9290.659326</span>
-<span class="go">3      1.0      1.0     ...              0.02  1648.520685</span>
-<span class="go">4      1.0      1.0     ...              0.02  2642.843578</span>
-<span class="go">5      1.0      1.0     ...              0.02   577.670839</span>
-<span class="go">6      1.0      1.0     ...              0.02  9880.856130</span>
-<span class="go">7      1.0      1.0     ...              0.02  3641.872312</span>
-<span class="go">8      1.0      1.0     ...              0.02  6271.655664</span>
-<span class="go">9      1.0      1.0     ...              0.02  1590.985293</span>
+<span class="go">   kstar_1  kstar_2  mass1_binary     ...            ecc  metallicity       tphysf</span>
+<span class="go">0      1.0      1.0      5.805987     ...       0.718332         0.02  3563.400800</span>
+<span class="go">1      1.0      1.0     15.916263     ...       0.727113         0.02  9809.880657</span>
+<span class="go">2      1.0      1.0      2.433570     ...       0.261487         0.02  5399.608842</span>
+<span class="go">3      1.0      1.0      8.517518     ...       0.731617         0.02   446.179489</span>
+<span class="go">4      1.0      1.0      2.486787     ...       0.507266         0.02  3319.262383</span>
+<span class="go">5      1.0      1.0      2.539058     ...       0.276102         0.02  8309.224893</span>
+<span class="go">6      1.0      1.0      5.717594     ...       0.501451         0.02  2761.957037</span>
+<span class="go">7      1.0      1.0      7.661366     ...       0.218597         0.02  8380.579515</span>
+<span class="go">8      1.0      1.0      4.172676     ...       0.007755         0.02  1941.583582</span>
+<span class="go">9      1.0      1.0     15.912874     ...       0.634960         0.02  5449.046654</span>
 
 <span class="go">[10 rows x 8 columns]</span>
 </pre></div>
@@ -383,15 +426,15 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <span class="gp">In [17]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 <span class="go">         tphys  kstar_1    mass0_1   ...     bin_state  merger_type  bin_num</span>
 <span class="go">0     1.000000      1.0   5.805884   ...             0         -001      0.0</span>
-<span class="go">0  5858.018555     11.0   1.093446   ...             1         0301      0.0</span>
+<span class="go">0  3563.400879     11.0   1.093446   ...             1         0301      0.0</span>
 <span class="go">1     1.000000      1.0  15.908591   ...             0         -001      1.0</span>
-<span class="go">1  9327.704102     13.0  15.545869   ...             2         -001      1.0</span>
+<span class="go">1  9809.880859     13.0  15.545869   ...             2         -001      1.0</span>
 <span class="go">2     1.000000      1.0   2.433570   ...             0         -001      2.0</span>
-<span class="go">2  9290.659180     11.0   0.674065   ...             0         -001      2.0</span>
+<span class="go">2  5399.608887     11.0   0.674065   ...             0         -001      2.0</span>
 <span class="go">3     1.000000      1.0   8.516141   ...             0         -001      3.0</span>
-<span class="go">3  1648.520630     13.0   8.410405   ...             1         0501      3.0</span>
+<span class="go">3   446.179474     13.0   8.410405   ...             1         0501      3.0</span>
 <span class="go">4     1.000000      1.0   2.486787   ...             0         -001      4.0</span>
-<span class="go">4  2642.843506     11.0   0.686806   ...             0         -001      4.0</span>
+<span class="go">4  3319.262451     11.0   0.686806   ...             0         -001      4.0</span>
 
 <span class="go">[10 rows x 39 columns]</span>
 
@@ -405,7 +448,7 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <span class="go">0     84.192909   4.326534   0.000000   ...    -1.000000        2.0      0.0</span>
 <span class="go">0     84.690598   4.273855   0.000000   ...    -1.000000        2.0      0.0</span>
 <span class="go">0     85.073021   1.093446   0.000000   ...    -1.000000        2.0      0.0</span>
-<span class="go">0   5858.018555   1.093446   0.000000   ...    -1.000000       10.0      0.0</span>
+<span class="go">0   3563.400879   1.093446   0.000000   ...    -1.000000       10.0      0.0</span>
 <span class="go">1     11.675008  15.545869   6.392539   ...     0.001439        2.0      1.0</span>
 <span class="go">1     11.698448  15.536322   6.392534   ...     0.001439        2.0      1.0</span>
 <span class="go">1     13.010669  10.554766   6.562234   ...     0.002511        2.0      1.0</span>
@@ -417,7 +460,7 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <span class="go">1     63.413296   1.385966   6.466874   ...     0.000100        2.0      1.0</span>
 <span class="go">1     63.742897   1.385966   6.416909   ...     0.000100        2.0      1.0</span>
 <span class="go">1     64.291115   1.385966   1.227738   ...     0.000100        2.0      1.0</span>
-<span class="go">1   9327.704102   1.385966   1.227738   ...     0.000100       10.0      1.0</span>
+<span class="go">1   9809.880859   1.385966   1.227738   ...     0.000100       10.0      1.0</span>
 <span class="go">2    667.356628   2.433570   2.134182   ...     0.001704        2.0      2.0</span>
 <span class="go">2    672.007874   2.433424   2.134182   ...     0.001713        2.0      2.0</span>
 <span class="go">2    677.911865   2.432339   2.134182   ...     0.001725        2.0      2.0</span>
@@ -434,7 +477,7 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <span class="go">7     48.220829   1.467768  11.803589   ...     1.000913        7.0      7.0</span>
 <span class="go">7     49.566093   0.000000  11.341278   ...     0.000100        2.0      7.0</span>
 <span class="go">7     49.641384   0.000000   1.143464   ...     0.000100        2.0      7.0</span>
-<span class="go">7   3641.872314   0.000000   1.143464   ...     0.000100       10.0      7.0</span>
+<span class="go">7   8380.579102   0.000000   1.143464   ...     0.000100       10.0      7.0</span>
 <span class="go">8    156.527039   4.170230   2.038193   ...     0.385797        3.0      8.0</span>
 <span class="go">8    161.440155   4.147136   2.061287   ...     0.394010        4.0      8.0</span>
 <span class="go">8    161.440170   4.147136   2.061287   ...     0.394010        2.0      8.0</span>
@@ -450,16 +493,16 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <span class="go">8    239.545212   0.642759   5.470084   ...     1.000975        7.0      8.0</span>
 <span class="go">8    239.910599   0.000000   5.421189   ...     0.000100        2.0      8.0</span>
 <span class="go">8    240.361954   0.000000   1.186151   ...     0.000100        2.0      8.0</span>
-<span class="go">8   6271.655762   0.000000   1.186151   ...     0.000100       10.0      8.0</span>
+<span class="go">8   1941.583618   0.000000   1.186151   ...     0.000100       10.0      8.0</span>
 <span class="go">9     11.678382  15.542731   3.399340   ...     0.104916        2.0      9.0</span>
 <span class="go">9     11.687762  15.539193   3.399388   ...     0.108118        5.0      9.0</span>
 <span class="go">9     11.687762  18.393370   3.399388   ...     0.108118        7.0      9.0</span>
 <span class="go">9     11.697976  18.382195   0.000000   ...    -1.000000        2.0      9.0</span>
 <span class="go">9     12.743518  10.387751   0.000000   ...    -1.000000        2.0      9.0</span>
 <span class="go">9     12.764118   1.615023   0.000000   ...    -1.000000        2.0      9.0</span>
-<span class="go">9   1590.985352   1.615023   0.000000   ...    -1.000000       10.0      9.0</span>
+<span class="go">9   5449.046875   1.615023   0.000000   ...    -1.000000       10.0      9.0</span>
 
-<span class="go">[107 rows x 11 columns]</span>
+<span class="go">[119 rows x 11 columns]</span>
 </pre></div>
 </div>
 <p>Note that this process doesn’t try to choose the <cite>right</cite> number of binaries to evolve. If you are interested in generating a realistic synthetic Milky Way population, you should head over to <a class="reference internal" href="../fixedpop/index.html#fixedpop"><span class="std std-ref">Generate a population the cosmic way</span></a>. For details on the process to generate synthetic Milky Way binary populations, see Breivik+2018 (in prep).</p>
