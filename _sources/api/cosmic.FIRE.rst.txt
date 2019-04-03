@@ -1,4 +1,0 @@
-.. automodule:: cosmic.FIRE
-    :members:
-    :undoc-members:
-    :show-inheritance:

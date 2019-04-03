@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.utils &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
+  <title>cosmic.utils &mdash; cosmic 2.0.0 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+119.g78d15b7
+                2.0.0
               </div>
             
           
@@ -189,10 +189,10 @@
 <span class="sd">        one or more methods by which to filter the</span>
 <span class="sd">        bpp or bcm table, e.g. ``{&#39;disrupted_binaries&#39; : False}``;</span>
 <span class="sd">        This means you do *not* want disrupted_binaries in your table</span>
-<span class="sd">    </span>
+
 <span class="sd">    kstar1_range : `list`</span>
 <span class="sd">        list containing all kstar1 values to retain</span>
-<span class="sd">    </span>
+
 <span class="sd">    kstar2_range : `list`</span>
 <span class="sd">        list containing all kstar2 values to retain</span>
 
@@ -204,8 +204,7 @@
     <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span><span class="p">,</span>
                       <span class="s1">&#39;select_final_state&#39;</span><span class="p">,</span>
                       <span class="s1">&#39;binary_state&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;merger_type&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;LISA_sources&#39;</span><span class="p">]</span>
+                      <span class="s1">&#39;lisa_sources&#39;</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You have supplied an &quot;</span>
@@ -223,7 +222,7 @@
             <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;bin_num&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tphys</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
         <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;binary_state&#39;</span><span class="p">):</span>
             <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">use</span><span class="p">)]</span>
-            
+
             <span class="c1"># CREATE A LIST OF BIN_NUM INDICES TO APPEND TO</span>
             <span class="n">bin_num_save</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span>
@@ -241,18 +240,16 @@
                 <span class="c1"># SHOULD BE DISRUPTED AND kstar_1.isin(kstar1_range) and kstar_2.isin(kstar2_range)</span>
                 <span class="n">bcm_2</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span> <span class="o">==</span> <span class="mi">2</span><span class="p">]</span>
                 <span class="n">bin_num_save</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bcm_2</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bcm_2</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar1_range</span><span class="p">))</span> <span class="o">&amp;</span>
-                                              <span class="p">(</span><span class="n">bcm_2</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar2_range</span><span class="p">))]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>              
-            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bin_num_save</span><span class="p">)]</span>  
-              
-        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;merger_type&#39;</span><span class="p">):</span>
-            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">merger_type</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">use</span><span class="p">)]</span>
-        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;LISA_sources&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+                                              <span class="p">(</span><span class="n">bcm_2</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar2_range</span><span class="p">))]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bin_num_save</span><span class="p">)]</span>
+
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;lisa_sources&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
             <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">method</span><span class="p">[</span><span class="s1">&#39;binary_state&#39;</span><span class="p">]:</span>
                 <span class="n">bcm_0</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
                 <span class="n">bcm_0_LISAflag</span> <span class="o">=</span> <span class="n">bcm_0</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_0</span><span class="o">.</span><span class="n">porb</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">bin_num</span>
                 <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bcm_0_LISAflag</span><span class="p">)]</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must have bin state = 0 for LISA&quot;</span> 
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must have bin state = 0 for lisa&quot;</span>
                                  <span class="s2">&quot;sources filter&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">bcm</span></div>
 
@@ -266,13 +263,13 @@
 
 <span class="sd">    bcm_save_last : `pandas.DataFrame`</span>
 <span class="sd">        bcm dataframe containing bcm data from last</span>
-<span class="sd">        iteration </span>
+<span class="sd">        iteration</span>
 
 <span class="sd">    method : `dict`,</span>
 <span class="sd">        one or more methods by which to filter the</span>
-<span class="sd">        bcm table, e.g. ``{&#39;LISA_convergence&#39; : True}``;</span>
+<span class="sd">        bcm table, e.g. ``{&#39;lisa_convergence&#39; : True}``;</span>
 <span class="sd">        This means you want to only compute the convergence</span>
-<span class="sd">        over the region specified for the LISA_convergence</span>
+<span class="sd">        over the region specified for the lisa_convergence</span>
 <span class="sd">        method below</span>
 
 <span class="sd">    Returns</span>
@@ -280,13 +277,13 @@
 <span class="sd">    bcm_conv_tot : `pandas.DataFrame`</span>
 <span class="sd">        filtered bcm dataframe containing all saved bcm</span>
 <span class="sd">        data</span>
-<span class="sd">        </span>
+
 <span class="sd">    bcm_conv_last : `pandas.DataFrame`</span>
 <span class="sd">        filtered bcm dataframe containing saved bcm</span>
 <span class="sd">        data from last iteration</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LISA_convergence&#39;</span><span class="p">]</span>
+    <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lisa_convergence&#39;</span><span class="p">]</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">)):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You have supplied an &quot;</span>
@@ -299,7 +296,7 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_save_tot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_tot</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_last</span><span class="p">)]</span>
     <span class="k">for</span> <span class="n">meth</span><span class="p">,</span> <span class="n">use</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-        <span class="k">if</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;LISA_convergence&#39;</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;lisa_convergence&#39;</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
             <span class="n">bcm_conv_tot</span> <span class="o">=</span> <span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">porb</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
             <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_conv_last</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_conv_last</span><span class="o">.</span><span class="n">porb</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
 
@@ -307,7 +304,7 @@
     <span class="c1"># for convergence computation</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_tot</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_last</span><span class="p">):</span>
         <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_tot</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
-   
+
     <span class="k">return</span> <span class="n">bcm_conv_tot</span><span class="p">,</span> <span class="n">bcm_conv_last</span></div>
 
 <div class="viewcode-block" id="mass_min_max_select"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.mass_min_max_select">[docs]</a><span class="k">def</span> <span class="nf">mass_min_max_select</span><span class="p">(</span><span class="n">kstar_1</span><span class="p">,</span> <span class="n">kstar_2</span><span class="p">):</span>
@@ -317,16 +314,16 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    kstar_1 : int, list </span>
+<span class="sd">    kstar_1 : int, list</span>
 <span class="sd">        BSE stellar type for the primary</span>
 <span class="sd">        or minimum and maximum stellar types for the primary</span>
 <span class="sd">    kstar_2 : int, list</span>
-<span class="sd">        BSE stellar type for the secondary </span>
+<span class="sd">        BSE stellar type for the secondary</span>
 <span class="sd">        or minimum and maximum stellar types for the secondary</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    min_mass[0] : float </span>
+<span class="sd">    min_mass[0] : float</span>
 <span class="sd">        minimum primary mass for initial sample</span>
 <span class="sd">    max_mass[0] : float</span>
 <span class="sd">        maximum primary mass for initial sample</span>
@@ -341,7 +338,7 @@
 
     <span class="n">primary_min</span> <span class="o">=</span> <span class="mf">0.08</span>
     <span class="n">secondary_min</span> <span class="o">=</span> <span class="mf">0.08</span>
-    
+
     <span class="n">min_mass</span> <span class="o">=</span> <span class="p">[</span><span class="n">primary_min</span><span class="p">,</span> <span class="n">secondary_min</span><span class="p">]</span>
     <span class="n">max_mass</span> <span class="o">=</span> <span class="p">[</span><span class="n">primary_max</span><span class="p">,</span> <span class="n">secondary_max</span><span class="p">]</span>
 
@@ -406,7 +403,7 @@
 <span class="sd">    p : int</span>
 <span class="sd">        number of chunks to divide tabulated data into</span>
 <span class="sd">        Default: 5</span>
-<span class="sd">   </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    ret : float</span>
@@ -427,7 +424,7 @@
 
 <div class="viewcode-block" id="rndm"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.rndm">[docs]</a><span class="k">def</span> <span class="nf">rndm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Power-law generator for pdf(x)\propto x^{g-1} for a&lt;=x&lt;=b</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    a : float</span>
@@ -453,7 +450,7 @@
 <div class="viewcode-block" id="param_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.param_transform">[docs]</a><span class="k">def</span> <span class="nf">param_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Transforms a data set to limits between zero and one</span>
 <span class="sd">    Leaves some wiggle room on the edges of the data set</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dat : array</span>
@@ -466,9 +463,9 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">datMax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
-    <span class="n">datMin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>    
+    <span class="n">datMin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
     <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
-    
+
     <span class="n">datTransformed</span> <span class="o">=</span> <span class="n">datZeroed</span><span class="o">/</span><span class="p">((</span><span class="n">datMax</span><span class="o">-</span><span class="n">datMin</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">datTransformed</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
         <span class="n">datTransformed</span><span class="p">[</span><span class="n">datTransformed</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="mf">1e-6</span>
@@ -478,9 +475,9 @@
 
 
 <div class="viewcode-block" id="dat_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.dat_transform">[docs]</a><span class="k">def</span> <span class="nf">dat_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">dat_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Transform a data set to have limits between zero and one using </span>
+    <span class="sd">&quot;&quot;&quot;Transform a data set to have limits between zero and one using</span>
 <span class="sd">    param_transform, then transform to log space</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dat &quot; DataFrame</span>
@@ -492,18 +489,18 @@
 <span class="sd">    -------</span>
 <span class="sd">    dat_trans : array</span>
 <span class="sd">        Transformed data for columns in dat_list</span>
-<span class="sd">    &quot;&quot;&quot;</span> 
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">dat_trans</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">dat_list</span><span class="p">:</span>
         <span class="n">dat_trans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">param_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="n">column</span><span class="p">])))</span>
     <span class="n">dat_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">dat_trans</span><span class="p">])</span>
-    
+
     <span class="k">return</span> <span class="n">dat_trans</span></div>
 
 <div class="viewcode-block" id="dat_un_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.dat_un_transform">[docs]</a><span class="k">def</span> <span class="nf">dat_un_transform</span><span class="p">(</span><span class="n">dat_sample</span><span class="p">,</span> <span class="n">dat_set</span><span class="p">,</span> <span class="n">dat_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Un-transform data that was transformed in dat_transform</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dat_sample : array</span>
@@ -516,11 +513,11 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    dat : array</span>
-<span class="sd">        Array of data sampled from kde that is transformed back to </span>
-<span class="sd">        bounds of the un-transformed data set the kde is generated from </span>
+<span class="sd">        Array of data sampled from kde that is transformed back to</span>
+<span class="sd">        bounds of the un-transformed data set the kde is generated from</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
-    
+
     <span class="n">dat_exp</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">dat_sample</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">column</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dat_list</span><span class="p">))),</span><span class="n">dat_list</span><span class="p">):</span>
         <span class="n">dat_untrans</span> <span class="o">=</span> <span class="n">dat_exp</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span><span class="o">*</span>\
@@ -533,7 +530,7 @@
 <div class="viewcode-block" id="knuth_bw_selector"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.knuth_bw_selector">[docs]</a><span class="k">def</span> <span class="nf">knuth_bw_selector</span><span class="p">(</span><span class="n">dat_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Selects the kde bandwidth using Knuth&#39;s rule implemented in Astropy</span>
 <span class="sd">    If Knuth&#39;s rule raises error, Scott&#39;s rule is used</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dat_list : list</span>
@@ -554,7 +551,7 @@
             <span class="n">bw</span> <span class="o">=</span> <span class="n">astrostats</span><span class="o">.</span><span class="n">scott_bin_width</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
         <span class="n">bw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bw_list</span><span class="p">)</span></div>
-        
+
 </pre></div>
 
            </div>
@@ -589,7 +586,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'1.0.2+119.g78d15b7',
+            VERSION:'2.0.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

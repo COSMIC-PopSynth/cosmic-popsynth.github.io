@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
+  <title>Installation &mdash; cosmic 2.0.0 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.0.2+119.g78d15b7
+                2.0.0
               </div>
             
           
@@ -165,10 +165,8 @@
 <h2>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="macos">
 <h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name cosmic <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.6
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n cosmic gcc numpy h5py <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7
 <span class="nb">source</span> activate cosmic
-conda install gcc numpy
-conda install -c uvcdat gfortran
 pip install cosmic-popsynth
 </pre></div>
 </div>
@@ -227,7 +225,7 @@ pip install cosmic-popsynth
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.2+119.g78d15b7',
+            VERSION:'2.0.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

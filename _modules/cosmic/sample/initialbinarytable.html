@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic.sample.initialbinarytable &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
+  <title>cosmic.sample.initialbinarytable &mdash; cosmic 2.0.0 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+119.g78d15b7
+                2.0.0
               </div>
             
           
@@ -217,14 +217,14 @@
 <span class="sd">        porb : float</span>
 <span class="sd">            Orbital period [days]</span>
 <span class="sd">        ecc : float</span>
-<span class="sd">            Eccentricity </span>
+<span class="sd">            Eccentricity</span>
 <span class="sd">        tphysf : float</span>
 <span class="sd">            Time to evolve the binary [Myr]</span>
 <span class="sd">        kstar1 : array</span>
-<span class="sd">            0-14 Initial stellar type of the larger object; </span>
+<span class="sd">            0-14 Initial stellar type of the larger object;</span>
 <span class="sd">            main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</span>
 <span class="sd">        kstar2 : array</span>
-<span class="sd">            0-14 Initial stellar type of the smaller object; </span>
+<span class="sd">            0-14 Initial stellar type of the smaller object;</span>
 <span class="sd">            main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</span>
 <span class="sd">        metallicity:float</span>
 <span class="sd">            Metallicity of the binaries; Z_sun = 0.02</span>
@@ -235,11 +235,11 @@
 <span class="sd">            Single binary initial conditions</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">bin_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span> 
-                                          <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> 
-                                          <span class="n">metallicity</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> 
-                               <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span> 
-                                          <span class="s1">&#39;mass1_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;mass2_binary&#39;</span><span class="p">,</span> 
+        <span class="n">bin_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span>
+                                          <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span>
+                                          <span class="n">metallicity</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+                               <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;mass1_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;mass2_binary&#39;</span><span class="p">,</span>
                                           <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;metallicity&#39;</span><span class="p">,</span>
                                           <span class="s1">&#39;tphysf&#39;</span><span class="p">])</span>
 
@@ -248,7 +248,7 @@
 <div class="viewcode-block" id="InitialBinaryTable.MultipleBinary"><a class="viewcode-back" href="../../../api/cosmic.sample.initialbinarytable.html#cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">MultipleBinary</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">,</span> <span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span> <span class="n">metallicity</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create multiple binaries</span>
-<span class="sd">        </span>
+
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        m1 : float</span>
@@ -258,18 +258,18 @@
 <span class="sd">        porb : float</span>
 <span class="sd">            Orbital period [days]</span>
 <span class="sd">        ecc : float</span>
-<span class="sd">            Eccentricity </span>
+<span class="sd">            Eccentricity</span>
 <span class="sd">        tphysf : float</span>
 <span class="sd">            Time to evolve the binary [Myr]</span>
 <span class="sd">        kstar1 : array</span>
-<span class="sd">            0-14 Initial stellar type of the larger object; </span>
+<span class="sd">            0-14 Initial stellar type of the larger object;</span>
 <span class="sd">            main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</span>
 <span class="sd">        kstar2 : array</span>
-<span class="sd">            0-14 Initial stellar type of the smaller object; </span>
+<span class="sd">            0-14 Initial stellar type of the smaller object;</span>
 <span class="sd">            main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</span>
 <span class="sd">        metallicity:float</span>
-<span class="sd">            Metallicity of the binaries; Z_sun = 0.02        </span>
-<span class="sd">            </span>
+<span class="sd">            Metallicity of the binaries; Z_sun = 0.02</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        bin_dat : DataFrame</span>
@@ -277,12 +277,12 @@
 <span class="sd">        sampled_mass : int</span>
 <span class="sd">            Total mass of population conatining the initial binaries [Msun]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">bin_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span>       
-                                          <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span>       
-                                          <span class="n">metallicity</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>       
-                               <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span>    
-                                          <span class="s1">&#39;mass1_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;mass2_binary&#39;</span><span class="p">,</span>    
-                                          <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;metallicity&#39;</span><span class="p">,</span> 
+        <span class="n">bin_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">kstar1</span><span class="p">,</span> <span class="n">kstar2</span><span class="p">,</span>
+                                          <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">porb</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span>
+                                          <span class="n">metallicity</span><span class="p">,</span> <span class="n">tphysf</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+                               <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;mass1_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;mass2_binary&#39;</span><span class="p">,</span>
+                                          <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;metallicity&#39;</span><span class="p">,</span>
                                           <span class="s1">&#39;tphysf&#39;</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">bin_dat</span></div>
 
@@ -293,10 +293,10 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        format : str</span>
-<span class="sd">            the method name; Choose from &#39;independent&#39; or &#39;multidim&#39;    </span>
+<span class="sd">            the method name; Choose from &#39;independent&#39; or &#39;multidim&#39;</span>
 
 <span class="sd">        *args</span>
-<span class="sd">            the arguments necessary for the registered sample </span>
+<span class="sd">            the arguments necessary for the registered sample</span>
 <span class="sd">            method; see help(InitialBinaryTable.sampler(&#39;independent&#39;)</span>
 <span class="sd">            to see the arguments necessary for the independent sample</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -338,7 +338,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'1.0.2+119.g78d15b7',
+            VERSION:'2.0.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -13,14 +13,11 @@ Submodules
 
 .. toctree::
 
-   cosmic.FIRE
    cosmic.GW_calcs
    cosmic.MC_samp
    cosmic.Match
    cosmic.evolve
    cosmic.gxreal
-   cosmic.gxreal_acc
-   cosmic.interp_arrays
    cosmic.lisa_sensitivity
    cosmic.utils
 

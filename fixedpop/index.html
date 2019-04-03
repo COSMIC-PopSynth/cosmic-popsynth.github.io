@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a population the cosmic way &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
+  <title>Generate a population the cosmic way &mdash; cosmic 2.0.0 documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                1.0.2+119.g78d15b7
+                2.0.0
               </div>
             
           
@@ -189,15 +189,14 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>runFixedPop -h
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/anaconda/envs/python36/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
-usage: runFixedPop [-h] --inifile INIFILE --final_kstar1 FINAL_KSTAR1
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: runFixedPop [-h] --inifile INIFILE --final_kstar1 FINAL_KSTAR1
                    [FINAL_KSTAR1 ...] --final_kstar2 FINAL_KSTAR2
                    [FINAL_KSTAR2 ...]
                    [--convergence-params CONVERGENCE_PARAMS [CONVERGENCE_PARAMS ...]]
                    [--initial_samp INITIAL_SAMP] --galaxy_component
                    GALAXY_COMPONENT [--metallicity METALLICITY]
-                   [--Niter NITER] [--Nstep NSTEP] [-n NPROC] [--verbose]
+                   [--Niter NITER] [--Nstep NSTEP] [--match MATCH] [-n NPROC]
+                   [--verbose]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -225,6 +224,7 @@ optional arguments:
   --Nstep NSTEP         Number of binaries to try before checking for
                         convergence, it will check ever Nstep binaries until
                         it reach Niter binaries
+  --match MATCH         Match value for convergence tests
   -n NPROC, --nproc NPROC
                         number of processors
   --verbose             Run in Verbose Mode
@@ -294,9 +294,7 @@ The <cite>filters</cite> subsection allows you to specify how you would like to 
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gxRealization -h
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/anaconda/envs/python36/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
-usage: gxRealization [-h] --galaxy_component GALAXY_COMPONENT --dist_model
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: gxRealization [-h] --galaxy_component GALAXY_COMPONENT --dist_model
                      DIST_MODEL --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
                      --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
                      [--N_realizations N_REALIZATIONS] [-n NPROC]
@@ -428,7 +426,7 @@ optional arguments:
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.2+119.g78d15b7',
+            VERSION:'2.0.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 1.0.2+119.g78d15b7 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                1.0.2+119.g78d15b7
+                2.0.0
               </div>
             
           
@@ -154,7 +154,36 @@
 <dl class="function">
 <dt id="cosmic.sample.sampler.multidim.get_multidim_sampler">
 <code class="descclassname">cosmic.sample.sampler.multidim.</code><code class="descname">get_multidim_sampler</code><span class="sig-paren">(</span><em>final_kstar1</em>, <em>final_kstar2</em>, <em>rand_seed</em>, <em>nproc</em>, <em>SFH_model</em>, <em>component_age</em>, <em>met</em>, <em>size</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/sample/sampler/multidim.html#get_multidim_sampler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.sample.sampler.multidim.get_multidim_sampler" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>adapted version of Maxwell Moe’s IDL code that generates a population of single and binary stars</p>
+<p>Below is the adapted version of Maxwell Moe’s IDL code
+that generates a population of single and binary stars
+based on the paper Mind your P’s and Q’s
+By Maxwell Moe and Rosanne Di Stefano</p>
+<p>The python code has been adopted by Mads Sørensen</p>
+<p>Version history:
+V. 0.1; 2017/02/03
+By Mads Sørensen
+- This is a pure adaption from IDL to Python.
+- The function idl_tabulate is similar to
+the IDL function int_tabulated except, this function seems to be slightly
+more exact in its solution.
+Therefore, relative to the IDL code, there are small numerical differences.</p>
+<p>Comments below beginning with ; is the original nodes by Maxwell Moe.
+Please read these careful for understanding the script.
+; NOTE - This version produces only the statistical distributions of
+;        single stars, binaries, and inner binaries in hierarchical triples.
+;        Outer tertiaries in hierarchical triples are NOT generated.
+;        Moreover, given a set of companions, all with period P to
+;        primary mass M1, this version currently uses an approximation to
+;        determine the fraction of those companions that are inner binaries
+;        vs. outer triples. Nevertheless, this approximation reproduces
+;        the overall multiplicity statistics.
+; Step 1 - Tabulate probably density functions of periods,
+;          mass ratios, and eccentricities based on
+;          analytic fits to corrected binary star populations.
+; Step 2 - Implement Monte Carlo method to generate stellar
+;          population from those density functions.</p>
+</dd></dl>
 
 <dl class="class">
 <dt id="cosmic.sample.sampler.multidim.MultiDim">
@@ -335,7 +364,7 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'1.0.2+119.g78d15b7',
+            VERSION:'2.0.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
