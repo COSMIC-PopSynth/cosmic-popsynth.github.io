@@ -1,4 +1,0 @@
-.. automodule:: cosmic.lisa_sensitivity
-    :members:
-    :undoc-members:
-    :show-inheritance:

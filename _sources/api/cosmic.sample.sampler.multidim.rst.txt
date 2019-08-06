@@ -1,4 +1,0 @@
-.. automodule:: cosmic.sample.sampler.multidim
-    :members:
-    :undoc-members:
-    :show-inheritance:
