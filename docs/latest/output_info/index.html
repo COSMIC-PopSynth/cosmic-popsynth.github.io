@@ -1,0 +1,546 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Describing the output of COSMIC/BSE: Columns names/Values/Units &mdash; cosmic 2.0.0+212.g5477301 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using cosmic to run BSE" href="../examples/index.html" />
+    <link rel="prev" title="Configuration files for COSMIC" href="../inifile/index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0.0+212.g5477301
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Describing the output of COSMIC/BSE: Columns names/Values/Units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#evolutionary-states-of-stars-binaries">Evolutionary states of stars/binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bpp-dataframe">BPP DataFrame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bcm-dataframe">BCM DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Describing the output of COSMIC/BSE: Columns names/Values/Units</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/output_info/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="describing-the-output-of-cosmic-bse-columns-names-values-units">
+<span id="output-info"></span><h1>Describing the output of COSMIC/BSE: Columns names/Values/Units<a class="headerlink" href="#describing-the-output-of-cosmic-bse-columns-names-values-units" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="evolutionary-states-of-stars-binaries">
+<h2>Evolutionary states of stars/binaries<a class="headerlink" href="#evolutionary-states-of-stars-binaries" title="Permalink to this headline">¶</a></h2>
+<p>Since COSMIC uses BSE as it’s core binary evolution algorithm, the output of COSMIC follows most of the same conventions as BSE. The kstar values and evolution stages are nearly identical to their BSE counterparts.</p>
+<p>The kstar value specifies the evolutionary state of the star:</p>
+<span id="kstar-table"></span><table border="1" class="docutils" id="id1">
+<caption><span class="caption-text">Evolutionary State of the Star</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="9%" />
+<col width="91%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">kstar</th>
+<th class="head">evolutionary state</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>Main Sequence (MS), &lt; 0.7 <span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span></td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>MS, &gt; 0.7 <span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span></td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>Hertzsprung Gap</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>First Giant Branch</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>Core Helium Burning</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>Early Asymptotic Giant Branch (AGB)</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>Thermally Pulsing AGB</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>Naked Helium Star MS</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>Naked Helium Star Hertzsprung Gap</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>Naked Helium Star Giant Branch</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>Helium White Dwarf</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>Carbon/Oxygen White Dwarf</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>Oxygen/Neon White Dwarf</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td>Neutron Star</td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td>Black Hole</td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td>Massless Remnant</td>
+</tr>
+</tbody>
+</table>
+<p>The evolutionary changes of the binary are logged in the evol_type column, which is filled with integer values. The key for each integer is listed below:</p>
+<span id="evolve-type-table"></span><table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Evolve Type</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">evol_type</th>
+<th class="head">evolutionary change</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>initial state</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>kstar change</td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td>begin Roche lobe overflow</td>
+</tr>
+<tr class="row-odd"><td>4</td>
+<td>end Roche lobe overlow</td>
+</tr>
+<tr class="row-even"><td>5</td>
+<td>contact</td>
+</tr>
+<tr class="row-odd"><td>6</td>
+<td>coalescence</td>
+</tr>
+<tr class="row-even"><td>7</td>
+<td>begin common envelope</td>
+</tr>
+<tr class="row-odd"><td>8</td>
+<td>end common envelope</td>
+</tr>
+<tr class="row-even"><td>9</td>
+<td>no remnant leftover</td>
+</tr>
+<tr class="row-odd"><td>10</td>
+<td>max evolution time</td>
+</tr>
+<tr class="row-even"><td>11</td>
+<td>binary disruption</td>
+</tr>
+<tr class="row-odd"><td>12</td>
+<td>begin symbiotic phase</td>
+</tr>
+<tr class="row-even"><td>13</td>
+<td>end symbiotic phase</td>
+</tr>
+<tr class="row-odd"><td>14</td>
+<td>blue straggler</td>
+</tr>
+<tr class="row-even"><td>15</td>
+<td>supernova of primary</td>
+</tr>
+<tr class="row-odd"><td>16</td>
+<td>supernova of secondary</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bpp-dataframe">
+<h2>BPP DataFrame<a class="headerlink" href="#bpp-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>This <cite>pandas.DataFrame</cite> tracks a selection of binary parameters at key evolutionary changes.
+Entries are added with changes in the <a class="reference internal" href="#evolve-type-table"><span class="std std-ref">Evolve Type</span></a>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="87%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">tphys</span></code></td>
+<td>Evolution time [<span class="math notranslate nohighlight">\({\rm{Myr}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">mass_1</span></code></td>
+<td>Primary mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">mass_2</span></code></td>
+<td>Secondary mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kstar_1</span></code></td>
+<td>Evolutionary state of primary (see <a class="reference internal" href="#kstar-table"><span class="std std-ref">Evolutionary State of the Star</span></a>)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kstar_2</span></code></td>
+<td>Evolutionary state of secondary (see <a class="reference internal" href="#kstar-table"><span class="std std-ref">Evolutionary State of the Star</span></a>)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">sep</span></code></td>
+<td>Semimajor axis [<span class="math notranslate nohighlight">\({\mathrm{R}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">porb</span></code></td>
+<td>Orbital period [<span class="math notranslate nohighlight">\({\rm{days}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">ecc</span></code></td>
+<td>Eccentricity</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RROL_1</span></code></td>
+<td>Primary radius divided by Roche lobe radius</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">RROL_2</span></code></td>
+<td>Secondary radius divided by Roche lobe radius</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">evol_type</span></code></td>
+<td>Key moment in evolution (see <a class="reference internal" href="#evolve-type-table"><span class="std std-ref">Evolve Type</span></a>)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">Vsys_1</span></code></td>
+<td>Change in systemic velocity due to first SN [<span class="math notranslate nohighlight">\({\rm{km/s}}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Vsys_2</span></code></td>
+<td>Change in systemic velocity due to second SN [<span class="math notranslate nohighlight">\({\rm{km/s}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">SNkick</span></code></td>
+<td>Magnitude of supernova natal kick [<span class="math notranslate nohighlight">\({\rm{km/s}}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">SNtheta</span></code></td>
+<td>Angular change in orbital plane due to supernova [<span class="math notranslate nohighlight">\({\rm{degrees}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">aj_1</span></code></td>
+<td>Effective age of the primary [<span class="math notranslate nohighlight">\({\rm{Myr}}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">aj_2</span></code></td>
+<td>Effective age of the secondary [<span class="math notranslate nohighlight">\({\rm{Myr}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">tms_1</span></code></td>
+<td>Primary main sequence lifetime [<span class="math notranslate nohighlight">\({\rm{Myr}}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">tms_2</span></code></td>
+<td>Secondary main sequence lifetime [<span class="math notranslate nohighlight">\({\rm{Myr}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">massc_1</span></code></td>
+<td>Primary core mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">massc_2</span></code></td>
+<td>Secondary core mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">rad_1</span></code></td>
+<td>Primary radius [<span class="math notranslate nohighlight">\({\mathrm{R}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">rad_2</span></code></td>
+<td>Secondary radius [<span class="math notranslate nohighlight">\({\mathrm{R}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">bin_num</span></code></td>
+<td>Unique binary index that is consistent across initial conditions, BCM and BPP DataFrames</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bcm-dataframe">
+<h2>BCM DataFrame<a class="headerlink" href="#bcm-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>This <cite>pandas.DataFrame</cite> provides several binary parameters at user-specified timesteps in the evolution.
+By default, COSMIC saves only the first and last timestep in the BCM DataFrame.
+All values with a <cite>_1</cite> label refer to the primary; the BCM DataFrame also includes the same column for the secondary with <cite>_1</cite> replaced by <cite>_2</cite></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">tphys</span></code></td>
+<td>Evolution time [<span class="math notranslate nohighlight">\(\rm{Myr}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kstar_1</span></code></td>
+<td>Evolutionary state of primary (see <a class="reference internal" href="#kstar-table"><span class="std std-ref">Evolutionary State of the Star</span></a>)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">mass0_1</span></code></td>
+<td>Previous evolutionary stage primary mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">mass_1</span></code></td>
+<td>Primary mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">lumin_1</span></code></td>
+<td>Primary luminosity [<span class="math notranslate nohighlight">\({\mathrm{L}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">rad_1</span></code></td>
+<td>Primary radius [<span class="math notranslate nohighlight">\({\mathrm{R}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">teff_1</span></code></td>
+<td>Primary effective temperature [<span class="math notranslate nohighlight">\({\rm{K}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">massc_1</span></code></td>
+<td>Primary core mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">radc_1</span></code></td>
+<td>Primary core radius [<span class="math notranslate nohighlight">\({\mathrm{R}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">menv_1</span></code></td>
+<td>Primary envelope mass [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">renv_1</span></code></td>
+<td>Primary envelope radius [<span class="math notranslate nohighlight">\({\mathrm{R}_\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">epoch_1</span></code></td>
+<td>Primary epoch [<span class="math notranslate nohighlight">\(\rm{Myr}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">ospin_1</span></code></td>
+<td>Primary spin [<span class="math notranslate nohighlight">\(\rm{rad/yr}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">deltam_1</span></code></td>
+<td>Primary mass transfer rate [<span class="math notranslate nohighlight">\({\mathrm{M}_\odot/\rm{yr}}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">RROL_1</span></code></td>
+<td>Primary radius divided by Roche lobe radius</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">porb</span></code></td>
+<td>Orbital period [<span class="math notranslate nohighlight">\(\rm{days}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sep</span></code></td>
+<td>Semimajor axis [<span class="math notranslate nohighlight">\(\mathrm{R}_{\odot}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">ecc</span></code></td>
+<td>Eccentricity</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">B_0_1</span></code></td>
+<td>Initial neutron star magnetic field [<span class="math notranslate nohighlight">\({\rm{G}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">SNkick_1</span></code></td>
+<td>Magnitude of first natal kick [<span class="math notranslate nohighlight">\({\rm{km/s}}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">Vsys_final</span></code></td>
+<td>Final systemic velocity magnitude [<span class="math notranslate nohighlight">\({\rm{km/s}}\)</span>]</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">SNtheta_final</span></code></td>
+<td>Final systemic velocity angle [<span class="math notranslate nohighlight">\({\rm{degrees}}\)</span>]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">SN_1</span></code></td>
+<td><p class="first">Supernova type:</p>
+<p>4: Fe Core-collapse SN</p>
+<p>5: Electron capture SN</p>
+<p>6: Accretion induced collapse SN</p>
+<p>7: Merger induced collapse</p>
+<p>8: Pulsational-pair instability</p>
+<p class="last">9: Pair instability SN</p>
+</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">bin_state</span></code></td>
+<td>State of the binary: 0 [binary], 1 [merged], 2 [disrupted]</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">merger_type</span></code></td>
+<td>String of the kstar’s in the merger, ‘-001’ if not merged</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">bin_num</span></code></td>
+<td>Unique binary index that is consistent across initial conditions, BCM and BPP DataFrames</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Using cosmic to run BSE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../inifile/index.html" class="btn btn-neutral" title="Configuration files for COSMIC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.0.0+212.g5477301',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

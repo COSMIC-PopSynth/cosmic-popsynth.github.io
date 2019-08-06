@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cosmic.utils &mdash; cosmic 2.0.0+212.g5477301 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0.0+212.g5477301
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inifile/index.html">Configuration files for COSMIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Generate a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>cosmic.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cosmic.utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright (C) Scott Coughlin (2017)</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of cosmic.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with cosmic.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;`utils`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.special</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">astropy.stats</span> <span class="k">as</span> <span class="nn">astrostats</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">.bse_utils.zcnsts</span> <span class="k">import</span> <span class="n">zcnsts</span>
+
+<div class="viewcode-block" id="filter_bpp_bcm"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.filter_bpp_bcm">[docs]</a><span class="k">def</span> <span class="nf">filter_bpp_bcm</span><span class="p">(</span><span class="n">bcm</span><span class="p">,</span> <span class="n">bpp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">kstar1_range</span><span class="p">,</span> <span class="n">kstar2_range</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Filter the output of bpp and bcm</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bcm : `pandas.DataFrame`</span>
+<span class="sd">        bcm dataframe</span>
+
+<span class="sd">    bpp : `pandas.DataFrame`</span>
+<span class="sd">        bpp dataframe</span>
+
+<span class="sd">    method : `dict`,</span>
+<span class="sd">        one or more methods by which to filter the</span>
+<span class="sd">        bpp or bcm table, e.g. ``{&#39;disrupted_binaries&#39; : False}``;</span>
+<span class="sd">        This means you do *not* want disrupted_binaries in your table</span>
+
+<span class="sd">    kstar1_range : `list`</span>
+<span class="sd">        list containing all kstar1 values to retain</span>
+
+<span class="sd">    kstar2_range : `list`</span>
+<span class="sd">        list containing all kstar2 values to retain</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bcm : `pandas.DataFrame`</span>
+<span class="sd">        filtered bcm dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;select_final_state&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;binary_state&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;lisa_sources&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You have supplied an &quot;</span>
+                         <span class="s2">&quot;unknown method to filter out &quot;</span>
+                         <span class="s2">&quot;the bpp or bcm array. Known methods are &quot;</span>
+                         <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">meth</span><span class="p">,</span> <span class="n">use</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">use</span><span class="p">:</span>
+            <span class="n">idx_save_1</span> <span class="o">=</span> <span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">]))</span> <span class="o">&amp;</span>
+                                  <span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">&amp;</span>
+                                  <span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">RROL_1</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">idx_save_2</span> <span class="o">=</span> <span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">]))</span> <span class="o">&amp;</span>
+                                  <span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">]))</span> <span class="o">&amp;</span>
+                                  <span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">RROL_1</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="n">idx_save</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">idx_save_1</span><span class="p">,</span> <span class="n">idx_save_2</span><span class="p">)</span>
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">idx_save</span><span class="p">)]</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;select_final_state&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;bin_num&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tphys</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;binary_state&#39;</span><span class="p">):</span>
+            <span class="n">bin_num_save</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="c1"># in order to find the properities of disrupted or systems</span>
+            <span class="c1"># that are alive today we can simply check the last entry in the bcm</span>
+            <span class="c1"># array for the system and see what its properities are today</span>
+            <span class="n">bcm_0_2</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)]</span>
+            <span class="n">bin_num_save</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bcm_0_2</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bcm_0_2</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar1_range</span><span class="p">))</span> <span class="o">&amp;</span>
+                                          <span class="p">(</span><span class="n">bcm_0_2</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar2_range</span><span class="p">))]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="c1"># in order to find the properities of merged systems</span>
+            <span class="c1"># we actually need to search in the BPP array for the properities</span>
+            <span class="c1"># of the objects right at merge because the bcm will report</span>
+            <span class="c1"># the post merge object only</span>
+            <span class="n">bcm_1</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">bpp_1</span> <span class="o">=</span> <span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bpp</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bcm_1</span><span class="o">.</span><span class="n">bin_num</span><span class="p">)]</span>
+            <span class="n">bin_num_save</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">kstar_1</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar1_range</span><span class="p">))</span> <span class="o">&amp;</span>
+                                          <span class="p">(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">kstar_2</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">kstar2_range</span><span class="p">))</span> <span class="o">&amp;</span>
+                                          <span class="p">(</span><span class="n">bpp_1</span><span class="o">.</span><span class="n">evol_type</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)]</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bin_num_save</span><span class="p">)]</span>
+
+            <span class="c1"># this will tell use the binary state fraction of the systems with a certain final kstar type</span>
+            <span class="c1"># before we throw out certain binary states if a user requested that.</span>
+            <span class="n">bin_state_fraction</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;bin_state&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tphys</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+            <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">use</span><span class="p">)]</span>
+
+        <span class="k">elif</span> <span class="p">(</span><span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;lisa_sources&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">method</span><span class="p">[</span><span class="s1">&#39;binary_state&#39;</span><span class="p">]:</span>
+                <span class="n">bcm_0</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">bcm_0_LISAflag</span> <span class="o">=</span> <span class="n">bcm_0</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_0</span><span class="o">.</span><span class="n">porb</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">bin_num</span>
+                <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">bcm_0_LISAflag</span><span class="p">)]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must have bin state = 0 for lisa&quot;</span>
+                                 <span class="s2">&quot;sources filter&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bcm</span><span class="p">,</span> <span class="n">bin_state_fraction</span></div>
+
+<div class="viewcode-block" id="bcm_conv_select"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.bcm_conv_select">[docs]</a><span class="k">def</span> <span class="nf">bcm_conv_select</span><span class="p">(</span><span class="n">bcm_save_tot</span><span class="p">,</span> <span class="n">bcm_save_last</span><span class="p">,</span> <span class="n">method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Select bcm data for special convergence cases</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bcm_save_tot : `pandas.DataFrame`</span>
+<span class="sd">        bcm dataframe containing all saved bcm data</span>
+
+<span class="sd">    bcm_save_last : `pandas.DataFrame`</span>
+<span class="sd">        bcm dataframe containing bcm data from last</span>
+<span class="sd">        iteration</span>
+
+<span class="sd">    method : `dict`,</span>
+<span class="sd">        one or more methods by which to filter the</span>
+<span class="sd">        bcm table, e.g. ``{&#39;lisa_convergence&#39; : True}``;</span>
+<span class="sd">        This means you want to only compute the convergence</span>
+<span class="sd">        over the region specified for the lisa_convergence</span>
+<span class="sd">        method below</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bcm_conv_tot : `pandas.DataFrame`</span>
+<span class="sd">        filtered bcm dataframe containing all saved bcm</span>
+<span class="sd">        data</span>
+
+<span class="sd">    bcm_conv_last : `pandas.DataFrame`</span>
+<span class="sd">        filtered bcm dataframe containing saved bcm</span>
+<span class="sd">        data from last iteration</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_known_methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lisa_convergence&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You have supplied an &quot;</span>
+                         <span class="s2">&quot;unknown method to filter the &quot;</span>
+                         <span class="s2">&quot;bcm array for convergence. Known methods are &quot;</span>
+                         <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_known_methods</span><span class="p">))</span>
+    <span class="n">bcm_conv_tot</span> <span class="o">=</span> <span class="n">bcm_save_tot</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_tot</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_last</span><span class="p">):</span>
+        <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_save_last</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_save_tot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_tot</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_save_last</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">meth</span><span class="p">,</span> <span class="n">use</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">meth</span> <span class="o">==</span> <span class="s1">&#39;lisa_convergence&#39;</span> <span class="ow">and</span> <span class="n">use</span><span class="p">:</span>
+            <span class="n">bcm_conv_tot</span> <span class="o">=</span> <span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">porb</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
+            <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_conv_last</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">bcm_conv_last</span><span class="o">.</span><span class="n">porb</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5000</span><span class="p">)]</span>
+
+    <span class="c1"># If it is the first iteration, divide the bcm array in two</span>
+    <span class="c1"># for convergence computation</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_tot</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_last</span><span class="p">):</span>
+        <span class="n">bcm_conv_last</span> <span class="o">=</span> <span class="n">bcm_conv_tot</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bcm_conv_tot</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">bcm_conv_tot</span><span class="p">,</span> <span class="n">bcm_conv_last</span></div>
+
+<div class="viewcode-block" id="mass_min_max_select"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.mass_min_max_select">[docs]</a><span class="k">def</span> <span class="nf">mass_min_max_select</span><span class="p">(</span><span class="n">kstar_1</span><span class="p">,</span> <span class="n">kstar_2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Select a minimum and maximum mass to filter out binaries in the initial</span>
+<span class="sd">    parameter sample to reduce the number of unneccessary binaries evolved</span>
+<span class="sd">    in BSE</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    kstar_1 : int, list</span>
+<span class="sd">        BSE stellar type for the primary</span>
+<span class="sd">        or minimum and maximum stellar types for the primary</span>
+<span class="sd">    kstar_2 : int, list</span>
+<span class="sd">        BSE stellar type for the secondary</span>
+<span class="sd">        or minimum and maximum stellar types for the secondary</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    min_mass[0] : float</span>
+<span class="sd">        minimum primary mass for initial sample</span>
+<span class="sd">    max_mass[0] : float</span>
+<span class="sd">        maximum primary mass for initial sample</span>
+<span class="sd">    min_mass[1] : float</span>
+<span class="sd">        minimum secondary mass for initial sample</span>
+<span class="sd">    max_mass[1] : float</span>
+<span class="sd">        maximum secondary mass for initial sample</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">primary_max</span> <span class="o">=</span> <span class="mf">150.0</span>
+    <span class="n">secondary_max</span> <span class="o">=</span> <span class="mf">150.0</span>
+
+    <span class="n">primary_min</span> <span class="o">=</span> <span class="mf">0.08</span>
+    <span class="n">secondary_min</span> <span class="o">=</span> <span class="mf">0.08</span>
+
+    <span class="n">min_mass</span> <span class="o">=</span> <span class="p">[</span><span class="n">primary_min</span><span class="p">,</span> <span class="n">secondary_min</span><span class="p">]</span>
+    <span class="n">max_mass</span> <span class="o">=</span> <span class="p">[</span><span class="n">primary_max</span><span class="p">,</span> <span class="n">secondary_max</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">kstar_1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># there is a range of final kstar_1s to save</span>
+        <span class="n">kstar_1_lo</span> <span class="o">=</span> <span class="n">kstar_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">kstar_1_hi</span> <span class="o">=</span> <span class="n">kstar_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">kstar_1_lo</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">kstar_1</span><span class="p">)</span>
+        <span class="n">kstar_1_hi</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">kstar_1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">kstar_2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># there is a range of final kstar_1s to save</span>
+        <span class="n">kstar_2_lo</span> <span class="o">=</span> <span class="n">kstar_2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">kstar_2_hi</span> <span class="o">=</span> <span class="n">kstar_2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">kstar_2_lo</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">kstar_2</span><span class="p">)</span>
+        <span class="n">kstar_2_hi</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">kstar_2</span><span class="p">)</span>
+
+    <span class="n">kstar_lo</span> <span class="o">=</span> <span class="p">[</span><span class="n">kstar_1_lo</span><span class="p">,</span> <span class="n">kstar_2_lo</span><span class="p">]</span>
+    <span class="n">kstar_hi</span> <span class="o">=</span> <span class="p">[</span><span class="n">kstar_1_hi</span><span class="p">,</span> <span class="n">kstar_2_hi</span><span class="p">]</span>
+
+    <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kstar_lo</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mf">14.0</span><span class="p">:</span>
+            <span class="n">min_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
+        <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mf">13.0</span><span class="p">:</span>
+            <span class="n">min_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">6.0</span>
+        <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mf">12.0</span><span class="p">:</span>
+            <span class="n">min_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">5.0</span>
+        <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mf">11.0</span><span class="p">:</span>
+            <span class="n">min_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.8</span>
+        <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mf">10.0</span><span class="p">:</span>
+            <span class="n">min_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="n">ii</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">ii</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kstar_hi</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mf">13.0</span><span class="p">:</span>
+            <span class="n">max_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">60.0</span>
+        <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mf">12.0</span><span class="p">:</span>
+            <span class="n">max_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">20.0</span>
+        <span class="k">elif</span> <span class="n">k</span><span class="o">==</span> <span class="mf">11.0</span><span class="p">:</span>
+            <span class="n">max_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">20.0</span>
+        <span class="k">elif</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="mf">10.0</span><span class="p">:</span>
+            <span class="n">max_mass</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span> <span class="o">=</span> <span class="mf">20.0</span>
+        <span class="n">ii</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">min_mass</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">max_mass</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">min_mass</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">max_mass</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="idl_tabulate"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.idl_tabulate">[docs]</a><span class="k">def</span> <span class="nf">idl_tabulate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Function that replicates the IDL int_tabulated function</span>
+<span class="sd">    which performs a p-point integration on a tabulated set of data</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x : array</span>
+<span class="sd">        tabulated x-value data</span>
+<span class="sd">    f : array</span>
+<span class="sd">        tabulated f-value data, same size as x</span>
+<span class="sd">    p : int</span>
+<span class="sd">        number of chunks to divide tabulated data into</span>
+<span class="sd">        Default: 5</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret : float</span>
+<span class="sd">        Integration result</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">newton_cotes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="n">rn</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">newton_cotes</span><span class="p">(</span><span class="n">rn</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">weights</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">ret</span> <span class="o">+=</span> <span class="n">newton_cotes</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span> <span class="o">+</span> <span class="n">p</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">idx</span><span class="p">:</span><span class="n">idx</span> <span class="o">+</span> <span class="n">p</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+
+<div class="viewcode-block" id="rndm"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.rndm">[docs]</a><span class="k">def</span> <span class="nf">rndm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Power-law generator for pdf(x)\propto x^{g} for a&lt;=x&lt;=b</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a : float</span>
+<span class="sd">        Minimum of range for power law</span>
+<span class="sd">    b : float</span>
+<span class="sd">        Maximum of range for power law</span>
+<span class="sd">    g : float</span>
+<span class="sd">        Index for power law</span>
+<span class="sd">    size : int</span>
+<span class="sd">        Number of data points to draw</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    power : array</span>
+<span class="sd">        Array of data sampled from power law distribution with params</span>
+<span class="sd">        fixed by inputs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">ag</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="o">**</span><span class="n">g</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ag</span> <span class="o">+</span> <span class="p">(</span><span class="n">bg</span> <span class="o">-</span> <span class="n">ag</span><span class="p">)</span><span class="o">*</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">g</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="param_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.param_transform">[docs]</a><span class="k">def</span> <span class="nf">param_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Transforms a data set to limits between zero and one</span>
+<span class="sd">    Leaves some wiggle room on the edges of the data set</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dat : array</span>
+<span class="sd">        array of data to transform between 0 and 1</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    datTransformed : array</span>
+<span class="sd">        array of data with limits between 0 and 1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">datMax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+    <span class="n">datMin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+    <span class="n">datZeroed</span> <span class="o">=</span> <span class="n">dat</span><span class="o">-</span><span class="n">datMin</span>
+
+    <span class="n">datTransformed</span> <span class="o">=</span> <span class="n">datZeroed</span><span class="o">/</span><span class="p">((</span><span class="n">datMax</span><span class="o">-</span><span class="n">datMin</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">datTransformed</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">:</span>
+        <span class="n">datTransformed</span><span class="p">[</span><span class="n">datTransformed</span> <span class="o">==</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="mf">1e-6</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">datTransformed</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">datTransformed</span><span class="p">[</span><span class="n">datTransformed</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
+    <span class="k">return</span> <span class="n">datTransformed</span></div>
+
+
+<div class="viewcode-block" id="dat_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.dat_transform">[docs]</a><span class="k">def</span> <span class="nf">dat_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">,</span> <span class="n">dat_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Transform a data set to have limits between zero and one using</span>
+<span class="sd">    param_transform, then transform to log space</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dat &quot; DataFrame</span>
+<span class="sd">        Data to transform to eventually perform KDE</span>
+<span class="sd">    dat_list : list</span>
+<span class="sd">        List of DataFrame columns to include in transformation</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dat_trans : array</span>
+<span class="sd">        Transformed data for columns in dat_list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">dat_trans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">dat_list</span><span class="p">:</span>
+        <span class="n">dat_trans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">logit</span><span class="p">(</span><span class="n">param_transform</span><span class="p">(</span><span class="n">dat</span><span class="p">[</span><span class="n">column</span><span class="p">])))</span>
+    <span class="n">dat_trans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">dat_trans</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">dat_trans</span></div>
+
+<div class="viewcode-block" id="dat_un_transform"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.dat_un_transform">[docs]</a><span class="k">def</span> <span class="nf">dat_un_transform</span><span class="p">(</span><span class="n">dat_sample</span><span class="p">,</span> <span class="n">dat_set</span><span class="p">,</span> <span class="n">dat_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Un-transform data that was transformed in dat_transform</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dat_sample : array</span>
+<span class="sd">        Data sampled from kde generated with transformed data</span>
+<span class="sd">    dat_set : DataFrame</span>
+<span class="sd">        Un-transformed data (same as dat in dat_transform)</span>
+<span class="sd">    dat_list : list</span>
+<span class="sd">        List of DataFrame columns to include in transformation</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dat : array</span>
+<span class="sd">        Array of data sampled from kde that is transformed back to</span>
+<span class="sd">        bounds of the un-transformed data set the kde is generated from</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dat</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">dat_exp</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">dat_sample</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">column</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dat_list</span><span class="p">))),</span><span class="n">dat_list</span><span class="p">):</span>
+        <span class="n">dat_untrans</span> <span class="o">=</span> <span class="n">dat_exp</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="p">:]</span><span class="o">*</span>\
+                   <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">dat_set</span><span class="p">[</span><span class="n">column</span><span class="p">])</span> <span class="o">-</span> <span class="nb">min</span><span class="p">(</span><span class="n">dat_set</span><span class="p">[</span><span class="n">column</span><span class="p">]))</span> <span class="o">+</span>\
+                    <span class="nb">min</span><span class="p">(</span><span class="n">dat_set</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+        <span class="n">dat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dat_untrans</span><span class="p">)</span>
+    <span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dat</span></div>
+
+<div class="viewcode-block" id="knuth_bw_selector"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.knuth_bw_selector">[docs]</a><span class="k">def</span> <span class="nf">knuth_bw_selector</span><span class="p">(</span><span class="n">dat_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Selects the kde bandwidth using Knuth&#39;s rule implemented in Astropy</span>
+<span class="sd">    If Knuth&#39;s rule raises error, Scott&#39;s rule is used</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dat_list : list</span>
+<span class="sd">        List of data arrays that will be used to generate a kde</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bw_min : float</span>
+<span class="sd">        Minimum of bandwidths for all of the data arrays in dat_list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">bw_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">dat</span> <span class="ow">in</span> <span class="n">dat_list</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">bw</span> <span class="o">=</span> <span class="n">astrostats</span><span class="o">.</span><span class="n">knuth_bin_width</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using Scott Rule!!&#39;</span><span class="p">)</span>
+            <span class="n">bw</span> <span class="o">=</span> <span class="n">astrostats</span><span class="o">.</span><span class="n">scott_bin_width</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+        <span class="n">bw_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">bw_list</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="error_check"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.error_check">[docs]</a><span class="k">def</span> <span class="nf">error_check</span><span class="p">(</span><span class="n">BSEDict</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">convergence</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Checks that values in BSEDict, filters, and convergence are viable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">BSEDict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;BSE flags must be supplied via a dictionary&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">filters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Filters criteria must be supplied via a dictionary&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">convergence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">convergence</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Convergence criteria must be supplied via a dictionary&#39;</span><span class="p">)</span>
+
+    <span class="c1"># filters</span>
+    <span class="k">if</span> <span class="n">filters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;mass_transfer_white_dwarf_to_co&#39;</span>
+        <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">filters</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be either True or False (you set it to &#39;</span><span class="si">{1:s}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">filters</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+        <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;select_final_state&#39;</span>
+        <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">filters</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be either True or False (you set it to &#39;</span><span class="si">{1:s}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">filters</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+        <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;binary_state&#39;</span>
+        <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">filters</span><span class="p">[</span><span class="n">flag</span><span class="p">]):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be a subset of [0,1,2] (you set it to &#39;[</span><span class="si">{1:d}</span><span class="s2">]&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="o">*</span><span class="n">filters</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+    <span class="c1"># convergence</span>
+    <span class="k">if</span> <span class="n">convergence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;lisa_convergence&#39;</span>
+        <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">convergence</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">convergence</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be either True or False (you set it to &#39;</span><span class="si">{1:s}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">convergence</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+    <span class="c1"># BSEDict</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;dtp&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;pts1&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;pts2&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;pts3&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;windflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0, 1, 2, or 3 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;neta&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;bwind&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;hewind&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be between 0 and 1 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;beta&#39;</span>
+    <span class="c1"># --- all numbers are valid</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;xi&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be between 0 and 1 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;acc2&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;alpha1&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;lambdaf&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to either be set to 1 for variable lambda or a negative number for fixed lambda (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;ceflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0 or 1 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;cekickflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0, 1, or 2 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;cemergeflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0 or 1 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;cehestarflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0, 1, or 2 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;qcflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to 0, 1, 2, or 3 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;qcrit_array&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; values must be greater than or equal to zero (you set them to &#39;[</span><span class="si">{1:d}</span><span class="s2">]&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="o">*</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">16</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; must be supplied 16 values (you supplied &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">])))</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span> <span class="n">x</span> <span class="o">!=</span> <span class="mf">0.0</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span> <span class="ow">and</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;qcflag&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;If &#39;</span><span class="si">{0:s}</span><span class="s2">&#39; is used, qcflag must be set to 4&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span>
+
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;sigma&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;bhflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0, 1, 2, or 3 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;ecsn&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;ecsn_mlow&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">&gt;</span><span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;ecsn&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">0.0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be less than &#39;ecsn&#39;, and must be greater than or equal to 0 (you set it to &#39;</span><span class="si">{0:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;sigmadiv&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; must be positive or negative (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;aic&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">valueerror</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0 or 1 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;ussn&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="n">valueerror</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0 or 1 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;pisn&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">((</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">3</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either greater than 0 or equal to -1, -2, or -3 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;bhsigmafrac&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than 0 and less than or equal to 1 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;polar_kick_angle&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">90</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be within the allowed range of [0,90] (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;natal_kick_array&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">])</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; must be supplied 6 values (you supplied &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">])))</span>
+
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;nsflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0, 1, 2, 3, or 4 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;mxns&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater than 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;eddfac&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;gamma&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">!=-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span><span class="o">!=-</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to either be set to -2, -1, or a positive number (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;tflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to either 0 or 1 (you set it to &#39;</span><span class="si">{1:d}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;ifflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;wdflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be greater or equal to 0 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;qcflag&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be set to 0, 1, 2, or 3 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;epsnov&#39;</span>
+    <span class="k">if</span> <span class="n">flag</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">{0:s}</span><span class="s2">&#39; needs to be between 0 and 1 (you set it to &#39;</span><span class="si">{1:0.2f}</span><span class="s2">&#39;)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="n">BSEDict</span><span class="p">[</span><span class="n">flag</span><span class="p">]))</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;bconst&#39;</span>
+    <span class="c1"># --- all numbers are valid</span>
+    <span class="n">flag</span><span class="o">=</span><span class="s1">&#39;ck&#39;</span>
+    <span class="c1"># --- all numbers are valid</span>
+
+    <span class="k">return</span></div>
+
+<div class="viewcode-block" id="check_initial_conditions"><a class="viewcode-back" href="../../api/cosmic.utils.html#cosmic.utils.check_initial_conditions">[docs]</a><span class="k">def</span> <span class="nf">check_initial_conditions</span><span class="p">(</span><span class="n">initial_binary_table</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">rzamsf</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A function to evaluate Rzams</span>
+<span class="sd">        ( from Tout et al., 1996, MNRAS, 281, 257 ).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">rzams</span> <span class="o">=</span> <span class="p">(((</span><span class="n">a</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">mx</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="o">**</span><span class="mi">11</span> <span class="o">+</span> 
+                  <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">*</span><span class="n">mx</span><span class="p">)</span><span class="o">*</span><span class="n">m</span><span class="o">**</span><span class="mi">19</span><span class="p">)</span><span class="o">/</span>
+                  <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="o">**</span><span class="mi">8</span> <span class="o">+</span> <span class="n">m</span><span class="o">**</span><span class="mi">18</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">*</span><span class="n">m</span><span class="o">**</span><span class="mi">19</span><span class="p">)</span><span class="o">*</span><span class="n">mx</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">rzams</span>
+
+    <span class="k">def</span> <span class="nf">rl</span><span class="p">(</span><span class="n">Q</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;A function to evaluate R_L/a(q), Eggleton 1983.&quot;&quot;&quot;</span>
+        <span class="n">P</span> <span class="o">=</span> <span class="n">Q</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+        <span class="n">RL</span> <span class="o">=</span> <span class="mf">0.49</span><span class="o">*</span><span class="n">P</span><span class="o">*</span><span class="n">P</span><span class="o">/</span><span class="p">(</span><span class="mf">0.6</span><span class="o">*</span><span class="n">P</span><span class="o">*</span><span class="n">P</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">P</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">RL</span>
+
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">initial_binary_table</span><span class="p">[</span><span class="s1">&#39;metallicity&#39;</span><span class="p">])</span>
+    <span class="n">zpars</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">zcnsts</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="n">mass1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">initial_binary_table</span><span class="p">[</span><span class="s1">&#39;mass1_binary&#39;</span><span class="p">])</span>
+    <span class="n">mass2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">initial_binary_table</span><span class="p">[</span><span class="s1">&#39;mass2_binary&#39;</span><span class="p">])</span>
+
+    <span class="n">rzams1</span> <span class="o">=</span> <span class="n">rzamsf</span><span class="p">(</span><span class="n">mass1</span><span class="p">)</span>
+    <span class="n">rzams2</span> <span class="o">=</span> <span class="n">rzamsf</span><span class="p">(</span><span class="n">mass2</span><span class="p">)</span>
+
+    <span class="c1"># assume some time step in order to calculate sep</span>
+    <span class="n">yeardy</span> <span class="o">=</span> <span class="mf">365.24</span>
+    <span class="n">aursun</span> <span class="o">=</span> <span class="mf">214.95</span>
+    <span class="n">tb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">initial_binary_table</span><span class="p">[</span><span class="s1">&#39;porb&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">yeardy</span>
+    <span class="n">sep</span> <span class="o">=</span> <span class="n">aursun</span><span class="o">*</span><span class="p">(</span><span class="n">tb</span><span class="o">*</span><span class="n">tb</span><span class="o">*</span><span class="p">(</span><span class="n">mass1</span> <span class="o">+</span> <span class="n">mass2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">3.0</span><span class="p">)</span>
+
+    <span class="n">q1</span> <span class="o">=</span> <span class="n">mass1</span><span class="o">/</span><span class="n">mass2</span>
+    <span class="n">q2</span> <span class="o">=</span> <span class="n">mass2</span><span class="o">/</span><span class="n">mass1</span>
+    <span class="n">rol1</span> <span class="o">=</span> <span class="n">rl</span><span class="p">(</span><span class="n">q1</span><span class="p">)</span><span class="o">*</span><span class="n">sep</span>
+    <span class="n">rol2</span> <span class="o">=</span> <span class="n">rl</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span><span class="o">*</span><span class="n">sep</span>
+
+    <span class="c1"># check for a ZAMS that starts in RFOL</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">initial_binary_table</span><span class="p">[</span><span class="s1">&#39;kstar_1&#39;</span><span class="p">])</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rzams1</span> <span class="o">&gt;=</span> <span class="n">rol1</span><span class="p">))</span> <span class="o">|</span> <span class="p">((</span><span class="n">initial_binary_table</span><span class="p">[</span><span class="s1">&#39;kstar_2&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rzams2</span> <span class="o">&gt;=</span> <span class="n">rol2</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span> 
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;At least one of your initial binaries is starting in Roche Lobe Overflow:</span><span class="se">\n</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">initial_binary_table</span><span class="p">[</span><span class="n">mask</span><span class="p">]))</span>
+
+    <span class="k">return</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.0.0+212.g5477301',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
