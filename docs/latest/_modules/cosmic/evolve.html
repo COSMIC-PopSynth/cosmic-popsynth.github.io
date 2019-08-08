@@ -1,0 +1,536 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cosmic.evolve &mdash; cosmic 2.0.0+233.gf51ed69.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0.0+233.gf51ed69.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inifile/index.html">Configuration files for COSMIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Generate a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>cosmic.evolve</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cosmic.evolve</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright (C) Scott Coughlin (2017)</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of cosmic.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with cosmic.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;`evolve`</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">cosmic</span> <span class="k">import</span> <span class="n">_evolvebin</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">utils</span>
+
+<span class="kn">from</span> <span class="nn">configparser</span> <span class="k">import</span> <span class="n">ConfigParser</span>
+<span class="kn">from</span> <span class="nn">gwpy.utils</span> <span class="k">import</span> <span class="n">mp</span> <span class="k">as</span> <span class="n">mp_utils</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Katelyn Breivik &lt;katie.breivik@gmail.com&gt;&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="s1">&#39;Scott Coughlin &lt;scott.coughlin@ligo.org&gt;&#39;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Evolve&#39;</span><span class="p">]</span>
+
+
+<span class="n">BPP_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tphys&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span> <span class="p">,</span>
+               <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_1&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_2&#39;</span><span class="p">,</span> <span class="s1">&#39;evol_type&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;Vsys_1&#39;</span><span class="p">,</span> <span class="s1">&#39;Vsys_2&#39;</span><span class="p">,</span> <span class="s1">&#39;SNkick&#39;</span><span class="p">,</span> <span class="s1">&#39;SNtheta&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;aj_1&#39;</span><span class="p">,</span> <span class="s1">&#39;aj_2&#39;</span><span class="p">,</span> <span class="s1">&#39;tms_1&#39;</span><span class="p">,</span> <span class="s1">&#39;tms_2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;massc_1&#39;</span><span class="p">,</span> <span class="s1">&#39;massc_2&#39;</span><span class="p">,</span> <span class="s1">&#39;rad_1&#39;</span><span class="p">,</span> <span class="s1">&#39;rad_2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;bin_num&#39;</span><span class="p">]</span>
+
+<span class="n">BCM_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tphys&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass0_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;lumin_1&#39;</span><span class="p">,</span> <span class="s1">&#39;rad_1&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;teff_1&#39;</span><span class="p">,</span> <span class="s1">&#39;massc_1&#39;</span><span class="p">,</span> <span class="s1">&#39;radc_1&#39;</span><span class="p">,</span> <span class="s1">&#39;menv_1&#39;</span><span class="p">,</span> <span class="s1">&#39;renv_1&#39;</span><span class="p">,</span> <span class="s1">&#39;epoch_1&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ospin_1&#39;</span><span class="p">,</span> <span class="s1">&#39;deltam_1&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span> <span class="s1">&#39;mass0_2&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;lumin_2&#39;</span><span class="p">,</span> <span class="s1">&#39;rad_2&#39;</span><span class="p">,</span> <span class="s1">&#39;teff_2&#39;</span><span class="p">,</span> <span class="s1">&#39;massc_2&#39;</span><span class="p">,</span> <span class="s1">&#39;radc_2&#39;</span><span class="p">,</span> <span class="s1">&#39;menv_2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;renv_2&#39;</span><span class="p">,</span> <span class="s1">&#39;epoch_2&#39;</span><span class="p">,</span> <span class="s1">&#39;ospin_2&#39;</span><span class="p">,</span> <span class="s1">&#39;deltam_2&#39;</span><span class="p">,</span> <span class="s1">&#39;RROL_2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span> <span class="s1">&#39;B_0_1&#39;</span><span class="p">,</span> <span class="s1">&#39;B_0_2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;SNkick_1&#39;</span><span class="p">,</span> <span class="s1">&#39;SNkick_2&#39;</span><span class="p">,</span> <span class="s1">&#39;Vsys_final&#39;</span><span class="p">,</span> <span class="s1">&#39;SNtheta_final&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;SN_1&#39;</span><span class="p">,</span> <span class="s1">&#39;SN_2&#39;</span><span class="p">,</span> <span class="s1">&#39;bin_state&#39;</span><span class="p">,</span> <span class="s1">&#39;merger_type&#39;</span><span class="p">,</span> <span class="s1">&#39;bin_num&#39;</span><span class="p">]</span>
+
+<span class="n">INITIAL_CONDITIONS_PASS_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span> <span class="s1">&#39;mass1_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;mass2_binary&#39;</span><span class="p">,</span> <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;metallicity&#39;</span><span class="p">,</span> <span class="s1">&#39;tphysf&#39;</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;ceflag&#39;</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">,</span> <span class="s1">&#39;pisn&#39;</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;cekickflag&#39;</span><span class="p">,</span> <span class="s1">&#39;cemergeflag&#39;</span><span class="p">,</span> <span class="s1">&#39;cehestarflag&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;mxns&#39;</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;ecsn&#39;</span><span class="p">,</span> <span class="s1">&#39;ecsn_mlow&#39;</span><span class="p">,</span> <span class="s1">&#39;aic&#39;</span><span class="p">,</span> <span class="s1">&#39;ussn&#39;</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="s1">&#39;sigmadiv&#39;</span><span class="p">,</span> <span class="s1">&#39;bhsigmafrac&#39;</span><span class="p">,</span> <span class="s1">&#39;polar_kick_angle&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;natal_kick_array&#39;</span><span class="p">,</span> <span class="s1">&#39;qcrit_array&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="s1">&#39;xi&#39;</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;eddfac&#39;</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">,</span> <span class="s1">&#39;ck&#39;</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">,</span> <span class="s1">&#39;qcflag&#39;</span><span class="p">,</span> <span class="s1">&#39;dtp&#39;</span><span class="p">,</span>
+                             <span class="s1">&#39;randomseed&#39;</span><span class="p">,</span> <span class="s1">&#39;bin_num&#39;</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">major</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">minor</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+    <span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span> <span class="o">=</span> <span class="n">INITIAL_CONDITIONS_PASS_COLUMNS</span><span class="p">[:]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span> <span class="o">=</span> <span class="n">INITIAL_CONDITIONS_PASS_COLUMNS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;natal_kick_array&#39;</span><span class="p">,</span> <span class="s1">&#39;qcrit_array&#39;</span><span class="p">,]:</span>
+    <span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+
+<span class="n">NATAL_KICK_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SNkick_1&#39;</span><span class="p">,</span> <span class="s1">&#39;SNkick_2&#39;</span><span class="p">,</span> <span class="s1">&#39;phi_1&#39;</span><span class="p">,</span> <span class="s1">&#39;phi_2&#39;</span><span class="p">,</span> <span class="s1">&#39;theta_1&#39;</span><span class="p">,</span> <span class="s1">&#39;theta_2&#39;</span><span class="p">]</span>
+<span class="n">QCRIT_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;qcrit_</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kstar</span><span class="p">)</span> <span class="k">for</span> <span class="n">kstar</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">)]</span>
+
+<span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">NATAL_KICK_COLUMNS</span><span class="p">)</span>
+<span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">QCRIT_COLUMNS</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Evolve"><a class="viewcode-back" href="../../api/cosmic.evolve.html#cosmic.evolve.Evolve">[docs]</a><span class="k">class</span> <span class="nc">Evolve</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">():</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        initialize Evolve</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="Evolve.evolve"><a class="viewcode-back" href="../../api/cosmic.evolve.html#cosmic.evolve.Evolve.evolve">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">initialbinarytable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;After setting a number of initial conditions we evolve the system.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        initialbinarytable : DataFrame</span>
+<span class="sd">            Initial conditions of the binary</span>
+
+<span class="sd">        **kwargs: </span>
+<span class="sd">            There are three ways to tell evolve and thus the fortran</span>
+<span class="sd">            what you want all the flags and other BSE specific</span>
+<span class="sd">            parameters to be. If you pass both a dictionary of flags and/or a inifile</span>
+<span class="sd">            and a table with the BSE parameters in the columns, </span>
+<span class="sd">            the column values will be overwritten by </span>
+<span class="sd">            what is in the dictionary or ini file.</span>
+
+<span class="sd">            NUMBER 1: PASS A DICTIONARY OF FLAGS</span>
+
+<span class="sd">                 BSEDict</span>
+
+<span class="sd">            NUMBER 2: PASS A PANDAS DATA FRAME WITH PARAMS DEFINED AS COLUMNS</span>
+
+<span class="sd">                 All you need is the initialbinarytable if the all</span>
+<span class="sd">                 the BSE parameters are defined as columns</span>
+
+<span class="sd">            NUMBER 3: PASS PATH TO A INI FILE WITH THE FLAGS DEFINED</span>
+
+<span class="sd">                params</span>
+
+<span class="sd">        randomseed : `int`, optional, default let numpy choose for you</span>
+<span class="sd">            If you would like the random seed that the underlying fortran code</span>
+<span class="sd">            uses to be the same for all of the initial conditions you passed</span>
+<span class="sd">            then you can send this keyword argument in. It is recommended</span>
+<span class="sd">            to just let numpy choose a random number as the Fortran random seed</span>
+<span class="sd">            and then this number will be returned as a column in the</span>
+<span class="sd">            initial binary table so that you can reproduce the results.</span>
+
+<span class="sd">        nproc : `int`, optional, default: 1</span>
+<span class="sd">            number of CPUs to use to evolve systems</span>
+<span class="sd">            in parallel</span>
+
+<span class="sd">        idx : `int`, optional, default: 0</span>
+<span class="sd">            initial index of the bcm/bpp arrays</span>
+
+<span class="sd">        dtp : `float`, optional: default: tphysf</span>
+<span class="sd">            timestep size in Myr for bcm output where tphysf</span>
+<span class="sd">            is total evolution time in Myr</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        output_bpp : DataFrame</span>
+<span class="sd">            Evolutionary history of each binary</span>
+
+<span class="sd">        output_bcm : DataFrame</span>
+<span class="sd">            Final state of each binary</span>
+
+<span class="sd">        initialbinarytable : DataFrame</span>
+<span class="sd">            Initial conditions for each binary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;idx&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">nproc</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;nproc&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+
+        <span class="c1"># There are three ways to tell evolve and thus the fortran</span>
+        <span class="c1"># what you want all the flags and other BSE specific</span>
+        <span class="c1"># parameters to be</span>
+
+        <span class="c1"># NUMBER 1: PASS A DICTIONARY OF FLAGS</span>
+        <span class="n">BSEDict</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;BSEDict&#39;</span><span class="p">,</span> <span class="p">{})</span>
+
+        <span class="c1"># NUMBER 2: PASS A PANDAS DATA FRAME WITH PARAMS DEFINED AS COLUMNS</span>
+
+            <span class="c1"># All you need is the initialbinarytable with columns,</span>
+            <span class="c1"># If you pass both a dictionary of flags and/or a inifile</span>
+            <span class="c1"># and a table with the columns, the column values will be</span>
+            <span class="c1"># overwritten by what is in the dictionary or ini file</span>
+
+        <span class="c1"># NUMBER 3: PASS PATH TO A INI FILE WITH THE FLAGS DEFINED</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;params&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">BSEDict</span> <span class="ow">and</span> <span class="n">params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Please pass either a dictionary &#39;</span>
+                             <span class="s1">&#39;of BSE flags or a path to an inifle not both.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;File does not exist, probably supplied incorrect &quot;</span>
+                                 <span class="s2">&quot;path to the inifile.&quot;</span><span class="p">)</span>
+            <span class="c1"># then we construct a BSEDict out of the inifile contents</span>
+            <span class="c1"># ---- Create configuration-file-parser object and read parameters file.</span>
+            <span class="n">cp</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
+            <span class="n">cp</span><span class="o">.</span><span class="n">optionxform</span> <span class="o">=</span> <span class="nb">str</span>
+            <span class="n">cp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+            <span class="c1"># ---- Read needed variables from the inifile</span>
+            <span class="n">dictionary</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">cp</span><span class="o">.</span><span class="n">sections</span><span class="p">():</span>
+                <span class="n">dictionary</span><span class="p">[</span><span class="n">section</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">cp</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">section</span><span class="p">):</span>
+                    <span class="n">opt</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">section</span><span class="p">,</span> <span class="n">option</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">opt</span> <span class="o">==</span> <span class="s1">&#39;False&#39;</span><span class="p">:</span>
+                        <span class="n">opt</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">elif</span> <span class="n">opt</span> <span class="o">==</span> <span class="s1">&#39;True&#39;</span><span class="p">:</span>
+                        <span class="n">opt</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">dictionary</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="n">option</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">opt</span><span class="p">)</span>
+                    <span class="k">except</span><span class="p">:</span>
+                        <span class="n">dictionary</span><span class="p">[</span><span class="n">section</span><span class="p">][</span><span class="n">option</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt</span>
+
+            <span class="n">BSEDict</span> <span class="o">=</span> <span class="n">dictionary</span><span class="p">[</span><span class="s1">&#39;bse&#39;</span><span class="p">]</span>
+
+        <span class="c1"># error check the parameters you are trying to pass to BSE </span>
+        <span class="c1"># if we sent in a table with the parameter names</span>
+        <span class="c1"># then we will temporarily create a dictionary</span>
+        <span class="c1"># in order to verify that the values in the table</span>
+        <span class="c1"># are valid</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">error_check</span><span class="p">(</span><span class="n">BSEDict</span><span class="p">)</span>
+
+        <span class="c1"># check the initial conditions of the system and warn user if</span>
+        <span class="c1"># anything is weird about them, such as the star starts</span>
+        <span class="c1"># in Roche Lobe overflow</span>
+        <span class="n">utils</span><span class="o">.</span><span class="n">check_initial_conditions</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">)</span>
+
+        <span class="c1"># assign some columns based on keyword arguments but that</span>
+        <span class="c1"># can be overwritten by the params or BSEDict</span>
+        <span class="k">if</span> <span class="s1">&#39;dtp&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">dtp</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;dtp&#39;</span><span class="p">,</span> <span class="n">initialbinarytable</span><span class="p">[</span><span class="s1">&#39;tphysf&#39;</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="s1">&#39;randomseed&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">randomseed</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;randomseed&#39;</span><span class="p">,</span>
+                                                                                 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+                                                                                 <span class="p">)</span>
+                                                           <span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;bin_num&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">bin_num</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">)))</span>
+
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BSEDict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The value for </span><span class="si">{0}</span><span class="s2"> in initial binary table is being &quot;</span>
+                              <span class="s2">&quot;overwritten by the value of </span><span class="si">{0}</span><span class="s2"> from either the params &quot;</span>
+                              <span class="s2">&quot;file or the BSEDict.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="c1"># special columns that need to be handled differently</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;natal_kick_array&#39;</span><span class="p">:</span>
+                <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">natal_kick_array</span><span class="o">=</span><span class="p">[</span><span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;natal_kick_array&#39;</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">column_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">NATAL_KICK_COLUMNS</span><span class="p">):</span>
+                    <span class="n">kwargs1</span> <span class="o">=</span> <span class="p">{</span><span class="n">column_name</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;natal_kick_array&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">column_name</span><span class="p">)}</span>
+                    <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs1</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="s1">&#39;qcrit_array&#39;</span><span class="p">:</span>
+                <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">qcrit_array</span><span class="o">=</span><span class="p">[</span><span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;qcrit_array&#39;</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">kstar</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">):</span>
+                    <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;qcrit_</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kstar</span><span class="p">)]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">BSEDict</span><span class="p">[</span><span class="s1">&#39;qcrit_array&#39;</span><span class="p">][</span><span class="n">kstar</span><span class="p">]]</span><span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;qcrit_</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kstar</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="c1"># assigning values this way work for most of the parameters.</span>
+                <span class="n">kwargs1</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span><span class="p">}</span>
+                <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs1</span><span class="p">)</span>
+
+        <span class="c1"># Here we perform two checks</span>
+        <span class="c1"># First, if the BSE parameters are not in the initial binary table</span>
+        <span class="c1"># and either a dictionary or an inifile was not provided</span>
+        <span class="c1"># then we need to raise an ValueError and tell the user to provide</span>
+        <span class="c1"># either a dictionary or an inifile or add more columns</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">BSEDict</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">((</span><span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span> <span class="ow">and</span>
+                <span class="p">(</span><span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">INITIAL_BINARY_TABLE_PASS_COLUMNS</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">columns</span><span class="p">))):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You are passing BSE parameters as columns in the &quot;</span>
+                                 <span class="s2">&quot;initial binary table but not all BSE parameters are defined. &quot;</span>
+                                 <span class="s2">&quot;Please pass a BSEDict or a params file or make sure &quot;</span>
+                                 <span class="s2">&quot;you have all BSE parameters as columns </span><span class="si">{0}</span><span class="s2"> or </span><span class="si">{1}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                  <span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span><span class="p">,</span> <span class="n">INITIAL_BINARY_TABLE_PASS_COLUMNS</span><span class="p">))</span>
+
+        <span class="c1"># If you did not supply the natal kick or q crit array in the BSEdict then we construct</span>
+        <span class="c1"># it from the initial conditions table</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">NATAL_KICK_COLUMNS</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;natal_kick_array&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">BSEDict</span><span class="p">):</span>
+            <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">natal_kick_array</span><span class="o">=</span><span class="n">initialbinarytable</span><span class="p">[</span><span class="n">NATAL_KICK_COLUMNS</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">QCRIT_COLUMNS</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="o">.</span><span class="n">all</span><span class="p">())</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;qcrit_array&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">BSEDict</span><span class="p">):</span>
+            <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">qcrit_array</span><span class="o">=</span><span class="n">initialbinarytable</span><span class="p">[</span><span class="n">QCRIT_COLUMNS</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+
+        <span class="c1"># need to ensure that the order of parameters that we pass to BSE</span>
+        <span class="c1"># is correct</span>
+        <span class="n">initial_conditions</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="p">[</span><span class="n">INITIAL_CONDITIONS_PASS_COLUMNS</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+        <span class="c1"># we use different columns to save the BSE parameters because some</span>
+        <span class="c1"># of the parameters are list/arrays which we instead save as</span>
+        <span class="c1"># individual values because it makes saving to HDF5 easier/more efficient.</span>
+        <span class="n">initialbinarytable</span> <span class="o">=</span> <span class="n">initialbinarytable</span><span class="p">[</span><span class="n">INITIAL_BINARY_TABLE_SAVE_COLUMNS</span><span class="p">]</span>
+
+        <span class="c1"># define multiprocessing method</span>
+        <span class="k">def</span> <span class="nf">_evolve_single_system</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># kstar, mass, orbital period (days), eccentricity, metaliccity, evolution time (millions of years)</span>
+                <span class="p">[</span><span class="n">bpp</span><span class="p">,</span> <span class="n">bcm</span><span class="p">]</span> <span class="o">=</span> <span class="n">_evolvebin</span><span class="o">.</span><span class="n">evolv2</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span>
+                                               <span class="n">f</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">19</span><span class="p">],</span>
+                                               <span class="n">f</span><span class="p">[</span><span class="mi">20</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">25</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">27</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">29</span><span class="p">],</span>
+                                               <span class="n">f</span><span class="p">[</span><span class="mi">30</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">31</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">32</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">33</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">34</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">35</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">36</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">37</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">38</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">39</span><span class="p">],</span>
+                                               <span class="n">f</span><span class="p">[</span><span class="mi">40</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">41</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">43</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">44</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">45</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">46</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">47</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">48</span><span class="p">])</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">bpp</span> <span class="o">=</span> <span class="n">bpp</span><span class="p">[:</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">bpp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+                    <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="p">[:</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">bcm</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                    <span class="n">bpp</span> <span class="o">=</span> <span class="n">bpp</span><span class="p">[:</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">bpp</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+                    <span class="n">bcm</span> <span class="o">=</span> <span class="n">bcm</span><span class="p">[:</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">bcm</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+                    <span class="k">raise</span> <span class="ne">Warning</span><span class="p">(</span><span class="s1">&#39;bpp overload: mass1 = </span><span class="si">{0}</span><span class="s1">, mass2 = </span><span class="si">{1}</span><span class="s1">, porb = </span><span class="si">{2}</span><span class="s1">, ecc = </span><span class="si">{3}</span><span class="s1">, tphysf = </span><span class="si">{4}</span><span class="s1">, metallicity = </span><span class="si">{5}</span><span class="s1">&#39;</span>\
+                                   <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="mi">6</span><span class="p">]))</span>
+
+                <span class="n">bpp_bin_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">49</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bpp</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
+                <span class="n">bcm_bin_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">f</span><span class="p">[</span><span class="mi">49</span><span class="p">]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">bcm</span><span class="p">)))</span><span class="o">.</span><span class="n">T</span>
+
+                <span class="n">bpp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">bpp</span><span class="p">,</span> <span class="n">bpp_bin_numbers</span><span class="p">))</span>
+                <span class="n">bcm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">bcm</span><span class="p">,</span> <span class="n">bcm_bin_numbers</span><span class="p">))</span>
+
+                <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">bpp</span><span class="p">,</span> <span class="n">bcm</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span>
+
+        <span class="c1"># evolve sysyems</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">mp_utils</span><span class="o">.</span><span class="n">multiprocess_with_queues</span><span class="p">(</span>
+            <span class="n">nproc</span><span class="p">,</span> <span class="n">_evolve_single_system</span><span class="p">,</span> <span class="n">initial_conditions</span><span class="p">,</span> <span class="n">raise_exceptions</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">bpp_arrays</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">output</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">bcm_arrays</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">output</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+
+        <span class="n">bpp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bpp_arrays</span><span class="p">,</span>
+                           <span class="n">columns</span><span class="o">=</span><span class="n">BPP_COLUMNS</span><span class="p">,</span>
+                           <span class="n">index</span><span class="o">=</span><span class="n">bpp_arrays</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+
+        <span class="n">bcm</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">bcm_arrays</span><span class="p">,</span>
+                           <span class="n">columns</span><span class="o">=</span><span class="n">BCM_COLUMNS</span><span class="p">,</span>
+                           <span class="n">index</span><span class="o">=</span><span class="n">bcm_arrays</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+
+        <span class="n">bcm</span><span class="o">.</span><span class="n">merger_type</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">merger_type</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">bin_state</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">bpp</span><span class="o">.</span><span class="n">bin_num</span> <span class="o">=</span> <span class="n">bpp</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span> <span class="o">=</span> <span class="n">bcm</span><span class="o">.</span><span class="n">bin_num</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">bpp</span><span class="p">,</span> <span class="n">bcm</span><span class="p">,</span> <span class="n">initialbinarytable</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.0.0+233.gf51ed69.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

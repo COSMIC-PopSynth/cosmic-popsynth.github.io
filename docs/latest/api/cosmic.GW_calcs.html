@@ -1,0 +1,885 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+233.gf51ed69.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0.0+233.gf51ed69.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/cosmic.GW_calcs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-cosmic.GW_calcs"></span><p>GW_calcs</p>
+<dl class="function">
+<dt id="cosmic.GW_calcs.sep_from_p">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">sep_from_p</code><span class="sig-paren">(</span><em>p</em>, <em>m1</em>, <em>m2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#sep_from_p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.sep_from_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the separation from orbital period with KEPLER III</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>p</strong> : float/array</p>
+<blockquote>
+<div><p>orbital period [yr]</p>
+</div></blockquote>
+<p><strong>m1</strong> : float/array</p>
+<blockquote>
+<div><p>primary mass [kg]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float/array</p>
+<blockquote>
+<div><p>secondary mass [kg]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>sep</strong> : float/array</p>
+<blockquote class="last">
+<div><p>separation [au]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.p_from_a">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">p_from_a</code><span class="sig-paren">(</span><em>sep</em>, <em>m1</em>, <em>m2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#p_from_a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.p_from_a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes separation from orbital period with kepler III</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>sep</strong> : float/array</p>
+<blockquote>
+<div><p>separation [au]</p>
+</div></blockquote>
+<p><strong>m1</strong> : float/array</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float/array</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>p</strong> : float/array</p>
+<blockquote class="last">
+<div><p>orbital period [yr]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.comoving_distance">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">comoving_distance</code><span class="sig-paren">(</span><em>z</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#comoving_distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.comoving_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the comoving distance given a redshift
+with cosmo params from <a class="reference external" href="http://adsabs.harvard.edu/abs/2014ApJ...794..135B">Bennet+2014</a>
+following <a class="reference external" href="http://www.astro.ucla.edu/~wright/CosmoCalc.html">Ned Wright’s site</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>z</strong> : float</p>
+<blockquote>
+<div><p>redshift</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>D_co</strong> : float</p>
+<blockquote class="last">
+<div><p>Comoving distance [Mpc]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.luminosity_distance">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">luminosity_distance</code><span class="sig-paren">(</span><em>z</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#luminosity_distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.luminosity_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the luminosity distance given a redshift</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>z</strong> : float</p>
+<blockquote>
+<div><p>redshift</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>D_lum</strong> : float</p>
+<blockquote class="last">
+<div><p>Luminosity distance [Mpc]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.z_from_lum_distance">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">z_from_lum_distance</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#z_from_lum_distance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.z_from_lum_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the redshift given a luminosity distance</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>d</strong> : float</p>
+<blockquote>
+<div><p>Luminosity distance [Mpc]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>z_redshift</strong> : float</p>
+<blockquote class="last">
+<div><p>Redshift</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.m_chirp">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">m_chirp</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#m_chirp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.m_chirp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the chirp mass in the units of mass supplied</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : float or array</p>
+<blockquote>
+<div><p>primary mass</p>
+</div></blockquote>
+<p><strong>m2</strong> : float or array</p>
+<blockquote>
+<div><p>secondary mass</p>
+</div></blockquote>
+<p><strong>z</strong> : float or array</p>
+<blockquote>
+<div><p>redshift</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>mchirp</strong> : float or array</p>
+<blockquote class="last">
+<div><p>chirp mass in units of mass supplied in the detector
+frame if redshift is provided, else redshift=0</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.peak_gw_freq">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">peak_gw_freq</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>ecc</em>, <em>porb</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#peak_gw_freq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.peak_gw_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the peak gravitational-wave frequency for an
+eccentric binary system. Units are SI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : float or array</p>
+<blockquote>
+<div><p>primary mass [kg]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float or array</p>
+<blockquote>
+<div><p>secondary mass [kg]</p>
+</div></blockquote>
+<p><strong>ecc</strong> : float or array</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+<p><strong>porb</strong> : float or array</p>
+<blockquote>
+<div><p>orbital period [s]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>f_gw_peak</strong> : float or array</p>
+<blockquote class="last">
+<div><p>peak gravitational-wave frequency [Hz]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.peters_g">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">peters_g</code><span class="sig-paren">(</span><em>e</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#peters_g"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.peters_g" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the factor g_n from Peters &amp; Mathews 1963</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>e</strong> : float or array</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+<p><strong>n</strong> : int</p>
+<blockquote>
+<div><p>nth frequency harmonic</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>g_fac</strong> : array</p>
+<blockquote class="last">
+<div><p>array of g_n</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.F_e">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">F_e</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#F_e"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.F_e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the Peters &amp; Mathews 1963 F(e)
+factor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>e</strong> : float or array</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>F_e</strong> : array</p>
+<blockquote class="last">
+<div><p>eccentricity factor</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.n_max">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">n_max</code><span class="sig-paren">(</span><em>ecc</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#n_max"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.n_max" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the maximum number of harmonics
+needed to compute SNRs given an array of
+eccentricities.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>ecc</strong> : array</p>
+<blockquote>
+<div><p>Eccentricity</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>n_max</strong> : array</p>
+<blockquote class="last">
+<div><p>Maximum number of harmonics to use when
+computing eccentric LISA SNR</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.hc2_circ">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">hc2_circ</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>f_orb</em>, <em>D</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#hc2_circ"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.hc2_circ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the characterstic power (square of the
+characterstic strain) for a population of binaries
+in the Galaxy. This assumes the binaries are
+circular and redshift can be passed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : array/float</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : array/float</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+<p><strong>f_orb</strong> : array/float</p>
+<blockquote>
+<div><p>orbital frequency [Hz]</p>
+</div></blockquote>
+<p><strong>D</strong> : array/float</p>
+<blockquote>
+<div><p>Luminosity distance [Mpc]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>hc2_circ</strong> : array/float</p>
+<blockquote class="last">
+<div><p>characteristic power</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.hc2">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">hc2</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>f_orb</em>, <em>D</em>, <em>e</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#hc2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.hc2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the characterstic power (square of the
+characterstic strain) for a population of binaries
+in the Galaxy. Redshift can be passed as a kwarg.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : float</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+<p><strong>f_orb</strong> : float</p>
+<blockquote>
+<div><p>orbital frequency [Hz]</p>
+</div></blockquote>
+<p><strong>D</strong> : float</p>
+<blockquote>
+<div><p>Luminosity Distance [Mpc]</p>
+</div></blockquote>
+<p><strong>e</strong> : float</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+<p><strong>n</strong> : int</p>
+<blockquote>
+<div><p>integer harmonic of orbital frequency</p>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>Returns</strong></dt>
+<dd></dd>
+<dt><strong>——-</strong></dt>
+<dd></dd>
+</dl>
+<p><strong>hc2_n</strong> : float</p>
+<blockquote class="last">
+<div><p>characteristic power at the nth harmonic</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.da_dt">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">da_dt</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>a</em>, <em>e</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#da_dt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.da_dt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes da/dt from Peters and Matthews 1963;
+assumes all units are SI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : float</p>
+<blockquote>
+<div><p>primary mass [kg]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float</p>
+<blockquote>
+<div><p>secondary mass [kg]</p>
+</div></blockquote>
+<p><strong>a</strong> : float</p>
+<blockquote>
+<div><p>semimajor axis [m]</p>
+</div></blockquote>
+<p><strong>e</strong> : float</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>da/dt</strong> : float</p>
+<blockquote class="last">
+<div><p>semimajor axis rate of change [m/s]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.de_dt">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">de_dt</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>a</em>, <em>e</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#de_dt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.de_dt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes de/dt from Peters and Matthews 1963;
+assumes all units are SI</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : float</p>
+<blockquote>
+<div><p>primary mass [kg]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float</p>
+<blockquote>
+<div><p>secondary mass [kg]</p>
+</div></blockquote>
+<p><strong>a</strong> : float</p>
+<blockquote>
+<div><p>semimajor axis [m]</p>
+</div></blockquote>
+<p><strong>e</strong> : float</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>de_dt</strong> : float</p>
+<blockquote class="last">
+<div><p>eccentricity rate of change [1/s]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.peters_evolution">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">peters_evolution</code><span class="sig-paren">(</span><em>a_0</em>, <em>e_0</em>, <em>m1</em>, <em>m2</em>, <em>t_evol</em>, <em>nstep</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#peters_evolution"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.peters_evolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the evolution of a binary with spacing according
+to the amount of time specified. Calculation is in SI;
+Returns values in units specified.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>a_0</strong> : float</p>
+<blockquote>
+<div><p>initial semimajor axis [au]</p>
+</div></blockquote>
+<p><strong>e_0</strong> : float</p>
+<blockquote>
+<div><p>initial eccentricity</p>
+</div></blockquote>
+<p><strong>m1</strong> : float</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+<p><strong>t_evol</strong> : float</p>
+<blockquote>
+<div><p>evolution time [sec]</p>
+</div></blockquote>
+<p><strong>nstep</strong> : int</p>
+<blockquote>
+<div><p>number of timesteps for evolution</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>a_array</strong> : array</p>
+<blockquote>
+<div><p>evolution of semimajor axis [au]</p>
+</div></blockquote>
+<p><strong>e_array</strong> : array</p>
+<blockquote>
+<div><p>evolution of eccentricity</p>
+</div></blockquote>
+<p><strong>t_array</strong> : array</p>
+<blockquote class="last">
+<div><p>evolution of time [yr]</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.snr_calc">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">snr_calc</code><span class="sig-paren">(</span><em>f_vals</em>, <em>hc_n_vals</em>, <em>noise_vals</em>, <em>averaging_factor=0.8</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#snr_calc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.snr_calc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the SNR sum over the characteristic strain evolution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>f_vals</strong> : array</p>
+<blockquote>
+<div><p>frequencies in the characteristic strain evolution</p>
+</div></blockquote>
+<p><strong>hc_n_vals</strong> : array</p>
+<blockquote>
+<div><p>characterstic strain evolution at different Peters harmonics</p>
+</div></blockquote>
+<p><strong>noise_vals</strong> : array</p>
+<blockquote>
+<div><p>LISA sensitivity curve values</p>
+</div></blockquote>
+<p><strong>averaging_factor</strong> : float</p>
+<blockquote>
+<div><p>Factor to average over inclination values of the binary</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>snr</strong> : float</p>
+<blockquote class="last">
+<div><p>Sum of SNRs across all Peters harmonics</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.snr_chirping">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">snr_chirping</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>a</em>, <em>e</em>, <em>d_lum</em>, <em>t_obs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#snr_chirping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.snr_chirping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the LISA SNR for a chirping, eccentric binary
+using the Robson, Cornish, and Liu 2018 characteristic
+strain sensivity curve</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : float</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+<p><strong>a</strong> : float</p>
+<blockquote>
+<div><p>semimajor axis [au]</p>
+</div></blockquote>
+<p><strong>e</strong> : float</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+<p><strong>d_lum</strong> : float</p>
+<blockquote>
+<div><p>Distance [Mpc]</p>
+</div></blockquote>
+<p><strong>t_obs</strong> : float</p>
+<blockquote>
+<div><p>LISA observation time [yr]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>snr</strong> : float</p>
+<blockquote class="last">
+<div><p>LISA snr</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.LISA_foreground_combo">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">LISA_foreground_combo</code><span class="sig-paren">(</span><em>foreground_freq</em>, <em>foreground_hc2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#LISA_foreground_combo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.LISA_foreground_combo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the combination of the population foreground and LISA
+sensitivity in characteristic strain</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>foreground_freq</strong> : array</p>
+<blockquote>
+<div><p>gravitational wave frequencies [Hz]</p>
+</div></blockquote>
+<p><strong>foreground_hc2</strong> : array</p>
+<blockquote>
+<div><p>characteristic powers [Hz^-1]</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>LISA_curve_combo</strong> : interpolation</p>
+<blockquote class="last">
+<div><p>interpolation of characteristic power for the Galactic
+foreground and LISA sensitivity combined</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.GW_calcs.LISA_foreground">
+<code class="descclassname">cosmic.GW_calcs.</code><code class="descname">LISA_foreground</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>f_orb</em>, <em>d_lum</em>, <em>t_obs</em>, <em>rolling_window=100</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/GW_calcs.html#LISA_foreground"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.GW_calcs.LISA_foreground" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the gravitational-wave foreground in characteristic
+power according to the LISA frequency resolution where 1
+frequency bin has a binwidth of 1/(Tobs [s])</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>m1</strong> : array</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : array</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+<p><strong>f_orb</strong> : array/float</p>
+<blockquote>
+<div><p>orbital frequency [Hz]</p>
+</div></blockquote>
+<p><strong>d_lum</strong> : array</p>
+<blockquote>
+<div><p>Distance [Mpc]</p>
+</div></blockquote>
+<p><strong>z</strong> : array</p>
+<blockquote>
+<div><p>redshift, Tobs=4):</p>
+</div></blockquote>
+<p><strong>t_obs</strong> : float</p>
+<blockquote>
+<div><p>LISA observation time [yr]; Default=4 yr</p>
+</div></blockquote>
+<p><strong>rolling_window</strong> : int</p>
+<blockquote>
+<div><p>Number of bins to compute a rolling median over</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>foreground_freq</strong> : array</p>
+<blockquote>
+<div><p>array of frequencies of the LISA foreground</p>
+</div></blockquote>
+<p><strong>foreground_hc2</strong> : array</p>
+<blockquote class="last">
+<div><p>array of characteristic power of the LISA foreground</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.0.0+233.gf51ed69.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

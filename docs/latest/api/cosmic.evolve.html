@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+233.gf51ed69.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0.0+233.gf51ed69.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/cosmic.evolve.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-cosmic.evolve"></span><p><cite>evolve</cite></p>
+<dl class="class">
+<dt id="cosmic.evolve.Evolve">
+<em class="property">class </em><code class="descclassname">cosmic.evolve.</code><code class="descname">Evolve</code><a class="reference internal" href="../_modules/cosmic/evolve.html#Evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.evolve.Evolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="classmethod">
+<dt id="cosmic.evolve.Evolve.evolve">
+<em class="property">classmethod </em><code class="descname">evolve</code><span class="sig-paren">(</span><em>initialbinarytable</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cosmic/evolve.html#Evolve.evolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cosmic.evolve.Evolve.evolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>After setting a number of initial conditions we evolve the system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>initialbinarytable</strong> : DataFrame</p>
+<blockquote>
+<div><p>Initial conditions of the binary</p>
+</div></blockquote>
+<p><strong>**kwargs:</strong></p>
+<blockquote>
+<div><p>There are three ways to tell evolve and thus the fortran
+what you want all the flags and other BSE specific
+parameters to be. If you pass both a dictionary of flags and/or a inifile
+and a table with the BSE parameters in the columns, 
+the column values will be overwritten by 
+what is in the dictionary or ini file.</p>
+<p>NUMBER 1: PASS A DICTIONARY OF FLAGS</p>
+<blockquote>
+<div><p>BSEDict</p>
+</div></blockquote>
+<p>NUMBER 2: PASS A PANDAS DATA FRAME WITH PARAMS DEFINED AS COLUMNS</p>
+<blockquote>
+<div><p>All you need is the initialbinarytable if the all
+the BSE parameters are defined as columns</p>
+</div></blockquote>
+<p>NUMBER 3: PASS PATH TO A INI FILE WITH THE FLAGS DEFINED</p>
+<blockquote>
+<div><p>params</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>randomseed</strong> : <cite>int</cite>, optional, default let numpy choose for you</p>
+<blockquote>
+<div><p>If you would like the random seed that the underlying fortran code
+uses to be the same for all of the initial conditions you passed
+then you can send this keyword argument in. It is recommended
+to just let numpy choose a random number as the Fortran random seed
+and then this number will be returned as a column in the
+initial binary table so that you can reproduce the results.</p>
+</div></blockquote>
+<p><strong>nproc</strong> : <cite>int</cite>, optional, default: 1</p>
+<blockquote>
+<div><p>number of CPUs to use to evolve systems
+in parallel</p>
+</div></blockquote>
+<p><strong>idx</strong> : <cite>int</cite>, optional, default: 0</p>
+<blockquote>
+<div><p>initial index of the bcm/bpp arrays</p>
+</div></blockquote>
+<p><strong>dtp</strong> : <cite>float</cite>, optional: default: tphysf</p>
+<blockquote>
+<div><p>timestep size in Myr for bcm output where tphysf
+is total evolution time in Myr</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output_bpp</strong> : DataFrame</p>
+<blockquote>
+<div><p>Evolutionary history of each binary</p>
+</div></blockquote>
+<p><strong>output_bcm</strong> : DataFrame</p>
+<blockquote>
+<div><p>Final state of each binary</p>
+</div></blockquote>
+<p><strong>initialbinarytable</strong> : DataFrame</p>
+<blockquote class="last">
+<div><p>Initial conditions for each binary</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'2.0.0+233.gf51ed69.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

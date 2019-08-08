@@ -1,0 +1,858 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cosmic.GW_calcs &mdash; cosmic 2.0.0+233.gf51ed69.dirty documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/cosmic-docs.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> cosmic
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.0.0+233.gf51ed69.dirty
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../inifile/index.html">Configuration files for COSMIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../runpop/index.html">Generate a binary population by hand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">cosmic</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>cosmic.GW_calcs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for cosmic.GW_calcs</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright (C) Scott Coughlin (2017)</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of cosmic.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># cosmic is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with cosmic.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&#39;&#39;&#39;GW_calcs</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">scipy.special</span> <span class="k">as</span> <span class="nn">ss</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="k">import</span> <span class="n">brentq</span>
+<span class="kn">from</span> <span class="nn">.lisa_sensitivity</span> <span class="k">import</span> <span class="n">lisa_characteristic_noise</span> <span class="k">as</span> <span class="n">LISA_hc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="k">import</span> <span class="n">interp1d</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Katelyn Breivik &lt;katie.breivik@gmail.com&gt;&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="s1">&#39;Scott Coughlin &lt;scott.coughlin@ligo.org&gt;&#39;</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sep_from_p&#39;</span><span class="p">,</span> <span class="s1">&#39;p_from_a&#39;</span><span class="p">,</span> <span class="s1">&#39;comoving_distance&#39;</span><span class="p">,</span> <span class="s1">&#39;luminosity_distance&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;z_from_lum_distance&#39;</span><span class="p">,</span> <span class="s1">&#39;m_chirp&#39;</span><span class="p">,</span> <span class="s1">&#39;peak_gw_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;peters_g&#39;</span><span class="p">,</span> <span class="s1">&#39;F_e&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;n_max&#39;</span><span class="p">,</span> <span class="s1">&#39;hc2_circ&#39;</span><span class="p">,</span> <span class="s1">&#39;hc2&#39;</span><span class="p">,</span> <span class="s1">&#39;da_dt&#39;</span><span class="p">,</span> <span class="s1">&#39;de_dt&#39;</span><span class="p">,</span> <span class="s1">&#39;peters_evolution&#39;</span><span class="p">,</span>
+           <span class="s1">&#39;snr_calc&#39;</span><span class="p">,</span> <span class="s1">&#39;snr_chirping&#39;</span><span class="p">,</span> <span class="s1">&#39;LISA_foreground_combo&#39;</span><span class="p">,</span> <span class="s1">&#39;LISA_foreground&#39;</span><span class="p">]</span>
+
+
+<span class="n">G</span> <span class="o">=</span> <span class="mf">6.67384e-11</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mf">2.99792458e8</span>
+<span class="n">parsec</span> <span class="o">=</span> <span class="mf">3.08567758e16</span>
+<span class="n">Rsun</span> <span class="o">=</span> <span class="mf">6.955e8</span>
+<span class="n">Msun</span> <span class="o">=</span> <span class="mf">1.9891e30</span>
+<span class="n">day</span> <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="n">m_in_au</span> <span class="o">=</span> <span class="mf">1.496e+11</span>
+<span class="n">rsun_in_au</span> <span class="o">=</span> <span class="mf">215.0954</span>
+<span class="n">day_in_year</span> <span class="o">=</span> <span class="mf">365.242</span>
+<span class="n">sec_in_day</span> <span class="o">=</span> <span class="mf">86400.0</span>
+<span class="n">sec_in_hour</span> <span class="o">=</span> <span class="mf">3600.0</span>
+<span class="n">hrs_in_day</span> <span class="o">=</span> <span class="mf">24.0</span>
+<span class="n">sec_in_year</span> <span class="o">=</span> <span class="mf">3.15569e7</span>
+<span class="n">geo_mass</span> <span class="o">=</span> <span class="n">G</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">x_sun</span> <span class="o">=</span> <span class="mf">8.5</span>
+<span class="n">y_sun</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">z_sun</span> <span class="o">=</span> <span class="mf">0.02</span>
+
+<div class="viewcode-block" id="sep_from_p"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.sep_from_p">[docs]</a><span class="k">def</span> <span class="nf">sep_from_p</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the separation from orbital period with KEPLER III</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    p : float/array</span>
+<span class="sd">        orbital period [yr]</span>
+<span class="sd">    m1 : float/array</span>
+<span class="sd">        primary mass [kg]</span>
+<span class="sd">    m2 : float/array</span>
+<span class="sd">        secondary mass [kg]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sep : float/array</span>
+<span class="sd">        separation [au]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sep_3</span> <span class="o">=</span> <span class="n">p</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sep_3</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="p_from_a"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.p_from_a">[docs]</a><span class="k">def</span> <span class="nf">p_from_a</span><span class="p">(</span><span class="n">sep</span><span class="p">,</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes separation from orbital period with kepler III</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sep : float/array</span>
+<span class="sd">        separation [au]</span>
+<span class="sd">    m1 : float/array</span>
+<span class="sd">        primary mass [msun]</span>
+<span class="sd">    m2 : float/array</span>
+<span class="sd">        secondary mass [msun]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    p : float/array</span>
+<span class="sd">        orbital period [yr]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">p_2</span> <span class="o">=</span> <span class="n">sep</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p_2</span><span class="o">**</span><span class="mf">0.5</span></div>
+
+<div class="viewcode-block" id="comoving_distance"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.comoving_distance">[docs]</a><span class="k">def</span> <span class="nf">comoving_distance</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the comoving distance given a redshift</span>
+<span class="sd">    with cosmo params from `Bennet+2014 &lt;http://adsabs.harvard.edu/abs/2014ApJ...794..135B&gt;`_</span>
+<span class="sd">    following `Ned Wright&#39;s site &lt;http://www.astro.ucla.edu/~wright/CosmoCalc.html&gt;`_</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    z : float</span>
+<span class="sd">        redshift</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    D_co : float</span>
+<span class="sd">       Comoving distance [Mpc]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">h</span> <span class="o">=</span> <span class="mf">0.696</span>
+    <span class="n">omegaM</span> <span class="o">=</span> <span class="mf">0.286</span>
+    <span class="n">omegaK</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">omegaL</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">0.286</span>
+    <span class="n">dh</span> <span class="o">=</span> <span class="mf">3000.</span> <span class="o">/</span> <span class="n">h</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">zp</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">omegaM</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">zp</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">omegaL</span><span class="p">)</span>
+
+    <span class="n">D_co</span> <span class="o">=</span> <span class="n">dh</span><span class="o">*</span><span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">D_co</span></div>
+
+<div class="viewcode-block" id="luminosity_distance"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.luminosity_distance">[docs]</a><span class="k">def</span> <span class="nf">luminosity_distance</span><span class="p">(</span><span class="n">z</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the luminosity distance given a redshift</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    z : float</span>
+<span class="sd">        redshift</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    D_lum : float</span>
+<span class="sd">        Luminosity distance [Mpc]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">D_lum</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">comoving_distance</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">D_lum</span></div>
+
+<div class="viewcode-block" id="z_from_lum_distance"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.z_from_lum_distance">[docs]</a><span class="k">def</span> <span class="nf">z_from_lum_distance</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the redshift given a luminosity distance</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    d : float</span>
+<span class="sd">        Luminosity distance [Mpc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    z_redshift : float</span>
+<span class="sd">        Redshift</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">zero</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">luminosity_distance</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">-</span> <span class="n">d</span>
+    <span class="n">z_redshift</span> <span class="o">=</span> <span class="n">brentq</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z_redshift</span></div>
+
+
+<div class="viewcode-block" id="m_chirp"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.m_chirp">[docs]</a><span class="k">def</span> <span class="nf">m_chirp</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the chirp mass in the units of mass supplied</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : float or array</span>
+<span class="sd">        primary mass</span>
+<span class="sd">    m2 : float or array</span>
+<span class="sd">        secondary mass</span>
+<span class="sd">    z : float or array</span>
+<span class="sd">        redshift</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mchirp : float or array</span>
+<span class="sd">        chirp mass in units of mass supplied in the detector</span>
+<span class="sd">        frame if redshift is provided, else redshift=0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="n">z</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="n">m_chirp</span> <span class="o">=</span> <span class="p">(</span><span class="n">m1</span><span class="o">*</span><span class="n">m2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">3.</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">5.</span><span class="p">)</span>
+    <span class="n">m_chirp_obs</span> <span class="o">=</span> <span class="n">m_chirp</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">m_chirp_obs</span></div>
+
+<div class="viewcode-block" id="peak_gw_freq"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.peak_gw_freq">[docs]</a><span class="k">def</span> <span class="nf">peak_gw_freq</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">ecc</span><span class="p">,</span> <span class="n">porb</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the peak gravitational-wave frequency for an</span>
+<span class="sd">    eccentric binary system. Units are SI</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : float or array</span>
+<span class="sd">        primary mass [kg]</span>
+<span class="sd">    m2 : float or array</span>
+<span class="sd">        secondary mass [kg]</span>
+<span class="sd">    ecc : float or array</span>
+<span class="sd">        eccentricity</span>
+<span class="sd">    porb : float or array</span>
+<span class="sd">        orbital period [s]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    f_gw_peak : float or array</span>
+<span class="sd">        peak gravitational-wave frequency [Hz]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># convert the orbital period into a separation using Kepler III</span>
+    <span class="n">sep_m</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">porb</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span>
+
+    <span class="n">f_gw_peak</span> <span class="o">=</span> <span class="p">((</span><span class="n">G</span><span class="o">*</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">ecc</span><span class="p">)</span><span class="o">**</span><span class="mf">1.1954</span><span class="o">/</span><span class="p">(</span><span class="n">sep_m</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ecc</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">1.5</span>
+    <span class="k">return</span> <span class="n">f_gw_peak</span></div>
+
+<div class="viewcode-block" id="peters_g"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.peters_g">[docs]</a><span class="k">def</span> <span class="nf">peters_g</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the factor g_n from Peters &amp; Mathews 1963</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    e : float or array</span>
+<span class="sd">        eccentricity</span>
+<span class="sd">    n : int</span>
+<span class="sd">        nth frequency harmonic</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    g_fac : array</span>
+<span class="sd">        array of g_n</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">g_fac</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">**</span><span class="mi">4</span> <span class="o">/</span> <span class="mf">32.0</span><span class="p">)</span><span class="o">*</span><span class="p">((</span><span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">))</span> <span class="o">-</span>\
+                            <span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="o">*</span><span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">))</span> <span class="o">+</span>\
+                            <span class="mf">2.0</span><span class="o">/</span><span class="n">n</span><span class="o">*</span><span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">))</span> <span class="o">+</span>\
+                            <span class="mi">2</span><span class="o">*</span><span class="n">e</span><span class="o">*</span><span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">))</span> <span class="o">-</span>\
+                            <span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>\
+                           <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">e</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">))</span> <span class="o">-</span>\
+                                     <span class="mi">2</span><span class="o">*</span><span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">))</span> <span class="o">+</span>\
+                                     <span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>\
+                           <span class="p">(</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mf">3.0</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">ss</span><span class="o">.</span><span class="n">jv</span><span class="p">((</span><span class="n">n</span><span class="p">),</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">e</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">g_fac</span></div>
+
+<div class="viewcode-block" id="F_e"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.F_e">[docs]</a><span class="k">def</span> <span class="nf">F_e</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the Peters &amp; Mathews 1963 F(e)</span>
+<span class="sd">    factor</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    e : float or array</span>
+<span class="sd">        eccentricity</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    F_e : array</span>
+<span class="sd">        eccentricity factor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">nominator</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">73.</span><span class="o">/</span><span class="mf">24.</span><span class="o">*</span><span class="n">e</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mf">37.</span><span class="o">/</span><span class="mf">96.</span><span class="o">*</span><span class="n">e</span><span class="o">**</span><span class="mi">4</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">e</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">7.</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+    <span class="n">F_e</span> <span class="o">=</span> <span class="n">nominator</span><span class="o">/</span><span class="n">denominator</span>
+
+    <span class="k">return</span> <span class="n">F_e</span></div>
+
+<div class="viewcode-block" id="n_max"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.n_max">[docs]</a><span class="k">def</span> <span class="nf">n_max</span><span class="p">(</span><span class="n">ecc</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the maximum number of harmonics</span>
+<span class="sd">    needed to compute SNRs given an array of</span>
+<span class="sd">    eccentricities.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ecc : array</span>
+<span class="sd">        Eccentricity</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    n_max : array</span>
+<span class="sd">        Maximum number of harmonics to use when</span>
+<span class="sd">        computing eccentric LISA SNR</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n_max</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ecc</span><span class="p">))</span>
+
+    <span class="n">ind_05</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">ecc</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ecc</span> <span class="o">&lt;=</span><span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">n_max</span><span class="p">[</span><span class="n">ind_05</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+
+    <span class="n">ind_07</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">ecc</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ecc</span> <span class="o">&lt;=</span><span class="mf">0.7</span><span class="p">))</span>
+    <span class="n">n_max</span><span class="p">[</span><span class="n">ind_07</span><span class="p">]</span> <span class="o">=</span> <span class="mi">50</span>
+
+    <span class="n">ind_08</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">ecc</span> <span class="o">&gt;</span> <span class="mf">0.7</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ecc</span> <span class="o">&lt;=</span><span class="mf">0.8</span><span class="p">))</span>
+    <span class="n">n_max</span><span class="p">[</span><span class="n">ind_08</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span>
+
+    <span class="n">ind_085</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">ecc</span> <span class="o">&gt;</span> <span class="mf">0.8</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ecc</span> <span class="o">&lt;=</span> <span class="mf">0.85</span><span class="p">))</span>
+    <span class="n">n_max</span><span class="p">[</span><span class="n">ind_085</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
+
+    <span class="n">ind_085_great</span><span class="p">,</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">ecc</span> <span class="o">&gt;</span> <span class="mf">0.85</span><span class="p">)</span>
+    <span class="n">n_max</span><span class="p">[</span><span class="n">ind_085_great</span><span class="p">]</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="k">return</span> <span class="n">n_max</span></div>
+
+<div class="viewcode-block" id="hc2_circ"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.hc2_circ">[docs]</a><span class="k">def</span> <span class="nf">hc2_circ</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">f_orb</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the characterstic power (square of the</span>
+<span class="sd">    characterstic strain) for a population of binaries</span>
+<span class="sd">    in the Galaxy. This assumes the binaries are</span>
+<span class="sd">    circular and redshift can be passed.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : array/float</span>
+<span class="sd">        primary mass [msun]</span>
+<span class="sd">    m2 : array/float</span>
+<span class="sd">        secondary mass [msun]</span>
+<span class="sd">    f_orb : array/float</span>
+<span class="sd">        orbital frequency [Hz]</span>
+<span class="sd">    D : array/float</span>
+<span class="sd">        Luminosity distance [Mpc]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    hc2_circ : array/float</span>
+<span class="sd">        characteristic power</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Set the redshift based on the luminosity distance</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z_from_lum_distance</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+    <span class="c1"># assumes SI units!</span>
+    <span class="n">f_n</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">f_orb</span>
+    <span class="n">f_n_z</span> <span class="o">=</span> <span class="n">f_n</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">m_c_z</span> <span class="o">=</span> <span class="n">m_chirp</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">Msun</span>
+    <span class="n">front_fac</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">4.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">*</span><span class="n">G</span><span class="o">**</span><span class="p">(</span><span class="mf">5.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span>
+    <span class="n">variables</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_c_z</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">5.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">D</span><span class="o">*</span><span class="n">parsec</span><span class="o">*</span><span class="mf">1e6</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span>\
+                <span class="p">(</span><span class="n">f_n_z</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">hc2_circ</span> <span class="o">=</span> <span class="n">front_fac</span><span class="o">*</span><span class="n">variables</span>
+    <span class="k">return</span> <span class="n">hc2_circ</span></div>
+
+<div class="viewcode-block" id="hc2"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.hc2">[docs]</a><span class="k">def</span> <span class="nf">hc2</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">f_orb</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Computes the characterstic power (square of the</span>
+<span class="sd">    characterstic strain) for a population of binaries</span>
+<span class="sd">    in the Galaxy. Redshift can be passed as a kwarg.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : float</span>
+<span class="sd">        primary mass [msun]</span>
+<span class="sd">    m2 : float</span>
+<span class="sd">        secondary mass [msun]</span>
+<span class="sd">    f_orb : float</span>
+<span class="sd">        orbital frequency [Hz]</span>
+<span class="sd">    D : float</span>
+<span class="sd">        Luminosity Distance [Mpc]</span>
+<span class="sd">    e : float</span>
+<span class="sd">        eccentricity</span>
+<span class="sd">    n : int</span>
+<span class="sd">        integer harmonic of orbital frequency</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    hc2_n : float</span>
+<span class="sd">        characteristic power at the nth harmonic</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Set the redshift based on the luminosity distance</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z_from_lum_distance</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+
+    <span class="c1"># assumes SI units!</span>
+    <span class="n">f_n</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">f_orb</span>
+    <span class="n">f_n_z</span> <span class="o">=</span> <span class="n">f_n</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">m_c_z</span> <span class="o">=</span> <span class="n">m_chirp</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">Msun</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="n">parsec</span> <span class="o">*</span> <span class="mf">1e6</span>
+    <span class="n">front_fac</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">/</span><span class="mf">3.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">4.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">*</span><span class="n">G</span><span class="o">**</span><span class="p">(</span><span class="mf">5.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">3</span>
+    <span class="n">variables</span> <span class="o">=</span> <span class="p">(</span><span class="n">m_c_z</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">5.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">2.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span>\
+                <span class="p">(</span><span class="n">f_n_z</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">peters_g</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">F_e</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">hc2_n</span> <span class="o">=</span> <span class="n">front_fac</span><span class="o">*</span><span class="n">variables</span>
+    <span class="k">return</span> <span class="n">hc2_n</span></div>
+
+<div class="viewcode-block" id="da_dt"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.da_dt">[docs]</a><span class="k">def</span> <span class="nf">da_dt</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes da/dt from Peters and Matthews 1963;</span>
+<span class="sd">    assumes all units are SI</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : float</span>
+<span class="sd">        primary mass [kg]</span>
+<span class="sd">    m2 : float</span>
+<span class="sd">        secondary mass [kg]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        semimajor axis [m]</span>
+<span class="sd">    e : float</span>
+<span class="sd">        eccentricity</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    da/dt : float</span>
+<span class="sd">        semimajor axis rate of change [m/s]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">front_fac</span> <span class="o">=</span> <span class="o">-</span><span class="mf">64.</span><span class="o">/</span><span class="mf">5.</span><span class="o">*</span><span class="n">G</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">5</span>
+    <span class="n">nominator</span> <span class="o">=</span> <span class="n">m1</span><span class="o">*</span><span class="n">m2</span><span class="o">*</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">)</span><span class="o">*</span><span class="n">F_e</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">3</span>
+
+    <span class="n">da_dt</span> <span class="o">=</span> <span class="n">front_fac</span><span class="o">*</span><span class="n">nominator</span><span class="o">/</span><span class="n">denominator</span>
+    <span class="k">return</span> <span class="n">da_dt</span></div>
+
+<div class="viewcode-block" id="de_dt"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.de_dt">[docs]</a><span class="k">def</span> <span class="nf">de_dt</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes de/dt from Peters and Matthews 1963;</span>
+<span class="sd">    assumes all units are SI</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : float</span>
+<span class="sd">        primary mass [kg]</span>
+<span class="sd">    m2 : float</span>
+<span class="sd">        secondary mass [kg]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        semimajor axis [m]</span>
+<span class="sd">    e : float</span>
+<span class="sd">        eccentricity</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    de_dt : float</span>
+<span class="sd">         eccentricity rate of change [1/s]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="n">front_fac</span> <span class="o">=</span> <span class="o">-</span><span class="mf">304.</span><span class="o">/</span><span class="mf">15.</span><span class="o">*</span><span class="n">G</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="n">c</span><span class="o">**</span><span class="mi">5</span>
+    <span class="n">nominator</span> <span class="o">=</span> <span class="n">m1</span><span class="o">*</span><span class="n">m2</span><span class="o">*</span><span class="p">(</span><span class="n">m1</span><span class="o">+</span><span class="n">m2</span><span class="p">)</span><span class="o">*</span><span class="n">F_e</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">a</span><span class="o">**</span><span class="mi">4</span>
+
+    <span class="n">de_dt</span> <span class="o">=</span> <span class="n">front_fac</span><span class="o">*</span><span class="n">nominator</span><span class="o">/</span><span class="n">denominator</span>
+    <span class="k">return</span> <span class="n">de_dt</span></div>
+
+
+<div class="viewcode-block" id="peters_evolution"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.peters_evolution">[docs]</a><span class="k">def</span> <span class="nf">peters_evolution</span><span class="p">(</span><span class="n">a_0</span><span class="p">,</span><span class="n">e_0</span><span class="p">,</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="n">t_evol</span><span class="p">,</span><span class="n">nstep</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the evolution of a binary with spacing according</span>
+<span class="sd">    to the amount of time specified. Calculation is in SI;</span>
+<span class="sd">    Returns values in units specified.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a_0 : float</span>
+<span class="sd">        initial semimajor axis [au]</span>
+<span class="sd">    e_0 : float</span>
+<span class="sd">        initial eccentricity</span>
+<span class="sd">    m1 : float</span>
+<span class="sd">        primary mass [msun]</span>
+<span class="sd">    m2 : float</span>
+<span class="sd">        secondary mass [msun]</span>
+<span class="sd">    t_evol : float</span>
+<span class="sd">        evolution time [sec]</span>
+<span class="sd">    nstep : int</span>
+<span class="sd">        number of timesteps for evolution</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    a_array : array</span>
+<span class="sd">        evolution of semimajor axis [au]</span>
+<span class="sd">    e_array : array</span>
+<span class="sd">        evolution of eccentricity</span>
+<span class="sd">    t_array : array</span>
+<span class="sd">        evolution of time [yr]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t_start</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">t_end</span> <span class="o">=</span> <span class="n">t_evol</span>
+    <span class="n">a_0</span> <span class="o">=</span> <span class="n">a_0</span><span class="o">*</span><span class="n">m_in_au</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">m1</span><span class="o">*</span><span class="n">Msun</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">m2</span><span class="o">*</span><span class="n">Msun</span>
+    <span class="n">a_array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">e_array</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">t_array</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">t_start</span><span class="p">,</span> <span class="n">t_end</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">nstep</span><span class="p">))</span>
+    <span class="n">deltas</span> <span class="o">=</span> <span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">times</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">delta</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">times</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">deltas</span><span class="p">):</span>
+        <span class="n">a_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_0</span><span class="o">/</span><span class="n">m_in_au</span><span class="p">)</span>
+        <span class="n">e_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e_0</span><span class="p">)</span>
+        <span class="n">t_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="n">sec_in_year</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">e_0</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">a_0</span> <span class="o">+</span> <span class="n">da_dt</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">a_0</span><span class="p">,</span> <span class="n">e_0</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">e_0</span> <span class="o">+</span> <span class="n">de_dt</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">a_0</span><span class="p">,</span> <span class="n">e_0</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span>
+        <span class="k">elif</span> <span class="n">a_0</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">a_0</span> <span class="o">+</span> <span class="n">da_dt_circ</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">a_0</span><span class="p">)</span><span class="o">*</span><span class="n">delta</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">e_0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="n">a_0</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="n">e_0</span> <span class="o">=</span> <span class="n">e</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">a_array</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">e_array</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">t_array</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="snr_calc"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.snr_calc">[docs]</a><span class="k">def</span> <span class="nf">snr_calc</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">hc_n_vals</span><span class="p">,</span> <span class="n">noise_vals</span><span class="p">,</span> <span class="n">averaging_factor</span><span class="o">=</span><span class="mf">4.</span><span class="o">/</span><span class="mf">5.</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the SNR sum over the characteristic strain evolution</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    f_vals : array</span>
+<span class="sd">        frequencies in the characteristic strain evolution</span>
+<span class="sd">    hc_n_vals : array</span>
+<span class="sd">        characterstic strain evolution at different Peters harmonics</span>
+<span class="sd">    noise_vals : array</span>
+<span class="sd">        LISA sensitivity curve values</span>
+<span class="sd">    averaging_factor : float</span>
+<span class="sd">        Factor to average over inclination values of the binary</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    snr : float</span>
+<span class="sd">        Sum of SNRs across all Peters harmonics</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">snr_squared_per_harm</span> <span class="o">=</span> <span class="n">averaging_factor</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">f_vals</span><span class="o">*</span><span class="p">(</span><span class="n">hc_n_vals</span><span class="o">/</span><span class="n">noise_vals</span><span class="p">)</span><span class="o">**</span><span class="mf">2.</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">f_vals</span><span class="p">)</span>
+    <span class="n">snr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">snr_squared_per_harm</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">snr</span></div>
+
+
+<div class="viewcode-block" id="snr_chirping"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.snr_chirping">[docs]</a><span class="k">def</span> <span class="nf">snr_chirping</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">d_lum</span><span class="p">,</span> <span class="n">t_obs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the LISA SNR for a chirping, eccentric binary</span>
+<span class="sd">    using the Robson, Cornish, and Liu 2018 characteristic</span>
+<span class="sd">    strain sensivity curve</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : float</span>
+<span class="sd">        primary mass [msun]</span>
+<span class="sd">    m2 : float</span>
+<span class="sd">        secondary mass [msun]</span>
+<span class="sd">    a : float</span>
+<span class="sd">        semimajor axis [au]</span>
+<span class="sd">    e : float</span>
+<span class="sd">        eccentricity</span>
+<span class="sd">    d_lum : float</span>
+<span class="sd">        Distance [Mpc]</span>
+<span class="sd">    t_obs : float</span>
+<span class="sd">        LISA observation time [yr]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    snr : float</span>
+<span class="sd">        LISA snr</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LISA_interp</span> <span class="o">=</span> <span class="n">LISA_hc</span><span class="p">()</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z_from_lum_distance</span><span class="p">(</span><span class="n">d_lum</span><span class="p">)</span>
+    <span class="n">t_obs</span> <span class="o">=</span> <span class="n">t_obs</span> <span class="o">*</span> <span class="n">sec_in_year</span>
+    <span class="n">a_evol</span><span class="p">,</span> <span class="n">e_evol</span><span class="p">,</span> <span class="n">t_evol</span> <span class="o">=</span> <span class="n">peters_evolution</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">,</span><span class="n">t_obs</span><span class="p">,</span><span class="mf">1e3</span><span class="p">)</span>
+    <span class="n">porb</span> <span class="o">=</span> <span class="n">p_from_a</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sec_in_year</span>
+    <span class="n">f_orb_start</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">porb</span>
+    <span class="n">f_orb_evol</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">p_from_a</span><span class="p">(</span><span class="n">a_evol</span><span class="p">,</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sec_in_year</span><span class="p">)</span>
+    <span class="n">t_evol_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">t_obs</span><span class="p">),</span> <span class="mi">5000</span><span class="p">)</span>
+    <span class="n">forb_evol_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t_evol_log</span><span class="p">,</span>
+                              <span class="n">xp</span> <span class="o">=</span> <span class="n">t_evol</span> <span class="o">*</span> <span class="n">sec_in_year</span><span class="p">,</span>
+                              <span class="n">fp</span> <span class="o">=</span> <span class="n">f_orb_evol</span><span class="p">)</span>
+    <span class="n">e_evol_log</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t_evol_log</span><span class="p">,</span>
+                           <span class="n">xp</span> <span class="o">=</span> <span class="n">t_evol</span> <span class="o">*</span> <span class="n">sec_in_year</span><span class="p">,</span>
+                           <span class="n">fp</span> <span class="o">=</span> <span class="n">e_evol</span><span class="p">)</span>
+    <span class="n">n_harm</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">e</span><span class="p">]))[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">h_c_squared</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">freqs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n_harm</span><span class="p">):</span>
+        <span class="n">h_c_squared</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hc2</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">forb_evol_log</span><span class="p">,</span> <span class="n">d_lum</span><span class="p">,</span> <span class="n">e_evol_log</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+        <span class="n">freqs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">forb_evol_log</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="n">h_c_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">h_c_squared</span><span class="p">)</span>
+    <span class="n">freqs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
+    <span class="n">snr</span> <span class="o">=</span> <span class="n">snr_calc</span><span class="p">(</span><span class="n">freqs</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">),</span> <span class="n">h_c_squared</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">LISA_interp</span><span class="p">(</span><span class="n">freqs</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">z</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">snr</span></div>
+
+<div class="viewcode-block" id="LISA_foreground_combo"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.LISA_foreground_combo">[docs]</a><span class="k">def</span> <span class="nf">LISA_foreground_combo</span><span class="p">(</span><span class="n">foreground_freq</span><span class="p">,</span> <span class="n">foreground_hc2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the combination of the population foreground and LISA</span>
+<span class="sd">    sensitivity in characteristic strain</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    foreground_freq : array</span>
+<span class="sd">        gravitational wave frequencies [Hz]</span>
+<span class="sd">    foreground_hc2 : array</span>
+<span class="sd">        characteristic powers [Hz^-1]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    LISA_curve_combo : interpolation</span>
+<span class="sd">        interpolation of characteristic power for the Galactic</span>
+<span class="sd">        foreground and LISA sensitivity combined</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LISA_interp</span> <span class="o">=</span> <span class="n">LISA_hc</span><span class="p">()</span>
+
+    <span class="n">LISA_at_foreground</span> <span class="o">=</span> <span class="n">LISA_interp</span><span class="p">(</span><span class="n">foreground_freq</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">power_combo</span> <span class="o">=</span> <span class="n">foreground_hc2</span> <span class="o">+</span> <span class="n">LISA_at_foreground</span>
+
+    <span class="n">above_foreground_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">foreground_freq</span><span class="p">)</span><span class="o">+</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+    <span class="n">LISA_above_foreground</span> <span class="o">=</span> <span class="n">LISA_interp</span><span class="p">(</span><span class="n">above_foreground_freq</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="n">freqs_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">foreground_freq</span><span class="p">,</span> <span class="n">above_foreground_freq</span><span class="p">])</span>
+    <span class="n">hc2_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstact</span><span class="p">([</span><span class="n">power_combo</span><span class="p">,</span> <span class="n">LISA_above_foreground</span><span class="p">])</span>
+
+    <span class="n">LISA_combo_interp</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">freqs_total</span><span class="p">,</span> <span class="n">hc_total</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">LISA_combo_interp</span></div>
+
+<div class="viewcode-block" id="LISA_foreground"><a class="viewcode-back" href="../../api/cosmic.GW_calcs.html#cosmic.GW_calcs.LISA_foreground">[docs]</a><span class="k">def</span> <span class="nf">LISA_foreground</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">f_orb</span><span class="p">,</span> <span class="n">d_lum</span><span class="p">,</span> <span class="n">t_obs</span><span class="p">,</span> <span class="n">rolling_window</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Computes the gravitational-wave foreground in characteristic</span>
+<span class="sd">    power according to the LISA frequency resolution where 1</span>
+<span class="sd">    frequency bin has a binwidth of 1/(Tobs [s])</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    m1 : array</span>
+<span class="sd">        primary mass [msun]</span>
+<span class="sd">    m2 : array</span>
+<span class="sd">        secondary mass [msun]</span>
+<span class="sd">    f_orb : array/float</span>
+<span class="sd">        orbital frequency [Hz]</span>
+<span class="sd">    d_lum : array</span>
+<span class="sd">        Distance [Mpc]</span>
+<span class="sd">    z : array</span>
+<span class="sd">        redshift, Tobs=4):</span>
+<span class="sd">    t_obs : float</span>
+<span class="sd">        LISA observation time [yr]; Default=4 yr</span>
+<span class="sd">    rolling_window : int</span>
+<span class="sd">        Number of bins to compute a rolling median over</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    foreground_freq : array</span>
+<span class="sd">        array of frequencies of the LISA foreground</span>
+<span class="sd">    foreground_hc2 : array</span>
+<span class="sd">        array of characteristic power of the LISA foreground</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">t_obs</span> <span class="o">=</span> <span class="n">t_obs</span> <span class="o">*</span> <span class="n">sec_in_year</span>
+
+    <span class="n">binwidth</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">t_obs</span>
+    <span class="n">freq_bins_LISA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">1e-8</span><span class="p">,</span><span class="mf">5e-3</span><span class="p">,</span><span class="n">binwidth</span><span class="p">)</span>
+    <span class="n">z_redshift</span> <span class="o">=</span> <span class="n">zAtLuminosityDistance</span><span class="p">(</span><span class="n">d_lum</span><span class="p">)</span>
+    <span class="n">hc2_array</span> <span class="o">=</span> <span class="n">hc2_circ</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">f_orb</span><span class="p">,</span> <span class="n">d_lum</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z_redshift</span><span class="p">)</span>
+    <span class="n">freq_array</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">f_orb</span>
+    <span class="n">bin_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">freq_array</span><span class="p">,</span> <span class="n">freq_bins_LISA</span><span class="p">)</span>
+    <span class="n">psd_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">freq_array</span><span class="p">,</span> <span class="n">hc_array</span><span class="p">,</span> <span class="n">bin_indices</span><span class="p">]),</span>\
+                           <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;f_gw&#39;</span><span class="p">,</span> <span class="s1">&#39;hc2&#39;</span><span class="p">,</span> <span class="s1">&#39;bin_digits&#39;</span><span class="p">])</span>
+
+    <span class="n">power_sum</span> <span class="o">=</span> <span class="n">psd_dat</span><span class="p">[[</span><span class="s1">&#39;hc2&#39;</span><span class="p">,</span> <span class="s1">&#39;bin_digits&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;bin_digits&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="s1">&#39;hc2&#39;</span><span class="p">]</span>
+    <span class="n">power_tot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">freq_bins_LISA</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">power_tot</span><span class="p">[</span><span class="n">power_sum</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">freq_bins_LISA</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">power_sum</span>
+    <span class="n">foreground_dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">freq_bins_LISA</span><span class="p">,</span> <span class="n">power_tot</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>\
+                                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="s1">&#39;hc2&#39;</span><span class="p">])</span>
+    <span class="n">foreground_dat</span> <span class="o">=</span> <span class="n">foreground_dat</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">rolling_window</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+    <span class="n">foreground_dat</span> <span class="o">=</span> <span class="n">foreground_dat</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">rolling_window</span><span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">foreground_dat</span><span class="p">[</span><span class="s1">&#39;freq&#39;</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">foreground_dat</span><span class="p">[</span><span class="s1">&#39;hc2&#39;</span><span class="p">])</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Katie Breivik.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'2.0.0+233.gf51ed69.dirty',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
