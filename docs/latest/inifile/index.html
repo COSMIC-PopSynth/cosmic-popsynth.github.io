@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 2.0.0+233.gf51ed69.dirty documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 2.0.0+256.g0f941ef documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0.0+233.gf51ed69.dirty
+                2.0.0+256.g0f941ef
               </div>
             
           
@@ -334,8 +334,8 @@ HG, HeMS stars (<strong>default=0.02</strong>,)</td>
 </div>
 <table border="1" class="docutils">
 <colgroup>
-<col width="3%" />
-<col width="97%" />
+<col width="4%" />
+<col width="96%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">windflag</span></code></td>
@@ -346,35 +346,43 @@ HG, HeMS stars (<strong>default=0.02</strong>,)</td>
 <p class="last"><strong>default=3</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">neta</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">eddlimflag</span></code></td>
+<td><p class="first">eddlimflag turns on metallicity dependence on winds, affecting the
+mass-loss rate of low-metallicity stars near the Eddington limit
+(see Grafener et al. 2011, Giacobbo et al. 2017)</p>
+<p>eddlimflag = 0 off (<strong>default</strong>)</p>
+<p class="last">eddlimflag = 1 on</p>
+</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">neta</span></code></td>
 <td><p class="first"><em>neta</em> is the Reimers mass-loss coefficent.
-<a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">Equation 106 SSE</a> (due to a typo there’s an extra <span class="math notranslate nohighlight">\({\eta}\)</span> out front. The rate is directly proportional to <span class="math notranslate nohighlight">\({\eta}\)</span>).
+<a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">Equation 106 SSE</a> (due to a typo there’s an extra <img class="math" src="../_images/math/a15d4647424ed1360c344dd68078d5bad801f6ab.png" alt="{\eta}"/> out front. The rate is directly proportional to <img class="math" src="../_images/math/a15d4647424ed1360c344dd68078d5bad801f6ab.png" alt="{\eta}"/>).
 See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1978A%26A....70..227K&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=12">Section Vb</a> in Kudritzki R. P., Reimers D., 1978, A&amp;A, 70, 227 for discussion.</p>
 <p class="last"><strong>default=0.5</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">bwind</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">bwind</span></code></td>
 <td><em>bwind</em> is the binary enhanced mass loss parameter. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 12 BSE</a>.
 <strong>Defaults to 0, inactive for single</strong></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">hewind</span></code></td>
-<td><p class="first"><em>hewind</em> is the helium star mass loss parameter. 10<sup>-13</sup> hewind L<sup>2/3</sup> gives He star mass-loss. Equivalent to 1 - <span class="math notranslate nohighlight">\({\mu}\)</span> in the last equation on <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">page 19 of SSE</a>.</p>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">hewind</span></code></td>
+<td><p class="first"><em>hewind</em> is the helium star mass loss parameter. 10<sup>-13</sup> hewind L<sup>2/3</sup> gives He star mass-loss. Equivalent to 1 - <img class="math" src="../_images/math/412eb00067bc47eef2e2bb5b1aace9877165cbe2.png" alt="{\mu}"/> in the last equation on <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">page 19 of SSE</a>.</p>
 <p class="last"><strong>default=1.0</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">beta</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">beta</span></code></td>
 <td><p class="first"><em>beta</em> is the wind velocity factor. v<sub>wind</sub> <sup>2</sup> goes like <em>beta</em>. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 9 of BSE</a>.</p>
 <p>beta&lt;0: follows StarTrack 2008</p>
 <p>beta=0.125: BSE default</p>
 <p class="last"><strong>default=-1.0</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">xi</span></code></td>
-<td><p class="first"><em>xi</em> is the wind accretion efficiency factor. It gives the fraction of angular momentum lost via winds from the primary that transfers to the spin angular momentum of the companion. Corresponds to <span class="math notranslate nohighlight">\({\mu}\)</span><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 11 of BSE</a>.</p>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">xi</span></code></td>
+<td><p class="first"><em>xi</em> is the wind accretion efficiency factor. It gives the fraction of angular momentum lost via winds from the primary that transfers to the spin angular momentum of the companion. Corresponds to <img class="math" src="../_images/math/412eb00067bc47eef2e2bb5b1aace9877165cbe2.png" alt="{\mu}"/><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 11 of BSE</a>.</p>
 <p class="last"><strong>default=0.5</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">acc2</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">acc2</span></code></td>
 <td><p class="first"><em>acc2</em> is the Bondi-Hoyle wind accretion factor. The mean wind accretion rate onto the secondary is proportional to acc2. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=2">Equation 6 in BSE</a>.</p>
 <p class="last"><strong>default=1.5</strong></p>
 </td>
@@ -436,7 +444,7 @@ See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-da
 </td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">lambdaf</span></code></td>
-<td><p class="first"><em>lambda1</em> is the binding energy factor for common envelope evolution. The initial binding energy of the envelope goes like 1 / <span class="math notranslate nohighlight">\({\lambda}\)</span>. See  <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 69 in BSE</a>.</p>
+<td><p class="first"><em>lambda1</em> is the binding energy factor for common envelope evolution. The initial binding energy of the envelope goes like 1 / <img class="math" src="../_images/math/2badbe50fdbbeba5c0ce398932a218544b41ffa3.png" alt="{\lambda}"/>. See  <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 69 in BSE</a>.</p>
 <p>lambdaf=1.0 uses variable lambda prescription written by Onno Pols</p>
 <p>lambdaf&lt;0 uses fixes lambda to a value of -1.0*lambdaf</p>
 <p class="last"><strong>default=1.0</strong></p>
@@ -881,7 +889,7 @@ gamma=-1: assumes the lost material carries with is the specific angular momentu
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+233.gf51ed69.dirty',
+            VERSION:'2.0.0+256.g0f941ef',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -892,7 +900,6 @@ gamma=-1: assumes the lost material carries with is the specific angular momentu
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

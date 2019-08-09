@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Using cosmic to run BSE &mdash; cosmic 2.0.0+233.gf51ed69.dirty documentation</title>
+  <title>Using cosmic to run BSE &mdash; cosmic 2.0.0+256.g0f941ef documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0.0+233.gf51ed69.dirty
+                2.0.0+256.g0f941ef
               </div>
             
           
@@ -182,14 +182,14 @@ that initialize and evolve the binary.</p>
 <p>To initialize a single binary, populate the SingleBinary method in the
 InitialBinaryTable class. Each initialized binary requires the following parameters:</p>
 <ul class="simple">
-<li>m1 : ZAMS mass of the primary star in <span class="math notranslate nohighlight">\(M_{\odot}\)</span></li>
-<li>m2 : ZAMS mass of the secondary star in <span class="math notranslate nohighlight">\(M_{\odot}\)</span></li>
+<li>m1 : ZAMS mass of the primary star in <img class="math" src="../_images/math/557d46f9934e982101466893e2e57f5349a78af9.png" alt="M_{\odot}"/></li>
+<li>m2 : ZAMS mass of the secondary star in <img class="math" src="../_images/math/557d46f9934e982101466893e2e57f5349a78af9.png" alt="M_{\odot}"/></li>
 <li>porb : initial orbital period in days</li>
 <li>ecc : initial eccentricity</li>
 <li>tphysf : total evolution time of the binary in Myr</li>
 <li>kstar1 : initial primary stellar type, following the BSE convention</li>
 <li>kstar2 : initial secondary stellar type, following the BSE convention</li>
-<li>metallicity : metallicity fraction (e.g. <span class="math notranslate nohighlight">\(Z_{\odot}=0.02\)</span>)</li>
+<li>metallicity : metallicity fraction (e.g. <img class="math" src="../_images/math/dd3743a1332c550bcb34aacbe6d43b0b6529837a.png" alt="Z_{\odot}=0.02"/>)</li>
 </ul>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">single_binary</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">SingleBinary</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="mf">85.543645</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="mf">84.99784</span><span class="p">,</span> <span class="n">porb</span><span class="o">=</span><span class="mf">446.795757</span><span class="p">,</span> <span class="n">ecc</span><span class="o">=</span><span class="mf">0.448872</span><span class="p">,</span> <span class="n">tphysf</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">kstar1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kstar2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">metallicity</span><span class="o">=</span><span class="mf">0.002</span><span class="p">)</span>
 
@@ -205,7 +205,7 @@ if you need to change the binary evolution prescriptions.</p>
 <p>If you are unfamiliar with these prescriptions, it is highly
 advised to either run the defaults from the cosmic install (which are consistent
 with <a class="reference external" href="http://adsabs.harvard.edu/abs/2018PhRvL.120o1101R">Rodriguez+2018</a> and <a class="reference external" href="http://adsabs.harvard.edu/abs/2018PhRvL.120s1103K">Kremer+2018</a>) or refer to <a class="reference external" href="http://adsabs.harvard.edu/abs/2002MNRAS.329..897H">Hurley+2002</a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ck&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;pisn&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;natal_kick_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;bhsigmafrac&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;polar_kick_angle&#39;</span> <span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;qcrit_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;cekickflag&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;cehestarflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cemergeflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ecsn&#39;</span> <span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s1">&#39;ecsn_mlow&#39;</span> <span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;aic&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ussn&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;sigmadiv&#39;</span> <span class="p">:</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;qcflag&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ck&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;pisn&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;natal_kick_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;bhsigmafrac&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;polar_kick_angle&#39;</span> <span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;qcrit_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;cekickflag&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;cehestarflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cemergeflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ecsn&#39;</span> <span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s1">&#39;ecsn_mlow&#39;</span> <span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;aic&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ussn&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;sigmadiv&#39;</span> <span class="p">:</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;qcflag&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;eddlimflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Once the binary is initialized and the BSE model is set, the system is evolved with the
@@ -238,62 +238,7 @@ the Evolve class, which calls the evolv2.f subroutine in the BSE source code.</p
 </pre></div>
 </div>
 <p>The units are broadly consistent with BSE; masses, radii are in Solar units, temperatures are in log-Kelvin, luminosities are in log-Solar luminosity, orbital periods are in log-seconds, semi-major axes are in solar radii, and times are in units of Myr.</p>
-<p>The evol_type column in bpp indicates the evolutionary change that occured for each line. The meaning of each number is below:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="30%" />
-<col width="70%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">evol_type</th>
-<th class="head">evolutionary change</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>1</td>
-<td>initial state</td>
-</tr>
-<tr class="row-odd"><td>2</td>
-<td>kstar change</td>
-</tr>
-<tr class="row-even"><td>3</td>
-<td>begin RL overflow</td>
-</tr>
-<tr class="row-odd"><td>4</td>
-<td>end RL overlow</td>
-</tr>
-<tr class="row-even"><td>5</td>
-<td>contact</td>
-</tr>
-<tr class="row-odd"><td>6</td>
-<td>coalescence</td>
-</tr>
-<tr class="row-even"><td>7</td>
-<td>common envelope</td>
-</tr>
-<tr class="row-odd"><td>8</td>
-<td>gntage called</td>
-</tr>
-<tr class="row-even"><td>9</td>
-<td>no remnant leftover</td>
-</tr>
-<tr class="row-odd"><td>10</td>
-<td>max evolution time</td>
-</tr>
-<tr class="row-even"><td>11</td>
-<td>binary disruption</td>
-</tr>
-<tr class="row-odd"><td>12</td>
-<td>begin symbiotic phase</td>
-</tr>
-<tr class="row-even"><td>13</td>
-<td>end symbiotic phase</td>
-</tr>
-<tr class="row-odd"><td>14</td>
-<td>blue straggler</td>
-</tr>
-</tbody>
-</table>
+<p>The evol_type column in bpp indicates the evolutionary change that occured for each line. The meaning of each number is described here, <a class="reference internal" href="../output_info/index.html#evolve-type-table"><span class="std std-ref">Evolve Type</span></a>.</p>
 <p>Each of the parameters in bpp or bcm can be accessed in the usual way for DataFrames.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">mass_1</span><span class="p">)</span>
 <span class="go">0    79.094933</span>
@@ -308,11 +253,11 @@ the Evolve class, which calls the evolv2.f subroutine in the BSE source code.</p
 <span class="go">0    26.775482</span>
 <span class="go">0    26.777384</span>
 <span class="go">0    26.783316</span>
-<span class="go">0    26.803198</span>
-<span class="go">0    26.803198</span>
-<span class="go">0    26.803202</span>
-<span class="go">0    26.803202</span>
-<span class="go">0    26.803202</span>
+<span class="go">0    26.803177</span>
+<span class="go">0    26.803177</span>
+<span class="go">0    26.803180</span>
+<span class="go">0    26.803180</span>
+<span class="go">0    26.803180</span>
 <span class="go">Name: mass_1, dtype: float64</span>
 
 <span class="gp">In [10]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="p">[[</span><span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_1&#39;</span><span class="p">,</span> <span class="s1">&#39;kstar_2&#39;</span><span class="p">,</span> <span class="s1">&#39;sep&#39;</span><span class="p">,</span> <span class="s1">&#39;evol_type&#39;</span><span class="p">]])</span>
@@ -324,16 +269,16 @@ the Evolve class, which calls the evolv2.f subroutine in the BSE source code.</p
 <span class="go">0  36.188609  120.165425      4.0      1.0  2110.880539        4.0</span>
 <span class="go">0  35.959029  120.284557      7.0      1.0  2107.818485        2.0</span>
 <span class="go">0  29.750532  118.328046      7.0      1.0  2224.066700       15.0</span>
-<span class="go">0  26.775479  118.328046     14.0      1.0  2270.578112        2.0</span>
-<span class="go">0  26.775482   95.640640     14.0      2.0  2690.609735        2.0</span>
-<span class="go">0  26.775482   95.639917     14.0      2.0  2690.625576       12.0</span>
-<span class="go">0  26.777384   95.437507     14.0      2.0  2694.380747        3.0</span>
-<span class="go">0  26.783316   45.675259     14.0      4.0   479.316993        2.0</span>
-<span class="go">0  26.803198   45.446883     14.0      4.0   479.372269        4.0</span>
-<span class="go">0  26.803198   45.445731     14.0      7.0   479.379906        2.0</span>
-<span class="go">0  26.803202   36.345684     14.0      7.0   548.474047       16.0</span>
-<span class="go">0  26.803202   32.711115     14.0     14.0   583.981221        2.0</span>
-<span class="go">0  26.803202   32.711115     14.0     14.0   583.642023       10.0</span>
+<span class="go">0  26.775479  118.328046     14.0      1.0  2270.650877        2.0</span>
+<span class="go">0  26.775482   95.640640     14.0      2.0  2690.695960        2.0</span>
+<span class="go">0  26.775482   95.639917     14.0      2.0  2690.711802       12.0</span>
+<span class="go">0  26.777384   95.437505     14.0      2.0  2694.466862        3.0</span>
+<span class="go">0  26.783316   45.675267     14.0      4.0   479.331583        2.0</span>
+<span class="go">0  26.803177   45.446891     14.0      4.0   479.384033        4.0</span>
+<span class="go">0  26.803177   45.445738     14.0      7.0   479.391680        2.0</span>
+<span class="go">0  26.803180   36.345707     14.0      7.0   548.487388       16.0</span>
+<span class="go">0  26.803180   32.711136     14.0     14.0   582.648256        2.0</span>
+<span class="go">0  26.803180   32.711136     14.0     14.0   582.309867       10.0</span>
 </pre></div>
 </div>
 </div>
@@ -363,18 +308,18 @@ that could form GW150914 and GW170817 - like binaries.</p>
 <span class="go">0      3.895830  34.701463  51.392680      7.0      4.0  ...   0.000000  36.920209     1.998783  1975.823119        0</span>
 <span class="go">0      3.895830  31.231317  51.392680     14.0      4.0  ...  31.231317  36.920213     0.000132  1975.823873        0</span>
 <span class="go">0      3.895830  31.231317  51.392680     14.0      4.0  ...  31.231317  36.920213     0.000132  1975.823873        0</span>
-<span class="go">0      3.985013  32.151013  38.015185     14.0      4.0  ...  32.151013  37.864338     0.000136    19.480787        0</span>
-<span class="go">0      3.996105  32.151014  37.978304     14.0      7.0  ...  32.151014   0.000000     0.000136     2.170012        0</span>
-<span class="go">0      4.057229  32.151014  34.009760     14.0      7.0  ...  32.151014   0.000000     0.000136     1.974595        0</span>
-<span class="go">0      4.057229  32.151014  30.608784     14.0     14.0  ...  32.151014  30.608784     0.000136     0.000130        0</span>
-<span class="go">0  13700.000000  32.151014  30.608784     14.0     14.0  ...  32.151014  30.608784     0.000136     0.000130        0</span>
+<span class="go">0      3.985013  32.150836  38.015185     14.0      4.0  ...  32.150836  37.864338     0.000136    19.480787        0</span>
+<span class="go">0      3.996105  32.150837  37.978304     14.0      7.0  ...  32.150837   0.000000     0.000136     2.170012        0</span>
+<span class="go">0      4.057229  32.150837  34.009760     14.0      7.0  ...  32.150837   0.000000     0.000136     1.974595        0</span>
+<span class="go">0      4.057229  32.150837  30.608784     14.0     14.0  ...  32.150837  30.608784     0.000136     0.000130        0</span>
+<span class="go">0  13700.000000  32.150837  30.608784     14.0     14.0  ...  32.150837  30.608784     0.000136     0.000130        0</span>
 
 <span class="go">[13 rows x 24 columns]</span>
 
 <span class="gp">In [15]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      tphys  kstar_1    mass0_1     mass_1       lumin_1  ...  SN_1  SN_2  bin_state  merger_type  bin_num</span>
 <span class="go">0      0.346679      1.0  99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        0</span>
-<span class="go">0  13700.000000     14.0  34.701463  32.151014  1.000000e-10  ...   4.0   4.0          0         -001        0</span>
+<span class="go">0  13700.000000     14.0  34.701463  32.150837  1.000000e-10  ...   1.0   1.0          0         -001        0</span>
 
 <span class="go">[2 rows x 43 columns]</span>
 
@@ -410,13 +355,13 @@ that could form GW150914 and GW170817 - like binaries.</p>
 <span class="go">ecsn_mlow            1.400</span>
 <span class="go">aic                  1.000</span>
 <span class="go">                   ...    </span>
-<span class="go">gamma               -2.000</span>
 <span class="go">bconst           -3000.000</span>
 <span class="go">ck               -1000.000</span>
 <span class="go">windflag             3.000</span>
 <span class="go">qcflag               3.000</span>
+<span class="go">eddlimflag           0.000</span>
 <span class="go">dtp              13700.000</span>
-<span class="go">randomseed      781437.000</span>
+<span class="go">randomseed      237406.000</span>
 <span class="go">bin_num              0.000</span>
 <span class="go">SNkick_1          -100.000</span>
 <span class="go">SNkick_2          -100.000</span>
@@ -440,7 +385,7 @@ that could form GW150914 and GW170817 - like binaries.</p>
 <span class="go">qcrit_13             0.000</span>
 <span class="go">qcrit_14             0.000</span>
 <span class="go">qcrit_15             0.000</span>
-<span class="go">Name: 0, Length: 70, dtype: float64</span>
+<span class="go">Name: 0, Length: 71, dtype: float64</span>
 
 <span class="gp">In [17]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             tphys     mass_1     mass_2  kstar_1  kstar_2  ...   massc_1   massc_2       rad_1       rad_2  bin_num</span>
@@ -525,10 +470,10 @@ periods spaced evenly in log space.</p>
 <span class="go">2       3.888962   24.562899  26.891074      7.0      7.0  ...   0.000000   0.000000      1.621409     1.791246        2</span>
 <span class="go">2       3.888962   22.106610  26.891074     14.0      7.0  ...  22.106610   0.000000      0.000094     1.791245        2</span>
 <span class="go">..           ...         ...        ...      ...      ...  ...        ...        ...           ...          ...      ...</span>
-<span class="go">7       3.963731   30.578834  36.170118     14.0      7.0  ...  30.578834   0.000000      0.000130     2.117692        7</span>
-<span class="go">7       4.057963   30.578834  31.032449     14.0      7.0  ...  30.578834   0.000000      0.000130     1.868134        7</span>
-<span class="go">7       4.057963   30.578834  27.929204     14.0     14.0  ...  30.578834  27.929204      0.000130     0.000118        7</span>
-<span class="go">7   13700.000000   30.578834  27.929204     14.0     14.0  ...  30.578834  27.929204      0.000130     0.000118        7</span>
+<span class="go">7       3.963731   30.578725  36.170118     14.0      7.0  ...  30.578725   0.000000      0.000130     2.117692        7</span>
+<span class="go">7       4.057963   30.578725  31.032449     14.0      7.0  ...  30.578725   0.000000      0.000130     1.868134        7</span>
+<span class="go">7       4.057963   30.578725  27.929204     14.0     14.0  ...  30.578725  27.929204      0.000130     0.000118        7</span>
+<span class="go">7   13700.000000   30.578725  27.929204     14.0     14.0  ...  30.578725  27.929204      0.000130     0.000118        7</span>
 <span class="go">8       3.537393   79.856407  74.601382      2.0      1.0  ...  35.614666   0.000000     50.062600    50.719286        8</span>
 <span class="go">8       3.540254   79.467828  74.594513      4.0      1.0  ...  36.326881   0.000000   1654.495516    50.970379        8</span>
 <span class="go">8       3.691472   56.785226  74.666226      4.0      2.0  ...  37.949643  32.524548   1959.616369    45.793785        8</span>
@@ -537,11 +482,11 @@ periods spaced evenly in log space.</p>
 <span class="go">8       3.895532   33.784712  44.532937      7.0      4.0  ...   0.000000  35.267751      1.966683  1965.899409        8</span>
 <span class="go">8       3.895532   30.406241  44.532937     14.0      4.0  ...  30.406241  35.267755      0.000129  1965.899895        8</span>
 <span class="go">8       3.895532   30.406241  44.532937     14.0      4.0  ...  30.406241  35.267755      0.000129  1965.899895        8</span>
-<span class="go">8       3.952021   30.430200  36.059560     14.0      4.0  ...  30.430200  35.855778      0.000129   105.104865        8</span>
-<span class="go">8       3.953380   30.430202  35.855778     14.0      7.0  ...  30.430202   0.000000      0.000129     2.107429        8</span>
-<span class="go">8       4.057613   30.430202  30.390986     14.0      7.0  ...  30.430202   0.000000      0.000129     1.844666        8</span>
-<span class="go">8       4.057613   30.430202  27.351887     14.0     14.0  ...  30.430202  27.351887      0.000129     0.000116        8</span>
-<span class="go">8   13700.000000   30.430202  27.351887     14.0     14.0  ...  30.430202  27.351887      0.000129     0.000116        8</span>
+<span class="go">8       3.952021   30.432590  36.059560     14.0      4.0  ...  30.432590  35.855778      0.000129   105.104865        8</span>
+<span class="go">8       3.953380   30.432593  35.855778     14.0      7.0  ...  30.432593   0.000000      0.000129     2.107429        8</span>
+<span class="go">8       4.057613   30.432593  30.390986     14.0      7.0  ...  30.432593   0.000000      0.000129     1.844666        8</span>
+<span class="go">8       4.057613   30.432593  27.351887     14.0     14.0  ...  30.432593  27.351887      0.000129     0.000116        8</span>
+<span class="go">8   13700.000000   30.432593  27.351887     14.0     14.0  ...  30.432593  27.351887      0.000129     0.000116        8</span>
 <span class="go">9       3.537393   79.856407  74.601382      2.0      1.0  ...  35.614666   0.000000     50.062600    50.719286        9</span>
 <span class="go">9       3.540254   79.467828  74.594091      4.0      1.0  ...  36.326881   0.000000   1654.495516    50.970015        9</span>
 <span class="go">9       3.691532   56.776197  74.482128      4.0      2.0  ...  37.950289  32.416360   1959.742411    45.664272        9</span>
@@ -550,36 +495,36 @@ periods spaced evenly in log space.</p>
 <span class="go">9       3.895432   33.715573  44.185068      7.0      4.0  ...   0.000000  35.152954      1.964248  1963.650551        9</span>
 <span class="go">9       3.895432   30.344016  44.185068     14.0      4.0  ...  30.344016  35.152958      0.000129  1963.651015        9</span>
 <span class="go">9       3.895432   30.344016  44.185068     14.0      4.0  ...  30.344016  35.152958      0.000129  1963.651015        9</span>
-<span class="go">9       3.951480   30.357784  35.777881     14.0      4.0  ...  30.357784  35.735648      0.000129     2.287981        9</span>
-<span class="go">9       3.955292   30.357784  35.774606     14.0      7.0  ...  30.357784   0.000000      0.000129     2.104858        9</span>
-<span class="go">9       4.058203   30.357784  30.387590     14.0      7.0  ...  30.357784   0.000000      0.000129     1.844541        9</span>
-<span class="go">9       4.058203   30.357784  27.348831     14.0     14.0  ...  30.357784  27.348831      0.000129     0.000116        9</span>
-<span class="go">9   13700.000000   30.357784  27.348831     14.0     14.0  ...  30.357784  27.348831      0.000129     0.000116        9</span>
+<span class="go">9       3.951480   30.357088  35.777881     14.0      4.0  ...  30.357088  35.735648      0.000129     2.287981        9</span>
+<span class="go">9       3.955292   30.357088  35.774606     14.0      7.0  ...  30.357088   0.000000      0.000129     2.104858        9</span>
+<span class="go">9       4.058203   30.357088  30.387590     14.0      7.0  ...  30.357088   0.000000      0.000129     1.844541        9</span>
+<span class="go">9       4.058203   30.357088  27.348831     14.0     14.0  ...  30.357088  27.348831      0.000129     0.000116        9</span>
+<span class="go">9   13700.000000   30.357088  27.348831     14.0     14.0  ...  30.357088  27.348831      0.000129     0.000116        9</span>
 
 <span class="go">[131 rows x 24 columns]</span>
 
 <span class="gp">In [23]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="p">)</span>
 <span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 tphys  kstar_1     mass0_1     mass_1       lumin_1  ...  SN_1  SN_2  bin_state  merger_type  bin_num</span>
 <span class="go">0      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        0</span>
-<span class="go">0  13700.000000     15.0  122.876845   0.000000  3.971523e+07  ...   9.0   0.0          1         0201        0</span>
+<span class="go">0  13700.000000     15.0  122.876845   0.000000  3.971523e+07  ...   7.0   0.0          1         0201        0</span>
 <span class="go">1      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        1</span>
-<span class="go">1  13700.000000     14.0  112.647935  40.500000  1.000000e-10  ...   8.0   0.0          1         0201        1</span>
+<span class="go">1  13700.000000     14.0  112.647935  40.500000  1.000000e-10  ...   6.0   0.0          1         0201        1</span>
 <span class="go">2      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        2</span>
-<span class="go">2  13700.000000     15.0   24.562899   0.000000  1.000000e-10  ...   4.0   4.0          1         1414        2</span>
+<span class="go">2  13700.000000     15.0   24.562899   0.000000  1.000000e-10  ...   1.0   1.0          1         1414        2</span>
 <span class="go">3      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        3</span>
-<span class="go">3  13700.000000     15.0   24.712073   0.000000  1.000000e-10  ...   4.0   4.0          1         1414        3</span>
+<span class="go">3  13700.000000     15.0   24.712073   0.000000  1.000000e-10  ...   1.0   1.0          1         1414        3</span>
 <span class="go">4      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        4</span>
-<span class="go">4  13700.000000     14.0   25.754951  23.179456  1.000000e-10  ...   4.0   4.0          0         -001        4</span>
+<span class="go">4  13700.000000     14.0   25.754951  23.179456  1.000000e-10  ...   1.0   1.0          0         -001        4</span>
 <span class="go">5      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        5</span>
-<span class="go">5  13700.000000     14.0   35.352695  32.316872  1.000000e-10  ...   4.0   4.0          0         -001        5</span>
+<span class="go">5  13700.000000     14.0   35.352695  32.297622  1.000000e-10  ...   1.0   1.0          0         -001        5</span>
 <span class="go">6      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        6</span>
-<span class="go">6  13700.000000     14.0   34.195635  30.890285  1.000000e-10  ...   4.0   4.0          0         -001        6</span>
+<span class="go">6  13700.000000     14.0   34.195635  30.910841  1.000000e-10  ...   1.0   1.0          0         -001        6</span>
 <span class="go">7      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        7</span>
-<span class="go">7  13700.000000     14.0   33.911260  30.578834  1.000000e-10  ...   4.0   4.0          0         -001        7</span>
+<span class="go">7  13700.000000     14.0   33.911260  30.578725  1.000000e-10  ...   1.0   1.0          0         -001        7</span>
 <span class="go">8      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        8</span>
-<span class="go">8  13700.000000     14.0   33.784712  30.430202  1.000000e-10  ...   4.0   4.0          0         -001        8</span>
+<span class="go">8  13700.000000     14.0   33.784712  30.432593  1.000000e-10  ...   1.0   1.0          0         -001        8</span>
 <span class="go">9      0.346679      1.0   99.000000  99.000000  1.276936e+06  ...   0.0   0.0          0         -001        9</span>
-<span class="go">9  13700.000000     14.0   33.715573  30.357784  1.000000e-10  ...   4.0   4.0          0         -001        9</span>
+<span class="go">9  13700.000000     14.0   33.715573  30.357088  1.000000e-10  ...   1.0   1.0          0         -001        9</span>
 
 <span class="go">[20 rows x 43 columns]</span>
 </pre></div>
@@ -629,7 +574,7 @@ periods spaced evenly in log space.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+233.gf51ed69.dirty',
+            VERSION:'2.0.0+256.g0f941ef',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -640,7 +585,6 @@ periods spaced evenly in log space.</p>
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

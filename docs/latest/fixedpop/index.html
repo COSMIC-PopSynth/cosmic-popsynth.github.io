@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a population the cosmic way &mdash; cosmic 2.0.0+233.gf51ed69.dirty documentation</title>
+  <title>Generate a population the cosmic way &mdash; cosmic 2.0.0+256.g0f941ef documentation</title>
   
 
   
@@ -58,7 +58,7 @@
             
             
               <div class="version">
-                2.0.0+233.gf51ed69.dirty
+                2.0.0+256.g0f941ef
               </div>
             
           
@@ -246,8 +246,9 @@ optional arguments:
 </div>
 <div class="section" id="params-ini">
 <h4>Params.ini<a class="headerlink" href="#params-ini" title="Permalink to this headline">¶</a></h4>
-<p>The inifile contains four subsections: filters, convergence, rand_seed, and bse.
-The <cite>filters</cite> subsection allows you to specify how you would like to filter the binary population. See the inifile for a description of each flag.</p>
+<p>PLEASE SEE <a class="reference internal" href="../inifile/index.html#inifile"><span class="std std-ref">Configuration files for COSMIC</span></a> for detailed information about the inifile and how it is constructed</p>
+<p>The inifile contains four subsections: filters, convergence, rand_seed, and bse.</p>
+<p>The <cite>filters</cite> subsection allows you to specify how you would like to filter the binary population. See the inifile for a description of each flag.</p>
 <p>The <cite>convergence</cite> subsection allows you to specify a particular region of parameter space where you would like the convergence of each binary parameter distribution to be tested. The only implemented convergence filter is for LISA binaries, where the convergence is computed only for binaries with orbital period less than 5000 s. This allows for low probability, but high signal to noise binaries with very short orbital periods to be fully accounted for.</p>
 <p>The <cite>rand_seed</cite> subsections allows you to initialize the population with a random seed for reproduceability. Note that for each simulated binary, cosmic also returns the initial conditions, including a random seed that will reproduce that exact binary. The random seed produced in the rand_seed subsection allows full populations to be reproduced. This is particularly useful when comparing two popuations, e.g. binary black holes and binary neutron stars, which should be simulated separately, but using the same rand_seed value.</p>
 <p>The <cite>bse</cite> subsection is where all the bse flags are specified.</p>
@@ -280,6 +281,8 @@ The <cite>filters</cite> subsection allows you to specify how you would like to 
 </div>
 <div class="section" id="output-of-runfixedpop">
 <h3>Output of runFixedPop<a class="headerlink" href="#output-of-runfixedpop" title="Permalink to this headline">¶</a></h3>
+<p>PLEASE SEE <a class="reference internal" href="../output_info/index.html#output-info"><span class="std std-ref">Describing the output of COSMIC/BSE: Columns names/Values/Units</span></a> for more information about the output data frames including
+what each column means and the units.</p>
 <p>The output of runFixed pop is the <cite>fixed population</cite>, an hdf5 file with a naming scheme that tells you the Galactic component and final kstars of the population; the data file created by the runFixedPop call above is: dat_ThinDisk_11_10_11.h5.</p>
 <p>The fixed population contains three pandas DataFrames accessed by the following keys:</p>
 <ul class="simple">
@@ -296,37 +299,10 @@ The <cite>filters</cite> subsection allows you to specify how you would like to 
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gxRealization -h
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: gxRealization [-h] --galaxy_component GALAXY_COMPONENT --dist_model
-                     DIST_MODEL --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
-                     --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
-                     [--N_realizations N_REALIZATIONS] [-n NPROC]
-                     [--gx_save GX_SAVE] [--HG_save HG_SAVE]
-                     [--LISA_calc LISA_CALC] [--verbose]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --galaxy_component GALAXY_COMPONENT
-                        Galaxy Components. Options include Bulge ThinDisk and
-                        ThickDisk
-  --dist_model DIST_MODEL
-                        Galaxy distribution model. fiducial is McMillan (2010)
-  --final_kstar1 FINAL_KSTAR1 [FINAL_KSTAR1 ...]
-                        Specify the final condition of kstar1, you want
-                        systems to end at for your samples
-  --final_kstar2 FINAL_KSTAR2 [FINAL_KSTAR2 ...]
-                        Specify the final condition of kstar2, you want
-                        systems to end at for your samples
-  --N_realizations N_REALIZATIONS
-                        Number of Galactic realziations to sample
-  -n NPROC, --nproc NPROC
-                        number of processors
-  --gx_save GX_SAVE     Save the galaxy realizations; MAY GENERATE LARGE DATA
-                        SETS
-  --HG_save HG_SAVE     Save systems which undergo common envelope w/ HG star
-                        secondary
-  --LISA_calc LISA_CALC
-                        Save the PSD of the population in the LISA band
-  --verbose             Run in Verbose Mode
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;/Users/scottcoughlin/anaconda/envs/cosmic-py36/bin/gxRealization&quot;, line 32, in &lt;module&gt;
+    import cosmic.gxreal as gxreal
+ModuleNotFoundError: No module named &#39;cosmic.gxreal&#39;
 </pre></div>
 </div>
 <div class="section" id="id1">
@@ -428,7 +404,7 @@ optional arguments:
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+233.gf51ed69.dirty',
+            VERSION:'2.0.0+256.g0f941ef',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
@@ -439,7 +415,6 @@ optional arguments:
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
