@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 2.0.0+262.g03852f8 documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0.0+262.g03852f8
+                2.0.0+291.g0430817.dirty
               </div>
             
           
@@ -784,8 +784,8 @@ gamma=-1: assumes the lost material carries with is the specific angular momentu
 </div>
 <table border="1" class="docutils">
 <colgroup>
-<col width="4%" />
-<col width="96%" />
+<col width="2%" />
+<col width="98%" />
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">tflag</span></code></td>
@@ -811,6 +811,14 @@ gamma=-1: assumes the lost material carries with is the specific angular momentu
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">ck</span></code></td>
 <td><em>ck</em> related to magnetic field evolution of pulsars, . Implemented by Paul Kiel – see Section 3 of <a class="reference external" href="https://academic.oup.com/mnras/article/388/1/393/1013977">Kiel et al. 2008</a>.
 <strong>default=-1000</strong></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">fprimc_array</span></code></td>
+<td><p class="first"><em>fprimc_array</em> controls the scaling factor for convective tides
+each item is set individually for its associated kstar
+The releveant equation is <a class="reference external" href="https://watermark.silverchair.com/329-4-897.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAnAwggJsBgkqhkiG9w0BBwagggJdMIICWQIBADCCAlIGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMYUoYtydpxVKmZePqAgEQgIICI1b5IZldHg9_rX6JacIe-IR042LnNi-4F9DMp-2lm3djjQ8xehKOv5I0VBjSNJfa6n-FErAH7ed1llADY7tMDTvqo1GHKBMDslNku5XDGfmae0sF-Zp5ndeGoZsyqISABLHEbdY4VFl8Uz_6jzAuBjGztnuxVmUh9bKIOaxuDpfB3Mn2xOfP9lcCVkjzQ0JWzr98nQNmVwDkI9bPv98Ab46BjBdGdcBKajCC-sqASjtmAQS2h6SGTTBqyRAyigqXcPtWf3Ye1SbxtL3zag6_Lf01rgCoUCK9eT_pavb5F8vVkUTMWbZQ79DWxn5pfZYi72C7_BtlPoUnS8Gs3wvw18BTIaHTKblwh225DcXuTEh_ngMmRvPEVctvG8tjlr9md-eFK0cEsq0734eGYtnwxeqvFxcWsW6mRbXrFHFsInQK16j6n36XuCimY665l_-HPAuu-lTTlwpMTUR7K1eYMBsco_tp_TdxEipRNvBpaWZX3J0FxPMzi84Y01UvWiW69pxb-LLTpf8aG4YCm9asRFyfDZ9nbSdgrIlCiuzy7QSmkvsHOaTEecmwRimFRycDuIuWLvA_tILmYCIM2KzvqYJSVCQPJH39xEHZG8LbMqImwAVYO3H90qh-90gNrtZn4ofSskcgqxeqfZly9CPfmEevX5s-SlLHMh1N6gdZwenvMC0kTWg_rskbvGiANtuGngD-kKDbunGpYJU_nI7uDnhGtdY#page=5">Equation 21</a>
+The default is keep the 2/21 coefficient value as seen in the equation.</p>
+<p class="last"><strong>default=[2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0]</strong></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -841,6 +849,13 @@ gamma=-1: assumes the lost material carries with is the specific angular momentu
 <span class="c1">; ck is related to magnetic field evolution of pulsars, see Kiel+2008</span>
 <span class="c1">; default=-1000</span>
 <span class="na">ck</span><span class="o">=</span><span class="s">-1000</span>
+
+<span class="c1">; fprimc_array controls the scaling factor for convective tides</span>
+<span class="c1">; each item is set individually for its associated kstar</span>
+<span class="c1">; The releveant equation is Equation 21 from the BSE paper</span>
+<span class="c1">; The default is to send the same coefficient (2/21) as is in the equation</span>
+<span class="c1">; for every kstar</span>
+<span class="na">fprimc_array</span><span class="o">=</span><span class="s">[2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0]</span>
 </pre></div>
 </div>
 </div>
@@ -889,7 +904,7 @@ gamma=-1: assumes the lost material carries with is the specific angular momentu
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+262.g03852f8',
+            VERSION:'2.0.0+291.g0430817.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+262.g03852f8 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                2.0.0+262.g03852f8
+                2.0.0+291.g0430817.dirty
               </div>
             
           
@@ -155,19 +155,69 @@
   <span class="target" id="module-cosmic.sample.sampler.independent"></span><p><cite>independent</cite></p>
 <dl class="function">
 <dt id="cosmic.sample.sampler.independent.get_independent_sampler">
-<code class="descclassname">cosmic.sample.sampler.independent.</code><code class="descname">get_independent_sampler</code><span class="sig-paren">(</span><em>final_kstar1</em>, <em>final_kstar2</em>, <em>primary_model</em>, <em>ecc_model</em>, <em>SFH_model</em>, <em>component_age</em>, <em>met</em>, <em>size</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.get_independent_sampler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Something</p>
+<code class="descclassname">cosmic.sample.sampler.independent.</code><code class="descname">get_independent_sampler</code><span class="sig-paren">(</span><em>final_kstar1</em>, <em>final_kstar2</em>, <em>bin_frac</em>, <em>primary_model</em>, <em>ecc_model</em>, <em>SFH_model</em>, <em>component_age</em>, <em>met</em>, <em>size</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.get_independent_sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates an initial binary sample according to user specified models</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>final_kstar1</strong> : <cite>int</cite></p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>final_kstar1</strong> : <cite>int or list</cite></p>
 <blockquote>
-<div><p>name of the format to be registered</p>
+<div><p>Int or list of final kstar1</p>
 </div></blockquote>
-<p><strong>final_kstar2</strong> : <cite>int</cite></p>
+<p><strong>final_kstar2</strong> : <cite>int or list</cite></p>
+<blockquote>
+<div><p>Int or list of final kstar2</p>
+</div></blockquote>
+<p><strong>bin_frac</strong> : <cite>str or float</cite></p>
+<blockquote>
+<div><p>Model for binary fraction; choices include: vanHaaften or a fraction where 1.0 is 100% binaries</p>
+</div></blockquote>
+<p><strong>primary_model</strong> : <cite>str</cite></p>
+<blockquote>
+<div><p>Model to sample primary mass; choices include: kroupa93, salpeter55</p>
+</div></blockquote>
+<p><strong>ecc_model</strong> : <cite>str</cite></p>
+<blockquote>
+<div><p>Model to sample eccentricity; choices include: thermal, uniform</p>
+</div></blockquote>
+<p><strong>SFH_model</strong> : <cite>str</cite></p>
+<blockquote>
+<div><p>Model to sample star formation history (or birth time); choices include: const, burst, delta_burst</p>
+</div></blockquote>
+<p><strong>component_age</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Sets the maximum age of the component; in the case of a delta burst, every binary is evolved for the component age</p>
+</div></blockquote>
+<p><strong>met</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Sets the metallicity of the binary population where solar metallicity is 0.02</p>
+</div></blockquote>
+<p><strong>size</strong> : <cite>int</cite></p>
+<blockquote>
+<div><p>Size of the population to sample</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>InitialBinaryTable</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><p>DataFrame in the format of the InitialBinaryTable</p>
+</div></blockquote>
+<p><strong>mass_singles</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Total mass in single stars needed to generate population</p>
+</div></blockquote>
+<p><strong>mass_binaries</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Total mass in binaries needed to generate population</p>
+</div></blockquote>
+<p><strong>n_singles</strong> : <cite>int</cite></p>
+<blockquote>
+<div><p>Number of single stars needed to generate a population</p>
+</div></blockquote>
+<p><strong>n_binaries</strong> : <cite>int</cite></p>
 <blockquote class="last">
-<div><p>the class that the sampler returns</p>
+<div><p>Number of binaries needed to generate a population</p>
 </div></blockquote>
 </td>
 </tr>
@@ -182,8 +232,8 @@
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.binary_select">
 <code class="descname">binary_select</code><span class="sig-paren">(</span><em>primary_mass</em>, <em>model='half'</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
-<dd><p>Select the which primary masses will have a companion using
-either a binary fraction of fifty percent or a
+<dd><p>Select  which primary masses will have a companion using 
+either a binary fraction specified by a float or a
 primary-mass dependent binary fraction following
 <a class="reference external" href="http://adsabs.harvard.edu/abs/2013A%26A...552A..69V">van Haaften et al.(2009)</a> in appdx</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -194,13 +244,14 @@ primary-mass dependent binary fraction following
 <blockquote>
 <div><p>Mass that determines the binary fraction</p>
 </div></blockquote>
-<p><strong>model</strong> : string</p>
+<p><strong>model</strong> : str or float</p>
 <blockquote>
-<div><p>half - every two stars selected are in a binary
-vanHaaften - primary mass dependent and ONLY VALID</p>
-<blockquote>
-<div><p>up to 100 Msun</p>
-</div></blockquote>
+<div><dl class="docutils">
+<dt>vanHaaften - primary mass dependent and ONLY VALID </dt>
+<dd><p class="first last">up to 100 Msun</p>
+</dd>
+</dl>
+<p>float - fraction of binaries; 0.5 means 2 in 3 stars are a binary pair while 1 means every star is in a binary pair</p>
 </div></blockquote>
 </td>
 </tr>
@@ -338,27 +389,19 @@ of mass1 and mass2</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.sample_primary">
-<code class="descname">sample_primary</code><span class="sig-paren">(</span><em>primary_min</em>, <em>primary_max</em>, <em>primary_model='kroupa93'</em>, <em>size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_primary" title="Permalink to this definition">¶</a></dt>
+<code class="descname">sample_primary</code><span class="sig-paren">(</span><em>primary_model='kroupa93'</em>, <em>size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_primary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample the primary mass (always the most massive star) from a user-selected model</p>
 <p>kroupa93 follows Kroupa (1993), normalization comes from
 <a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
-between 0.1 and 150 Msun
+between 0.08 and 150 Msun
 salpter55 follows
 <a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
-between 0.1 and 150 Msun</p>
+between 0.08 and 150 Msun</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>primary_min</strong> : float</p>
-<blockquote>
-<div><p>minimum initial primary mass [Msun]</p>
-</div></blockquote>
-<p><strong>primary_max</strong> : float</p>
-<blockquote>
-<div><p>maximum initial primary mass [Msun]</p>
-</div></blockquote>
-<p><strong>primary_model</strong> : str, optional</p>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>primary_model</strong> : str, optional</p>
 <blockquote>
 <div><p>model for mass distribution; choose from:</p>
 <p>kroupa93 follows Kroupa (1993), normalization comes from
@@ -380,7 +423,7 @@ NOTE: this is set in runFixedPop call as Nstep</p>
 <blockquote>
 <div><p>Sampled primary masses</p>
 </div></blockquote>
-<p><strong>total_sampled_mass</strong> : float</p>
+<p><strong>sampled_mass</strong> : float</p>
 <blockquote class="last">
 <div><p>Total amount of mass sampled</p>
 </div></blockquote>
@@ -478,7 +521,7 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+262.g03852f8',
+            VERSION:'2.0.0+291.g0430817.dirty',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
