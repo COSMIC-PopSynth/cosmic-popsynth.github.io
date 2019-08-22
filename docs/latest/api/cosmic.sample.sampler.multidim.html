@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+344.gcafd266 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                2.0.0+291.g0430817.dirty
+                2.0.0+344.gcafd266
               </div>
             
           
@@ -228,7 +228,7 @@ DEFAULT: 0</p>
 <p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of evolution times to sample
-NOTE: this is set in runFixedPop call as Nstep</p>
+NOTE: this is set in cosmic-pop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
@@ -248,10 +248,25 @@ NOTE: this is set in runFixedPop call as Nstep</p>
 <blockquote>
 <div><p>array of eccentricities with size=size</p>
 </div></blockquote>
-<p><strong>total_mass</strong> : float</p>
+<p><strong>mass_singles</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Total mass in single stars needed to generate population</p>
+</div></blockquote>
+<p><strong>mass_binaries</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Total mass in binaries needed to generate population</p>
+</div></blockquote>
+<p><strong>n_singles</strong> : <cite>int</cite></p>
+<blockquote>
+<div><p>Number of single stars needed to generate a population</p>
+</div></blockquote>
+<p><strong>n_binaries</strong> : <cite>int</cite></p>
+<blockquote>
+<div><p>Number of binaries needed to generate a population</p>
+</div></blockquote>
+<p><strong>binfrac_list</strong> : array</p>
 <blockquote class="last">
-<div><p>total mass including single and binary stars
-required to generate the initial population</p>
+<div><p>array of binary probabilities based on primary mass and period with size=size</p>
 </div></blockquote>
 </td>
 </tr>
@@ -291,7 +306,7 @@ Default: 0.02</p>
 <p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of evolution times to sample
-NOTE: this is set in runFixedPop call as Nstep</p>
+NOTE: this is set in cosmic-pop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
@@ -366,7 +381,7 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+291.g0430817.dirty',
+            VERSION:'2.0.0+344.gcafd266',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

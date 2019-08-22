@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 2.0.0+344.gcafd266 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0.0+291.g0430817.dirty
+                2.0.0+344.gcafd266
               </div>
             
           
@@ -88,6 +88,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration files for COSMIC</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-write-a-configuration-file">How to write a configuration file</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#filters">[filters]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sampling">[sampling]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#convergence">[convergence]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rand-seed">[rand_seed]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bse">[bse]</a></li>
@@ -170,7 +171,7 @@
 <p>Here is a link to the most recent stable release version of the default
 inifile for COSMIC: <a class="reference external" href="https://github.com/COSMIC-PopSynth/COSMIC/blob/master/examples/Params.ini">Stable Version INIFILE</a></p>
 <p>Here is a link to the unstable development version of the default inifile for COSMIC: <a class="reference external" href="https://github.com/COSMIC-PopSynth/COSMIC/blob/develop/examples/Params.ini">Development Version INIFILE</a></p>
-<p>The <cite>runFixedPop</cite> command-line executable cannot run without a configuration file.
+<p>The <cite>cosmic-pop</cite> command-line executable cannot run without a configuration file.
 Each of the below sections lists the valid options and a description of what the value should be, and then an example of what that section might look like in the INI format:</p>
 <div class="section" id="filters">
 <h3>[filters]<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h3>
@@ -180,19 +181,14 @@ Each of the below sections lists the valid options and a description of what the
 <col width="60%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">mass_transfer_white_dwarf_to_co</span></code></td>
-<td>Do not retain systems which are some point during
-their evolution a white dwarf mass transferred
-onto a compact object</td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">select_final_state</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">select_final_state</span></code></td>
 <td>The bcm array generally returns the first and last
 state of the binary system. Since we already
-save the initial conditions in runFixedPop, usually
+save the initial conditions in cosmic-pop, usually
 we opt to throw out the initial state of the binary
 from this array and only keep the final state</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">binary_state</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">binary_state</span></code></td>
 <td>Each binary system at the end of its evolution
 will be in one of three states. Either it is still
 a binary system at the end of the evolution period,
@@ -201,18 +197,9 @@ is no longer a binary as it was disrupted
 at some point in its evolution (likely due one
 of the objects undergoing a Supernova).</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">lisa_sources</span></code></td>
-<td>A boolean flag which, if True, will retain
-only sources within LISA’s frequency
-range (porb&lt;1e5 sec)</td>
-</tr>
 </tbody>
 </table>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[filters]</span>
-<span class="c1">; mass_transfer_white_dwarf_to_co gets rid of any binary where this happens</span>
-<span class="c1">; default=False</span>
-<span class="na">mass_transfer_white_dwarf_to_co</span> <span class="o">=</span> <span class="s">False</span>
-
 <span class="c1">; select_final_state will retain only the final entry of the bcm arry if set to True</span>
 <span class="c1">; default=True</span>
 <span class="na">select_final_state</span> <span class="o">=</span> <span class="s">True</span>
@@ -221,10 +208,50 @@ range (porb&lt;1e5 sec)</td>
 <span class="c1">; 0 alive today, 1 merged, 2 disrupted</span>
 <span class="c1">; default=[0,1,2]</span>
 <span class="na">binary_state</span> <span class="o">=</span> <span class="s">[0,1,2]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sampling">
+<h3>[sampling]<a class="headerlink" href="#sampling" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">sampling_method</span></code></td>
+<td><p class="first">Determine how to sample your initial binaries which will be evolved</p>
+<p><code class="docutils literal notranslate"><span class="pre">independent</span></code> : initialize the binaries with a indepdent parameter distribution</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">multidim</span></code> : initialize the binaries with multidimensional parameter distributions according to <a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJS..230...15M">Moe &amp; Di Stefano 2017</a></p>
+</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">galaxy_component</span></code></td>
+<td><p class="first">There are currently four SFHs implemented in cosmic, one each for the Milky Way thin disk, thick disk and bulge. In addition a Deltaburst SFH can be used. Their assumptions are as follows:</p>
+<blockquote class="last">
+<div><p><code class="docutils literal notranslate"><span class="pre">ThinDisk</span></code> : constant star formation over 10 Gyr; the metallicity for the thin disk is traditionally set to solar</p>
+<p><code class="docutils literal notranslate"><span class="pre">ThickDisk</span></code> : a 1 Gyr burst of constant star formation 11 Gyr in the past; the metallicity for the thick disk is traditionally set to be subsolar, we reccommend 15% solar</p>
+<p><code class="docutils literal notranslate"><span class="pre">Bulge</span></code> : a 1 Gyr burst of constant 10 Gyr in the past; the metallicity for the bulge is traditionally set to solar</p>
+<p><code class="docutils literal notranslate"><span class="pre">DeltaBurst</span></code> : ??</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">metallicity</span></code></td>
+<td>Metallicity of the population of initial binaries</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sampling]</span>
+<span class="c1">; Specify if you woud like to sample initial conditions via</span>
+<span class="c1">; the independent method (indepedent) or would like to sample</span>
+<span class="c1">; initial conditions follow Moe &amp; Di Stefano (2017) (multidim)</span>
+<span class="na">sampling_method</span><span class="o">=</span><span class="s">multidim</span>
 
-<span class="c1">; lisa_sources decides whether to retain only sources within LISA&#39;s frequency range (porb&lt;1e5 sec)</span>
-<span class="c1">; default=False</span>
-<span class="na">lisa_sources</span> <span class="o">=</span> <span class="s">False</span>
+<span class="c1">; Galaxy Components. Options include Bulge, ThinDisk, ThickDisk, and DeltaBurst</span>
+<span class="c1">; Think Star Formation History with which to use as your basis for sampling</span>
+<span class="na">galaxy_component</span> <span class="o">=</span> <span class="s">DeltaBurst</span>
+
+<span class="c1">; Metallicity of the population of initial binaries</span>
+<span class="na">metallicity</span> <span class="o">=</span> <span class="s">0.02</span>
 </pre></div>
 </div>
 </div>
@@ -232,24 +259,82 @@ range (porb&lt;1e5 sec)</td>
 <h3>[convergence]<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <colgroup>
-<col width="25%" />
-<col width="75%" />
+<col width="20%" />
+<col width="80%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">lisa_convergence</span></code></td>
-<td>One of the steps performed during <cite>runFixedPop</cite>
-is to check whether the properities of your evolved binaries
-have converged to be representative of the underlying
-distribution. This boolean flag, if True, restricts the
-systems it checks further to be only systems with
-porb &lt; 5000 sec</td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">convergence_params</span></code></td>
+<td>A list of parameters you would like to verify have converged
+to a single distribution shape.
+Options include: <code class="docutils literal notranslate"><span class="pre">mass_1</span></code>, <code class="docutils literal notranslate"><span class="pre">mass_2</span></code>, <code class="docutils literal notranslate"><span class="pre">sep</span></code>, <code class="docutils literal notranslate"><span class="pre">porb</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ecc</span></code>, <code class="docutils literal notranslate"><span class="pre">massc_1</span></code>, <code class="docutils literal notranslate"><span class="pre">massc_2</span></code>, <code class="docutils literal notranslate"><span class="pre">rad_1</span></code>, <code class="docutils literal notranslate"><span class="pre">rad_2</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">convergence_filter</span></code></td>
+<td><p class="first">Specify the stage of the evolution at which you would like
+to check for convergence. for example if you are looking
+for BH-BH mergers you may care about the convergence of the
+properities of those BH-BH merger when they first formed a BH-BH system (formation) or
+care about the properities right before they actually merged (final_state)</p>
+<p><code class="docutils literal notranslate"><span class="pre">formation</span></code>: computes convergence on binary properties
+at formation with user-specified final kstars if True</p>
+<p><code class="docutils literal notranslate"><span class="pre">1_SN</span></code>: computes convergence on binary properties
+just before the first supernova for the population with
+user-specified final kstars if True</p>
+<p><code class="docutils literal notranslate"><span class="pre">2_SN</span></code>: computes convergence on binary properties
+just before the second supernova for the population with
+user-specified final kstars if True</p>
+<p><code class="docutils literal notranslate"><span class="pre">disruption</span></code>: computes convergence on binary properties
+just before disruption of the population with
+user-specified final kstars if True</p>
+<p><code class="docutils literal notranslate"><span class="pre">final_state</span></code>: computes convergence on binary properties
+after the full evolution specified by the user-supplied evolution time
+and with the user specified final kstars if True</p>
+<p class="last"><code class="docutils literal notranslate"><span class="pre">XRB_form</span></code>: computes convergence on binary properties
+at the start of RLO following the first supernova on the population with
+user-specified final kstars if True</p>
+</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">match</span></code></td>
+<td>match provides the tolerance for the convergence calculation
+and is calculated as match = log10(1-convergence)</td>
 </tr>
 </tbody>
 </table>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[convergence]</span>
-<span class="c1">; perform convergence over porb &lt; 5000 sec for LISA Galaxies</span>
-<span class="c1">; default=False</span>
-<span class="na">lisa_convergence</span><span class="o">=</span><span class="s">False</span>
+<span class="c1">; A list of parameters you would like to verify have converged</span>
+<span class="c1">; to a single distribution shape.</span>
+<span class="c1">; Options include mass_1, mass_2, sep, porb, ecc, massc_1, massc_2</span>
+<span class="c1">; rad_1, rad_2</span>
+<span class="na">convergence_params</span> <span class="o">=</span> <span class="s">[mass_1,mass_2,porb,ecc]</span>
+
+<span class="c1">; formation computes convergence on binary properties</span>
+<span class="c1">; at formation with user-specified final kstars if True</span>
+
+<span class="c1">; 1_SN computes convergence on binary properties</span>
+<span class="c1">; just before the first supernova for the population with</span>
+<span class="c1">; user-specified final kstars if True</span>
+
+<span class="c1">; 2_SN computes convergence on binary properties</span>
+<span class="c1">; just before the second supernova for the population with</span>
+<span class="c1">; user-specified final kstars if True</span>
+
+<span class="c1">; disruption computes convergence on binary properties</span>
+<span class="c1">; just before disruption of the population with</span>
+<span class="c1">; user-specified final kstars if True</span>
+
+<span class="c1">; final_state computes convergence on binary properties</span>
+<span class="c1">; after the full evolution specified by the user-supplied evolution time</span>
+<span class="c1">; and with the user specified final kstars if True</span>
+
+<span class="c1">; XRB_form computes convergence on binary properties</span>
+<span class="c1">; at the start of RLO following the first supernova on the population with</span>
+<span class="c1">; user-specified final kstars if True</span>
+<span class="na">convergence_filter</span> <span class="o">=</span> <span class="s">formation</span>
+
+<span class="c1">; match provides the tolerance for the convergence calculation</span>
+<span class="c1">; and is calculated as match = log10(1-convergence)</span>
+<span class="c1">; default = -5.0</span>
+<span class="na">match</span> <span class="o">=</span> <span class="s">-5.0</span>
 </pre></div>
 </div>
 </div>
@@ -904,7 +989,7 @@ The default is keep the 2/21 coefficient value as seen in the equation.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+291.g0430817.dirty',
+            VERSION:'2.0.0+344.gcafd266',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

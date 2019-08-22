@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+344.gcafd266 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                2.0.0+291.g0430817.dirty
+                2.0.0+344.gcafd266
               </div>
             
           
@@ -183,7 +183,7 @@
 
 <dl class="function">
 <dt id="cosmic.Match.perform_convergence">
-<code class="descclassname">cosmic.Match.</code><code class="descname">perform_convergence</code><span class="sig-paren">(</span><em>conv_params</em>, <em>bin_states</em>, <em>conv_filter</em>, <em>bcm_save</em>, <em>bcm_save_filtered</em>, <em>bpp_save</em>, <em>final_kstar_1</em>, <em>final_kstar_2</em>, <em>log_file</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.Match.perform_convergence" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">cosmic.Match.</code><code class="descname">perform_convergence</code><span class="sig-paren">(</span><em>conv_params</em>, <em>conv_1</em>, <em>conv_2</em>, <em>log_file</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.Match.perform_convergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs the convergence calculations for each convergence parameter
 and binary state</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -194,25 +194,13 @@ and binary state</p>
 <blockquote>
 <div><p>List of user supplied convergence parameters</p>
 </div></blockquote>
-<p><strong>bin_states</strong> : dict</p>
+<p><strong>conv_1</strong> : DataFrame</p>
 <blockquote>
-<div><p>List of user supplied binary states</p>
+<div><p>Cumulative data set of conv arrays</p>
 </div></blockquote>
-<p><strong>conv_filter</strong> : dict</p>
+<p><strong>conv_2</strong> : DataFrame</p>
 <blockquote>
-<div><p>List of user supplied convergence filters</p>
-</div></blockquote>
-<p><strong>bcm_save</strong> : DataFrame</p>
-<blockquote>
-<div><p>Cumulative data set of bcm arrays</p>
-</div></blockquote>
-<p><strong>bcm_save_filtered</strong> : DataFrame</p>
-<blockquote>
-<div><p>Most recent data set of bcm array from most recent BSE run</p>
-</div></blockquote>
-<p><strong>bpp_save</strong> : DataFrame</p>
-<blockquote>
-<div><p>Cumulative data set of bpp arrays</p>
+<div><p>Most recent data set of conv array from most recent BSE run</p>
 </div></blockquote>
 <p><strong>log_file</strong> : file write</p>
 <blockquote>
@@ -265,7 +253,7 @@ e.g. eccentricity for a disrupted system</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+291.g0430817.dirty',
+            VERSION:'2.0.0+344.gcafd266',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

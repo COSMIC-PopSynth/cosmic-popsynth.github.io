@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+344.gcafd266 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                2.0.0+291.g0430817.dirty
+                2.0.0+344.gcafd266
               </div>
             
           
@@ -159,7 +159,7 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="classmethod">
 <dt id="cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary">
-<em class="property">classmethod </em><code class="descname">MultipleBinary</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>porb</em>, <em>ecc</em>, <em>tphysf</em>, <em>kstar1</em>, <em>kstar2</em>, <em>metallicity</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">MultipleBinary</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>porb</em>, <em>ecc</em>, <em>tphysf</em>, <em>kstar1</em>, <em>kstar2</em>, <em>metallicity</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable.MultipleBinary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create multiple binaries</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -195,9 +195,13 @@ main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 <div><p>0-14 Initial stellar type of the smaller object;
 main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 </div></blockquote>
-<p><strong>metallicity:float</strong></p>
+<p><strong>metallicity</strong> : float</p>
 <blockquote>
 <div><p>Metallicity of the binaries; Z_sun = 0.02</p>
+</div></blockquote>
+<p><strong>binfrac</strong> : float</p>
+<blockquote>
+<div><p>System-specific probability of the primary star being in a binary</p>
 </div></blockquote>
 </td>
 </tr>
@@ -217,7 +221,7 @@ main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 
 <dl class="classmethod">
 <dt id="cosmic.sample.initialbinarytable.InitialBinaryTable.SingleBinary">
-<em class="property">classmethod </em><code class="descname">SingleBinary</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>porb</em>, <em>ecc</em>, <em>tphysf</em>, <em>kstar1</em>, <em>kstar2</em>, <em>metallicity</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable.SingleBinary" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="descname">SingleBinary</code><span class="sig-paren">(</span><em>m1</em>, <em>m2</em>, <em>porb</em>, <em>ecc</em>, <em>tphysf</em>, <em>kstar1</em>, <em>kstar2</em>, <em>metallicity</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.initialbinarytable.InitialBinaryTable.SingleBinary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create single binary</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -253,9 +257,13 @@ main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 <div><p>0-14 Initial stellar type of the smaller object;
 main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 </div></blockquote>
-<p><strong>metallicity:float</strong></p>
+<p><strong>metallicity</strong> : float</p>
 <blockquote>
 <div><p>Metallicity of the binaries; Z_sun = 0.02</p>
+</div></blockquote>
+<p><strong>binfrac</strong> : float</p>
+<blockquote>
+<div><p>System-specific probability of the primary star being in a binary</p>
 </div></blockquote>
 </td>
 </tr>
@@ -349,7 +357,7 @@ to see the arguments necessary for the independent sample</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+291.g0430817.dirty',
+            VERSION:'2.0.0+344.gcafd266',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

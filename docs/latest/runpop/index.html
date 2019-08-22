@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a binary population by hand &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
+  <title>Generate a binary population by hand &mdash; cosmic 2.0.0+344.gcafd266 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0.0+291.g0430817.dirty
+                2.0.0+344.gcafd266
               </div>
             
           
@@ -188,19 +188,16 @@ You can access the available models using the independent sampler help call:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">help</span><span class="p">(</span><span class="n">independent</span><span class="o">.</span><span class="n">get_independent_sampler</span><span class="p">)</span>
 <span class="go">Help on function get_independent_sampler in module cosmic.sample.sampler.independent:</span>
 
-<span class="go">get_independent_sampler(final_kstar1, final_kstar2, bin_frac, primary_model, ecc_model, SFH_model, component_age, met, size, **kwargs)</span>
+<span class="go">get_independent_sampler(final_kstar1, final_kstar2, primary_model, ecc_model, SFH_model, binfrac_model, component_age, met, size, **kwargs)</span>
 <span class="go">    Generates an initial binary sample according to user specified models</span>
 <span class="go">    </span>
 <span class="go">    Parameters</span>
 <span class="go">    ----------</span>
 <span class="go">    final_kstar1 : `int or list`</span>
-<span class="go">        Int or list of final kstar1        </span>
+<span class="go">        Int or list of final kstar1</span>
 <span class="go">    </span>
 <span class="go">    final_kstar2 : `int or list`</span>
 <span class="go">        Int or list of final kstar2</span>
-<span class="go">    </span>
-<span class="go">    bin_frac : `str or float`</span>
-<span class="go">        Model for binary fraction; choices include: vanHaaften or a fraction where 1.0 is 100% binaries</span>
 <span class="go">    </span>
 <span class="go">    primary_model : `str`</span>
 <span class="go">        Model to sample primary mass; choices include: kroupa93, salpeter55</span>
@@ -210,6 +207,9 @@ You can access the available models using the independent sampler help call:</p>
 <span class="go">    </span>
 <span class="go">    SFH_model : `str`</span>
 <span class="go">        Model to sample star formation history (or birth time); choices include: const, burst, delta_burst</span>
+<span class="go">    </span>
+<span class="go">    binfrac_model : `str or float`</span>
+<span class="go">        Model for binary fraction; choices include: vanHaaften or a fraction where 1.0 is 100% binaries</span>
 <span class="go">    </span>
 <span class="go">    component_age : `float`</span>
 <span class="go">        Sets the maximum age of the component; in the case of a delta burst, every binary is evolved for the component age</span>
@@ -277,7 +277,7 @@ history (SFH) below:</p>
 <span class="go">        Default: 0.02</span>
 <span class="go">    size : int, optional</span>
 <span class="go">        number of evolution times to sample</span>
-<span class="go">        NOTE: this is set in runFixedPop call as Nstep</span>
+<span class="go">        NOTE: this is set in cosmic-pop call as Nstep</span>
 <span class="go">    </span>
 <span class="go">    Returns</span>
 <span class="go">    -------</span>
@@ -288,78 +288,78 @@ history (SFH) below:</p>
 </pre></div>
 </div>
 <p>Using the final kstar inputs above, the initial binary population is sampled as:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">bin_frac</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa93&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;thermal&#39;</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa93&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;thermal&#39;</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
 <span class="gp">In [8]: </span><span class="k">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">       kstar_1  kstar_2  mass1_binary  mass2_binary          porb       ecc  metallicity       tphysf</span>
-<span class="go">0          1.0      0.0      1.117254      0.629768  7.595614e+01  0.518476         0.02  4688.426357</span>
-<span class="go">1          1.0      1.0      1.261853      1.113895  4.030504e+03  0.793246         0.02  5358.068385</span>
-<span class="go">2          1.0      1.0      1.094597      0.827761  1.950622e+01  0.736586         0.02  3760.224290</span>
-<span class="go">3          1.0      0.0      0.964511      0.510467  3.010578e+03  0.863772         0.02   247.969020</span>
-<span class="go">4          1.0      0.0      1.073987      0.619180  1.011403e+02  0.391861         0.02  5437.849414</span>
-<span class="go">5          1.0      1.0      1.137143      1.075493  2.398849e+06  0.101928         0.02  4537.863308</span>
-<span class="go">6          1.0      1.0      0.952314      0.828555  2.320331e+03  0.651106         0.02  1789.293994</span>
-<span class="go">7          1.0      1.0      0.925771      0.728590  3.666365e+00  0.891608         0.02   974.956555</span>
-<span class="go">8          1.0      0.0      0.874231      0.530123  5.752610e+01  0.426692         0.02  6238.896140</span>
-<span class="go">9          1.0      1.0      1.290191      0.978209  8.706435e+02  0.359551         0.02  2014.660307</span>
-<span class="go">10         1.0      1.0      0.900131      0.722010  8.233621e+04  0.876368         0.02  7387.450512</span>
-<span class="go">11         1.0      0.0      0.970962      0.614338  3.727591e+02  0.841253         0.02  3437.231871</span>
-<span class="go">12         1.0      0.0      0.941192      0.612453  4.524127e+00  0.662353         0.02  3896.331894</span>
-<span class="go">13         1.0      1.0      0.971667      0.736592  2.773792e+04  0.402269         0.02     1.541298</span>
-<span class="go">14         1.0      1.0      1.759330      1.323976  6.677445e+03  0.962084         0.02  7864.060703</span>
-<span class="go">15         1.0      0.0      2.595529      0.602103  3.530587e+03  0.692881         0.02  8969.919065</span>
-<span class="go">16         1.0      0.0      1.178465      0.651164  3.810826e+01  0.400878         0.02   921.260820</span>
-<span class="go">17         1.0      0.0      0.867311      0.678665  1.410579e+05  0.902242         0.02  4886.069503</span>
-<span class="go">18         1.0      1.0      0.877735      0.714548  1.933580e+04  0.201582         0.02  1001.086235</span>
-<span class="go">19         1.0      0.0      1.097460      0.546276  2.169270e+04  0.872164         0.02  3595.513702</span>
-<span class="go">20         1.0      0.0      0.834831      0.597653  4.748675e+01  0.353261         0.02  1285.200760</span>
-<span class="go">21         1.0      1.0      1.549122      1.404007  1.502843e+02  0.878918         0.02  2571.703851</span>
-<span class="go">22         1.0      1.0      0.891255      0.797958  2.324623e+03  0.661156         0.02  1642.662530</span>
-<span class="go">23         1.0      1.0      0.923042      0.914336  1.357493e+00  0.710794         0.02  3411.819874</span>
-<span class="go">24         1.0      0.0      0.976841      0.517379  1.821189e+03  0.811990         0.02  7554.595497</span>
-<span class="go">25         1.0      0.0      1.398872      0.639570  2.108502e+02  0.393976         0.02  8767.795270</span>
-<span class="go">26         1.0      1.0     10.839738      4.810103  1.223655e+01  0.837384         0.02  3124.033219</span>
-<span class="go">27         1.0      1.0      1.674071      1.162305  9.018653e+01  0.703026         0.02  4022.398084</span>
-<span class="go">28         1.0      0.0      0.984368      0.590864  2.102723e+01  0.764042         0.02   269.246824</span>
-<span class="go">29         1.0      1.0      1.748268      0.882113  3.465532e+02  0.811763         0.02   804.880457</span>
-<span class="go">...        ...      ...           ...           ...           ...       ...          ...          ...</span>
-<span class="go">10263      1.0      0.0      0.820440      0.503606  1.873217e+03  0.678118         0.02  4788.596944</span>
-<span class="go">10264      1.0      1.0      1.142411      0.788786  2.892084e+00  0.813865         0.02  2709.026214</span>
-<span class="go">10265      1.0      1.0      0.915629      0.713163  1.258070e+04  0.596210         0.02  5287.855883</span>
-<span class="go">10266      1.0      1.0      0.888376      0.748566  3.466736e+04  0.861265         0.02  5865.203802</span>
-<span class="go">10267      1.0      1.0      3.274139      3.109135  9.190005e+00  0.497801         0.02  7169.486394</span>
-<span class="go">10268      1.0      0.0      0.829722      0.615373  1.969354e+02  0.938091         0.02  2473.011127</span>
-<span class="go">10269      1.0      1.0      1.310228      1.305809  2.089398e+04  0.291515         0.02  5418.590894</span>
-<span class="go">10270      1.0      1.0      1.218542      0.911853  2.304106e+01  0.508769         0.02  9649.175280</span>
-<span class="go">10271      1.0      0.0      0.830665      0.657570  6.573710e+02  0.646333         0.02  3874.295954</span>
-<span class="go">10272      1.0      1.0      1.119129      0.854662  2.040433e+00  0.532918         0.02   357.016694</span>
-<span class="go">10273      1.0      1.0      4.512980      2.720812  1.408625e+03  0.992507         0.02   374.761656</span>
-<span class="go">10274      1.0      1.0      1.323299      1.046297  4.061605e+03  0.877889         0.02  2123.463566</span>
-<span class="go">10275      1.0      1.0      1.150121      0.838522  4.149755e+05  0.372184         0.02  1055.019433</span>
-<span class="go">10276      1.0      1.0      0.865603      0.808923  1.490932e+02  0.499223         0.02  7472.551316</span>
-<span class="go">10277      1.0      1.0      1.122353      1.036770  3.081246e+05  0.962783         0.02  2356.602613</span>
-<span class="go">10278      1.0      0.0      0.912851      0.526422  3.139233e+03  0.744098         0.02  7224.093896</span>
-<span class="go">10279      1.0      1.0      0.971453      0.788198  1.488311e+05  0.956517         0.02  2511.904821</span>
-<span class="go">10280      1.0      1.0      2.783467      2.225102  3.227659e+01  0.563910         0.02  9127.217035</span>
-<span class="go">10281      1.0      1.0      0.858690      0.706152  9.390283e+04  0.344123         0.02   592.433457</span>
-<span class="go">10282      1.0      1.0      1.216387      0.818043  4.262514e+01  0.615872         0.02  9173.228938</span>
-<span class="go">10283      1.0      1.0      1.456440      1.333388  3.936926e+00  0.149223         0.02  7285.625615</span>
-<span class="go">10284      1.0      0.0      0.923791      0.502035  8.307867e+01  0.423728         0.02  2771.495180</span>
-<span class="go">10285      1.0      0.0      1.023650      0.546246  8.700383e+02  0.891032         0.02  1324.287492</span>
-<span class="go">10286      1.0      1.0      1.430769      1.231407  1.821533e+01  0.684758         0.02   951.558092</span>
-<span class="go">10287      1.0      1.0      1.640501      1.069389  1.790622e+01  0.776392         0.02  4807.207759</span>
-<span class="go">10288      1.0      0.0      1.028656      0.548604  1.872690e+01  0.826866         0.02  5569.581216</span>
-<span class="go">10289      1.0      1.0      1.015543      0.961527  1.016294e+02  0.806878         0.02   215.065964</span>
-<span class="go">10290      1.0      1.0      1.333441      1.207479  4.679821e+01  0.325550         0.02  1692.466488</span>
-<span class="go">10291      1.0      1.0      1.335114      1.233355  1.682456e+01  0.862373         0.02  8506.898423</span>
-<span class="go">10292      1.0      1.0      1.565846      1.307336  3.039383e+03  0.525878         0.02  1667.926060</span>
+<span class="go">       kstar_1  kstar_2  mass1_binary  mass2_binary          porb       ecc  metallicity  binfrac       tphysf</span>
+<span class="go">0          1.0      1.0      2.346155      1.067684  3.927144e+00  0.497306         0.02      0.5  7064.290102</span>
+<span class="go">1          1.0      1.0      0.818879      0.802367  8.114008e+03  0.937857         0.02      0.5  4438.378544</span>
+<span class="go">2          1.0      1.0      1.057068      1.028710  1.284770e+02  0.313619         0.02      0.5  6136.498329</span>
+<span class="go">3          1.0      1.0      0.991607      0.836039  1.416017e+03  0.624642         0.02      0.5  8044.426754</span>
+<span class="go">4          1.0      0.0      1.473132      0.514551  9.692317e+04  0.494606         0.02      0.5  9482.603015</span>
+<span class="go">5          1.0      1.0      1.511896      1.009066  1.758704e+06  0.831213         0.02      0.5  3235.781723</span>
+<span class="go">6          1.0      0.0      0.836623      0.553361  2.096918e+05  0.650480         0.02      0.5  4510.703317</span>
+<span class="go">7          1.0      0.0      1.280853      0.672475  9.593093e+03  0.279773         0.02      0.5  3603.223342</span>
+<span class="go">8          1.0      1.0      2.039250      0.821321  1.462333e+01  0.270332         0.02      0.5  7658.507055</span>
+<span class="go">9          1.0      1.0      1.597121      0.815741  1.929508e+02  0.970634         0.02      0.5  2272.597796</span>
+<span class="go">10         1.0      0.0      0.885782      0.532039  1.322462e+06  0.852657         0.02      0.5     2.229537</span>
+<span class="go">11         1.0      1.0      1.661281      1.174811  5.625104e+03  0.971091         0.02      0.5  4530.691514</span>
+<span class="go">12         1.0      0.0      0.820346      0.594515  7.345304e+05  0.948289         0.02      0.5  3596.296907</span>
+<span class="go">13         1.0      1.0      1.011953      0.880892  1.005658e+05  0.351070         0.02      0.5  4976.582057</span>
+<span class="go">14         1.0      0.0      1.061202      0.604420  3.616541e+05  0.977614         0.02      0.5  3468.465814</span>
+<span class="go">15         1.0      1.0      0.985580      0.705323  2.476899e+04  0.870110         0.02      0.5  1957.761512</span>
+<span class="go">16         1.0      0.0      1.141337      0.511985  5.314422e+01  0.383001         0.02      0.5  4331.564882</span>
+<span class="go">17         1.0      1.0      5.475747      4.922739  6.067308e+05  0.587332         0.02      0.5  6036.589522</span>
+<span class="go">18         1.0      1.0      2.054295      1.837339  1.010784e+02  0.547779         0.02      0.5  7210.318710</span>
+<span class="go">19         1.0      1.0      1.759903      1.283036  3.229450e+03  0.927879         0.02      0.5  9421.046948</span>
+<span class="go">20         1.0      0.0      0.962188      0.614465  6.379214e+01  0.426027         0.02      0.5   614.352329</span>
+<span class="go">21         1.0      1.0      1.035935      0.999264  3.561317e+00  0.979411         0.02      0.5  3934.271930</span>
+<span class="go">22         1.0      0.0      1.351359      0.546408  2.835950e+03  0.413113         0.02      0.5  9432.949809</span>
+<span class="go">23         1.0      1.0      2.899598      2.458044  1.475829e+01  0.748286         0.02      0.5  3795.491165</span>
+<span class="go">24         1.0      1.0      1.312293      1.014368  3.159600e+05  0.956105         0.02      0.5  3091.754975</span>
+<span class="go">25         1.0      1.0      1.900954      1.470621  4.935926e+00  0.916518         0.02      0.5  3312.791977</span>
+<span class="go">26         1.0      1.0      2.069215      1.304245  4.080746e+03  0.882142         0.02      0.5  7624.059103</span>
+<span class="go">27         1.0      1.0      1.419945      1.010750  1.377355e+01  0.457894         0.02      0.5     9.611808</span>
+<span class="go">28         1.0      1.0      0.907911      0.743034  1.903837e+03  0.416802         0.02      0.5  1318.077295</span>
+<span class="go">29         1.0      1.0      1.227071      0.914428  8.749307e+03  0.778475         0.02      0.5  3370.237377</span>
+<span class="go">...        ...      ...           ...           ...           ...       ...          ...      ...          ...</span>
+<span class="go">10456      1.0      0.0      0.943339      0.687346  2.929061e+02  0.774124         0.02      0.5  4045.017275</span>
+<span class="go">10457      1.0      1.0      0.913888      0.732787  6.512339e+03  0.315105         0.02      0.5  5354.595762</span>
+<span class="go">10458      1.0      1.0      4.342148      2.848894  1.077963e+01  0.489875         0.02      0.5  7296.978962</span>
+<span class="go">10459      1.0      0.0      1.093538      0.511967  2.050827e+02  0.963394         0.02      0.5  8297.756908</span>
+<span class="go">10460      1.0      1.0      1.031153      0.940500  1.134950e+03  0.559381         0.02      0.5  3992.958806</span>
+<span class="go">10461      1.0      1.0      1.030068      0.863353  3.733570e+05  0.787668         0.02      0.5  1780.054833</span>
+<span class="go">10462      1.0      1.0      1.183167      1.020819  3.246322e+01  0.380440         0.02      0.5  7934.470959</span>
+<span class="go">10463      1.0      1.0      1.547269      0.854253  9.102343e+02  0.512587         0.02      0.5  6665.836804</span>
+<span class="go">10464      1.0      1.0      1.431979      1.019228  2.453709e+02  0.593607         0.02      0.5  5550.167330</span>
+<span class="go">10465      1.0      1.0      1.167189      0.806116  3.203955e+03  0.581970         0.02      0.5  9975.042943</span>
+<span class="go">10466      1.0      1.0     17.001911      3.498247  7.951258e+05  0.791172         0.02      0.5  2293.532076</span>
+<span class="go">10467      1.0      0.0      0.915645      0.694966  6.054837e+05  0.766402         0.02      0.5  6969.256199</span>
+<span class="go">10468      1.0      0.0      0.859499      0.666029  8.568794e+02  0.994134         0.02      0.5   978.332118</span>
+<span class="go">10469      1.0      0.0      1.112483      0.619407  3.183256e+00  0.685056         0.02      0.5   986.939377</span>
+<span class="go">10470      1.0      1.0      1.738817      0.876277  5.912595e+03  0.807976         0.02      0.5  1108.766095</span>
+<span class="go">10471      1.0      1.0      1.025235      0.743090  2.021324e+03  0.775446         0.02      0.5  6798.193579</span>
+<span class="go">10472      1.0      1.0      1.356034      1.158868  4.534890e+04  0.899849         0.02      0.5  5851.385337</span>
+<span class="go">10473      1.0      1.0      2.709473      1.291476  1.094260e+04  0.815768         0.02      0.5  4119.250057</span>
+<span class="go">10474      1.0      1.0      1.822090      1.655034  1.860888e+01  0.722300         0.02      0.5  7411.672784</span>
+<span class="go">10475      1.0      0.0      0.849959      0.603235  1.826161e+03  0.991432         0.02      0.5  2361.898361</span>
+<span class="go">10476      1.0      1.0      0.910136      0.729313  3.309437e+03  0.356009         0.02      0.5  1522.216032</span>
+<span class="go">10477      1.0      0.0      1.679985      0.671497  3.647273e+05  0.129885         0.02      0.5  5408.066734</span>
+<span class="go">10478      1.0      1.0      1.064796      0.778441  1.715088e+06  0.911193         0.02      0.5  3704.442405</span>
+<span class="go">10479      1.0      1.0      1.039997      1.013449  5.659668e+03  0.576630         0.02      0.5  8241.118618</span>
+<span class="go">10480      1.0      1.0      0.831194      0.780951  1.203956e+03  0.522852         0.02      0.5  9958.717219</span>
+<span class="go">10481      1.0      0.0      2.246367      0.516150  1.975012e+06  0.669279         0.02      0.5  3332.315596</span>
+<span class="go">10482      1.0      1.0      0.958070      0.861318  1.893032e+01  0.512565         0.02      0.5    50.151152</span>
+<span class="go">10483      1.0      1.0      3.391763      2.166529  3.108267e+01  0.320859         0.02      0.5  7255.808966</span>
+<span class="go">10484      1.0      0.0      0.832553      0.508035  3.801236e+00  0.816927         0.02      0.5    66.360733</span>
+<span class="go">10485      1.0      0.0      1.258504      0.523679  6.860193e+04  0.920448         0.02      0.5  2919.971020</span>
 
-<span class="go">[10293 rows x 8 columns]</span>
+<span class="go">[10486 rows x 9 columns]</span>
 </pre></div>
 </div>
 <p>NOTE: the length of the initial binary data set, InitialBinaries, does not match
 the size parameter provided to InitialBinaryTable.sampler.
-This is becuase the sampler accounts for a binary fraction specified by the user with the bin_frac parameter, which is either a fraction between 0 and 1 or mass dependend following the prescription in <a class="reference external" href="http://adsabs.harvard.edu/abs/2012A%26A...537A.104V">van Haaften+2013</a>.
+This is becuase the sampler accounts for a binary fraction specified by the user with the binfrac_model parameter, which is either a fraction between 0 and 1 or mass dependend following the prescription in <a class="reference external" href="http://adsabs.harvard.edu/abs/2012A%26A...537A.104V">van Haaften+2013</a>.
 Since we are interested in binaries, we only retain the binary systems that are likely to produce the user specified final kstar types. However, we also keep track of the total mass of the single and binary stars as well as the numbre of binary and single stars so that we can scale our results to larger populations. If you don’t want to filter the binaries, you can supply final kstars as</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">final_kstar</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
 </pre></div>
@@ -420,17 +420,17 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;multidim&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">final_kstar2</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">rand_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="gp">In [14]: </span><span class="k">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">   kstar_1  kstar_2  mass1_binary  mass2_binary           porb       ecc  metallicity       tphysf</span>
-<span class="go">0      1.0      1.0      3.686712      0.806328  161026.959409  0.829034         0.02  2360.878223</span>
-<span class="go">1      1.0      1.0      0.974390      0.881366      25.334034  0.126290         0.02  1592.639467</span>
-<span class="go">2      1.0      1.0      2.479799      0.831304      60.621679  0.545004         0.02  6708.184782</span>
-<span class="go">3      1.0      1.0      1.125074      0.976918   29228.830150  0.713424         0.02  7759.872651</span>
-<span class="go">4      1.0      1.0      5.805987      3.358740     118.636803  0.718332         0.02  4337.158846</span>
-<span class="go">5      1.0      1.0     15.916263      6.395108   15884.228362  0.727113         0.02  5013.061815</span>
-<span class="go">6      1.0      1.0      1.710108      1.069395   55655.129136  0.900815         0.02  8574.488175</span>
-<span class="go">7      1.0      1.0      2.401816      1.261706     189.173552  0.264586         0.02  6105.118034</span>
-<span class="go">8      1.0      1.0      2.892138      0.988218     179.329874  0.085426         0.02  6949.526868</span>
-<span class="go">9      1.0      1.0      2.433570      2.134182   14727.306379  0.261487         0.02  3866.209068</span>
+<span class="go">   kstar_1  kstar_2  mass1_binary  mass2_binary           porb       ecc  metallicity   binfrac       tphysf</span>
+<span class="go">0      1.0      1.0      3.686712      0.806328  161026.959409  0.829034         0.02  0.614692  6948.520060</span>
+<span class="go">1      1.0      1.0      0.974390      0.881366      25.334034  0.126290         0.02  0.406506  2022.648426</span>
+<span class="go">2      1.0      1.0      2.479799      0.831304      60.621679  0.545004         0.02  0.528636  2482.675611</span>
+<span class="go">3      1.0      1.0      1.125074      0.976918   29228.830150  0.713424         0.02  0.411491  2795.080061</span>
+<span class="go">4      1.0      1.0      5.805987      3.358740     118.636803  0.718332         0.02  0.795156  9979.014870</span>
+<span class="go">5      1.0      1.0     15.916263      6.395108   15884.228362  0.727113         0.02  0.895210  3751.630537</span>
+<span class="go">6      1.0      1.0      1.710108      1.069395   55655.129136  0.900815         0.02  0.459633  4902.163065</span>
+<span class="go">7      1.0      1.0      2.401816      1.261706     189.173552  0.264586         0.02  0.521047  8639.712686</span>
+<span class="go">8      1.0      1.0      2.892138      0.988218     179.329874  0.085426         0.02  0.560256  6220.790637</span>
+<span class="go">9      1.0      1.0      2.433570      2.134182   14727.306379  0.261487         0.02  0.521047  4688.940658</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -444,90 +444,90 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <p>The syntax for the Evolve class is as follows:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="kn">from</span> <span class="nn">cosmic.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
 
-<span class="gp">In [16]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ck&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;pisn&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;natal_kick_array&#39;</span> <span class="p">:[</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;bhsigmafrac&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;polar_kick_angle&#39;</span> <span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;qcrit_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;cekickflag&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;cehestarflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cemergeflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ecsn&#39;</span> <span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s1">&#39;ecsn_mlow&#39;</span> <span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;aic&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ussn&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;sigmadiv&#39;</span> <span class="p">:</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;qcflag&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;eddlimflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;fprimc_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]}</span>
+<span class="gp">In [16]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ck&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;nsflag&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;pisn&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;natal_kick_array&#39;</span> <span class="p">:[</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">],</span> <span class="s1">&#39;bhsigmafrac&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;polar_kick_angle&#39;</span> <span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;qcrit_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;cekickflag&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;cehestarflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cemergeflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ecsn&#39;</span> <span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s1">&#39;ecsn_mlow&#39;</span> <span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;aic&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ussn&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;sigmadiv&#39;</span> <span class="p">:</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;qcflag&#39;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;eddlimflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;fprimc_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">]}</span>
 
 <span class="gp">In [17]: </span><span class="n">bpp</span><span class="p">,</span> <span class="n">bcm</span><span class="p">,</span> <span class="n">initC</span>  <span class="o">=</span> <span class="n">Evolve</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">=</span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">BSEDict</span><span class="o">=</span><span class="n">BSEDict</span><span class="p">)</span>
 
 <span class="gp">In [18]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-<span class="go">         tphys  kstar_1   mass0_1    mass_1     lumin_1     rad_1        teff_1   massc_1  ...  SNkick_2  Vsys_final  SNtheta_final  SN_1  SN_2  bin_state  merger_type  bin_num</span>
-<span class="go">0     1.000000      1.0  3.686709  3.686709  174.802512  2.223894  14136.748271  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        0</span>
-<span class="go">0  2360.878223     11.0  0.828147  0.828147    0.000051  0.009989   4899.612693  0.828147  ...       0.0         0.0            0.0   0.0   0.0          0         -001        0</span>
-<span class="go">1     1.000000      1.0  0.974390  0.974390    0.615078  0.863331   5526.033445  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        1</span>
-<span class="go">1  1592.639467      1.0  0.974390  0.974390    0.667869  0.886365   5567.192189  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        1</span>
-<span class="go">2     1.000000      1.0  2.479799  2.479799   38.038308  1.788084  10767.898324  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        2</span>
-<span class="go">2  6708.184782     11.0  0.650579  0.650579    0.000009  0.012114   2916.004807  0.650579  ...       0.0         0.0            0.0   0.0   0.0          1         0301        2</span>
-<span class="go">3     1.000000      1.0  1.125074  1.125074    1.230533  1.036957   5996.703848  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        3</span>
-<span class="go">3  7759.872651      3.0  1.124618  1.123790    7.618784  3.878785   4890.949167  0.178641  ...       0.0         0.0            0.0   0.0   0.0          0         -001        3</span>
-<span class="go">4     1.000000      1.0  5.805884  5.805884  903.840811  2.889506  18701.687401  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        4</span>
-<span class="go">4  4337.158846     15.0  0.966769  0.000000    0.008420  0.006759  21362.011269  1.112723  ...       0.0         0.0            0.0   0.0   0.0          0         -001        4</span>
+<span class="go">         tphys  kstar_1   mass0_1    mass_1     lumin_1     rad_1  ...  SNtheta_final  SN_1  SN_2  bin_state  merger_type  bin_num</span>
+<span class="go">0     1.000000      1.0  3.686709  3.686709  174.802512  2.223894  ...            0.0   0.0   0.0          0         -001        0</span>
+<span class="go">0  6948.520060     11.0  0.828147  0.828147    0.000010  0.009989  ...            0.0   0.0   0.0          0         -001        0</span>
+<span class="go">1     1.000000      1.0  0.974390  0.974390    0.615078  0.863331  ...            0.0   0.0   0.0          0         -001        1</span>
+<span class="go">1  2022.648426      1.0  0.974390  0.974390    0.684881  0.893092  ...            0.0   0.0   0.0          0         -001        1</span>
+<span class="go">2     1.000000      1.0  2.479799  2.479799   38.038308  1.788084  ...            0.0   0.0   0.0          0         -001        2</span>
+<span class="go">2  2482.675611     11.0  0.650135  0.650135    0.000055  0.012120  ...            0.0   0.0   0.0          1         0301        2</span>
+<span class="go">3     1.000000      1.0  1.125074  1.125074    1.230533  1.036957  ...            0.0   0.0   0.0          0         -001        3</span>
+<span class="go">3  2795.080061      1.0  1.125074  1.125074    1.647079  1.149615  ...            0.0   0.0   0.0          0         -001        3</span>
+<span class="go">4     1.000000      1.0  5.805884  5.805884  903.840811  2.889506  ...            0.0   0.0   0.0          0         -001        4</span>
+<span class="go">4  9979.014870     11.0  1.218081  1.218081    0.000009  0.005438  ...            0.0   0.0   0.0          0         -001        4</span>
 
 <span class="go">[10 rows x 43 columns]</span>
 
 <span class="gp">In [19]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="p">)</span>
-<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             tphys    mass_1    mass_2  kstar_1  kstar_2           sep          porb  ...         tms_1         tms_2   massc_1   massc_2       rad_1       rad_2  bin_num</span>
-<span class="go">0    220.431270  3.685867  0.806328      2.0      1.0  20550.044732  1.610876e+05  ...  2.204799e+02  2.570485e+04  0.556238  0.000000    5.171634    0.734605        0</span>
-<span class="go">0    221.561177  3.685630  0.806328      3.0      1.0  20551.129006  1.611046e+05  ...  2.205161e+02  2.570485e+04  0.567794  0.000000   23.500838    0.734610        0</span>
-<span class="go">0    222.531515  3.684493  0.806328      4.0      1.0  20556.330807  1.611861e+05  ...  2.205161e+02  2.570485e+04  0.578811  0.000000   65.894096    0.734614        0</span>
-<span class="go">0    265.930465  3.650209  0.806328      5.0      1.0  20714.461947  1.636756e+05  ...  2.205161e+02  2.570483e+04  0.824402  0.000000   44.272920    0.734799        0</span>
-<span class="go">0    267.813618  3.611489  0.806332      6.0      1.0  20894.803731  1.665427e+05  ...  2.205161e+02  2.570430e+04  0.810737  0.000000  343.175053    0.734810        0</span>
-<span class="go">0    268.473196  0.828147  0.810105     11.0      1.0  54857.786258  1.163427e+06  ...  2.205161e+02  2.523363e+04  0.828147  0.000000    0.009989    0.737472        0</span>
-<span class="go">0   2360.878223  0.828147  0.810105     11.0      1.0  54857.786259  1.163427e+06  ...  1.000000e+10  2.523363e+04  0.828147  0.000000    0.009989    0.746845        0</span>
-<span class="go">1   1592.639467  0.974390  0.881366      1.0      1.0     44.592943  2.533442e+01  ...  1.216289e+04  1.804966e+04  0.000000  0.000000    0.886365    0.798725        1</span>
-<span class="go">2    633.424960  2.479799  0.831304      2.0      1.0     96.759760  6.062169e+01  ...  6.334250e+02  2.277523e+04  0.312038  0.000000    4.119334    0.754386        2</span>
-<span class="go">2    637.777730  2.479650  0.831304      3.0      1.0     95.861319  5.978065e+01  ...  6.335301e+02  2.277516e+04  0.320384  0.000000    9.423481    0.754409        2</span>
-<span class="go">2    642.731443  2.478970  0.831323      3.0      1.0     54.846412  2.587386e+01  ...  6.335301e+02  2.277313e+04  0.365273  0.000000   26.089410    0.754448        2</span>
-<span class="go">2    642.731443  2.478970  0.831323      3.0      1.0     54.846412  2.587386e+01  ...  6.335301e+02  2.277313e+04  0.365273  0.000000   26.089410    0.754448        2</span>
-<span class="go">2    642.731443  1.894712  0.831323      3.0     15.0      0.000000  0.000000e+00  ...  6.335301e+02  2.277313e+04  0.365273  0.000000   26.089410    0.754448        2</span>
-<span class="go">2    643.307253  1.894118  0.000000      4.0     15.0      0.000000  0.000000e+00  ...  6.335301e+02  2.277313e+04  0.370491  0.000000   37.659854    0.754448        2</span>
-<span class="go">2    813.603876  1.860325  0.000000      5.0     15.0      0.000000  0.000000e+00  ...  6.335301e+02  2.277313e+04  0.586332  0.000000   25.258893    0.754448        2</span>
-<span class="go">2    817.859583  1.828337  0.000000      6.0     15.0      0.000000  0.000000e+00  ...  6.335301e+02  2.277313e+04  0.586332  0.000000  199.432365    0.754448        2</span>
-<span class="go">2    819.137068  0.650579  0.000000     11.0     15.0      0.000000  0.000000e+00  ...  6.335301e+02  2.277313e+04  0.650579  0.000000    0.012114    0.754448        2</span>
-<span class="go">2   6708.184782  0.650579  0.000000     11.0     15.0      0.000000  0.000000e+00  ...  1.000000e+10  2.277313e+04  0.650579  0.000000    0.012114    0.754448        2</span>
-<span class="go">3   7075.461124  1.125074  0.976918      2.0      1.0   5113.323238  2.922883e+04  ...  7.075461e+03  1.204125e+04  0.123074  0.000000    1.862184    1.024858        3</span>
-<span class="go">3   7448.132260  1.124618  0.976918      3.0      1.0   5114.432922  2.924152e+04  ...  7.085921e+03  1.204125e+04  0.154696  0.000000    2.429053    1.040586        3</span>
-<span class="go">3   7759.872651  1.123790  0.976918      3.0      1.0   5116.448533  2.926457e+04  ...  7.085921e+03  1.204125e+04  0.178641  0.000000    3.878785    1.054869        3</span>
-<span class="go">4     73.797076  5.789768  3.358590      2.0      1.0    212.935072  1.190615e+02  ...  7.408158e+01  2.803020e+02  1.028647  0.000000    6.685712    2.418620        4</span>
-<span class="go">4     74.044987  5.789422  3.358602      2.0      1.0    121.123884  5.108027e+01  ...  7.409158e+01  2.802994e+02  1.047176  0.000000   51.775718    2.419856        4</span>
-<span class="go">4     74.072294  2.344307  4.014381      3.0      1.0    126.280430  6.522176e+01  ...  7.430898e+01  1.776307e+02  1.047381  0.000000   90.585671    2.608117        4</span>
-<span class="go">4     74.199570  1.243555  5.114418      4.0      1.0    276.317821  2.111184e+02  ...  7.430898e+01  9.861228e+01  1.049183  0.000000  237.708838    2.907738        4</span>
-<span class="go">4     74.263523  1.058249  5.299594      4.0      1.0    352.370612  3.040303e+02  ...  7.430898e+01  9.074473e+01  1.051619  0.000000   55.905849    2.958557        4</span>
-<span class="go">4     74.363703  1.053303  5.303135      7.0      1.0    351.977635  3.035553e+02  ...  1.861993e+01  9.060388e+01  0.000000  0.000000    0.214190    2.961350        4</span>
-<span class="go">4     91.329338  1.039214  5.301933      7.0      1.0    352.827184  3.050221e+02  ...  1.922471e+01  9.065165e+01  0.000000  0.000000    0.238117    3.282694        4</span>
-<span class="go">4     92.974169  1.036857  5.301800      8.0      1.0    352.966001  3.052621e+02  ...  1.932883e+01  9.065694e+01  0.440141  0.000000    0.210308    3.319438        4</span>
-<span class="go">4     94.987330  1.009030  5.304561      8.0      1.0    353.976355  3.071817e+02  ...  1.932883e+01  9.054730e+01  0.802075  0.000000   87.892854    3.367206        4</span>
-<span class="go">..          ...       ...       ...      ...      ...           ...           ...  ...           ...           ...       ...       ...         ...         ...      ...</span>
-<span class="go">7   5137.698438  0.573361  1.344448     15.0      5.0      0.000000  0.000000e+00  ...  1.000000e+10  4.712273e+03  0.000000  0.758141    0.013144    4.213263        7</span>
-<span class="go">7   5139.983641  0.000000  0.762851     15.0      6.0      0.000000  0.000000e+00  ...  1.000000e+10  2.696228e+02  0.000000  0.758141    0.013144    0.379817        7</span>
-<span class="go">7   5140.121713  0.000000  0.762837     15.0     11.0      0.000000  0.000000e+00  ...  1.000000e+10  2.696228e+02  0.000000  0.762837    0.013144    0.010743        7</span>
-<span class="go">7   6105.118034  0.000000  0.762837     15.0     11.0      0.000000  0.000000e+00  ...  1.000000e+10  1.000000e+10  0.000000  0.762837    0.013144    0.010743        7</span>
-<span class="go">8    416.417821  2.892138  0.988218      2.0      1.0    210.221683  1.793299e+02  ...  4.164178e+02  1.151719e+04  0.394969  0.000000    4.510990    0.882939        8</span>
-<span class="go">8    418.968787  2.891960  0.988218      3.0      1.0    210.236725  1.793532e+02  ...  4.164865e+02  1.151718e+04  0.404047  0.000000   13.498356    0.882978        8</span>
-<span class="go">8    421.817081  2.890855  0.988232      4.0      1.0    201.188476  1.679237e+02  ...  4.164865e+02  1.151657e+04  0.432397  0.000000   44.093694    0.883036        8</span>
-<span class="go">8    525.411862  2.866342  0.988436      5.0      1.0    208.853043  1.781696e+02  ...  4.164865e+02  1.150738e+04  0.650870  0.000000   28.934133    0.884847        8</span>
-<span class="go">8    528.000264  2.860260  0.988617      5.0      1.0    175.494170  1.373407e+02  ...  4.164865e+02  1.149926e+04  0.650870  0.000000   83.045492    0.885067        8</span>
-<span class="go">8    528.000264  2.860260  0.988617      5.0      1.0    175.494170  1.373407e+02  ...  4.164865e+02  1.149926e+04  0.650870  0.000000   83.045492    0.885067        8</span>
-<span class="go">8    528.000264  0.650870  0.988617      8.0      1.0      6.966881  1.373407e+02  ...  4.164865e+02  1.149926e+04  0.493598  0.000000   83.045492    0.885067        8</span>
-<span class="go">8    528.000264  0.650870  0.988617      8.0      1.0      6.966881  1.664469e+00  ...  6.406554e+01  1.149926e+04  0.493598  0.000000    0.251675    0.885067        8</span>
-<span class="go">8    528.618725  0.642587  0.988830     11.0      1.0      6.987911  1.676142e+00  ...  6.406554e+01  1.148969e+04  0.642587  0.000000    0.012217    0.885290        8</span>
-<span class="go">8   6949.526868  0.642587  0.988830     11.0      1.0      6.950976  1.662870e+00  ...  1.000000e+10  1.148969e+04  0.642587  0.000000    0.012217    1.049138        8</span>
-<span class="go">9    667.356630  2.433570  2.134182      2.0      1.0   4193.741095  1.472731e+04  ...  6.673566e+02  9.658145e+02  0.302521  0.000000    4.071873    2.626429        9</span>
-<span class="go">9    672.007873  2.433424  2.134182      3.0      1.0   4193.874725  1.472824e+04  ...  6.674675e+02  9.658145e+02  0.310824  0.000000    9.021376    2.640986        9</span>
-<span class="go">9    677.911844  2.432339  2.134183      4.0      1.0   4194.869657  1.473524e+04  ...  6.674675e+02  9.658141e+02  0.364432  0.000000   34.280908    2.659792        9</span>
-<span class="go">9    857.857872  2.409092  2.134187      5.0      1.0   4216.316462  1.488632e+04  ...  6.674675e+02  9.658087e+02  0.580472  0.000000   23.415786    3.490430        9</span>
-<span class="go">9    862.161108  2.386381  2.134313      6.0      1.0   4236.825681  1.503247e+04  ...  6.674675e+02  9.656451e+02  0.580472  0.000000  185.579787    3.519485        9</span>
-<span class="go">9    863.601440  1.133664  2.221057      6.0      1.0   5144.592232  2.334911e+04  ...  6.674675e+02  8.622490e+02  0.664595  0.000000  500.085831    3.620369        9</span>
-<span class="go">9    863.688018  0.674065  2.308722     11.0      1.0   5314.620049  2.599976e+04  ...  6.674675e+02  7.731038e+02  0.674065  0.000000    0.011817    3.708564        9</span>
-<span class="go">9    945.415197  0.674065  2.308722     11.0      2.0   5314.620049  2.599976e+04  ...  1.000000e+10  7.731038e+02  0.674065  0.276268    0.011817    3.938729        9</span>
-<span class="go">9    951.021487  0.674065  2.308584     11.0      3.0   5314.864909  2.600216e+04  ...  1.000000e+10  7.732330e+02  0.674065  0.284499    0.011817    7.996888        9</span>
-<span class="go">9    959.508547  0.674065  2.307330     11.0      4.0   5317.100895  2.602404e+04  ...  1.000000e+10  7.732330e+02  0.674065  0.349122    0.011817   32.084607        9</span>
-<span class="go">9   1167.851410  0.674065  2.284132     11.0      5.0   5358.796159  2.643379e+04  ...  1.000000e+10  7.732330e+02  0.674065  0.566090    0.011817   22.335840        9</span>
-<span class="go">9   1172.280720  0.674077  2.259951     11.0      6.0   5402.756969  2.686973e+04  ...  1.000000e+10  7.732330e+02  0.674077  0.566092    0.011817  197.759476        9</span>
-<span class="go">9   1173.408426  0.675262  1.869739     11.0      6.0   6205.739441  3.551554e+04  ...  1.000000e+10  7.732330e+02  0.675262  0.633483    0.011802  398.320495        9</span>
-<span class="go">9   1173.483466  0.684438  0.657417     11.0      6.0  11498.058112  1.233548e+05  ...  1.000000e+10  7.732330e+02  0.684438  0.640668    0.011688  231.991469        9</span>
-<span class="go">9   1173.553048  0.684467  0.647592     11.0     11.0  11582.243143  1.251697e+05  ...  1.000000e+10  7.732330e+02  0.684467  0.647592    0.011687    0.012152        9</span>
-<span class="go">9   3866.209068  0.684467  0.647592     11.0     11.0  11582.243144  1.251697e+05  ...  1.000000e+10  1.000000e+10  0.684467  0.647592    0.011687    0.012152        9</span>
+<span class="go">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   tphys    mass_1    mass_2  kstar_1  kstar_2  ...   massc_1   massc_2       rad_1       rad_2  bin_num</span>
+<span class="go">0    220.431270  3.685867  0.806328      2.0      1.0  ...  0.556238  0.000000    5.171634    0.734605        0</span>
+<span class="go">0    221.561177  3.685630  0.806328      3.0      1.0  ...  0.567794  0.000000   23.500838    0.734610        0</span>
+<span class="go">0    222.531515  3.684493  0.806328      4.0      1.0  ...  0.578811  0.000000   65.894096    0.734614        0</span>
+<span class="go">0    265.930465  3.650209  0.806328      5.0      1.0  ...  0.824402  0.000000   44.272920    0.734799        0</span>
+<span class="go">0    267.813618  3.611489  0.806332      6.0      1.0  ...  0.810737  0.000000  343.175053    0.734810        0</span>
+<span class="go">0    268.473196  0.828147  0.810074     11.0      1.0  ...  0.828147  0.000000    0.009989    0.737451        0</span>
+<span class="go">0   6948.520060  0.828147  0.810074     11.0      1.0  ...  0.828147  0.000000    0.009989    0.771009        0</span>
+<span class="go">1   2022.648426  0.974390  0.881366      1.0      1.0  ...  0.000000  0.000000    0.893092    0.802114        1</span>
+<span class="go">2    633.424960  2.479799  0.831304      2.0      1.0  ...  0.312038  0.000000    4.119334    0.754386        2</span>
+<span class="go">2    637.777730  2.479650  0.831304      3.0      1.0  ...  0.320384  0.000000    9.423481    0.754409        2</span>
+<span class="go">2    642.733599  2.478970  0.831323      3.0      1.0  ...  0.365292  0.000000   26.113686    0.754448        2</span>
+<span class="go">2    642.733599  2.478970  0.831323      3.0      1.0  ...  0.365292  0.000000   26.113686    0.754448        2</span>
+<span class="go">2    642.733599  1.892210  0.831323      3.0     15.0  ...  0.365292  0.000000   26.113686    0.754448        2</span>
+<span class="go">2    643.307253  1.891617  0.000000      4.0     15.0  ...  0.370491  0.000000   37.672601    0.754448        2</span>
+<span class="go">2    813.603876  1.857762  0.000000      5.0     15.0  ...  0.586332  0.000000   25.252327    0.754448        2</span>
+<span class="go">2    817.859583  1.825722  0.000000      6.0     15.0  ...  0.586332  0.000000  199.516205    0.754448        2</span>
+<span class="go">2    819.131350  0.650135  0.000000     11.0     15.0  ...  0.650135  0.000000    0.012120    0.754448        2</span>
+<span class="go">2   2482.675611  0.650135  0.000000     11.0     15.0  ...  0.650135  0.000000    0.012120    0.754448        2</span>
+<span class="go">3   2795.080061  1.125074  0.976918      1.0      1.0  ...  0.000000  0.000000    1.149615    0.909223        3</span>
+<span class="go">4     73.797076  5.789768  3.358590      2.0      1.0  ...  1.028647  0.000000    6.685712    2.418620        4</span>
+<span class="go">4     74.046915  5.789417  3.358603      2.0      1.0  ...  1.047319  0.000000   52.606157    2.419865        4</span>
+<span class="go">4     74.072250  2.365408  4.036064      3.0      1.0  ...  1.048053  0.000000   90.488013    2.614178        4</span>
+<span class="go">4     74.199250  1.252322  5.148439      4.0      1.0  ...  1.049852  0.000000  238.318281    2.916693        4</span>
+<span class="go">4     74.261050  1.059746  5.340886      4.0      1.0  ...  1.052210  0.000000   77.778231    2.969804        4</span>
+<span class="go">4     74.361096  1.052819  5.346421      7.0      1.0  ...  0.000000  0.000000    0.214099    2.973265        4</span>
+<span class="go">4     89.428625  1.041187  5.345305      7.0      1.0  ...  0.000000  0.000000    0.254604    3.260552        4</span>
+<span class="go">4     92.995574  1.036392  5.345002      8.0      1.0  ...  0.439955  0.000000    0.210237    3.340943        4</span>
+<span class="go">4     95.011435  1.008536  5.347769      8.0      1.0  ...  0.802187  0.000000   88.543230    3.390163        4</span>
+<span class="go">4     95.013486  1.008247  5.348057      9.0      1.0  ...  0.804251  0.000000   95.496140    3.390318        4</span>
+<span class="go">4     95.114732  0.967807  5.388488      9.0      1.0  ...  0.961318  0.000000   55.997036    3.405446        4</span>
+<span class="go">..          ...       ...       ...      ...      ...  ...       ...       ...         ...         ...      ...</span>
+<span class="go">7   5138.022205  0.573366  1.342333     15.0      5.0  ...  0.000000  0.758243    0.013144    4.220715        7</span>
+<span class="go">7   5140.306714  0.000000  0.762013     15.0      6.0  ...  0.000000  0.758243    0.013144    0.096654        7</span>
+<span class="go">7   5140.418925  0.000000  0.762010     15.0     11.0  ...  0.000000  0.762010    0.013144    0.010753        7</span>
+<span class="go">7   8639.712686  0.000000  0.762010     15.0     11.0  ...  0.000000  0.762010    0.013144    0.010753        7</span>
+<span class="go">8    416.417821  2.892138  0.988218      2.0      1.0  ...  0.394969  0.000000    4.510990    0.882939        8</span>
+<span class="go">8    418.968787  2.891960  0.988218      3.0      1.0  ...  0.404047  0.000000   13.498356    0.882978        8</span>
+<span class="go">8    421.817081  2.890855  0.988232      4.0      1.0  ...  0.432397  0.000000   44.093694    0.883036        8</span>
+<span class="go">8    525.411862  2.866088  0.988442      5.0      1.0  ...  0.650870  0.000000   28.934995    0.884853        8</span>
+<span class="go">8    528.001808  2.860027  0.988622      5.0      1.0  ...  0.650870  0.000000   83.155408    0.885072        8</span>
+<span class="go">8    528.001808  2.860027  0.988622      5.0      1.0  ...  0.650870  0.000000   83.155408    0.885072        8</span>
+<span class="go">8    528.001808  0.650870  0.988622      8.0      1.0  ...  0.493786  0.000000   83.155408    0.885072        8</span>
+<span class="go">8    528.001808  0.650870  0.988622      8.0      1.0  ...  0.493786  0.000000    0.251796    0.885072        8</span>
+<span class="go">8    528.618695  0.642596  0.988834     11.0      1.0  ...  0.642596  0.000000    0.012216    0.885294        8</span>
+<span class="go">8   6220.790637  0.642596  0.988834     11.0      1.0  ...  0.642596  0.000000    0.012216    1.018782        8</span>
+<span class="go">9    667.356630  2.433570  2.134182      2.0      1.0  ...  0.302521  0.000000    4.071873    2.626429        9</span>
+<span class="go">9    672.007873  2.433424  2.134182      3.0      1.0  ...  0.310824  0.000000    9.021376    2.640986        9</span>
+<span class="go">9    677.911844  2.432339  2.134183      4.0      1.0  ...  0.364432  0.000000   34.280908    2.659792        9</span>
+<span class="go">9    857.857872  2.409092  2.134187      5.0      1.0  ...  0.580472  0.000000   23.415786    3.490430        9</span>
+<span class="go">9    862.161108  2.386381  2.134313      6.0      1.0  ...  0.580472  0.000000  185.579787    3.519485        9</span>
+<span class="go">9    863.601440  1.133664  2.219900      6.0      1.0  ...  0.664595  0.000000  500.085831    3.619186        9</span>
+<span class="go">9    863.688018  0.674065  2.305645     11.0      1.0  ...  0.674065  0.000000    0.011817    3.705562        9</span>
+<span class="go">9    945.722143  0.674065  2.305645     11.0      2.0  ...  0.674065  0.275608    0.011817    3.935346        9</span>
+<span class="go">9    951.355130  0.674065  2.305508     11.0      3.0  ...  0.674065  0.283838    0.011817    7.972765        9</span>
+<span class="go">9    959.922966  0.674065  2.304248     11.0      4.0  ...  0.674065  0.348765    0.011817   32.033440        9</span>
+<span class="go">9   1169.008662  0.674065  2.281048     11.0      5.0  ...  0.674065  0.565762    0.011817   22.311492        9</span>
+<span class="go">9   1173.440938  0.674076  2.256830     11.0      6.0  ...  0.674076  0.565762    0.011817  198.074803        9</span>
+<span class="go">9   1174.566615  0.675275  1.853589     11.0      6.0  ...  0.675275  0.633216    0.011802  398.930787        9</span>
+<span class="go">9   1174.641281  0.684058  0.651739     11.0      6.0  ...  0.684058  0.640344    0.011692   87.217249        9</span>
+<span class="go">9   1174.714198  0.684060  0.647585     11.0     11.0  ...  0.684060  0.647585    0.011692    0.012152        9</span>
+<span class="go">9   4688.940658  0.684060  0.647585     11.0     11.0  ...  0.684060  0.647585    0.011692    0.012152        9</span>
 
-<span class="go">[110 rows x 24 columns]</span>
+<span class="go">[101 rows x 24 columns]</span>
 </pre></div>
 </div>
 <p>Note that this process doesn’t try to choose the <cite>right</cite> number of binaries to evolve. If you are interested in generating a realistic synthetic Milky Way population, you should head over to <a class="reference internal" href="../fixedpop/index.html#fixedpop"><span class="std std-ref">Generate a population the cosmic way</span></a>. For details on the process to generate synthetic Milky Way binary populations, see Breivik+2018 (in prep).</p>
@@ -576,7 +576,7 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+291.g0430817.dirty',
+            VERSION:'2.0.0+344.gcafd266',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

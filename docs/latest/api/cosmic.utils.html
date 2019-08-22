@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+344.gcafd266 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                2.0.0+291.g0430817.dirty
+                2.0.0+344.gcafd266
               </div>
             
           
@@ -172,8 +172,8 @@
 <p><strong>method</strong> : <cite>dict</cite>,</p>
 <blockquote>
 <div><p>one or more methods by which to filter the
-bpp or bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'disrupted_binaries'</span> <span class="pre">:</span> <span class="pre">False}</span></code>;
-This means you do <em>not</em> want disrupted_binaries in your table</p>
+bpp or bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'select_final_state'</span> <span class="pre">:</span> <span class="pre">False}</span></code>;
+This means you do <em>not</em> want to select the final state of the binaries in the bcm array</p>
 </div></blockquote>
 <p><strong>kstar1_range</strong> : <cite>list</cite></p>
 <blockquote>
@@ -196,8 +196,8 @@ This means you do <em>not</em> want disrupted_binaries in your table</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="cosmic.utils.bcm_conv_select">
-<code class="descclassname">cosmic.utils.</code><code class="descname">bcm_conv_select</code><span class="sig-paren">(</span><em>bcm_save_tot</em>, <em>bcm_save_last</em>, <em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.bcm_conv_select" title="Permalink to this definition">¶</a></dt>
+<dt id="cosmic.utils.conv_select">
+<code class="descclassname">cosmic.utils.</code><code class="descname">conv_select</code><span class="sig-paren">(</span><em>bcm_save_tot</em>, <em>bcm_save_last</em>, <em>bpp_save_tot</em>, <em>final_kstar_1</em>, <em>final_kstar_2</em>, <em>method</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.conv_select" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select bcm data for special convergence cases</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -212,13 +212,24 @@ This means you do <em>not</em> want disrupted_binaries in your table</p>
 <div><p>bcm dataframe containing bcm data from last
 iteration</p>
 </div></blockquote>
+<p><strong>bpp_save_tot</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><p>bpp dataframe containing all saved bpp data</p>
+</div></blockquote>
+<p><strong>final_kstar_1</strong> : <cite>list</cite></p>
+<blockquote>
+<div><p>contains list of final primary kstars specified by user</p>
+</div></blockquote>
+<p><strong>final_kstar_2</strong> : <cite>list</cite></p>
+<blockquote>
+<div><p>contains list of final primary kstars specified by user</p>
+</div></blockquote>
 <p><strong>method</strong> : <cite>dict</cite>,</p>
 <blockquote>
 <div><p>one or more methods by which to filter the
-bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'lisa_convergence'</span> <span class="pre">:</span> <span class="pre">True}</span></code>;
+bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'formation'</span> <span class="pre">:</span> <span class="pre">True}</span></code>;
 This means you want to only compute the convergence
-over the region specified for the lisa_convergence
-method below</p>
+of the population at formation, e.g. BH-BH formation</p>
 </div></blockquote>
 </td>
 </tr>
@@ -467,7 +478,7 @@ If Knuth’s rule raises error, Scott’s rule is used</p>
 
 <dl class="function">
 <dt id="cosmic.utils.error_check">
-<code class="descclassname">cosmic.utils.</code><code class="descname">error_check</code><span class="sig-paren">(</span><em>BSEDict</em>, <em>filters=None</em>, <em>convergence=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.error_check" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">cosmic.utils.</code><code class="descname">error_check</code><span class="sig-paren">(</span><em>BSEDict</em>, <em>filters=None</em>, <em>convergence=None</em>, <em>sampling=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.error_check" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that values in BSEDict, filters, and convergence are viable</p>
 </dd></dl>
 
@@ -527,7 +538,7 @@ to their true astrophysical meaning.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+291.g0430817.dirty',
+            VERSION:'2.0.0+344.gcafd266',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

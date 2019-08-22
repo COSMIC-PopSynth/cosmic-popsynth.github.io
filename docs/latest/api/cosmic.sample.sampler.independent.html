@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+291.g0430817.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 2.0.0+344.gcafd266 documentation</title>
   
 
   
@@ -57,7 +57,7 @@
             
             
               <div class="version">
-                2.0.0+291.g0430817.dirty
+                2.0.0+344.gcafd266
               </div>
             
           
@@ -155,7 +155,7 @@
   <span class="target" id="module-cosmic.sample.sampler.independent"></span><p><cite>independent</cite></p>
 <dl class="function">
 <dt id="cosmic.sample.sampler.independent.get_independent_sampler">
-<code class="descclassname">cosmic.sample.sampler.independent.</code><code class="descname">get_independent_sampler</code><span class="sig-paren">(</span><em>final_kstar1</em>, <em>final_kstar2</em>, <em>bin_frac</em>, <em>primary_model</em>, <em>ecc_model</em>, <em>SFH_model</em>, <em>component_age</em>, <em>met</em>, <em>size</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.get_independent_sampler" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">cosmic.sample.sampler.independent.</code><code class="descname">get_independent_sampler</code><span class="sig-paren">(</span><em>final_kstar1</em>, <em>final_kstar2</em>, <em>primary_model</em>, <em>ecc_model</em>, <em>SFH_model</em>, <em>binfrac_model</em>, <em>component_age</em>, <em>met</em>, <em>size</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.get_independent_sampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates an initial binary sample according to user specified models</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -169,10 +169,6 @@
 <blockquote>
 <div><p>Int or list of final kstar2</p>
 </div></blockquote>
-<p><strong>bin_frac</strong> : <cite>str or float</cite></p>
-<blockquote>
-<div><p>Model for binary fraction; choices include: vanHaaften or a fraction where 1.0 is 100% binaries</p>
-</div></blockquote>
 <p><strong>primary_model</strong> : <cite>str</cite></p>
 <blockquote>
 <div><p>Model to sample primary mass; choices include: kroupa93, salpeter55</p>
@@ -184,6 +180,10 @@
 <p><strong>SFH_model</strong> : <cite>str</cite></p>
 <blockquote>
 <div><p>Model to sample star formation history (or birth time); choices include: const, burst, delta_burst</p>
+</div></blockquote>
+<p><strong>binfrac_model</strong> : <cite>str or float</cite></p>
+<blockquote>
+<div><p>Model for binary fraction; choices include: vanHaaften or a fraction where 1.0 is 100% binaries</p>
 </div></blockquote>
 <p><strong>component_age</strong> : <cite>float</cite></p>
 <blockquote>
@@ -231,8 +231,8 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.binary_select">
-<code class="descname">binary_select</code><span class="sig-paren">(</span><em>primary_mass</em>, <em>model='half'</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
-<dd><p>Select  which primary masses will have a companion using 
+<code class="descname">binary_select</code><span class="sig-paren">(</span><em>primary_mass</em>, <em>binfrac_model=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select which primary masses will have a companion using
 either a binary fraction specified by a float or a
 primary-mass dependent binary fraction following
 <a class="reference external" href="http://adsabs.harvard.edu/abs/2013A%26A...552A..69V">van Haaften et al.(2009)</a> in appdx</p>
@@ -244,10 +244,10 @@ primary-mass dependent binary fraction following
 <blockquote>
 <div><p>Mass that determines the binary fraction</p>
 </div></blockquote>
-<p><strong>model</strong> : str or float</p>
+<p><strong>binfrac_model</strong> : str or float</p>
 <blockquote>
 <div><dl class="docutils">
-<dt>vanHaaften - primary mass dependent and ONLY VALID </dt>
+<dt>vanHaaften - primary mass dependent and ONLY VALID</dt>
 <dd><p class="first last">up to 100 Msun</p>
 </dd>
 </dl>
@@ -260,8 +260,12 @@ primary-mass dependent binary fraction following
 <div><p>primary masses that will have a binary companion</p>
 </div></blockquote>
 <p><strong>primary_mass[singleIdx]</strong> : array</p>
-<blockquote class="last">
+<blockquote>
 <div><p>primary masses that will be single stars</p>
+</div></blockquote>
+<p><strong>binary_fraction[binaryIdx]</strong> : array</p>
+<blockquote class="last">
+<div><p>system-specific probability of being in a binary</p>
 </div></blockquote>
 </td>
 </tr>
@@ -300,7 +304,7 @@ Default: 0.02</p>
 <p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of evolution times to sample
-NOTE: this is set in runFixedPop call as Nstep</p>
+NOTE: this is set in cosmic-pop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
@@ -336,7 +340,7 @@ DEFAULT = ‘thermal’</p>
 <p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of eccentricities to sample
-NOTE: this is set in runFixedPop call as Nstep</p>
+NOTE: this is set in cosmic-pop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
@@ -415,7 +419,7 @@ valid for masses between 0.1 and 100 Msun</p>
 <p><strong>size</strong> : int, optional</p>
 <blockquote>
 <div><p>number of initial primary masses to sample
-NOTE: this is set in runFixedPop call as Nstep</p>
+NOTE: this is set in cosmic-pop call as Nstep</p>
 </div></blockquote>
 </td>
 </tr>
@@ -521,7 +525,7 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.0.0+291.g0430817.dirty',
+            VERSION:'2.0.0+344.gcafd266',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
