@@ -1,0 +1,4 @@
+.. automodule:: cosmic.mp.progress
+   :members:
+   :undoc-members:
+   :show-inheritance:
