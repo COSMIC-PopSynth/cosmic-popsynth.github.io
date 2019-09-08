@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+6.g810e084.dirty documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.0.0-beta
+                3.0.0-beta+6.g810e084.dirty
               </div>
             
           
@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>cosmic</cite> way</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>COSMIC</cite> way</a></li>
 </ul>
 
             
@@ -262,7 +262,7 @@ Please read these careful for understanding the script.
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="method">
 <dt id="cosmic.sample.sampler.multidim.MultiDim.initial_sample">
-<code class="sig-name descname">initial_sample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">M1min=0.08</em>, <em class="sig-param">M2min=0.08</em>, <em class="sig-param">M1max=150.0</em>, <em class="sig-param">M2max=150.0</em>, <em class="sig-param">porb_lo=0.15</em>, <em class="sig-param">porb_hi=8.0</em>, <em class="sig-param">rand_seed=0</em>, <em class="sig-param">size=None</em>, <em class="sig-param">nproc=1</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.initial_sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">initial_sample</code><span class="sig-paren">(</span><em class="sig-param">M1min=0.08</em>, <em class="sig-param">M2min=0.08</em>, <em class="sig-param">M1max=150.0</em>, <em class="sig-param">M2max=150.0</em>, <em class="sig-param">porb_lo=0.15</em>, <em class="sig-param">porb_hi=8.0</em>, <em class="sig-param">rand_seed=0</em>, <em class="sig-param">size=None</em>, <em class="sig-param">nproc=1</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.initial_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample initial binary distribution according to Moe &amp; Di Stefano (2017)
 &lt;<a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJS..230...15M">http://adsabs.harvard.edu/abs/2017ApJS..230…15M</a>&gt;`_</p>
 <dl class="field-list">
@@ -349,7 +349,7 @@ NOTE: this is set in cosmic-pop call as Nstep</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.multidim.MultiDim.sample_SFH">
-<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">SFH_model='const'</em>, <em class="sig-param">component_age=10000.0</em>, <em class="sig-param">met=0.02</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.sample_SFH" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param">SFH_model='const'</em>, <em class="sig-param">component_age=10000.0</em>, <em class="sig-param">met=0.02</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.sample_SFH" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample an evolution time for each binary based on a user-specified
 star formation history (SFH) and Galactic component age.
 The default is a MW thin disk constant evolution over 10000 Myr</p>
@@ -391,7 +391,7 @@ NOTE: this is set in cosmic-pop call as Nstep</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.multidim.MultiDim.set_kstar">
-<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.set_kstar" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param">mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.set_kstar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize stellar types according to BSE classification
 kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 <dl class="field-list">
