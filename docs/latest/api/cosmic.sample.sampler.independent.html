@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+6.g810e084.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+55.g5b03dbc documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.0.0-beta+6.g810e084.dirty
+                3.0.0-beta+55.g5b03dbc
               </div>
             
           
@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to run BSE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>COSMIC</cite> way</a></li>
 </ul>
@@ -230,7 +230,7 @@
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.binary_select">
-<code class="sig-name descname">binary_select</code><span class="sig-paren">(</span><em class="sig-param">primary_mass</em>, <em class="sig-param">binfrac_model=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">binary_select</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">primary_mass</em>, <em class="sig-param">binfrac_model=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
 <dd><p>Select which primary masses will have a companion using
 either a binary fraction specified by a float or a
 primary-mass dependent binary fraction following
@@ -269,7 +269,7 @@ primary-mass dependent binary fraction following
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.sample_SFH">
-<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param">SFH_model='const'</em>, <em class="sig-param">component_age=10000.0</em>, <em class="sig-param">met=0.02</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_SFH" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">SFH_model='const'</em>, <em class="sig-param">component_age=10000.0</em>, <em class="sig-param">met=0.02</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_SFH" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample an evolution time for each binary based on a user-specified
 star formation history (SFH) and Galactic component age.
 The default is a MW thin disk constant evolution over 10000 Myr</p>
@@ -314,7 +314,7 @@ NOTE: this is set in cosmic-pop call as Nstep</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.sample_ecc">
-<code class="sig-name descname">sample_ecc</code><span class="sig-paren">(</span><em class="sig-param">ecc_model='thermal'</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_ecc" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_ecc</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">ecc_model='thermal'</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_ecc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample the eccentricity according to a user specified model</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -342,7 +342,7 @@ NOTE: this is set in cosmic-pop call as Nstep</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.sample_porb">
-<code class="sig-name descname">sample_porb</code><span class="sig-paren">(</span><em class="sig-param">mass1</em>, <em class="sig-param">mass2</em>, <em class="sig-param">ecc</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_porb" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_porb</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">mass1</em>, <em class="sig-param">mass2</em>, <em class="sig-param">ecc</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_porb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample the semi-major axis flat in log space from RROL &lt; 0.5 up
 to 1e5 Rsun according to
 <a class="reference external" href="http://adsabs.harvard.edu/abs/1983ARA%26A..21..343A">Abt (1983)</a>
@@ -375,7 +375,7 @@ of mass1 and mass2</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.sample_primary">
-<code class="sig-name descname">sample_primary</code><span class="sig-paren">(</span><em class="sig-param">primary_model='kroupa93'</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_primary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_primary</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">primary_model='kroupa93'</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_primary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample the primary mass (always the most massive star) from a user-selected model</p>
 <p>kroupa93 follows Kroupa (1993), normalization comes from
 <a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
@@ -417,7 +417,7 @@ NOTE: this is set in cosmic-pop call as Nstep</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.sample_secondary">
-<code class="sig-name descname">sample_secondary</code><span class="sig-paren">(</span><em class="sig-param">primary_mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_secondary" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">sample_secondary</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">primary_mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_secondary" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sample a secondary mass using draws from a uniform mass ratio distribution motivated by
 <a class="reference external" href="http://adsabs.harvard.edu/abs/1992ApJ...401..265M">Mazeh et al. (1992)</a>
 and <a class="reference external" href="http://adsabs.harvard.edu/abs/1994ApJ...429..362G">Goldberg &amp; Mazeh (1994)</a></p>
@@ -440,7 +440,7 @@ primary_mass</p>
 
 <dl class="method">
 <dt id="cosmic.sample.sampler.independent.Sample.set_kstar">
-<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param">mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.set_kstar" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.set_kstar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize stellar types according to BSE classification
 kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 <dl class="field-list">

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+6.g810e084.dirty documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+55.g5b03dbc documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.0.0-beta+6.g810e084.dirty
+                3.0.0-beta+55.g5b03dbc
               </div>
             
           
@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to run BSE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>COSMIC</cite> way</a></li>
 </ul>
@@ -224,9 +224,9 @@ in the inifile</p>
 </div></blockquote>
 <p><strong>conv_lims</strong> : <cite>dict</cite></p>
 <blockquote>
-<div><p>dictionary where keys are convergence params and the 
+<div><p>dictionary where keys are convergence params and the
 values are lists containing a [lo, hi] value to filter the
-convergence param between 
+convergence param between
 any non-specified convergence params will not be filtered</p>
 </div></blockquote>
 </dd>
@@ -466,6 +466,127 @@ data frame returned from running</p>
 </div></blockquote>
 <p>you can convert the columns with these integer proxies
 to their true astrophysical meaning.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.utils.pop_write">
+<code class="sig-prename descclassname">cosmic.utils.</code><code class="sig-name descname">pop_write</code><span class="sig-paren">(</span><em class="sig-param">dat_store</em>, <em class="sig-param">log_file</em>, <em class="sig-param">mass_list</em>, <em class="sig-param">number_list</em>, <em class="sig-param">bcm</em>, <em class="sig-param">bpp</em>, <em class="sig-param">initC</em>, <em class="sig-param">conv</em>, <em class="sig-param">bin_state_nums</em>, <em class="sig-param">match</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.pop_write" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Writes all the good stuff that you want to save from runFixedPop in a</dt><dd><p>single function</p>
+</dd>
+</dl>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dat_store</strong> : <cite>pandas HDFStore</cite></p>
+<blockquote>
+<div><p>H5 file to write to</p>
+</div></blockquote>
+<p><strong>log_file</strong> : <cite>file write</cite></p>
+<blockquote>
+<div><p>log file to write to</p>
+</div></blockquote>
+<p><strong>mass_list</strong> : <cite>list</cite></p>
+<blockquote>
+<div><p>list containing the mass of the singles, mass of the binaries,
+and mass of the stars</p>
+</div></blockquote>
+<p><strong>n_list</strong> : <cite>list</cite></p>
+<blockquote>
+<div><p>list containing the number of singles, number of binaries,
+and number of stars</p>
+</div></blockquote>
+<p><strong>bcm</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><p>bcm array to write</p>
+</div></blockquote>
+<p><strong>bpp</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><p>bpp array to write</p>
+</div></blockquote>
+<p><strong>initCond</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><p>initCond array to write</p>
+</div></blockquote>
+<p><strong>conv</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><p>conv array to write</p>
+</div></blockquote>
+<p><strong>bin_state_nums</strong> : <cite>list</cite></p>
+<blockquote>
+<div><p>contains the count of binstates 0,1,2</p>
+</div></blockquote>
+<p><strong>match</strong> : pandas.DataFrame</p>
+<blockquote>
+<div><p>contains the match values for each conv_param</p>
+</div></blockquote>
+<p><strong>idx</strong> : <cite>int</cite></p>
+<blockquote>
+<div><p>contains the index of the bcm so we can pick up where we left off
+if runFixedPop hits a wall time</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Nothing!</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.utils.a_from_p">
+<code class="sig-prename descclassname">cosmic.utils.</code><code class="sig-name descname">a_from_p</code><span class="sig-paren">(</span><em class="sig-param">p</em>, <em class="sig-param">m1</em>, <em class="sig-param">m2</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.a_from_p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the separation from orbital period with KEPLER III</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>p</strong> : float/array</p>
+<blockquote>
+<div><p>orbital period [day]</p>
+</div></blockquote>
+<p><strong>m1</strong> : float/array</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float/array</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sep</strong> : float/array</p>
+<blockquote>
+<div><p>separation [rsun]</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="cosmic.utils.p_from_a">
+<code class="sig-prename descclassname">cosmic.utils.</code><code class="sig-name descname">p_from_a</code><span class="sig-paren">(</span><em class="sig-param">sep</em>, <em class="sig-param">m1</em>, <em class="sig-param">m2</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.p_from_a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes separation from orbital period with kepler III</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sep</strong> : float/array</p>
+<blockquote>
+<div><p>separation [rsun]</p>
+</div></blockquote>
+<p><strong>m1</strong> : float/array</p>
+<blockquote>
+<div><p>primary mass [msun]</p>
+</div></blockquote>
+<p><strong>m2</strong> : float/array</p>
+<blockquote>
+<div><p>secondary mass [msun]</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>p</strong> : float/array</p>
+<blockquote>
+<div><p>orbital period [day]</p>
+</div></blockquote>
+</dd>
+</dl>
 </dd></dl>
 
 
