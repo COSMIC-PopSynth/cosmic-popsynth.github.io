@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 3.0.0-beta+6.g810e084.dirty documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 3.0.0 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.0.0-beta+6.g810e084.dirty
+                3.0.0
               </div>
             
           
@@ -100,7 +100,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using cosmic to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to run BSE</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>COSMIC</cite> way</a></li>
 </ul>
@@ -180,8 +180,8 @@ inifile for COSMIC: <a class="reference external" href="https://github.com/COSMI
 <h3>filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 28%" />
-<col style="width: 72%" />
+<col style="width: 27%" />
+<col style="width: 73%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">select_final_state</span></code></p></td>
@@ -228,8 +228,8 @@ its evolution</p>
 <h3>sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 77%" />
+<col style="width: 22%" />
+<col style="width: 78%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sampling_method</span></code></p></td>
@@ -287,8 +287,8 @@ where solar metallicity is Z = 0.02</p></td>
 <h3>[convergence]<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 76%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_params</span></code></p></td>
@@ -297,7 +297,16 @@ to a single distribution shape.
 Options include: <code class="docutils literal notranslate"><span class="pre">mass_1</span></code>, <code class="docutils literal notranslate"><span class="pre">mass_2</span></code>, <code class="docutils literal notranslate"><span class="pre">sep</span></code>, <code class="docutils literal notranslate"><span class="pre">porb</span></code>,
 <code class="docutils literal notranslate"><span class="pre">ecc</span></code>, <code class="docutils literal notranslate"><span class="pre">massc_1</span></code>, <code class="docutils literal notranslate"><span class="pre">massc_2</span></code>, <code class="docutils literal notranslate"><span class="pre">rad_1</span></code>, <code class="docutils literal notranslate"><span class="pre">rad_2</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_filter</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_limits</span></code></p></td>
+<td><p>Specifies limits for parameters included in the convergence
+params list. If specified, the lower and upper limit must
+be specified:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">convergence_limits</span> <span class="pre">=</span> <span class="pre">{'mass_1'</span> <span class="pre">:</span> <span class="pre">[5,</span> <span class="pre">10],</span> <span class="pre">'sep'</span> <span class="pre">:</span> <span class="pre">[0,</span> <span class="pre">10]}</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_filter</span></code></p></td>
 <td><p>Selects the stage of the evolution at which you would like
 to check for convergence. This will filter for systems that
 satisfy the final_kstar1 and final_kstar2 selections from
@@ -323,9 +332,20 @@ user-specified final kstars</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">match</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">match</span></code></p></td>
 <td><p>match provides the tolerance for the convergence calculation
 and is calculated as match = Log<sub>10</sub> (1-convergence)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bcm_bpp_initCond_filter</span></code></p></td>
+<td><p>The bcm_bpp_initCond_filter will filter the bcm, bpp, and initCond
+DataFrames to only contain the binaries that satisfy the conv DataFrame.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: bcm, bpp, initCond will contain only the binaries which
+are in the conv DataFrame</p>
+<p><code class="docutils literal notranslate"><span class="pre">False</span></code>: bcm, bpp, initCond will contain all systems which satisfy the                                 final kstar selection and will <strong>not</strong> be filtered.</p>
+</div></blockquote>
+<p><strong>bcm_bpp_initCond_filter=False</strong></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -335,6 +355,10 @@ and is calculated as match = Log<sub>10</sub> (1-convergence)</p></td>
 <span class="c1">; Options include mass_1, mass_2, sep, porb, ecc, massc_1, massc_2</span>
 <span class="c1">; rad_1, rad_2</span>
 <span class="na">convergence_params</span> <span class="o">=</span> <span class="s">[mass_1,mass_2,porb,ecc]</span>
+
+<span class="c1">; convergence_limits is a dictionary that can contain limits for convergence params</span>
+<span class="c1">; convergence_limits = {&quot;mass_1&quot; : [0, 20], &quot;sep&quot; : [0,5000]}</span>
+<span class="na">convergence_limits</span> <span class="o">=</span> <span class="s">{}</span>
 
 <span class="c1">; formation computes convergence on binary properties</span>
 <span class="c1">; at formation with user-specified final kstars</span>
@@ -364,6 +388,10 @@ and is calculated as match = Log<sub>10</sub> (1-convergence)</p></td>
 <span class="c1">; and is calculated as match = log10(1-convergence)</span>
 <span class="c1">; default = -5.0</span>
 <span class="na">match</span> <span class="o">=</span> <span class="s">-5.0</span>
+
+<span class="c1">; bcm_bpp_initCond_filter filters the bcm/bpp/initCond</span>
+<span class="c1">; arrays to only the binaries that are in the conv array if true</span>
+<span class="na">bcm_bpp_initCond_filter</span> <span class="o">=</span> <span class="s">False</span>
 </pre></div>
 </div>
 </div>
@@ -484,11 +512,11 @@ the Eddington limit
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">neta</span></code></p></td>
 <td><p>Reimers mass-loss coefficent (<a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">Equation 106 SSE</a>).
 Note: this equation has a typo. There is an extra
-<img class="math" src="../_images/math/d0bbe02e99813166370ec38ec1747521772a70a2.png" alt="{\eta}"/> out front; the correct rate is directly proportional
-to <img class="math" src="../_images/math/d0bbe02e99813166370ec38ec1747521772a70a2.png" alt="{\eta}"/>.
+<span class="math">{\eta}</span> out front; the correct rate is directly proportional
+to <span class="math">{\eta}</span>.
 See also <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1978A%26A....70..227K&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=12">Kurdritzki+1978, Section Vb</a> for discussion.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <img class="math" src="../_images/math/d0bbe02e99813166370ec38ec1747521772a70a2.png" alt="{\eta}"/> to <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">Equation 106 SSE</a></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <span class="math">{\eta}</span> to <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">Equation 106 SSE</a></p>
 </div></blockquote>
 <p><strong>neta = 0.5</strong></p>
 </td>
@@ -503,7 +531,7 @@ See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-da
 </td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hewind</span></code></p></td>
-<td><p>Helium star mass loss parameter: 10<sup>-13</sup> <em>hewind</em> L<sup>2/3</sup> gives He star mass-loss. Equivalent to 1 - <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc08384985b8e643f00926.png" alt="{\mu}"/> in the last equation on <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">page 19 of SSE</a>.</p>
+<td><p>Helium star mass loss parameter: 10<sup>-13</sup> <em>hewind</em> L<sup>2/3</sup> gives He star mass-loss. Equivalent to 1 - <span class="math">{\mu}</span> in the last equation on <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2000MNRAS.315..543H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=19">page 19 of SSE</a>.</p>
 <p><strong>hewind = 1.0</strong></p>
 </td>
 </tr>
@@ -511,7 +539,7 @@ See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-da
 <td><p>Wind velocity factor: v<sub>wind</sub> <sup>2</sup> goes like <em>beta</em>. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 9 of Hurley+2002</a>.</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">value</span></code> : StarTrack (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2008ApJS..174..223B/abstract">Belczynski+2008</a>)</p>
-<p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <img class="math" src="../_images/math/16730af266c711c8a7469e0fa18c2f24e237b5a4.png" alt="{\beta}"/><sub>w</sub> to <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 9 of Hurley+2002</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <span class="math">{\beta}</span><sub>w</sub> to <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 9 of Hurley+2002</a></p>
 </div></blockquote>
 <p><strong>beta = -1.0</strong></p>
 </td>
@@ -520,9 +548,9 @@ See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-da
 <td><p>Wind accretion efficiency factor, which gives the fraction
 of angular momentum lost via winds from the primary that
 transfers to the spin angular momentum of the companion.
-Corresponds to <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc08384985b8e643f00926.png" alt="{\mu}"/><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 11 of Hurley+2002</a>.</p>
+Corresponds to <span class="math">{\mu}</span><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 11 of Hurley+2002</a>.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc08384985b8e643f00926.png" alt="{\mu}"/><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 11 of Hurley+2002</a></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <span class="math">{\mu}</span><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 11 of Hurley+2002</a></p>
 </div></blockquote>
 <p><strong>xi = 0.5</strong></p>
 </td>
@@ -530,7 +558,7 @@ Corresponds to <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc083849
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">acc2</span></code></p></td>
 <td><p>Bondi-Hoyle wind accretion factor where the mean wind accretion rate onto the secondary is proportional to <em>acc2</em>. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=2">Equation 6 in Hurley+2002</a>.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <img class="math" src="../_images/math/76876e7d772c75e92336730ff225ca27375b4a03.png" alt="{\alpha}"/><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=2">Equation 6 in Hurley+2002</a></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <span class="math">{\alpha}</span><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=2">Equation 6 in Hurley+2002</a></p>
 </div></blockquote>
 <p><strong>acc2 = 1.5</strong></p>
 </td>
@@ -591,7 +619,7 @@ Corresponds to <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc083849
 efficiency of transferring orbital energy to the
 envelope. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 71 in Hurley+2002</a>.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : supplies <img class="math" src="../_images/math/76876e7d772c75e92336730ff225ca27375b4a03.png" alt="{\alpha}"/> to <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 71 in Hurley+2002</a></p>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : supplies <span class="math">{\alpha}</span> to <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 71 in Hurley+2002</a></p>
 </div></blockquote>
 <p><strong>alpha1 = 1.0</strong></p>
 </td>
@@ -599,11 +627,11 @@ envelope. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lambdaf</span></code></p></td>
 <td><p>Binding energy factor for common envelope evolution.
 The initial binding energy of the stellar envelope
-goes like 1 / <img class="math" src="../_images/math/f1c62eee20a138eac5cff5964b711ee300263b14.png" alt="{\lambda}"/>. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 69 in Hurley+2002</a>.</p>
+goes like 1 / <span class="math">{\lambda}</span>. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 69 in Hurley+2002</a>.</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">1.0</span></code> : uses variable lambda prescription detailed
 in appendix of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014A%26A...563A..83C/abstract">Claeys+2014</a></p>
-<p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">values</span></code> : fixes <img class="math" src="../_images/math/f1c62eee20a138eac5cff5964b711ee300263b14.png" alt="{\lambda}"/> to a value of -1.0* <em>lambdaf</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">values</span></code> : fixes <span class="math">{\lambda}</span> to a value of -1.0* <em>lambdaf</em></p>
 </div></blockquote>
 <p><strong>lambdaf = 1.0</strong></p>
 </td>
@@ -632,7 +660,7 @@ needs to be applied.</p>
 <p><code class="docutils literal notranslate"><span class="pre">1</span></code> : uses pre-CE mass and sep values</p>
 <p><code class="docutils literal notranslate"><span class="pre">2</span></code> : uses post-CE mass and sep</p>
 </div></blockquote>
-<p><strong>cekickflag = 0</strong></p>
+<p><strong>cekickflag = 2</strong></p>
 </td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cemergeflag</span></code></p></td>
@@ -1004,6 +1032,53 @@ and the minimum BH mass</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>REMNANT SPIN FLAGS</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 82%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bhspinflag</span></code></p></td>
+<td><p>Uses different prescriptions for BH spin after formation</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : sets all BH spins to <em>bhspinmag</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">1</span></code> : draws a random BH spin between 0 and bhspinmag for every BH</p>
+<p><code class="docutils literal notranslate"><span class="pre">2</span></code> : core-mass dependent BH spin (based on <a class="reference external" href="https://arxiv.org/abs/1706.07053v1">Belczynski+2017 v1</a>)</p>
+</div></blockquote>
+<p><strong>bhspinflag = 0</strong></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bhspinmag</span></code></p></td>
+<td><p>Sets either the spin of all BHs or the upper limit of the uniform distribution for BH spins</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">values</span> <span class="pre">&gt;=</span> <span class="pre">0.0</span></code> : spin or upper limit value</p>
+</div></blockquote>
+<p><strong>bhspinmag = 0.0</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; REMNANT SPIN FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+
+<span class="c1">; bhspinflag uses different prescriptions for BH spin after formation</span>
+<span class="c1">; bhspinflag=0; sets all BH spins to bhspinmag</span>
+<span class="c1">; bhspinflag=1; draws a random BH spin between 0 and bhspinmag for every BH</span>
+<span class="c1">; bhspinflag=2; core-mass dependent BH spin (based on Belczynski+2017; 1706.07053, v1)</span>
+<span class="c1">; default=0</span>
+<span class="na">bhspinflag</span> <span class="o">=</span> <span class="s">0</span>
+
+<span class="c1">; bhspinmag sets either the spin of all BHs or the upper limit of the uniform</span>
+<span class="c1">; distribution for BH spins</span>
+<span class="c1">; default=0.0</span>
+<span class="na">bhspinmag</span><span class="o">=</span><span class="s">0.0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>MASS TRANSFER FLAGS</p>
 </div>
 <table class="docutils align-default">
@@ -1058,7 +1133,7 @@ fraction <em>gamma</em> of the orbital angular momentum</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>MISCELLANEOUS FLAGS</p>
+<p>TIDES FLAGS</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1067,7 +1142,8 @@ fraction <em>gamma</em> of the orbital angular momentum</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tflag</span></code></p></td>
-<td><p>Activates tidal circularisation following <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">Hurley+2002</a></p>
+<td><p>Activates tidal circularisation following
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">Hurley+2002</a></p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : no tidal circularization</p>
 <p><code class="docutils literal notranslate"><span class="pre">1</span></code> : activates tidal circularization</p>
@@ -1075,8 +1151,50 @@ fraction <em>gamma</em> of the orbital angular momentum</p>
 <p><strong>tflag = 1</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ifflag</span></code></p></td>
-<td><p>Activates the initial-final white dwarf mass relation from Han+1995 <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1995MNRAS.272..800H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=4">Equations 3, 4, and 5</a>.</p>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fprimc_array</span></code></p></td>
+<td><p>controls the scaling factor for convective tides
+each item is set individually for its associated kstar
+The releveant equation is <a class="reference external" href="https://watermark.silverchair.com/329-4-897.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAnAwggJsBgkqhkiG9w0BBwagggJdMIICWQIBADCCAlIGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMYUoYtydpxVKmZePqAgEQgIICI1b5IZldHg9_rX6JacIe-IR042LnNi-4F9DMp-2lm3djjQ8xehKOv5I0VBjSNJfa6n-FErAH7ed1llADY7tMDTvqo1GHKBMDslNku5XDGfmae0sF-Zp5ndeGoZsyqISABLHEbdY4VFl8Uz_6jzAuBjGztnuxVmUh9bKIOaxuDpfB3Mn2xOfP9lcCVkjzQ0JWzr98nQNmVwDkI9bPv98Ab46BjBdGdcBKajCC-sqASjtmAQS2h6SGTTBqyRAyigqXcPtWf3Ye1SbxtL3zag6_Lf01rgCoUCK9eT_pavb5F8vVkUTMWbZQ79DWxn5pfZYi72C7_BtlPoUnS8Gs3wvw18BTIaHTKblwh225DcXuTEh_ngMmRvPEVctvG8tjlr9md-eFK0cEsq0734eGYtnwxeqvFxcWsW6mRbXrFHFsInQK16j6n36XuCimY665l_-HPAuu-lTTlwpMTUR7K1eYMBsco_tp_TdxEipRNvBpaWZX3J0FxPMzi84Y01UvWiW69pxb-LLTpf8aG4YCm9asRFyfDZ9nbSdgrIlCiuzy7QSmkvsHOaTEecmwRimFRycDuIuWLvA_tILmYCIM2KzvqYJSVCQPJH39xEHZG8LbMqImwAVYO3H90qh-90gNrtZn4ofSskcgqxeqfZly9CPfmEevX5s-SlLHMh1N6gdZwenvMC0kTWg_rskbvGiANtuGngD-kKDbunGpYJU_nI7uDnhGtdY#page=5">Equation 21 of Hurley+2002</a></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets scaling factor of
+Equation 21 referenced above</p>
+</div></blockquote>
+<p><strong>fprimc_array = [2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,
+2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,
+2.0/21.0,2.0/21.0]</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; TIDES FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;</span>
+
+<span class="c1">; tflag=1 activates tidal circularisation</span>
+<span class="c1">; default=1</span>
+<span class="na">tflag</span><span class="o">=</span><span class="s">1</span>
+
+<span class="c1">; fprimc_array controls the scaling factor for convective tides</span>
+<span class="c1">; each item is set individually for its associated kstar</span>
+<span class="c1">; The releveant equation is Equation 21 from the BSE paper</span>
+<span class="c1">; The default is to send the same coefficient (2/21) as is in the equation</span>
+<span class="c1">; for every kstar</span>
+<span class="na">fprimc_array</span><span class="o">=</span><span class="s">[2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>WHITE DWARF FLAGS</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 87%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ifflag</span></code></p></td>
+<td><p>Activates the initial-final white dwarf mass relation
+from Han+1995 <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=1995MNRAS.272..800H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=4">Equations 3, 4, and 5</a>.</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : no modifications to BSE</p>
 <p><code class="docutils literal notranslate"><span class="pre">1</span></code> : activates initial-final WD mass relation</p>
@@ -1084,9 +1202,10 @@ fraction <em>gamma</em> of the orbital angular momentum</p>
 <p><strong>ifflag = 0</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">wdflag</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">wdflag</span></code></p></td>
 <td><p>Activates an alternate cooling law found in the description
-immediately following <a class="reference external" href="http://iopscience.iop.org/article/10.1086/374637/pdf#page=3">Equation 1</a> in Hurley &amp; Shara 2003.
+immediately following <a class="reference external" href="http://iopscience.iop.org/article/10.1086/374637/pdf#page=3">Equation 1</a>
+in Hurley &amp; Shara 2003.
 Equation 1 gives the BSE default Mestel cooling law.</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : no modifications to BSE</p>
@@ -1095,7 +1214,7 @@ Equation 1 gives the BSE default Mestel cooling law.</p>
 <p><strong>wdflag = 0</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">epsnov</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">epsnov</span></code></p></td>
 <td><p>Fraction of accreted matter retained in a nova eruption.
 This is relevant for accretion onto degenerate objects;
 see Section 2.6.6.2 in <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">Hurley+2002</a>.</p>
@@ -1106,6 +1225,35 @@ fraction of accreted matter</p>
 <p><strong>epsnov = 0.001</strong></p>
 </td>
 </tr>
+</tbody>
+</table>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; WHITE DWARF FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+
+<span class="c1">; ifflag &gt; 0 uses WD IFMR of HPE, 1995, MNRAS, 272, 800</span>
+<span class="c1">; default=0</span>
+<span class="na">ifflag</span><span class="o">=</span><span class="s">0</span>
+
+<span class="c1">; wdflag &gt; 0 uses modified-Mestel cooling for WDs</span>
+<span class="c1">; default=0</span>
+<span class="na">wdflag</span><span class="o">=</span><span class="s">0</span>
+
+<span class="c1">; epsnov is the fraction of accreted matter retained in nova eruptions</span>
+<span class="c1">; default=0.001</span>
+<span class="na">epsnov</span><span class="o">=</span><span class="s">0.001</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PULSAR FLAGS</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bconst</span></code></p></td>
 <td><p>Sets the magnetic field decay time-scale for pulsars following
 Section 3 of <a class="reference external" href="https://academic.oup.com/mnras/article/388/1/393/1013977">Kiel+2008</a>.</p>
@@ -1120,44 +1268,17 @@ Section 3 of <a class="reference external" href="https://academic.oup.com/mnras/
 <td><p>Sets the magnetic field decay time-scale for pulsars following
 Section 3 of <a class="reference external" href="https://academic.oup.com/mnras/article/388/1/393/1013977">Kiel+2008</a>.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">values</span></code> : sets <img class="math" src="../_images/math/87b759553aa93c04c3c45daa6e8d06fdfb5f3f20.png" alt="{\tau}"/><sub>b</sub> in Myr
+<div><p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">values</span></code> : sets <span class="math">{\tau}</span><sub>b</sub> in Myr
 from Equation 2 to  -1 * <em>ck</em></p>
 </div></blockquote>
 <p><strong>ck = -1000</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fprimc_array</span></code></p></td>
-<td><p>controls the scaling factor for convective tides
-each item is set individually for its associated kstar
-The releveant equation is <a class="reference external" href="https://watermark.silverchair.com/329-4-897.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAnAwggJsBgkqhkiG9w0BBwagggJdMIICWQIBADCCAlIGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMYUoYtydpxVKmZePqAgEQgIICI1b5IZldHg9_rX6JacIe-IR042LnNi-4F9DMp-2lm3djjQ8xehKOv5I0VBjSNJfa6n-FErAH7ed1llADY7tMDTvqo1GHKBMDslNku5XDGfmae0sF-Zp5ndeGoZsyqISABLHEbdY4VFl8Uz_6jzAuBjGztnuxVmUh9bKIOaxuDpfB3Mn2xOfP9lcCVkjzQ0JWzr98nQNmVwDkI9bPv98Ab46BjBdGdcBKajCC-sqASjtmAQS2h6SGTTBqyRAyigqXcPtWf3Ye1SbxtL3zag6_Lf01rgCoUCK9eT_pavb5F8vVkUTMWbZQ79DWxn5pfZYi72C7_BtlPoUnS8Gs3wvw18BTIaHTKblwh225DcXuTEh_ngMmRvPEVctvG8tjlr9md-eFK0cEsq0734eGYtnwxeqvFxcWsW6mRbXrFHFsInQK16j6n36XuCimY665l_-HPAuu-lTTlwpMTUR7K1eYMBsco_tp_TdxEipRNvBpaWZX3J0FxPMzi84Y01UvWiW69pxb-LLTpf8aG4YCm9asRFyfDZ9nbSdgrIlCiuzy7QSmkvsHOaTEecmwRimFRycDuIuWLvA_tILmYCIM2KzvqYJSVCQPJH39xEHZG8LbMqImwAVYO3H90qh-90gNrtZn4ofSskcgqxeqfZly9CPfmEevX5s-SlLHMh1N6gdZwenvMC0kTWg_rskbvGiANtuGngD-kKDbunGpYJU_nI7uDnhGtdY#page=5">Equation 21 of Hurley+2002</a></p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets scaling factor of
-Equation 21 referenced above</p>
-</div></blockquote>
-<p><strong>fprimc_array = [2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0]</strong></p>
-</td>
-</tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-<span class="c1">;;; MISCELLANEOUS FLAGS ;;;</span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
-
-<span class="c1">; tflag=1 activates tidal circularisation</span>
-<span class="c1">; default=1</span>
-<span class="na">tflag</span><span class="o">=</span><span class="s">1</span>
-
-<span class="c1">; ifflag &gt; 0 uses WD IFMR of HPE, 1995, MNRAS, 272, 800</span>
-<span class="c1">; default=0</span>
-<span class="na">ifflag</span><span class="o">=</span><span class="s">0</span>
-
-<span class="c1">; wdflag &gt; 0 uses modified-Mestel cooling for WDs</span>
-<span class="c1">; default=0</span>
-<span class="na">wdflag</span><span class="o">=</span><span class="s">0</span>
-
-<span class="c1">; epsnov is the fraction of accreted matter retained in nova eruptions</span>
-<span class="c1">; default=0.001</span>
-<span class="na">epsnov</span><span class="o">=</span><span class="s">0.001</span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; PULSAR FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;</span>
 
 <span class="c1">; bconst is related to magnetic field evolution of pulsars, see Kiel+2008</span>
 <span class="c1">; default=-3000</span>
@@ -1166,13 +1287,39 @@ Equation 21 referenced above</p>
 <span class="c1">; ck is related to magnetic field evolution of pulsars, see Kiel+2008</span>
 <span class="c1">; default=-1000</span>
 <span class="na">ck</span><span class="o">=</span><span class="s">-1000</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MIXING VARIABLES</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rejuv_fac</span></code></p></td>
+<td><p>Sets the mixing factor in main sequence star collisions.
+This is hard coded to 0.1 in the original BSE release
+and in Equation 80 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">Hurley+2002</a>
+but can lead to extended main sequence lifetimes in some cases.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets the mixing factor</p>
+</div></blockquote>
+<p><strong>rejuv_fac = 1.0</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; MIXING VARIABLES ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; fprimc_array controls the scaling factor for convective tides</span>
-<span class="c1">; each item is set individually for its associated kstar</span>
-<span class="c1">; The releveant equation is Equation 21 from the BSE paper</span>
-<span class="c1">; The default is to send the same coefficient (2/21) as is in the equation</span>
-<span class="c1">; for every kstar</span>
-<span class="na">fprimc_array</span><span class="o">=</span><span class="s">[2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0]</span>
+<span class="c1">; rejuv_fac allows different mixing factors in Equation 80 from the BSE</span>
+<span class="c1">; paper. This was originally hard coded to 0.1, which leads massive</span>
+<span class="c1">; stars to potentially have extended main sequence lifetimes.</span>
+<span class="na">rejuv_fac</span><span class="o">=</span><span class="s">1.0</span>
 </pre></div>
 </div>
 </div>

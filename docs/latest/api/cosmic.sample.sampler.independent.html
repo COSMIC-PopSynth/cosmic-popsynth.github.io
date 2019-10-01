@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+85.g20624da documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.0.0 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.0.0-beta+85.g20624da
+                3.0.0
               </div>
             
           
@@ -172,7 +172,7 @@
 </div></blockquote>
 <p><strong>primary_model</strong> : <cite>str</cite></p>
 <blockquote>
-<div><p>Model to sample primary mass; choices include: kroupa93, salpeter55</p>
+<div><p>Model to sample primary mass; choices include: kroupa93, kroupa01, salpeter55</p>
 </div></blockquote>
 <p><strong>ecc_model</strong> : <cite>str</cite></p>
 <blockquote>
@@ -382,7 +382,9 @@ of mass1 and mass2</p>
 between 0.08 and 150 Msun
 salpter55 follows
 <a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
-between 0.08 and 150 Msun</p>
+between 0.08 and 150 Msun
+kroupa01 follows Kroupa (2001) &lt;<a class="reference external" href="https://arxiv.org/abs/astro-ph/0009005">https://arxiv.org/abs/astro-ph/0009005</a>&gt;
+between 0.08 and 100 Msun</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>primary_model</strong> : str, optional</p>
@@ -393,6 +395,9 @@ between 0.08 and 150 Msun</p>
 valid for masses between 0.1 and 100 Msun</p>
 <p>salpter55 follows
 <a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
+valid for masses between 0.1 and 100 Msun</p>
+<p>kroupa01 follows Kroupa (2001), normalization comes from
+<a class="reference external" href="https://arxiv.org/abs/astro-ph/0009005">Hurley 2002</a>
 valid for masses between 0.1 and 100 Msun</p>
 <p>Default kroupa93</p>
 </div></blockquote>

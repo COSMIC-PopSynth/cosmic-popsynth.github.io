@@ -15,11 +15,10 @@ Submodules
 
 .. toctree::
 
-   cosmic.GW_calcs
    cosmic.MC_samp
    cosmic.Match
    cosmic.evolve
-   cosmic.lisa_sensitivity
+   cosmic.plotting
    cosmic.utils
 
 Module contents
