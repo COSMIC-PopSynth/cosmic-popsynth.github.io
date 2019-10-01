@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 3.0.0-beta+55.g5b03dbc documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 3.0.0-beta+85.g20624da documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.0.0-beta+55.g5b03dbc
+                3.0.0-beta+85.g20624da
               </div>
             
           
@@ -287,8 +287,8 @@ where solar metallicity is Z = 0.02</p></td>
 <h3>[convergence]<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 22%" />
-<col style="width: 78%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_params</span></code></p></td>
@@ -297,7 +297,16 @@ to a single distribution shape.
 Options include: <code class="docutils literal notranslate"><span class="pre">mass_1</span></code>, <code class="docutils literal notranslate"><span class="pre">mass_2</span></code>, <code class="docutils literal notranslate"><span class="pre">sep</span></code>, <code class="docutils literal notranslate"><span class="pre">porb</span></code>,
 <code class="docutils literal notranslate"><span class="pre">ecc</span></code>, <code class="docutils literal notranslate"><span class="pre">massc_1</span></code>, <code class="docutils literal notranslate"><span class="pre">massc_2</span></code>, <code class="docutils literal notranslate"><span class="pre">rad_1</span></code>, <code class="docutils literal notranslate"><span class="pre">rad_2</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_filter</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_limits</span></code></p></td>
+<td><p>Specifies limits for parameters included in the convergence
+params list. If specified, the lower and upper limit must
+be specified:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">convergence_limits</span> <span class="pre">=</span> <span class="pre">{'mass_1'</span> <span class="pre">:</span> <span class="pre">[5,</span> <span class="pre">10],</span> <span class="pre">'sep'</span> <span class="pre">:</span> <span class="pre">[0,</span> <span class="pre">10]}</span></code></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_filter</span></code></p></td>
 <td><p>Selects the stage of the evolution at which you would like
 to check for convergence. This will filter for systems that
 satisfy the final_kstar1 and final_kstar2 selections from
@@ -323,9 +332,20 @@ user-specified final kstars</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">match</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">match</span></code></p></td>
 <td><p>match provides the tolerance for the convergence calculation
 and is calculated as match = Log<sub>10</sub> (1-convergence)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bcm_bpp_initCond_filter</span></code></p></td>
+<td><p>The bcm_bpp_initCond_filter will filter the bcm, bpp, and initCond
+DataFrames to only contain the binaries that satisfy the conv DataFrame.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: bcm, bpp, initCond will contain only the binaries which
+are in the conv DataFrame</p>
+<p><code class="docutils literal notranslate"><span class="pre">False</span></code>: bcm, bpp, initCond will contain all systems which satisfy the                                 final kstar selection and will <strong>not</strong> be filtered.</p>
+</div></blockquote>
+<p><strong>bcm_bpp_initCond_filter=False</strong></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -335,6 +355,10 @@ and is calculated as match = Log<sub>10</sub> (1-convergence)</p></td>
 <span class="c1">; Options include mass_1, mass_2, sep, porb, ecc, massc_1, massc_2</span>
 <span class="c1">; rad_1, rad_2</span>
 <span class="na">convergence_params</span> <span class="o">=</span> <span class="s">[mass_1,mass_2,porb,ecc]</span>
+
+<span class="c1">; convergence_limits is a dictionary that can contain limits for convergence params</span>
+<span class="c1">; convergence_limits = {&quot;mass_1&quot; : [0, 20], &quot;sep&quot; : [0,5000]}</span>
+<span class="na">convergence_limits</span> <span class="o">=</span> <span class="s">{}</span>
 
 <span class="c1">; formation computes convergence on binary properties</span>
 <span class="c1">; at formation with user-specified final kstars</span>
@@ -364,6 +388,10 @@ and is calculated as match = Log<sub>10</sub> (1-convergence)</p></td>
 <span class="c1">; and is calculated as match = log10(1-convergence)</span>
 <span class="c1">; default = -5.0</span>
 <span class="na">match</span> <span class="o">=</span> <span class="s">-5.0</span>
+
+<span class="c1">; bcm_bpp_initCond_filter filters the bcm/bpp/initCond</span>
+<span class="c1">; arrays to only the binaries that are in the conv array if true</span>
+<span class="na">bcm_bpp_initCond_filter</span> <span class="o">=</span> <span class="s">False</span>
 </pre></div>
 </div>
 </div>
@@ -1259,6 +1287,39 @@ from Equation 2 to  -1 * <em>ck</em></p>
 <span class="c1">; ck is related to magnetic field evolution of pulsars, see Kiel+2008</span>
 <span class="c1">; default=-1000</span>
 <span class="na">ck</span><span class="o">=</span><span class="s">-1000</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MIXING VARIABLES</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rejuv_fac</span></code></p></td>
+<td><p>Sets the mixing factor in main sequence star collisions.
+This is hard coded to 0.1 in the original BSE release
+and in Equation 80 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">Hurley+2002</a>
+but can lead to extended main sequence lifetimes in some cases.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets the mixing factor</p>
+</div></blockquote>
+<p><strong>rejuv_fac = 1.0</strong></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; MIXING VARIABLES ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span>
+
+<span class="c1">; rejuv_fac allows different mixing factors in Equation 80 from the BSE</span>
+<span class="c1">; paper. This was originally hard coded to 0.1, which leads massive</span>
+<span class="c1">; stars to potentially have extended main sequence lifetimes.</span>
+<span class="na">rejuv_fac</span><span class="o">=</span><span class="s">1.0</span>
 </pre></div>
 </div>
 </div>

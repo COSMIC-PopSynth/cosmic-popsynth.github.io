@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a binary population by hand &mdash; cosmic 3.0.0-beta+55.g5b03dbc documentation</title>
+  <title>Generate a binary population by hand &mdash; cosmic 3.0.0-beta+85.g20624da documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.0.0-beta+55.g5b03dbc
+                3.0.0-beta+85.g20624da
               </div>
             
           
@@ -449,7 +449,7 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <p>The syntax for the Evolve class is as follows:</p>
 <pre class="literal-block">In [15]: from cosmic.evolve import Evolve
 
-In [16]: BSEDict = {'xi': 0.5, 'bhflag': 1, 'neta': 0.5, 'windflag': 3, 'wdflag': 0, 'alpha1': 1.0, 'pts1': 0.05, 'pts3': 0.02, 'pts2': 0.01, 'epsnov': 0.001, 'hewind': 1.0, 'ck': -1000, 'bwind': 0.0, 'lambdaf': 1.0, 'mxns': 3.0, 'beta': -1.0, 'tflag': 1, 'acc2': 1.5, 'nsflag': 4, 'ceflag': 0, 'eddfac': 1.0, 'ifflag': 0, 'bconst': -3000, 'sigma': 265.0, 'gamma': -2.0, 'pisn': 45.0, 'natal_kick_array' :[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0], 'bhsigmafrac' : 1.0, 'polar_kick_angle' : 90, 'qcrit_array' : [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0], 'cekickflag' : 2, 'cehestarflag' : 0, 'cemergeflag' : 0, 'ecsn' : 2.5, 'ecsn_mlow' : 1.4, 'aic' : 1, 'ussn' : 0, 'sigmadiv' :-20.0, 'qcflag' : 2, 'eddlimflag' : 0, 'fprimc_array' : [2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0], 'bhspinflag' : 0, 'bhspinmag' : 0.0}
+In [16]: BSEDict = {'xi': 0.5, 'bhflag': 1, 'neta': 0.5, 'windflag': 3, 'wdflag': 0, 'alpha1': 1.0, 'pts1': 0.05, 'pts3': 0.02, 'pts2': 0.01, 'epsnov': 0.001, 'hewind': 1.0, 'ck': -1000, 'bwind': 0.0, 'lambdaf': 1.0, 'mxns': 3.0, 'beta': -1.0, 'tflag': 1, 'acc2': 1.5, 'nsflag': 4, 'ceflag': 0, 'eddfac': 1.0, 'ifflag': 0, 'bconst': -3000, 'sigma': 265.0, 'gamma': -2.0, 'pisn': 45.0, 'natal_kick_array' :[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0], 'bhsigmafrac' : 1.0, 'polar_kick_angle' : 90, 'qcrit_array' : [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0], 'cekickflag' : 2, 'cehestarflag' : 0, 'cemergeflag' : 0, 'ecsn' : 2.5, 'ecsn_mlow' : 1.4, 'aic' : 1, 'ussn' : 0, 'sigmadiv' :-20.0, 'qcflag' : 2, 'eddlimflag' : 0, 'fprimc_array' : [2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0], 'bhspinflag' : 0, 'bhspinmag' : 0.0, 'rejuv_fac' : 1.0}
 
 In [17]: bpp, bcm, initC  = Evolve.evolve(initialbinarytable=InitialBinaries, BSEDict=BSEDict)
 
@@ -464,7 +464,7 @@ In [18]: print(bcm.iloc[:10])
 3     1.000000      1.0  1.125074  1.125074    1.230533  1.036957  ...            0.0   0.0   0.0          0         -001        3
 3  8534.326501     11.0  0.528060  0.528060    0.000406  0.013798  ...            0.0   0.0   0.0          0         -001        3
 4     1.000000      1.0  5.805884  5.805884  903.840811  2.889506  ...            0.0   0.0   0.0          0         -001        4
-4  5431.052743     11.0  1.216888  1.216888    0.000020  0.005454  ...            0.0   0.0   0.0          0         -001        4
+4  5431.052743     15.0  0.966860  0.000000    0.008733  0.006719  ...            0.0   0.0   0.0          0         -001        4
 
 [10 rows x 43 columns]
 
@@ -482,7 +482,7 @@ In [19]: print(bpp)
 9   1174.714198  0.684060  0.647585     11.0     11.0  ...  0.684060  0.647585    0.011692    0.012152        9
 9   7959.876937  0.684060  0.647585     11.0     11.0  ...  0.684060  0.647585    0.011692    0.012152        9
 
-[123 rows x 24 columns]</pre>
+[121 rows x 24 columns]</pre>
 </div>
 </div>
 

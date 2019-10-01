@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+55.g5b03dbc documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.0.0-beta+85.g20624da documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.0.0-beta+55.g5b03dbc
+                3.0.0-beta+85.g20624da
               </div>
             
           
@@ -214,6 +214,12 @@ in parallel</p>
 <blockquote>
 <div><p>timestep size in Myr for bcm output where tphysf
 is total evolution time in Myr</p>
+</div></blockquote>
+<p><strong>n_per_block</strong> : <cite>int</cite>, optional, default: -1</p>
+<blockquote>
+<div><p>number of systems to evolve in a block with 
+_evolve_multi_system, to allow larger multiprocessing
+queues and reduced overhead. If less than 1 use _evolve_single_system</p>
 </div></blockquote>
 </dd>
 <dt class="field-even">Returns</dt>
