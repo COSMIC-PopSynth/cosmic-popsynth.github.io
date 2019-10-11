@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a binary population by hand &mdash; cosmic 3.0.0+43.g1ba2f01 documentation</title>
+  <title>Generate a binary population by hand &mdash; cosmic 3.1.0 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.0.0+43.g1ba2f01
+                3.1.0
               </div>
             
           
@@ -295,18 +295,18 @@ history (SFH) below:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa93&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;thermal&#39;</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
 <span class="gp">In [8]: </span><span class="k">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">       kstar_1  kstar_2  mass1_binary  mass2_binary           porb  ...  tms2  bhspin1  bhspin2  tphys  binfrac</span>
-<span class="go">0          1.0      0.0      0.800637      0.638046     804.134637  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">1          1.0      1.0      1.859316      1.643950     286.823505  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">2          1.0      1.0      1.131481      0.726292       2.947610  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">3          1.0      1.0      2.568818      1.551932    1244.005156  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">4          1.0      1.0      4.156039      3.192372     783.569771  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">...        ...      ...           ...           ...            ...  ...   ...      ...      ...    ...      ...</span>
-<span class="go">10001      1.0      1.0      1.109815      0.821980      14.189403  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">10002      1.0      1.0      0.816486      0.801686  196197.164416  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">10003      1.0      1.0      2.200335      0.710562  525319.191208  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">10004      1.0      1.0      6.225382      1.946256    8992.141586  ...   0.0      0.0      0.0    0.0      0.5</span>
-<span class="go">10005      1.0      1.0      5.873011      1.877105     521.809022  ...   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">       kstar_1  kstar_2  mass1_binary  mass2_binary           porb       ecc  metallicity       tphysf  ...  epoch1  epoch2  tms1  tms2  bhspin1  bhspin2  tphys  binfrac</span>
+<span class="go">0          1.0      0.0      0.800637      0.638046     804.134637  0.098795         0.02  6499.293147  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">1          1.0      1.0      1.859316      1.643950     286.823505  0.349614         0.02  2988.128407  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">2          1.0      1.0      1.131481      0.726292       2.947610  0.692647         0.02  6091.450494  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">3          1.0      1.0      2.568818      1.551932    1244.005156  0.621071         0.02  7535.550577  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">4          1.0      1.0      4.156039      3.192372     783.569771  0.493781         0.02  5601.449267  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">...        ...      ...           ...           ...            ...       ...          ...          ...  ...     ...     ...   ...   ...      ...      ...    ...      ...</span>
+<span class="go">10001      1.0      1.0      1.109815      0.821980      14.189403  0.748188         0.02   920.811959  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">10002      1.0      1.0      0.816486      0.801686  196197.164416  0.880803         0.02  1552.390198  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">10003      1.0      1.0      2.200335      0.710562  525319.191208  0.967054         0.02  8302.241534  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">10004      1.0      1.0      6.225382      1.946256    8992.141586  0.317413         0.02  5958.986340  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
+<span class="go">10005      1.0      1.0      5.873011      1.877105     521.809022  0.872648         0.02  6722.451740  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0      0.5</span>
 
 <span class="go">[10006 rows x 38 columns]</span>
 </pre></div>
@@ -423,17 +423,17 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;multidim&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">final_kstar2</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">rand_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">SFH_model</span><span class="o">=</span><span class="s1">&#39;const&#39;</span><span class="p">,</span> <span class="n">component_age</span><span class="o">=</span><span class="mf">10000.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="gp">In [14]: </span><span class="k">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">   kstar_1  kstar_2  mass1_binary  mass2_binary           porb       ecc  ...  tms1  tms2  bhspin1  bhspin2  tphys   binfrac</span>
-<span class="go">0      1.0      1.0      3.686712      0.806328  161026.959409  0.829034  ...   0.0   0.0      0.0      0.0    0.0  0.614692</span>
-<span class="go">1      1.0      1.0      0.974390      0.881366      25.334034  0.126290  ...   0.0   0.0      0.0      0.0    0.0  0.406506</span>
-<span class="go">2      1.0      1.0      2.479799      0.831304      60.621679  0.545004  ...   0.0   0.0      0.0      0.0    0.0  0.528636</span>
-<span class="go">3      1.0      1.0      1.125074      0.976918   29228.830150  0.713424  ...   0.0   0.0      0.0      0.0    0.0  0.411491</span>
-<span class="go">4      1.0      1.0      5.805987      3.358740     118.636803  0.718332  ...   0.0   0.0      0.0      0.0    0.0  0.795156</span>
-<span class="go">5      1.0      1.0     15.916263      6.395108   15884.228362  0.727113  ...   0.0   0.0      0.0      0.0    0.0  0.895210</span>
-<span class="go">6      1.0      1.0      1.710108      1.069395   55655.129136  0.900815  ...   0.0   0.0      0.0      0.0    0.0  0.459633</span>
-<span class="go">7      1.0      1.0      2.401816      1.261706     189.173552  0.264586  ...   0.0   0.0      0.0      0.0    0.0  0.521047</span>
-<span class="go">8      1.0      1.0      2.892138      0.988218     179.329874  0.085426  ...   0.0   0.0      0.0      0.0    0.0  0.560256</span>
-<span class="go">9      1.0      1.0      2.433570      2.134182   14727.306379  0.261487  ...   0.0   0.0      0.0      0.0    0.0  0.521047</span>
+<span class="go">   kstar_1  kstar_2  mass1_binary  mass2_binary           porb       ecc  metallicity       tphysf  ...  epoch1  epoch2  tms1  tms2  bhspin1  bhspin2  tphys   binfrac</span>
+<span class="go">0      1.0      1.0      3.686712      0.806328  161026.959409  0.829034         0.02  5372.775785  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.614692</span>
+<span class="go">1      1.0      1.0      0.974390      0.881366      25.334034  0.126290         0.02  9335.264388  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.406506</span>
+<span class="go">2      1.0      1.0      2.479799      0.831304      60.621679  0.545004         0.02  7646.660981  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.528636</span>
+<span class="go">3      1.0      1.0      1.125074      0.976918   29228.830150  0.713424         0.02  8534.326501  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.411491</span>
+<span class="go">4      1.0      1.0      5.805987      3.358740     118.636803  0.718332         0.02  5431.052743  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.795156</span>
+<span class="go">5      1.0      1.0     15.916263      6.395108   15884.228362  0.727113         0.02  3081.073577  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.895210</span>
+<span class="go">6      1.0      1.0      1.710108      1.069395   55655.129136  0.900815         0.02  9288.011497  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.459633</span>
+<span class="go">7      1.0      1.0      2.401816      1.261706     189.173552  0.264586         0.02  5190.029026  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.521047</span>
+<span class="go">8      1.0      1.0      2.892138      0.988218     179.329874  0.085426         0.02  4138.378755  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.560256</span>
+<span class="go">9      1.0      1.0      2.433570      2.134182   14727.306379  0.261487         0.02  7959.876937  ...     0.0     0.0   0.0   0.0      0.0      0.0    0.0  0.521047</span>
 
 <span class="go">[10 rows x 38 columns]</span>
 </pre></div>
@@ -454,33 +454,33 @@ In [16]: BSEDict = BSEDict = {'xi': 1.0, 'bhflag': 1, 'neta': 0.5, 'windflag': 3
 In [17]: bpp, bcm, initC  = Evolve.evolve(initialbinarytable=InitialBinaries, BSEDict=BSEDict)
 
 In [18]: print(bcm.iloc[:10])
-         tphys  kstar_1   mass0_1    mass_1     lumin_1  ...  SN_1  SN_2  bin_state  merger_type  bin_num
-0     1.000000      1.0  3.686709  3.686709  174.802512  ...   0.0   0.0          0         -001        0
-0  5372.775785     11.0  0.828158  0.828158    0.000083  ...   0.0   0.0          0         -001        0
-1     1.000000      1.0  0.974390  0.974390    0.615078  ...   0.0   0.0          0         -001        1
-1  9335.264388      1.0  0.974390  0.974390    1.277067  ...   0.0   0.0          0         -001        1
-2     1.000000      1.0  2.479799  2.479799   38.038308  ...   0.0   0.0          0         -001        2
-2  7646.660981     11.0  0.656884  0.656884    0.000047  ...   0.0   0.0          1         0301        2
-3     1.000000      1.0  1.125074  1.125074    1.230533  ...   0.0   0.0          0         -001        3
-3  8534.326501     11.0  0.528107  0.528107    0.001275  ...   0.0   0.0          0         -001        3
-4     1.000000      1.0  5.805884  5.805884  903.840815  ...   0.0   0.0          0         -001        4
-4  5431.052743     15.0  0.979005  0.000000    0.022902  ...   0.0   0.0          0         -001        4
+         tphys  kstar_1   mass0_1    mass_1     lumin_1     rad_1        teff_1   massc_1  ...  SNkick_2  Vsys_final  SNtheta_final  SN_1  SN_2  bin_state  merger_type  bin_num
+0     1.000000      1.0  3.686709  3.686709  174.802512  2.223894  14136.748271  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        0
+0  5372.775785     11.0  0.828158  0.828158    0.000083  0.009989   5538.203663  0.828158  ...       0.0         0.0            0.0   0.0   0.0          0         -001        0
+1     1.000000      1.0  0.974390  0.974390    0.615078  0.863331   5526.033445  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        1
+1  9335.264388      1.0  0.974390  0.974390    1.277067  1.138652   5776.003955  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        1
+2     1.000000      1.0  2.479799  2.479799   38.038308  1.788084  10767.898324  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        2
+2  7646.660981     11.0  0.656884  0.656884    0.000047  0.012034   4370.242965  0.656884  ...       0.0         0.0            0.0   0.0   0.0          1         0301        2
+3     1.000000      1.0  1.125074  1.125074    1.230533  1.036957   5996.703848  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        3
+3  8534.326501     11.0  0.528107  0.528107    0.001275  0.013797   9327.030195  0.528107  ...       0.0         0.0            0.0   0.0   0.0          0         -001        3
+4     1.000000      1.0  5.805884  5.805884  903.840815  2.889506  18701.687415  0.000000  ...       0.0         0.0            0.0   0.0   0.0          0         -001        4
+4  5431.052743     15.0  0.979005  0.000000    0.022902  0.006615  27730.485554  1.124766  ...       0.0         0.0            0.0   0.0   0.0          0         -001        4
 
 [10 rows x 43 columns]
 
 In [19]: print(bpp)
-         tphys    mass_1    mass_2  kstar_1  kstar_2  ...   massc_1   massc_2       rad_1       rad_2  bin_num
-0    220.428741  3.685875  0.806328      2.0      1.0  ...  0.556240  0.000000    5.171640    0.734605        0
-0    221.558648  3.685632  0.806328      3.0      1.0  ...  0.567794  0.000000   23.501038    0.734610        0
-0    222.528971  3.684496  0.806328      4.0      1.0  ...  0.578812  0.000000   65.894174    0.734614        0
-0    265.927817  3.650212  0.806328      5.0      1.0  ...  0.824403  0.000000   44.272979    0.734799        0
-0    267.810967  3.611491  0.806332      6.0      1.0  ...  0.810737  0.000000  343.175131    0.734810        0
-..          ...       ...       ...      ...      ...  ...       ...       ...         ...         ...      ...
-9   1173.427033  0.674338  2.256867     11.0      6.0  ...  0.674338  0.565766    0.011813  198.070950        9
-9   1174.552736  0.675536  1.853755     11.0      6.0  ...  0.675536  0.633220    0.011798  398.926619        9
-9   1174.627406  0.684330  0.651797     11.0      6.0  ...  0.684330  0.640348    0.011689   88.798361        9
-9   1174.695484  0.684331  0.647100     11.0     11.0  ...  0.684331  0.647100    0.011689    0.012159        9
-9   7959.876937  0.684331  0.647100     11.0     11.0  ...  0.684331  0.647100    0.011689    0.012159        9
+         tphys    mass_1    mass_2  kstar_1  kstar_2           sep           porb  ...         tms_1         tms_2   massc_1   massc_2       rad_1       rad_2  bin_num
+0    220.428741  3.685875  0.806328      2.0      1.0  20550.008786  161087.000662  ...  2.204787e+02  2.570485e+04  0.556240  0.000000    5.171640    0.734605        0
+0    221.558648  3.685632  0.806328      3.0      1.0  20551.117783  161104.387561  ...  2.205157e+02  2.570485e+04  0.567794  0.000000   23.501038    0.734610        0
+0    222.528971  3.684496  0.806328      4.0      1.0  20556.319561  161185.956436  ...  2.205157e+02  2.570485e+04  0.578812  0.000000   65.894174    0.734614        0
+0    265.927817  3.650212  0.806328      5.0      1.0  20714.450715  163675.395453  ...  2.205157e+02  2.570483e+04  0.824403  0.000000   44.272979    0.734799        0
+0    267.810967  3.611491  0.806332      6.0      1.0  20895.387755  166549.612948  ...  2.205157e+02  2.570430e+04  0.810737  0.000000  343.175131    0.734810        0
+..          ...       ...       ...      ...      ...           ...            ...  ...           ...           ...       ...       ...         ...         ...      ...
+9   1173.427033  0.674338  2.256867     11.0      6.0   5533.024440   27860.760915  ...  1.000000e+10  7.760991e+02  0.674338  0.565766    0.011813  198.070950        9
+9   1174.552736  0.675536  1.853755     11.0      6.0   6390.400146   37227.582388  ...  1.000000e+10  7.760991e+02  0.675536  0.633220    0.011798  398.926619        9
+9   1174.627406  0.684330  0.651797     11.0      6.0  11829.991167  129010.437424  ...  1.000000e+10  7.760991e+02  0.684330  0.640348    0.011689   88.798361        9
+9   1174.695484  0.684331  0.647100     11.0     11.0  11871.769228  129922.978292  ...  1.000000e+10  7.760991e+02  0.684331  0.647100    0.011689    0.012159        9
+9   7959.876937  0.684331  0.647100     11.0     11.0  11871.769229  129922.978302  ...  1.000000e+10  1.000000e+10  0.684331  0.647100    0.011689    0.012159        9
 
 [123 rows x 24 columns]</pre>
 </div>

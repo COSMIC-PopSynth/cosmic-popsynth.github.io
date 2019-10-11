@@ -1,0 +1,24 @@
+cosmic.sample package
+=====================
+
+Subpackages
+-----------
+
+.. toctree::
+
+   cosmic.sample.sampler
+
+Submodules
+----------
+
+.. toctree::
+
+   cosmic.sample.initialbinarytable
+
+Module contents
+---------------
+
+.. automodule:: cosmic.sample
+   :members:
+   :undoc-members:
+   :show-inheritance:
