@@ -186,7 +186,7 @@ pip install --upgrade cosmic-popsynth
 <h3>Unix<a class="headerlink" href="#unix" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name cosmic <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7 gfortran_linux-64 numpy h5py
 <span class="nb">source</span> activate cosmic
-pip install --upgrade cosmic-popsynth
+NPY_DISTUTILS_APPEND_FLAGS=1 LDFLAGS='-static -static-libgfortran -nostartfiles ' pip install --upgrade cosmic-popsynth
 </pre></div>
 </div>
 </div>
