@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 3.1.0 documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 3.2.0 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.1.0
+                3.2.0
               </div>
             
           
@@ -100,7 +100,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>COSMIC</cite> way</a></li>
 </ul>
@@ -702,8 +702,9 @@ for GB/AGB stars</p>
 <p><code class="docutils literal notranslate"><span class="pre">2</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014A%26A...563A..83C/abstract">Table 2 of Claeys+2014</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">3</span></code> : same as 2 but with <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1987ApJ...318..794H/abstract">Hjellming &amp; Webbink 1987</a>
 for GB/AGB stars</p>
+<p><code class="docutils literal notranslate"><span class="pre">4</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2008ApJS..174..223B/abstract">Section 5.1 of Belcyznski+2008</a> except for WD donors which follow BSE</p>
 </div></blockquote>
-<p><strong>qcflag = 2</strong></p>
+<p><strong>qcflag = 1</strong></p>
 </td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qcrit_array</span></code></p></td>
@@ -868,7 +869,7 @@ of the remnant.</p>
 <p><code class="docutils literal notranslate"><span class="pre">-1</span></code> : uses the formulae from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2017MNRAS.470.4739S/abstract">Spera &amp; Mapelli 2017</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">-2</span></code> : uses a polynomial fit to <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2018arXiv181013412M/abstract">Table 1 in Marchant+2018</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">-3</span></code> : uses a polynomial fit to <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2019ApJ...878...49W/abstract">Table 5 in Woosley 2019</a></p>
-<p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : turns on no pulsational pair
+<p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : turns on pulsational pair
 instability SN and sets the maximum mass of the allowed
 remnant</p>
 </div></blockquote>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a binary population by hand &mdash; cosmic 3.1.0 documentation</title>
+  <title>Generate a binary population by hand &mdash; cosmic 3.2.0 documentation</title>
   
 
   
@@ -38,7 +38,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Generate a population the COSMIC way" href="../fixedpop/index.html" />
-    <link rel="prev" title="Using COSMIC to run BSE" href="../examples/index.html" /> 
+    <link rel="prev" title="Using COSMIC to evolve binaries" href="../examples/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.1.0
+                3.2.0
               </div>
             
           
@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to run BSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Generate a binary population by hand</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#independent">independent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#multidim">multidim</a></li>
@@ -445,7 +445,7 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 </div>
 <div class="section" id="evolving-an-initial-binary-population">
 <h2>Evolving an initial binary population<a class="headerlink" href="#evolving-an-initial-binary-population" title="Permalink to this headline">¶</a></h2>
-<p>As in <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Using COSMIC to run BSE</span></a>, once an initial binary population is sampled, it is evolved using the Evolve class. Note that the same process used in <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Using COSMIC to run BSE</span></a> applies here as well: the BSEDict must be supplied, but only need be resupplied if the flags in the dictionary change.</p>
+<p>As in <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Using COSMIC to evolve binaries</span></a>, once an initial binary population is sampled, it is evolved using the Evolve class. Note that the same process used in <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Using COSMIC to evolve binaries</span></a> applies here as well: the BSEDict must be supplied, but only need be resupplied if the flags in the dictionary change.</p>
 <p>The syntax for the Evolve class is as follows:</p>
 <pre class="literal-block">In [15]: from cosmic.evolve import Evolve
 
@@ -470,19 +470,19 @@ In [18]: print(bcm.iloc[:10])
 
 In [19]: print(bpp)
          tphys    mass_1    mass_2  kstar_1  kstar_2           sep           porb  ...         tms_1         tms_2   massc_1   massc_2       rad_1       rad_2  bin_num
-0    220.428741  3.685875  0.806328      2.0      1.0  20550.008786  161087.000662  ...  2.204787e+02  2.570485e+04  0.556240  0.000000    5.171640    0.734605        0
-0    221.558648  3.685632  0.806328      3.0      1.0  20551.117783  161104.387561  ...  2.205157e+02  2.570485e+04  0.567794  0.000000   23.501038    0.734610        0
-0    222.528971  3.684496  0.806328      4.0      1.0  20556.319561  161185.956436  ...  2.205157e+02  2.570485e+04  0.578812  0.000000   65.894174    0.734614        0
-0    265.927817  3.650212  0.806328      5.0      1.0  20714.450715  163675.395453  ...  2.205157e+02  2.570483e+04  0.824403  0.000000   44.272979    0.734799        0
-0    267.810967  3.611491  0.806332      6.0      1.0  20895.387755  166549.612948  ...  2.205157e+02  2.570430e+04  0.810737  0.000000  343.175131    0.734810        0
+0    220.428741  3.685875  0.806328      2.0      1.0  20550.008786  160970.428009  ...  2.204787e+02  2.570485e+04  0.556240  0.000000    5.171640    0.734605        0
+0    221.558648  3.685632  0.806328      3.0      1.0  20551.117783  160987.802326  ...  2.205157e+02  2.570485e+04  0.567794  0.000000   23.501038    0.734610        0
+0    222.528971  3.684496  0.806328      4.0      1.0  20556.319561  161069.312173  ...  2.205157e+02  2.570485e+04  0.578812  0.000000   65.894174    0.734614        0
+0    265.927817  3.650212  0.806328      5.0      1.0  20714.450715  163556.949676  ...  2.205157e+02  2.570483e+04  0.824403  0.000000   44.272979    0.734799        0
+0    267.810967  3.611491  0.806332      6.0      1.0  20895.387755  166429.087207  ...  2.205157e+02  2.570430e+04  0.810737  0.000000  343.175131    0.734810        0
 ..          ...       ...       ...      ...      ...           ...            ...  ...           ...           ...       ...       ...         ...         ...      ...
-9   1173.427033  0.674338  2.256867     11.0      6.0   5533.024440   27860.760915  ...  1.000000e+10  7.760991e+02  0.674338  0.565766    0.011813  198.070950        9
-9   1174.552736  0.675536  1.853755     11.0      6.0   6390.400146   37227.582388  ...  1.000000e+10  7.760991e+02  0.675536  0.633220    0.011798  398.926619        9
-9   1174.627406  0.684330  0.651797     11.0      6.0  11829.991167  129010.437424  ...  1.000000e+10  7.760991e+02  0.684330  0.640348    0.011689   88.798361        9
-9   1174.695484  0.684331  0.647100     11.0     11.0  11871.769228  129922.978292  ...  1.000000e+10  7.760991e+02  0.684331  0.647100    0.011689    0.012159        9
-9   7959.876937  0.684331  0.647100     11.0     11.0  11871.769229  129922.978302  ...  1.000000e+10  1.000000e+10  0.684331  0.647100    0.011689    0.012159        9
+9    959.918039  0.674326  2.304285     11.0      4.0   5445.150570   26962.844038  ...  1.000000e+10  7.760991e+02  0.674326  0.348769    0.011814   32.034054        9
+9   1168.994677  0.674326  2.281085     11.0      5.0   5487.893900   27387.812108  ...  1.000000e+10  7.760991e+02  0.674326  0.565766    0.011814   22.311357        9
+9   1173.427033  0.674338  2.256867     11.0      6.0   5533.024440   27840.599122  ...  1.000000e+10  7.760991e+02  0.674338  0.565766    0.011813  198.070950        9
+9   1174.695484  0.684331  0.647100     11.0     11.0  11871.769228  129828.957880  ...  1.000000e+10  7.760991e+02  0.684331  0.647100    0.011689    0.012159        9
+9   7959.876937  0.684331  0.647100     11.0     11.0  11871.769229  129828.957890  ...  1.000000e+10  1.000000e+10  0.684331  0.647100    0.011689    0.012159        9
 
-[123 rows x 24 columns]</pre>
+[114 rows x 24 columns]</pre>
 </div>
 </div>
 
@@ -497,7 +497,7 @@ In [19]: print(bpp)
         <a href="../fixedpop/index.html" class="btn btn-neutral float-right" title="Generate a population the COSMIC way" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../examples/index.html" class="btn btn-neutral float-left" title="Using COSMIC to run BSE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-left" title="Using COSMIC to evolve binaries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
