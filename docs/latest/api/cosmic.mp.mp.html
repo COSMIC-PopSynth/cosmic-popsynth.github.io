@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.2.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.2.0
+                3.2.0+126.g38ee948
               </div>
             
           
@@ -194,31 +194,6 @@ of <code class="docutils literal notranslate"><span class="pre">inputs</span></c
 </div></blockquote>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="cosmic.mp.mp.process_in_out_queues">
-<code class="sig-prename descclassname">cosmic.mp.mp.</code><code class="sig-name descname">process_in_out_queues</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">q_in</em>, <em class="sig-param">q_out</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.mp.mp.process_in_out_queues" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterate through a Queue, call, <a href="#id3"><span class="problematic" id="id4">``</span></a>func`, and Queue the result</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>func</strong> : <cite>callable</cite></p>
-<blockquote>
-<div><p>any function that can take an element of the input <cite>Queue</cite> as
-the only argument</p>
-</div></blockquote>
-<p><strong>q_in</strong> : <cite>multiprocessing.queue.Queue</cite></p>
-<blockquote>
-<div><p>the input <cite>Queue</cite></p>
-</div></blockquote>
-<p><strong>q_out</strong> : <cite>multiprocessing.queue.Queue</cite></p>
-<blockquote>
-<div><p>the output <cite>Queue</cite></p>
-</div></blockquote>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>To close the input <cite>Queue</cite>, add <a href="#id5"><span class="problematic" id="id6">``</span></a>(None, None)` as the last item</p>
 </dd></dl>
 
 

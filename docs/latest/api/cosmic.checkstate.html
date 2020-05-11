@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cosmic package &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
   
 
   
@@ -136,13 +136,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>cosmic package</li>
+      <li>&lt;no title&gt;</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/api/cosmic.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/cosmic.checkstate.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -155,56 +155,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cosmic-package">
-<h1>cosmic package<a class="headerlink" href="#cosmic-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cosmic.bse_utils.html">cosmic.bse_utils package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cosmic.bse_utils.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cosmic.bse_utils.html#module-cosmic.bse_utils">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cosmic.mp.html">cosmic.mp package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cosmic.mp.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cosmic.mp.html#module-cosmic.mp">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cosmic.sample.html">cosmic.sample package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cosmic.sample.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cosmic.sample.sampler.html">cosmic.sample.sampler package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="cosmic.sample.sampler.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="cosmic.sample.sampler.html#module-cosmic.sample.sampler">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cosmic.sample.html#submodules">Submodules</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cosmic.sample.html#module-cosmic.sample">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-</div>
-</div>
-<div class="section" id="module-cosmic">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cosmic" title="Permalink to this headline">¶</a></h2>
-<p>COSMIC (Compact Object Synthesis and Monte Carlo Investigation Code)</p>
-</div>
-</div>
+  <span class="target" id="module-cosmic.checkstate"></span><dl class="function">
+<dt id="cosmic.checkstate.set_checkstates">
+<code class="sig-prename descclassname">cosmic.checkstate.</code><code class="sig-name descname">set_checkstates</code><span class="sig-paren">(</span><em class="sig-param">timestep_conditions=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.checkstate.set_checkstates" title="Permalink to this definition">¶</a></dt>
+<dd><p>A function which will detemine different time resolution for different states</p>
+<dl>
+<dt>Parameters:</dt><dd><dl>
+<dt>timestep_conditions<span class="classifier">(list) default empty (no dynamic dtp setting) </span></dt><dd><p>a nest list of the many different time resolutions and conditions
+for which you would like to apply those time resolution, e.g.,
+<a href="#id1"><span class="problematic" id="id2">``</span></a>`
+timestep_conditions =[[‘20.0&lt;mass_1&lt;25.5’, ‘15.5&gt;mass_2&gt;10.0’, ‘dtp=1.0’],</p>
+<blockquote>
+<div><p>[‘kstar_1=14’, ‘lum_1&gt;10.0’, ‘dtp=0.01’],
+[‘2&gt;=binstate&gt;=1’, ‘dtp=None’]]</p>
+</div></blockquote>
+<p><a href="#id3"><span class="problematic" id="id4">``</span></a>`
+The first two sets of conditons would be done in a AND fashion.
+The last condition would end time resolution for the BCM array and it
+would skip to only printing the final state</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 
 
            </div>

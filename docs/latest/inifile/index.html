@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 3.2.0 documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                3.2.0
+                3.2.0+126.g38ee948
               </div>
             
           
@@ -180,24 +180,11 @@ inifile for COSMIC: <a class="reference external" href="https://github.com/COSMI
 <h3>filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 73%" />
+<col style="width: 18%" />
+<col style="width: 82%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">select_final_state</span></code></p></td>
-<td><p>The bcm array generally returns the first and last
-state of the binary system. Since we already
-save the initial conditions in cosmic-pop, usually
-we opt to throw out the initial state of the binary
-from this array and only keep the final state in the
-bcm array. The allowed values are:</p>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">True</span></code> : bcm array only contains final state of binary</p>
-<p><code class="docutils literal notranslate"><span class="pre">False</span></code> : bcm array contains multiple binary states</p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">binary_state</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">binary_state</span></code></p></td>
 <td><p>Each binary system will end its evolution in one of
 three states</p>
 <blockquote>
@@ -210,17 +197,42 @@ its evolution</p>
 </div></blockquote>
 </td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span></code></p></td>
+<td><p>timestep_conditions allow a user to pick specific time resolutions
+to print at targetted stages of the binary evolution
+This is used in conjuction with the [bse] section value dtp to determine the resolution
+at which thing are printed into the so called bcm array
+For example, if you only want dtp set to a value while the system is
+intact i.e. has not merged or been disrupted you could do so with the following</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=[['binstate==0',</span> <span class="pre">'dtp=1.0']]</span></code></p>
+</div></blockquote>
+<p>Special examples include</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=</span> <span class="pre">'dtp=None'</span></code>, only the final time step is printed to the bcm array
+<code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=</span> <span class="pre">'dtp=1.0'</span></code>, a single timestep applied to all evolutionary stages of the binary</p>
+</div></blockquote>
+</td>
+</tr>
 </tbody>
 </table>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[filters]</span>
-<span class="c1">; select_final_state will retain only the final entry of the bcm arry if set to True</span>
-<span class="c1">; default=True</span>
-<span class="na">select_final_state</span> <span class="o">=</span> <span class="s">True</span>
-
 <span class="c1">; binary_state determines which types of binaries endstates to retain</span>
 <span class="c1">; 0 alive today, 1 merged, 2 disrupted</span>
 <span class="c1">; default=[0,1]</span>
 <span class="na">binary_state</span> <span class="o">=</span> <span class="s">[0,1]</span>
+
+<span class="c1">; timestep_conditions allow a user to pick specific time resolutions</span>
+<span class="c1">; to print at targetted stages of the binary evolution</span>
+<span class="c1">; This is used in conjuction with the [bse] section value dtp to determine the resolution</span>
+<span class="c1">; at which thing are printed into the so called bcm array</span>
+<span class="c1">; For example, if you only want dtp set to a value while the system is</span>
+<span class="c1">; intact i.e. has not merged or been disrupted you could do so with the following</span>
+<span class="c1">; timestep_conditions =[[&#39;binstate==0&#39;, &#39;dtp=1.0&#39;]]</span>
+<span class="c1">; Special examples include</span>
+<span class="c1">; timestep_conditions = &#39;dtp=None&#39;, only the final time step is printed to the bcm array</span>
+<span class="c1">; timestep_conditions = &#39;dtp=1.0&#39;, a single timestep applied to all evolutionary stages of the binary</span>
+<span class="na">timestep_conditions</span> <span class="o">=</span> <span class="s">&#39;dtp=None&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -246,23 +258,27 @@ multidimensional parameter distributions according to
 </div></blockquote>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">galaxy_component</span></code></p></td>
-<td><p>There are four star formation histories implemented in
-COSMIC, one each for the Milky Way thin disk, thick
-disk, and bulge; and one that assumes a delta-function
-burst of star formation. Their assumptions are as follows:</p>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SF_start</span></code></p></td>
+<td><p>Sets the time in the past when star formation initiates in Myr.
+For a start time at the beginning of a Hubble time, specify:</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">ThinDisk</span></code> : constant star formation over 10 Gyr</p>
-<p><code class="docutils literal notranslate"><span class="pre">ThickDisk</span></code> : 1 Gyr burst of constant star formation
-11 Gyr in the past</p>
-<p><code class="docutils literal notranslate"><span class="pre">Bulge</span></code> : 1 Gyr burst of constant star formation
-10 Gyr in the past</p>
-<p><code class="docutils literal notranslate"><span class="pre">DeltaBurst</span></code> : single burst of star formation 13.7
-Gyr in the past</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">SF_start</span></code> : 13700.0</p>
 </div></blockquote>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">metallicity</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SF_duration</span></code></p></td>
+<td><p>Sets the duration of constant star formation from <code class="docutils literal notranslate"><span class="pre">SF_start</span></code>
+in Myr. For a single burst specify:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">SF_duration</span></code> : 0.0</p>
+</div></blockquote>
+<p>For a constant star formation over a Hubble time, specify:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">SF_duration</span></code> : 13700.0</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">metallicity</span></code></p></td>
 <td><p>Single value for the metallicity of the population
 where solar metallicity is Z = 0.02</p></td>
 </tr>
@@ -274,9 +290,11 @@ where solar metallicity is Z = 0.02</p></td>
 <span class="c1">; initial conditions follow Moe &amp; Di Stefano (2017) (multidim)</span>
 <span class="na">sampling_method</span><span class="o">=</span><span class="s">multidim</span>
 
-<span class="c1">; Galaxy Components. Options include Bulge, ThinDisk, ThickDisk, and DeltaBurst</span>
-<span class="c1">; Think Star Formation History with which to use as your basis for sampling</span>
-<span class="na">galaxy_component</span> <span class="o">=</span> <span class="s">DeltaBurst</span>
+<span class="c1">; Sets the time in the past when star formation initiates in Myr</span>
+<span class="na">SF_start</span> <span class="o">=</span> <span class="s">13700.0</span>
+
+<span class="c1">; Sets the duration of constant star formation in Myr</span>
+<span class="na">SF_duration</span> <span class="o">=</span> <span class="s">0.0</span>
 
 <span class="c1">; Metallicity of the population of initial binaries</span>
 <span class="na">metallicity</span> <span class="o">=</span> <span class="s">0.02</span>
@@ -460,11 +478,6 @@ HG, HeMS stars</p>
 <span class="c1">;;; SAMPLING FLAGS ;;;</span>
 <span class="c1">;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; dtp is the timestep (in Myr) for outputting to the bcm array</span>
-<span class="c1">; if dtp=0, will print every timestep (not recommended)</span>
-<span class="c1">; if not set, it will automatically set to dtp=tphsyf (default)</span>
-<span class="c1">;dtp = 1.0</span>
-
 <span class="c1">; pts1,pts2,pts3 determine the timesteps chosen in each</span>
 <span class="c1">;                 pts1 - MS                  (default=0.001, see Banerjee+ 2019)</span>
 <span class="na">pts1</span><span class="o">=</span><span class="s">0.001</span>
@@ -607,6 +620,12 @@ Corresponds to <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc083849
 <p class="admonition-title">Note</p>
 <p>COMMON ENVELOPE FLAGS</p>
 </div>
+<p><strong>Note:</strong> there are cases where a common envelope is forced regardless of the
+critical mass ratio for unstable mass transfer. In the following cases, a
+common envelope occurs regardless of the choices below:</p>
+<p><strong>contact</strong> : the stellar radii go into contact (common for similar ZAMS systems)</p>
+<p><strong>periapse contact</strong> : the periapse distance is smaller than either of the stellar radii (common for highly eccentric systems)</p>
+<p><strong>core Roche overflow</strong> : either of the stellar radii overflow their component’s Roche radius (in this case, mass transfer from the convective core is always dynamically unstable)</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -712,7 +731,11 @@ for GB/AGB stars</p>
 critical mass ratios that govern the onset of unstable
 mass transfer and a common envelope. Each item is set
 individually for its associated kstar, and a value of
-0.0 will apply prescription of the qcflag for that kstar.</p>
+0.0 will apply prescription of the qcflag for that kstar.
+<strong>Note:</strong> there are cases where a common envelope is forced
+regardless of the critical mass ratio for unstable mass
+transfer; in the following cases, a common envelope occurs
+regardless of the qcrit or qcflag</p>
 <p><strong>qcrit_array = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]</strong></p>
 </td>
 </tr>
@@ -906,11 +929,13 @@ in the standard ways detailed above.</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">vk1,</span> <span class="pre">vk2</span></code> : valid on the range [0, inf]</p>
 <p><code class="docutils literal notranslate"><span class="pre">phi1,</span> <span class="pre">phi2</span></code> : co-lateral polar angles valid from
-[-pi/2, pi/2]</p>
+[-90, 90]</p>
 <p><code class="docutils literal notranslate"><span class="pre">theta1,</span> <span class="pre">theta2</span></code> : azimuthal angles valid from
-[0, 2pi]</p>
+[0, 360]</p>
+<p><code class="docutils literal notranslate"><span class="pre">eccentric_anomaly_1,</span> <span class="pre">eccentric_anomaly_2</span></code> : eccentric_anomaly angles
+valid from [0, 360]</p>
 </div></blockquote>
-<p><strong>natal_kick_array = [-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</strong></p>
+<p><strong>natal_kick_array = [-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</strong></p>
 </td>
 </tr>
 </tbody>
@@ -971,12 +996,13 @@ in the standard ways detailed above.</p>
 <span class="c1">; default=90.0</span>
 <span class="na">polar_kick_angle</span> <span class="o">=</span> <span class="s">90.0</span>
 
-<span class="c1">; natal_kick_array is a 6-length array for user-input values for the SN natal kick</span>
-<span class="c1">; formatted as: (vk1, vk2, phi1, phi2, theta1, theta2)</span>
-<span class="c1">; vk is valid on the range [0, inf], phi are the co-lateral polar angles valid from [-pi/2, pi/2], and theta are azimuthal angles [0, 2*pi]</span>
+<span class="c1">; natal_kick_array is a 8-length array for user-input values for the SN natal kick</span>
+<span class="c1">; formatted as: (vk1, vk2, phi1, phi2, theta1, theta2, eccentric_anomaly_1, eccentric_anomaly_2)</span>
+<span class="c1">; vk is valid on the range [0, inf], phi are the co-lateral polar angles valid from [-90.0, 90.0], theta are azimuthal angles [0, 360],</span>
+<span class="c1">; and eccentric_anomaly are angles [0, 360]</span>
 <span class="c1">; any number outside of these ranges will be sampled in the standard way in kick.f</span>
-<span class="c1">; default=[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</span>
-<span class="na">natal_kick_array</span><span class="o">=</span><span class="s">[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</span>
+<span class="c1">; default=[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</span>
+<span class="na">natal_kick_array</span><span class="o">=</span><span class="s">[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -985,14 +1011,14 @@ in the standard ways detailed above.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 84%" />
+<col style="width: 6%" />
+<col style="width: 94%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nsflag</span></code></p></td>
-<td><p>Determines the remnant mass prescription used for
-NSs and BHs.</p>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">remnantflag</span></code></p></td>
+<td><p>Determines the remnant mass prescription used for NSs and BHs.</p>
 <blockquote>
+<div><blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2000MNRAS.315..543H/abstract">Section 6 of Hurley+2000</a>
 (default BSE)</p>
 <p><code class="docutils literal notranslate"><span class="pre">1</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002ApJ...572..407B/abstract">Belczynski+2002</a></p>
@@ -1000,16 +1026,29 @@ NSs and BHs.</p>
 <p><code class="docutils literal notranslate"><span class="pre">3</span></code> : follows the rapid prescription from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2012ApJ...749...91F/abstract">Fryer+2012</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">4</span></code> : delayed prescription from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2012ApJ...749...91F/abstract">Fryer+2012</a></p>
 </div></blockquote>
-<p><strong>nsflag = 3</strong></p>
+<p><strong>remnantflag = 3</strong></p>
+</div></blockquote>
 </td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mxns</span></code></p></td>
 <td><p>Sets the boundary between the maximum NS mass
 and the minimum BH mass</p>
 <blockquote>
+<div><blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets the NS/BH mass bounary</p>
 </div></blockquote>
 <p><strong>mxns = 2.5</strong></p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rembar_massloss</span></code></p></td>
+<td><p>Determines the prescriptions for mass conversion from
+baryonic to gravitational mass during the collapse of
+the proto-compact object</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets the maximum amount of mass loss, which should be about 10% of the maximum mass of an iron core (<img class="math" src="../_images/math/8c29aa77564a302a15e8e0fa81d69d88f498dc1e.png" alt="{\sim 5 \mathrm{M}_\odot}"/> Fryer, private communication)</p>
+<p><code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">&lt;</span> <span class="pre">*rembar_massloss*</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> : assumes that proto-compact objects lose a constant fraction of their baryonic mass when collapsing to a black hole (e.g., <em>rembar_massloss</em> = -0.1 gives the black hole a gravitational mass that is 90% of the proto-compact object’s baryonic mass)</p>
+</div></blockquote>
 </td>
 </tr>
 </tbody>
@@ -1018,16 +1057,24 @@ and the minimum BH mass</p>
 <span class="c1">;;; REMNANT MASS FLAGS ;;;</span>
 <span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; nsflag determines the remnant mass prescription used</span>
-<span class="c1">; nsflag=0: default BSE; nsflag=1: Belczynski et al. 2002, ApJ, 572, 407</span>
-<span class="c1">; nsflag=2: Belczynski et al. 2008; nsflag=3: rapid prescription (Fryer+ 2012)</span>
-<span class="c1">; nsflag=4: delayed prescription (Fryer+ 2012)</span>
+<span class="c1">; remnantflag determines the remnant mass prescription used</span>
+<span class="c1">; remnantflag=0: default BSE; remnantflag=1: Belczynski et al. 2002, ApJ, 572, 407</span>
+<span class="c1">; remnantflag=2: Belczynski et al. 2008; remnantflag=3: rapid prescription (Fryer+ 2012)</span>
+<span class="c1">; remnantflag=4: delayed prescription (Fryer+ 2012)</span>
 <span class="c1">; default=3</span>
-<span class="na">nsflag</span><span class="o">=</span><span class="s">3</span>
+<span class="na">remnantflag</span><span class="o">=</span><span class="s">3</span>
 
 <span class="c1">; mxns sets the maximum NS mass</span>
 <span class="c1">; default=2.5</span>
 <span class="na">mxns</span><span class="o">=</span><span class="s">2.5</span>
+
+<span class="c1">; rembar_massloss determines the mass conversion from baryonic to</span>
+<span class="c1">; gravitational mass</span>
+<span class="c1">; rembar_massloss &gt;= 0: sets the maximum amount of mass loss</span>
+<span class="c1">; -1 &lt; rembar_massloss &lt; 0: uses the prescription from Fryer et al. 2012,</span>
+<span class="c1">; assuming for BHs Mrem = (1+rembar_massloss)*Mrem,bar for negative rembar_massloss</span>
+<span class="c1">; default=0.5</span>
+<span class="na">rembar_massloss</span><span class="o">=</span><span class="s">0.5</span>
 </pre></div>
 </div>
 <div class="admonition note">

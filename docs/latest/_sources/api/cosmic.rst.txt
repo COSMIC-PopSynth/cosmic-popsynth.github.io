@@ -17,7 +17,9 @@ Submodules
 
    cosmic.MC_samp
    cosmic.Match
+   cosmic.checkstate
    cosmic.evolve
+   cosmic.filter
    cosmic.plotting
    cosmic.utils
 

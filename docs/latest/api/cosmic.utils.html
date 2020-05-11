@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.2.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
   
 
   
@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.2.0
+                3.2.0+126.g38ee948
               </div>
             
           
@@ -173,7 +173,7 @@
 <p><strong>method</strong> : <cite>dict</cite>,</p>
 <blockquote>
 <div><p>one or more methods by which to filter the
-bpp or bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'select_final_state'</span> <span class="pre">:</span> <span class="pre">False}</span></code>;
+bpp or bcm table, e.g. <code class="docutils literal notranslate"><span class="pre">{'binary_state'</span> <span class="pre">:</span> <span class="pre">[0,1]}</span></code>;
 This means you do <em>not</em> want to select the final state of the binaries in the bcm array</p>
 </div></blockquote>
 <p><strong>kstar1_range</strong> : <cite>list</cite></p>
@@ -470,7 +470,7 @@ to their true astrophysical meaning.</p>
 
 <dl class="function">
 <dt id="cosmic.utils.pop_write">
-<code class="sig-prename descclassname">cosmic.utils.</code><code class="sig-name descname">pop_write</code><span class="sig-paren">(</span><em class="sig-param">dat_store</em>, <em class="sig-param">log_file</em>, <em class="sig-param">mass_list</em>, <em class="sig-param">number_list</em>, <em class="sig-param">bcm</em>, <em class="sig-param">bpp</em>, <em class="sig-param">initC</em>, <em class="sig-param">conv</em>, <em class="sig-param">bin_state_nums</em>, <em class="sig-param">match</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.pop_write" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">cosmic.utils.</code><code class="sig-name descname">pop_write</code><span class="sig-paren">(</span><em class="sig-param">dat_store</em>, <em class="sig-param">log_file</em>, <em class="sig-param">mass_list</em>, <em class="sig-param">number_list</em>, <em class="sig-param">bcm</em>, <em class="sig-param">bpp</em>, <em class="sig-param">initC</em>, <em class="sig-param">conv</em>, <em class="sig-param">kick_info</em>, <em class="sig-param">bin_state_nums</em>, <em class="sig-param">match</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.utils.pop_write" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Writes all the good stuff that you want to save from runFixedPop in a</dt><dd><p>single function</p>
 </dd>
@@ -510,6 +510,10 @@ and number of stars</p>
 <p><strong>conv</strong> : <cite>pandas.DataFrame</cite></p>
 <blockquote>
 <div><p>conv array to write</p>
+</div></blockquote>
+<p><strong>kick_info</strong> : <cite>pandas.DataFrame</cite></p>
+<blockquote>
+<div><p>kick_info array to write</p>
 </div></blockquote>
 <p><strong>bin_state_nums</strong> : <cite>list</cite></p>
 <blockquote>
