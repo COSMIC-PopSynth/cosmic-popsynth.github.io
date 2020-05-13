@@ -304,9 +304,9 @@ All values with a <cite>_1</cite> label refer to the primary; the BPP DataFrame 
 ‘Vsys_1’, ‘Vsys_2’, ‘SNkick’, ‘SNtheta’,
 ‘aj_1’, ‘aj_2’, ‘tms_1’, ‘tms_2’,
 ‘massc_1’, ‘massc_2’, ‘rad_1’, ‘rad_2’,
-‘mass0_1’, ‘mass0_2’, ‘lum_1’, ‘lum_2’,
+‘mass0_1’, ‘mass0_2’, ‘lum_1’, ‘lum_2’, ‘teff_1’, ‘teff_2’,
 ‘radc_1’, ‘radc_2’, ‘menv_1’, ‘menv_2’, ‘renv_1’, ‘renv_2’,
-‘omega_spin_1’, ‘omega_spin_2’, ‘B0_1’, ‘B0_2’, ‘bacc_1’, ‘bacc_2’,
+‘omega_spin_1’, ‘omega_spin_2’, ‘B_1’, ‘B_2’, ‘bacc_1’, ‘bacc_2’,
 ‘tacc_1’, ‘tacc_2’, ‘epoch_1’, ‘epoch_2’,
 ‘bhspin_1’,’bhspin_2’, ‘bin_num’]</p>
 </dd>
@@ -368,34 +368,37 @@ All values with a <cite>_1</cite> label refer to the primary; the BPP DataFrame 
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lum_1</span></code></p></td>
 <td><p>Luminosity of the primary [<img class="math" src="../_images/math/a705db737c014420d2d7c822e2deb3a1733a858e.png" alt="{\mathrm{L}_\odot}"/>]</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">radc_1</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">teff_1</span></code></p></td>
+<td><p>Effective temperature of the primary [<img class="math" src="../_images/math/7c0b6d50f32ed9f2a8b678aae297ab7dc27d756f.png" alt="{\mathrm{K}}"/>]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">radc_1</span></code></p></td>
 <td><p>Primary core radius  [<img class="math" src="../_images/math/dcfce9ad91f1a1c977099577014f8c5783efd622.png" alt="{\mathrm{R}_\odot}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">menv_1</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">menv_1</span></code></p></td>
 <td><p>Mass of the envelope of the primary [<img class="math" src="../_images/math/4c8afcdd11b6eb5d1caf24e4c356ca0d1efd2422.png" alt="{\mathrm{M}_\odot}"/>]</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">renv_1</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">renv_1</span></code></p></td>
 <td><p>Radius of the envelope of the primary [<img class="math" src="../_images/math/dcfce9ad91f1a1c977099577014f8c5783efd622.png" alt="{\mathrm{R}_\odot}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">omega_spin_1</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">omega_spin_1</span></code></p></td>
 <td><p>Angular velocity of the primary [<img class="math" src="../_images/math/8da85370741830b358429d9836a84bb9efd7b4bb.png" alt="{\rm{yr}}^{-1}"/>]</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">B0_1</span></code></p></td>
-<td><p>Initial neutron star magnetic field [<img class="math" src="../_images/math/726cf670be727f46faf2e2c1a29b50b7b40a8984.png" alt="{\rm{G}}"/>]</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">B_1</span></code></p></td>
+<td><p>Neutron star magnetic field [<img class="math" src="../_images/math/726cf670be727f46faf2e2c1a29b50b7b40a8984.png" alt="{\rm{G}}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bacc_1</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bacc_1</span></code></p></td>
 <td><p>(only for pulsars) <img class="math" src="../_images/math/4e68fa3bba4eb66d3e051d3fa23f34ef358b60a3.png" alt="\delta{\mathrm{M}_\odot}"/> during accretion see Equation 7 in COSMIC paper</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tacc_1</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tacc_1</span></code></p></td>
 <td><p>Accretion duration (used for magnetic field decay) [<img class="math" src="../_images/math/e82addbe58df2cc87d7467f7bc0abb9c65e42c8b.png" alt="{\rm{Myr}}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">epoch_1</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">epoch_1</span></code></p></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bhspin_1</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bhspin_1</span></code></p></td>
 <td><p>Black hole spin magnitude [unitless]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bin_num</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bin_num</span></code></p></td>
 <td><p>Unique binary index that is consistent across initial conditions, BCM and BPP DataFrames</p></td>
 </tr>
 </tbody>
@@ -466,8 +469,8 @@ All values with a <cite>_1</cite> label refer to the primary; the BCM DataFrame 
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ecc</span></code></p></td>
 <td><p>Eccentricity</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">B0_1</span></code></p></td>
-<td><p>Initial neutron star magnetic field [<img class="math" src="../_images/math/726cf670be727f46faf2e2c1a29b50b7b40a8984.png" alt="{\rm{G}}"/>]</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">B_1</span></code></p></td>
+<td><p>Neutron star magnetic field [<img class="math" src="../_images/math/726cf670be727f46faf2e2c1a29b50b7b40a8984.png" alt="{\rm{G}}"/>]</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SNkick_1</span></code></p></td>
 <td><p>Magnitude of first natal kick [<img class="math" src="../_images/math/fcee70263a872624d5a424cce89867699814f1c8.png" alt="{\rm{km/s}}"/>]</p></td>
@@ -525,7 +528,7 @@ All values with a <cite>_1</cite> label refer to the primary; the BCM DataFrame 
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, Katie Breivik
+        &copy; Copyright 2020, Katie Breivik
 
     </p>
   </div>
