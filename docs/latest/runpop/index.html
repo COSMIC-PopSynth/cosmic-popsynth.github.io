@@ -1,15 +1,20 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Generate a binary population by hand &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
+  <title>Generate a binary population by hand &mdash; cosmic 3.3.0 documentation</title>
   
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
 
   
   
@@ -17,7 +22,9 @@
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -29,12 +36,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Generate a population the COSMIC way" href="../fixedpop/index.html" />
@@ -52,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> cosmic
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
           
 
           
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                3.2.0+126.g38ee948
+                3.3.0
               </div>
             
           
@@ -79,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -103,6 +105,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -141,7 +144,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Generate a binary population by hand</li>
     
@@ -452,42 +455,44 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <h2>Evolving an initial binary population<a class="headerlink" href="#evolving-an-initial-binary-population" title="Permalink to this headline">¶</a></h2>
 <p>As in <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Using COSMIC to evolve binaries</span></a>, once an initial binary population is sampled, it is evolved using the Evolve class. Note that the same process used in <a class="reference internal" href="../examples/index.html#examples"><span class="std std-ref">Using COSMIC to evolve binaries</span></a> applies here as well: the BSEDict must be supplied, but only need be resupplied if the flags in the dictionary change.</p>
 <p>The syntax for the Evolve class is as follows:</p>
-<pre class="literal-block">In [14]: from cosmic.evolve import Evolve
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="kn">from</span> <span class="nn">cosmic.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
 
-In [15]: BSEDict = {'xi': 1.0, 'bhflag': 1, 'neta': 0.5, 'windflag': 3, 'wdflag': 1, 'alpha1': 1.0, 'pts1': 0.001, 'pts3': 0.02, 'pts2': 0.01, 'epsnov': 0.001, 'hewind': 0.5, 'ck': 1000, 'bwind': 0.0, 'lambdaf': 0.5, 'mxns': 2.5, 'beta': 0.125, 'tflag': 1, 'acc2': 1.5, 'remnantflag': 3, 'ceflag': 0, 'eddfac': 1.0, 'ifflag': 0, 'bconst': 3000, 'sigma': 265.0, 'gamma': -1.0, 'pisn': 45.0, 'natal_kick_array' : [[-100.0,-100.0,-100.0,-100.0,0.0], [-100.0,-100.0,-100.0,-100.0,0.0]], 'bhsigmafrac' : 1.0, 'polar_kick_angle' : 90, 'qcrit_array' : [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0], 'cekickflag' : 2, 'cehestarflag' : 0, 'cemergeflag' : 0, 'ecsn' : 2.5, 'ecsn_mlow' : 1.4, 'aic' : 1, 'ussn' : 0, 'sigmadiv' :-20.0, 'qcflag' : 2, 'eddlimflag' : 0, 'fprimc_array' : [2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0], 'bhspinflag' : 0, 'bhspinmag' : 0.0, 'rejuv_fac' : 1.0, 'rejuvflag' : 0, 'htpmb' : 1, 'ST_cr' : 1, 'ST_tide' : 0, 'bdecayfac' : 1, 'rembar_massloss' : 0.5, 'zsun' : 0.017}
+<span class="gp">In [15]: </span><span class="n">BSEDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;xi&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;bhflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;neta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;windflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;wdflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;alpha1&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pts1&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;pts3&#39;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;pts2&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;epsnov&#39;</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span> <span class="s1">&#39;hewind&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;ck&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;bwind&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;lambdaf&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;mxns&#39;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="mf">0.125</span><span class="p">,</span> <span class="s1">&#39;tflag&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;acc2&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;remnantflag&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ceflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;eddfac&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;ifflag&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bconst&#39;</span><span class="p">:</span> <span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;sigma&#39;</span><span class="p">:</span> <span class="mf">265.0</span><span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;pisn&#39;</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">,</span> <span class="s1">&#39;natal_kick_array&#39;</span> <span class="p">:</span> <span class="p">[[</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="o">-</span><span class="mf">100.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]],</span> <span class="s1">&#39;bhsigmafrac&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;polar_kick_angle&#39;</span> <span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;qcrit_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;cekickflag&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;cehestarflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;cemergeflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ecsn&#39;</span> <span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s1">&#39;ecsn_mlow&#39;</span> <span class="p">:</span> <span class="mf">1.4</span><span class="p">,</span> <span class="s1">&#39;aic&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ussn&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;sigmadiv&#39;</span> <span class="p">:</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;qcflag&#39;</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;eddlimflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;fprimc_array&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">,</span><span class="mf">2.0</span><span class="o">/</span><span class="mf">21.0</span><span class="p">],</span> <span class="s1">&#39;bhspinflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bhspinmag&#39;</span> <span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;rejuv_fac&#39;</span> <span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;rejuvflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;htpmb&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ST_cr&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ST_tide&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;bdecayfac&#39;</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;rembar_massloss&#39;</span> <span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;kickflag&#39;</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;zsun&#39;</span> <span class="p">:</span> <span class="mf">0.014</span><span class="p">}</span>
 
-In [16]: bpp, bcm, initC, kick_info  = Evolve.evolve(initialbinarytable=InitialBinaries, BSEDict=BSEDict)
+<span class="gp">In [16]: </span><span class="n">bpp</span><span class="p">,</span> <span class="n">bcm</span><span class="p">,</span> <span class="n">initC</span><span class="p">,</span> <span class="n">kick_info</span>  <span class="o">=</span> <span class="n">Evolve</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">initialbinarytable</span><span class="o">=</span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">BSEDict</span><span class="o">=</span><span class="n">BSEDict</span><span class="p">)</span>
 
-In [17]: print(bcm.iloc[:10])
-     tphys  kstar_1   mass0_1    mass_1       lum_1     rad_1        teff_1   massc_1  ...       ecc  B0_1  B0_2  SN_1  SN_2  bin_state  merger_type  bin_num
-0      0.0      1.0  3.686712  3.686712  170.158517  2.271549  13893.830089  0.000000  ...  0.829034   0.0   0.0   0.0   0.0          0         -001        0
-0  13700.0     11.0  0.820660  0.820660    0.000003  0.010074   2434.409432  0.820660  ...  0.825710   0.0   0.0   0.0   0.0          0         -001        0
-1      0.0      1.0  0.974390  0.974390    0.574837  0.861434   5439.323326  0.000000  ...  0.126290   0.0   0.0   0.0   0.0          0         -001        1
-1  13700.0      3.0  0.973856  0.973419    3.757201  2.988839   4669.113823  0.158206  ...  0.102990   0.0   0.0   0.0   0.0          0         -001        1
-2      0.0      1.0  2.479799  2.479799   36.588755  1.827975  10546.817930  0.000000  ...  0.545004   0.0   0.0   0.0   0.0          0         -001        2
-2  13700.0     11.0  0.644819  0.644819    0.000003  0.012188   2234.029208  0.644819  ... -1.000000   0.0   0.0   0.0   0.0          1         0301        2
-3      0.0      1.0  1.125074  1.125074    1.153625  1.033287   5911.194782  0.000000  ...  0.713424   0.0   0.0   0.0   0.0          0         -001        3
-3  13700.0     11.0  0.518381  0.518381    0.000051  0.013943   4158.600973  0.518381  ...  0.702130   0.0   0.0   0.0   0.0          0         -001        3
-4      0.0      1.0  5.805987  5.805987  889.907592  2.940122  18468.140126  0.000000  ...  0.718332   0.0   0.0   0.0   0.0          0         -001        4
-4  13700.0     15.0  0.967389  0.000000    0.021202  0.006710  27009.611636  1.116906  ... -1.000000   0.0   0.0   0.0   0.0          0         -001        4
+<span class="gp">In [17]: </span><span class="k">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<span class="go">     tphys  kstar_1   mass0_1    mass_1       lum_1     rad_1        teff_1   massc_1  ...       ecc  B_1  B_2  SN_1  SN_2  bin_state  merger_type  bin_num</span>
+<span class="go">0      0.0      1.0  3.686712  3.686712  168.770026  2.337430  13668.603686  0.000000  ...  0.829034  0.0  0.0   0.0   0.0          0         -001        0</span>
+<span class="go">0  13700.0     11.0  0.813263  0.813263    0.000003  0.010159   2420.129431  0.813263  ...  0.825647  0.0  0.0   0.0   0.0          0         -001        0</span>
+<span class="go">1      0.0      1.0  0.974390  0.974390    0.553692  0.859742   5393.896416  0.000000  ...  0.126290  0.0  0.0   0.0   0.0          0         -001        1</span>
+<span class="go">1  13700.0      2.0  0.974245  0.974245    1.834161  1.859697   4947.752034  0.117571  ...  0.126319  0.0  0.0   0.0   0.0          0         -001        1</span>
+<span class="go">2      0.0      1.0  2.479799  2.479799   35.960890  1.878811  10358.233251  0.000000  ...  0.545004  0.0  0.0   0.0   0.0          0         -001        2</span>
+<span class="go">2  13700.0     11.0  0.626868  0.626868    0.000003  0.012421   2203.269763  0.626868  ... -1.000000  0.0  0.0   0.0   0.0          1         0301        2</span>
+<span class="go">3      0.0      1.0  1.125074  1.125074    1.113993  1.028096   5874.533980  0.000000  ...  0.713424  0.0  0.0   0.0   0.0          0         -001        3</span>
+<span class="go">3  13700.0     11.0  0.513016  0.513016    0.000057  0.014025   4250.487032  0.513016  ...  0.700281  0.0  0.0   0.0   0.0          0         -001        3</span>
+<span class="go">4      0.0      1.0  5.805987  5.805987  892.365648  3.027531  18212.143051  0.000000  ...  0.718332  0.0  0.0   0.0   0.0          0         -001        4</span>
+<span class="go">4  13700.0     15.0  0.919179  0.000000    0.019923  0.007311  25474.988978  1.065583  ... -1.000000  0.0  0.0   0.0   0.0          0         -001        4</span>
 
-[10 rows x 39 columns]
+<span class="go">[10 rows x 39 columns]</span>
 
-In [18]: print(bpp)
-          tphys    mass_1    mass_2  kstar_1  kstar_2           sep           porb       ecc  ...  bacc_2  tacc_1  tacc_2     epoch_1       epoch_2  bhspin_1  bhspin_2  bin_num
-0       0.000000  3.686712  0.806328      1.0      1.0  20546.178672  161026.959409  0.829034  ...     0.0     0.0     0.0    0.000000  0.000000e+00       0.0       0.0        0
-0     223.544958  3.685928  0.806328      2.0      1.0  20549.767309  161083.214908  0.829034  ...     0.0     0.0     0.0   -0.042939  6.391417e-09       0.0       0.0        0
-0     224.677852  3.685682  0.806328      3.0      1.0  20550.892105  161100.849308  0.829034  ...     0.0     0.0     0.0   -0.081628  1.599782e-07       0.0       0.0        0
-0     225.703810  3.684407  0.806328      4.0      1.0  20556.725803  161192.328394  0.829034  ...     0.0     0.0     0.0   -0.081628  9.075428e-06       0.0       0.0        0
-0     269.945613  3.647571  0.806328      5.0      1.0  20726.726881  163869.467729  0.829034  ...     0.0     0.0     0.0   -0.081628  1.985639e-04       0.0       0.0        0
-..           ...       ...       ...      ...      ...           ...            ...       ...  ...     ...     ...     ...         ...           ...       ...       ...      ...
-9     985.380600  0.657528  2.305857     11.0      4.0   5463.751787   27190.336043  0.235782  ...     0.0     0.0     0.0  882.892845  1.760456e+02       0.0       0.0        9
-9    1196.370601  0.657528  2.280053     11.0      5.0   5511.744656   27670.108814  0.235781  ...     0.0     0.0     0.0  882.892845  1.760456e+02       0.0       0.0        9
-9    1200.724817  0.657543  2.253262     11.0      6.0   5562.197016   28179.622595  0.235778  ...     0.0     0.0     0.0  882.892845  1.760456e+02       0.0       0.0        9
-9    1201.895900  0.667546  0.631034     11.0     11.0  12143.132022  136092.418026  0.232686  ...     0.0     0.0     0.0  882.892845  1.201896e+03       0.0       0.0        9
-9   13700.000000  0.667546  0.631034     11.0     11.0  12143.132022  136092.418038  0.232686  ...     0.0     0.0     0.0  882.892845  1.201896e+03       0.0       0.0        9
+<span class="gp">In [18]: </span><span class="k">print</span><span class="p">(</span><span class="n">bpp</span><span class="p">)</span>
+<span class="go">           tphys    mass_1    mass_2  kstar_1  kstar_2           sep           porb       ecc  ...  bacc_2  tacc_1  tacc_2     epoch_1       epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">0       0.000000  3.686712  0.806328      1.0      1.0  20546.178672  161026.959409  0.829034  ...     0.0     0.0     0.0    0.000000  0.000000e+00       0.0       0.0        0</span>
+<span class="go">0     227.344776  3.685941  0.806328      2.0      1.0  20549.705506  161082.245996  0.829034  ...     0.0     0.0     0.0   -0.038237  5.418087e-09       0.0       0.0        0</span>
+<span class="go">0     228.482113  3.685686  0.806328      3.0      1.0  20550.871772  161100.530537  0.829034  ...     0.0     0.0     0.0   -0.079592  2.001019e-07       0.0       0.0        0</span>
+<span class="go">0     229.578244  3.684182  0.806328      4.0      1.0  20557.756119  161208.489095  0.829034  ...     0.0     0.0     0.0   -0.079592  1.427406e-05       0.0       0.0        0</span>
+<span class="go">0     274.607762  3.642206  0.806328      5.0      1.0  20751.714592  164264.854622  0.829034  ...     0.0     0.0     0.0   -0.079592  3.164085e-04       0.0       0.0        0</span>
+<span class="go">..           ...       ...       ...      ...      ...           ...            ...       ...  ...     ...     ...     ...         ...           ...       ...       ...      ...</span>
+<span class="go">9    1016.662854  0.631755  2.309644     11.0      4.0   5482.275639   27430.673325  0.234858  ...     0.0     0.0     0.0  905.359516  1.855961e+02       0.0       0.0        9</span>
+<span class="go">9    1228.090578  0.631756  2.278841     11.0      5.0   5540.290247   28014.305982  0.234857  ...     0.0     0.0     0.0  905.359516  1.855961e+02       0.0       0.0        9</span>
+<span class="go">9    1232.280357  0.631777  2.247082     11.0      6.0   5600.975843   28632.380178  0.234851  ...     0.0     0.0     0.0  905.359516  1.855961e+02       0.0       0.0        9</span>
+<span class="go">9    1233.267203  0.640985  0.608925     11.0     11.0  12583.471598  146330.043967  0.231914  ...     0.0     0.0     0.0  905.359516  1.233267e+03       0.0       0.0        9</span>
+<span class="go">9   13700.000000  0.640985  0.608925     11.0     11.0  12583.471599  146330.043981  0.231914  ...     0.0     0.0     0.0  905.359516  1.233267e+03       0.0       0.0        9</span>
 
-[140 rows x 42 columns]</pre>
+<span class="go">[135 rows x 44 columns]</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -511,11 +516,19 @@ In [18]: print(bpp)
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Katie Breivik
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -526,7 +539,6 @@ In [18]: print(bpp)
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

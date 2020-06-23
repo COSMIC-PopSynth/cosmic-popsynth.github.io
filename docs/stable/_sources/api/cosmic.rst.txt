@@ -5,6 +5,7 @@ Subpackages
 -----------
 
 .. toctree::
+   :maxdepth: 4
 
    cosmic.bse_utils
    cosmic.mp
@@ -14,10 +15,13 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    cosmic.MC_samp
    cosmic.Match
+   cosmic.checkstate
    cosmic.evolve
+   cosmic.filter
    cosmic.plotting
    cosmic.utils
 

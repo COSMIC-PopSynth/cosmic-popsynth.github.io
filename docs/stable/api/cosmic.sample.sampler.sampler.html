@@ -1,40 +1,41 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.2.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.3.0 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
 </head>
@@ -50,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> cosmic
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
           
 
           
@@ -60,7 +61,7 @@
             
             
               <div class="version">
-                3.2.0
+                3.3.0
               </div>
             
           
@@ -77,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -96,6 +98,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -134,7 +137,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>&lt;no title&gt;</li>
     
@@ -156,9 +159,9 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-cosmic.sample.sampler.sampler"></span><p>Fetch registration for database queries</p>
-<dl class="function">
+<dl class="py function">
 <dt id="cosmic.sample.sampler.sampler.get_sampler">
-<code class="sig-prename descclassname">cosmic.sample.sampler.sampler.</code><code class="sig-name descname">get_sampler</code><span class="sig-paren">(</span><em class="sig-param">data_format</em>, <em class="sig-param">data_class</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.sampler.get_sampler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">cosmic.sample.sampler.sampler.</code><code class="sig-name descname">get_sampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_format</span></em>, <em class="sig-param"><span class="n">data_class</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.sampler.get_sampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the <code class="xref py py-meth docutils literal notranslate"><span class="pre">sampler()</span></code> function for the given format</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -180,9 +183,9 @@
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="cosmic.sample.sampler.sampler.register_sampler">
-<code class="sig-prename descclassname">cosmic.sample.sampler.sampler.</code><code class="sig-name descname">register_sampler</code><span class="sig-paren">(</span><em class="sig-param">data_format</em>, <em class="sig-param">data_class</em>, <em class="sig-param">function</em>, <em class="sig-param">force=False</em>, <em class="sig-param">usage=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.sampler.register_sampler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">cosmic.sample.sampler.sampler.</code><code class="sig-name descname">register_sampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data_format</span></em>, <em class="sig-param"><span class="n">data_class</span></em>, <em class="sig-param"><span class="n">function</span></em>, <em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">usage</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.sampler.register_sampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Register a new method to InitialBinaryTable.sampler() for a given format</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -219,11 +222,19 @@ default: <cite>False</cite></p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2017, Katie Breivik
+        
+        &copy; Copyright 2020, Katie Breivik
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -234,7 +245,6 @@ default: <cite>False</cite></p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

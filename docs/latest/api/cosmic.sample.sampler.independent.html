@@ -1,15 +1,20 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.3.0 documentation</title>
   
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
 
   
   
@@ -17,7 +22,9 @@
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -29,12 +36,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
 </head>
@@ -50,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> cosmic
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
           
 
           
@@ -60,7 +61,7 @@
             
             
               <div class="version">
-                3.2.0+126.g38ee948
+                3.3.0
               </div>
             
           
@@ -77,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -96,6 +98,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -134,7 +137,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>&lt;no title&gt;</li>
     
@@ -156,9 +159,266 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-cosmic.sample.sampler.independent"></span><p><cite>independent</cite></p>
-<dl class="function">
+<dl class="py class">
+<dt id="cosmic.sample.sampler.independent.Sample">
+<em class="property">class </em><code class="sig-prename descclassname">cosmic.sample.sampler.independent.</code><code class="sig-name descname">Sample</code><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="cosmic.sample.sampler.independent.Sample.binary_select">
+<code class="sig-name descname">binary_select</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">primary_mass</span></em>, <em class="sig-param"><span class="n">binfrac_model</span><span class="o">=</span><span class="default_value">0.5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select which primary masses will have a companion using
+either a binary fraction specified by a float or a
+primary-mass dependent binary fraction following
+<a class="reference external" href="http://adsabs.harvard.edu/abs/2013A%26A...552A..69V">van Haaften et al.(2009)</a> in appdx</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>primary_mass</strong> : array</p>
+<blockquote>
+<div><p>Mass that determines the binary fraction</p>
+</div></blockquote>
+<p><strong>binfrac_model</strong> : str or float</p>
+<blockquote>
+<div><dl class="simple">
+<dt>vanHaaften - primary mass dependent and ONLY VALID</dt><dd><p>up to 100 Msun</p>
+</dd>
+</dl>
+<p>float - fraction of binaries; 0.5 means 2 in 3 stars are a binary pair while 1 means every star is in a binary pair</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>primary_mass[binaryIdx]</strong> : array</p>
+<blockquote>
+<div><p>primary masses that will have a binary companion</p>
+</div></blockquote>
+<p><strong>primary_mass[singleIdx]</strong> : array</p>
+<blockquote>
+<div><p>primary masses that will be single stars</p>
+</div></blockquote>
+<p><strong>binary_fraction[binaryIdx]</strong> : array</p>
+<blockquote>
+<div><p>system-specific probability of being in a binary</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.independent.Sample.sample_SFH">
+<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">SF_start</span><span class="o">=</span><span class="default_value">13700.0</span></em>, <em class="sig-param"><span class="n">SF_duration</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">met</span><span class="o">=</span><span class="default_value">0.02</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_SFH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample an evolution time for each binary based on a user-specified
+time at the start of star formation and the duration of star formation.
+The default is a burst of star formation 13,700 Myr in the past.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>SF_start</strong> : float</p>
+<blockquote>
+<div><p>Time in the past when star formation initiates in Myr</p>
+</div></blockquote>
+<p><strong>SF_duration</strong> : float</p>
+<blockquote>
+<div><p>Duration of constant star formation beginning from SF_Start in Myr</p>
+</div></blockquote>
+<p><strong>met</strong> : float</p>
+<blockquote>
+<div><p>metallicity of the population [Z_sun = 0.02]
+Default: 0.02</p>
+</div></blockquote>
+<p><strong>size</strong> : int, optional</p>
+<blockquote>
+<div><p>number of evolution times to sample
+NOTE: this is set in cosmic-pop call as Nstep</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tphys</strong> : array</p>
+<blockquote>
+<div><p>array of evolution times of size=size</p>
+</div></blockquote>
+<p><strong>metallicity</strong> : array</p>
+<blockquote>
+<div><p>array of metallicities</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.independent.Sample.sample_ecc">
+<code class="sig-name descname">sample_ecc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">ecc_model</span><span class="o">=</span><span class="default_value">'sana12'</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_ecc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample the eccentricity according to a user specified model</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ecc_model</strong> : string</p>
+<blockquote>
+<div><p>‘thermal’ samples from a  thermal eccentricity distribution following
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1975MNRAS.173..729H">Heggie (1975)</a>
+‘uniform’ samples from a uniform eccentricity distribution
+‘sana12’ samples from the eccentricity distribution from <cite>Sana+2012 &lt;https://ui.adsabs.harvard.edu/abs/2012Sci…337..444S/abstract&gt;_</cite>
+‘circular’ assumes zero eccentricity for all systems
+DEFAULT = ‘sana12’</p>
+</div></blockquote>
+<p><strong>size</strong> : int, optional</p>
+<blockquote>
+<div><p>number of eccentricities to sample
+NOTE: this is set in cosmic-pop call as Nstep</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ecc</strong> : array</p>
+<blockquote>
+<div><p>array of sampled eccentricities with size=size</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.independent.Sample.sample_porb">
+<code class="sig-name descname">sample_porb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">mass1</span></em>, <em class="sig-param"><span class="n">mass2</span></em>, <em class="sig-param"><span class="n">ecc</span></em>, <em class="sig-param"><span class="n">porb_model</span><span class="o">=</span><span class="default_value">'sana12'</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_porb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample the orbital period according to the user-specified model</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mass1</strong> : array</p>
+<blockquote>
+<div><p>primary masses</p>
+</div></blockquote>
+<p><strong>mass2</strong> : array</p>
+<blockquote>
+<div><p>secondary masses</p>
+</div></blockquote>
+<p><strong>ecc</strong> : array</p>
+<blockquote>
+<div><p>eccentricity</p>
+</div></blockquote>
+<p><strong>model</strong> : string</p>
+<blockquote>
+<div><p>selects which model to sample orbital periods, choices include:
+log_uniform : semi-major axis flat in log space from RRLO &lt; 0.5 up</p>
+<blockquote>
+<div><p>to 1e5 Rsun according to
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1983ARA%26A..21..343A">Abt (1983)</a></p>
+<blockquote>
+<div><p>and consistent with Dominik+2012,2013
+and then converted to orbital period in days using Kepler III</p>
+</div></blockquote>
+</div></blockquote>
+<dl class="simple">
+<dt>sana12<span class="classifier">power law orbital period between 0.15 &lt; log(P/day) &lt; 5.5 following </span></dt><dd><p><cite>Sana+2012 &lt;https://ui.adsabs.harvard.edu/abs/2012Sci…337..444S/abstract&gt;_</cite></p>
+</dd>
+<dt>renzo19<span class="classifier">power law orbital period for m1 &gt; 15Msun binaries from </span></dt><dd><p><cite>Sana+2012 &lt;https://ui.adsabs.harvard.edu/abs/2012Sci…337..444S/abstract&gt;_</cite> 
+following the implementation of 
+<cite>Renzo+2019 &lt;https://ui.adsabs.harvard.edu/abs/2019A%26A…624A..66R/abstract&gt;_</cite> and flat in log otherwise</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>porb</strong> : array</p>
+<blockquote>
+<div><p>orbital period with array size equalling array size
+of mass1 and mass2 in units of days</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.independent.Sample.sample_primary">
+<code class="sig-name descname">sample_primary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">primary_model</span><span class="o">=</span><span class="default_value">'kroupa01'</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_primary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample the primary mass (always the most massive star) from a user-selected model</p>
+<p>kroupa93 follows Kroupa (1993), normalization comes from
+<a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
+between 0.08 and 150 Msun
+salpter55 follows
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
+between 0.08 and 150 Msun
+kroupa01 follows Kroupa (2001) &lt;<a class="reference external" href="https://arxiv.org/abs/astro-ph/0009005">https://arxiv.org/abs/astro-ph/0009005</a>&gt;
+between 0.08 and 100 Msun</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>primary_model</strong> : str, optional</p>
+<blockquote>
+<div><p>model for mass distribution; choose from:</p>
+<p>kroupa93 follows Kroupa (1993), normalization comes from
+<a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
+valid for masses between 0.1 and 100 Msun</p>
+<p>salpter55 follows
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
+valid for masses between 0.1 and 100 Msun</p>
+<p>kroupa01 follows Kroupa (2001), normalization comes from
+<a class="reference external" href="https://arxiv.org/abs/astro-ph/0009005">Hurley 2002</a>
+valid for masses between 0.1 and 100 Msun</p>
+<p>Default kroupa01</p>
+</div></blockquote>
+<p><strong>size</strong> : int, optional</p>
+<blockquote>
+<div><p>number of initial primary masses to sample
+NOTE: this is set in cosmic-pop call as Nstep</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>a_0</strong> : array</p>
+<blockquote>
+<div><p>Sampled primary masses</p>
+</div></blockquote>
+<p><strong>sampled_mass</strong> : float</p>
+<blockquote>
+<div><p>Total amount of mass sampled</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.independent.Sample.sample_secondary">
+<code class="sig-name descname">sample_secondary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">primary_mass</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_secondary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample a secondary mass using draws from a uniform mass ratio distribution motivated by
+<a class="reference external" href="http://adsabs.harvard.edu/abs/1992ApJ...401..265M">Mazeh et al. (1992)</a>
+and <a class="reference external" href="http://adsabs.harvard.edu/abs/1994ApJ...429..362G">Goldberg &amp; Mazeh (1994)</a></p>
+<p>NOTE: the lower lim is: 0.08 Msun while the higher lim is the primary mass</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>primary_mass</strong> : array</p>
+<blockquote>
+<div><p>sets the maximum secondary mass (for a maximum mass ratio of 1)</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>secondary_mass</strong> : array</p>
+<blockquote>
+<div><p>sampled secondary masses with array size matching size of
+primary_mass</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.independent.Sample.set_kstar">
+<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">mass</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.set_kstar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize stellar types according to BSE classification
+kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mass</strong> : array</p>
+<blockquote>
+<div><p>array of masses</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>kstar</strong> : array</p>
+<blockquote>
+<div><p>array of initial stellar types</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
 <dt id="cosmic.sample.sampler.independent.get_independent_sampler">
-<code class="sig-prename descclassname">cosmic.sample.sampler.independent.</code><code class="sig-name descname">get_independent_sampler</code><span class="sig-paren">(</span><em class="sig-param">final_kstar1</em>, <em class="sig-param">final_kstar2</em>, <em class="sig-param">primary_model</em>, <em class="sig-param">ecc_model</em>, <em class="sig-param">porb_model</em>, <em class="sig-param">SF_start</em>, <em class="sig-param">SF_duration</em>, <em class="sig-param">binfrac_model</em>, <em class="sig-param">met</em>, <em class="sig-param">size</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.get_independent_sampler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">cosmic.sample.sampler.independent.</code><code class="sig-name descname">get_independent_sampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">final_kstar1</span></em>, <em class="sig-param"><span class="n">final_kstar2</span></em>, <em class="sig-param"><span class="n">primary_model</span></em>, <em class="sig-param"><span class="n">ecc_model</span></em>, <em class="sig-param"><span class="n">porb_model</span></em>, <em class="sig-param"><span class="n">SF_start</span></em>, <em class="sig-param"><span class="n">SF_duration</span></em>, <em class="sig-param"><span class="n">binfrac_model</span></em>, <em class="sig-param"><span class="n">met</span></em>, <em class="sig-param"><span class="n">size</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.get_independent_sampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates an initial binary sample according to user specified models</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -228,263 +488,6 @@
 </dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="cosmic.sample.sampler.independent.Sample">
-<em class="property">class </em><code class="sig-prename descclassname">cosmic.sample.sampler.independent.</code><code class="sig-name descname">Sample</code><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
-<dt id="cosmic.sample.sampler.independent.Sample.binary_select">
-<code class="sig-name descname">binary_select</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">primary_mass</em>, <em class="sig-param">binfrac_model=0.5</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.binary_select" title="Permalink to this definition">¶</a></dt>
-<dd><p>Select which primary masses will have a companion using
-either a binary fraction specified by a float or a
-primary-mass dependent binary fraction following
-<a class="reference external" href="http://adsabs.harvard.edu/abs/2013A%26A...552A..69V">van Haaften et al.(2009)</a> in appdx</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>primary_mass</strong> : array</p>
-<blockquote>
-<div><p>Mass that determines the binary fraction</p>
-</div></blockquote>
-<p><strong>binfrac_model</strong> : str or float</p>
-<blockquote>
-<div><dl class="simple">
-<dt>vanHaaften - primary mass dependent and ONLY VALID</dt><dd><p>up to 100 Msun</p>
-</dd>
-</dl>
-<p>float - fraction of binaries; 0.5 means 2 in 3 stars are a binary pair while 1 means every star is in a binary pair</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>primary_mass[binaryIdx]</strong> : array</p>
-<blockquote>
-<div><p>primary masses that will have a binary companion</p>
-</div></blockquote>
-<p><strong>primary_mass[singleIdx]</strong> : array</p>
-<blockquote>
-<div><p>primary masses that will be single stars</p>
-</div></blockquote>
-<p><strong>binary_fraction[binaryIdx]</strong> : array</p>
-<blockquote>
-<div><p>system-specific probability of being in a binary</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.independent.Sample.sample_SFH">
-<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">SF_start=13700.0</em>, <em class="sig-param">SF_duration=0.0</em>, <em class="sig-param">met=0.02</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_SFH" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample an evolution time for each binary based on a user-specified
-time at the start of star formation and the duration of star formation.
-The default is a burst of star formation 13,700 Myr in the past.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>SF_start</strong> : float</p>
-<blockquote>
-<div><p>Time in the past when star formation initiates in Myr</p>
-</div></blockquote>
-<p><strong>SF_duration</strong> : float</p>
-<blockquote>
-<div><p>Duration of constant star formation beginning from SF_Start in Myr</p>
-</div></blockquote>
-<p><strong>met</strong> : float</p>
-<blockquote>
-<div><p>metallicity of the population [Z_sun = 0.02]
-Default: 0.02</p>
-</div></blockquote>
-<p><strong>size</strong> : int, optional</p>
-<blockquote>
-<div><p>number of evolution times to sample
-NOTE: this is set in cosmic-pop call as Nstep</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>tphys</strong> : array</p>
-<blockquote>
-<div><p>array of evolution times of size=size</p>
-</div></blockquote>
-<p><strong>metallicity</strong> : array</p>
-<blockquote>
-<div><p>array of metallicities</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.independent.Sample.sample_ecc">
-<code class="sig-name descname">sample_ecc</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">ecc_model='sana12'</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_ecc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample the eccentricity according to a user specified model</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>ecc_model</strong> : string</p>
-<blockquote>
-<div><p>‘thermal’ samples from a  thermal eccentricity distribution following
-<a class="reference external" href="http://adsabs.harvard.edu/abs/1975MNRAS.173..729H">Heggie (1975)</a>
-‘uniform’ samples from a uniform eccentricity distribution
-‘sana12’ samples from the eccentricity distribution from <cite>Sana+2012 &lt;https://ui.adsabs.harvard.edu/abs/2012Sci…337..444S/abstract&gt;_</cite>
-‘circular’ assumes zero eccentricity for all systems
-DEFAULT = ‘sana12’</p>
-</div></blockquote>
-<p><strong>size</strong> : int, optional</p>
-<blockquote>
-<div><p>number of eccentricities to sample
-NOTE: this is set in cosmic-pop call as Nstep</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>ecc</strong> : array</p>
-<blockquote>
-<div><p>array of sampled eccentricities with size=size</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.independent.Sample.sample_porb">
-<code class="sig-name descname">sample_porb</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">mass1</em>, <em class="sig-param">mass2</em>, <em class="sig-param">ecc</em>, <em class="sig-param">porb_model='sana12'</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_porb" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample the orbital period according to the user-specified model</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>mass1</strong> : array</p>
-<blockquote>
-<div><p>primary masses</p>
-</div></blockquote>
-<p><strong>mass2</strong> : array</p>
-<blockquote>
-<div><p>secondary masses</p>
-</div></blockquote>
-<p><strong>ecc</strong> : array</p>
-<blockquote>
-<div><p>eccentricity</p>
-</div></blockquote>
-<p><strong>model</strong> : string</p>
-<blockquote>
-<div><p>selects which model to sample orbital periods, choices include:
-log_uniform : semi-major axis flat in log space from RROL &lt; 0.5 up</p>
-<blockquote>
-<div><p>to 1e5 Rsun according to
-<a class="reference external" href="http://adsabs.harvard.edu/abs/1983ARA%26A..21..343A">Abt (1983)</a></p>
-<blockquote>
-<div><p>and consistent with Dominik+2012,2013
-and then converted to orbital period in days using Kepler III</p>
-</div></blockquote>
-</div></blockquote>
-<dl class="simple">
-<dt>sana12<span class="classifier">power law orbital period between 0.15 &lt; log(P/day) &lt; 5.5 following </span></dt><dd><p><cite>Sana+2012 &lt;https://ui.adsabs.harvard.edu/abs/2012Sci…337..444S/abstract&gt;_</cite></p>
-</dd>
-<dt>renzo19<span class="classifier">power law orbital period for m1 &gt; 15Msun binaries from </span></dt><dd><p><cite>Sana+2012 &lt;https://ui.adsabs.harvard.edu/abs/2012Sci…337..444S/abstract&gt;_</cite> 
-following the implementation of 
-<cite>Renzo+2019 &lt;https://ui.adsabs.harvard.edu/abs/2019A%26A…624A..66R/abstract&gt;_</cite> and flat in log otherwise</p>
-</dd>
-</dl>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>porb</strong> : array</p>
-<blockquote>
-<div><p>orbital period with array size equalling array size
-of mass1 and mass2 in units of days</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.independent.Sample.sample_primary">
-<code class="sig-name descname">sample_primary</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">primary_model='kroupa01'</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_primary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample the primary mass (always the most massive star) from a user-selected model</p>
-<p>kroupa93 follows Kroupa (1993), normalization comes from
-<a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
-between 0.08 and 150 Msun
-salpter55 follows
-<a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
-between 0.08 and 150 Msun
-kroupa01 follows Kroupa (2001) &lt;<a class="reference external" href="https://arxiv.org/abs/astro-ph/0009005">https://arxiv.org/abs/astro-ph/0009005</a>&gt;
-between 0.08 and 100 Msun</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>primary_model</strong> : str, optional</p>
-<blockquote>
-<div><p>model for mass distribution; choose from:</p>
-<p>kroupa93 follows Kroupa (1993), normalization comes from
-<a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
-valid for masses between 0.1 and 100 Msun</p>
-<p>salpter55 follows
-<a class="reference external" href="http://adsabs.harvard.edu/abs/1955ApJ...121..161S">Salpeter (1955)</a>
-valid for masses between 0.1 and 100 Msun</p>
-<p>kroupa01 follows Kroupa (2001), normalization comes from
-<a class="reference external" href="https://arxiv.org/abs/astro-ph/0009005">Hurley 2002</a>
-valid for masses between 0.1 and 100 Msun</p>
-<p>Default kroupa01</p>
-</div></blockquote>
-<p><strong>size</strong> : int, optional</p>
-<blockquote>
-<div><p>number of initial primary masses to sample
-NOTE: this is set in cosmic-pop call as Nstep</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>a_0</strong> : array</p>
-<blockquote>
-<div><p>Sampled primary masses</p>
-</div></blockquote>
-<p><strong>sampled_mass</strong> : float</p>
-<blockquote>
-<div><p>Total amount of mass sampled</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.independent.Sample.sample_secondary">
-<code class="sig-name descname">sample_secondary</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">primary_mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.sample_secondary" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample a secondary mass using draws from a uniform mass ratio distribution motivated by
-<a class="reference external" href="http://adsabs.harvard.edu/abs/1992ApJ...401..265M">Mazeh et al. (1992)</a>
-and <a class="reference external" href="http://adsabs.harvard.edu/abs/1994ApJ...429..362G">Goldberg &amp; Mazeh (1994)</a></p>
-<p>NOTE: the lower lim is: 0.08 Msun while the higher lim is the primary mass</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>primary_mass</strong> : array</p>
-<blockquote>
-<div><p>sets the maximum secondary mass (for a maximum mass ratio of 1)</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>secondary_mass</strong> : array</p>
-<blockquote>
-<div><p>sampled secondary masses with array size matching size of
-primary_mass</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.independent.Sample.set_kstar">
-<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.independent.Sample.set_kstar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize stellar types according to BSE classification
-kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>mass</strong> : array</p>
-<blockquote>
-<div><p>array of masses</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>kstar</strong> : array</p>
-<blockquote>
-<div><p>array of initial stellar types</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 
 
            </div>
@@ -497,11 +500,19 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Katie Breivik
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -512,7 +523,6 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

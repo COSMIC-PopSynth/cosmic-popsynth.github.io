@@ -1,15 +1,20 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.3.0 documentation</title>
   
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
 
   
   
@@ -17,7 +22,9 @@
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -29,12 +36,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
 </head>
@@ -50,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> cosmic
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
           
 
           
@@ -60,7 +61,7 @@
             
             
               <div class="version">
-                3.2.0+126.g38ee948
+                3.3.0
               </div>
             
           
@@ -77,6 +78,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -96,6 +98,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -134,7 +137,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>&lt;no title&gt;</li>
     
@@ -156,9 +159,163 @@
            <div itemprop="articleBody">
             
   <span class="target" id="module-cosmic.sample.sampler.multidim"></span><p><cite>multidim</cite></p>
-<dl class="function">
+<dl class="py class">
+<dt id="cosmic.sample.sampler.multidim.MultiDim">
+<em class="property">class </em><code class="sig-prename descclassname">cosmic.sample.sampler.multidim.</code><code class="sig-name descname">MultiDim</code><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="cosmic.sample.sampler.multidim.MultiDim.initial_sample">
+<code class="sig-name descname">initial_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">M1min</span><span class="o">=</span><span class="default_value">0.08</span></em>, <em class="sig-param"><span class="n">M2min</span><span class="o">=</span><span class="default_value">0.08</span></em>, <em class="sig-param"><span class="n">M1max</span><span class="o">=</span><span class="default_value">150.0</span></em>, <em class="sig-param"><span class="n">M2max</span><span class="o">=</span><span class="default_value">150.0</span></em>, <em class="sig-param"><span class="n">porb_lo</span><span class="o">=</span><span class="default_value">0.15</span></em>, <em class="sig-param"><span class="n">porb_hi</span><span class="o">=</span><span class="default_value">8.0</span></em>, <em class="sig-param"><span class="n">rand_seed</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nproc</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.initial_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample initial binary distribution according to Moe &amp; Di Stefano (2017)
+&lt;<a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJS..230...15M">http://adsabs.harvard.edu/abs/2017ApJS..230…15M</a>&gt;`_</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>M1min</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>minimum primary mass to sample [Msun]
+DEFAULT: 0.08</p>
+</div></blockquote>
+<p><strong>M2min</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>minimum secondary mass to sample [Msun]
+DEFAULT: 0.08</p>
+</div></blockquote>
+<p><strong>M1max</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>maximum primary mass to sample [Msun]
+DEFAULT: 150.0</p>
+</div></blockquote>
+<p><strong>M2max</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>maximum primary mass to sample [Msun]
+DEFAULT: 150.0</p>
+</div></blockquote>
+<p><strong>porb_lo</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>minimum orbital period to sample [log10(days)]</p>
+</div></blockquote>
+<p><strong>porb_hi</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>maximum orbital period to sample [log10(days)]</p>
+</div></blockquote>
+<p><strong>rand_seed</strong> : int</p>
+<blockquote>
+<div><p>random seed generator
+DEFAULT: 0</p>
+</div></blockquote>
+<p><strong>size</strong> : int, optional</p>
+<blockquote>
+<div><p>number of evolution times to sample
+NOTE: this is set in cosmic-pop call as Nstep</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>primary_mass_list</strong> : array</p>
+<blockquote>
+<div><p>array of primary masses with size=size</p>
+</div></blockquote>
+<p><strong>secondary_mass_list</strong> : array</p>
+<blockquote>
+<div><p>array of secondary masses with size=size</p>
+</div></blockquote>
+<p><strong>porb_list</strong> : array</p>
+<blockquote>
+<div><p>array of orbital periods in days with size=size</p>
+</div></blockquote>
+<p><strong>ecc_list</strong> : array</p>
+<blockquote>
+<div><p>array of eccentricities with size=size</p>
+</div></blockquote>
+<p><strong>mass_singles</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Total mass in single stars needed to generate population</p>
+</div></blockquote>
+<p><strong>mass_binaries</strong> : <cite>float</cite></p>
+<blockquote>
+<div><p>Total mass in binaries needed to generate population</p>
+</div></blockquote>
+<p><strong>n_singles</strong> : <cite>int</cite></p>
+<blockquote>
+<div><p>Number of single stars needed to generate a population</p>
+</div></blockquote>
+<p><strong>n_binaries</strong> : <cite>int</cite></p>
+<blockquote>
+<div><p>Number of binaries needed to generate a population</p>
+</div></blockquote>
+<p><strong>binfrac_list</strong> : array</p>
+<blockquote>
+<div><p>array of binary probabilities based on primary mass and period with size=size</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.multidim.MultiDim.sample_SFH">
+<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">SF_start</span><span class="o">=</span><span class="default_value">13700.0</span></em>, <em class="sig-param"><span class="n">SF_duration</span><span class="o">=</span><span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">met</span><span class="o">=</span><span class="default_value">0.02</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.sample_SFH" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sample an evolution time for each binary based on a user-specified
+time at the start of star formation and the duration of star formation.
+The default is a burst of star formation 13,700 Myr in the past.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>SF_start</strong> : float</p>
+<blockquote>
+<div><p>Time in the past when star formation initiates in Myr</p>
+</div></blockquote>
+<p><strong>SF_duration</strong> : float</p>
+<blockquote>
+<div><p>Duration of constant star formation beginning from SF_Start in Myr</p>
+</div></blockquote>
+<p><strong>met</strong> : float</p>
+<blockquote>
+<div><p>metallicity of the population [Z_sun = 0.02]
+Default: 0.02</p>
+</div></blockquote>
+<p><strong>size</strong> : int, optional</p>
+<blockquote>
+<div><p>number of evolution times to sample
+NOTE: this is set in cosmic-pop call as Nstep</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>tphys</strong> : array</p>
+<blockquote>
+<div><p>array of evolution times of size=size</p>
+</div></blockquote>
+<p><strong>metallicity</strong> : array</p>
+<blockquote>
+<div><p>array of metallicities</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cosmic.sample.sampler.multidim.MultiDim.set_kstar">
+<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">mass</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.set_kstar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize stellar types according to BSE classification
+kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mass</strong> : array</p>
+<blockquote>
+<div><p>array of masses</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>kstar</strong> : array</p>
+<blockquote>
+<div><p>array of initial stellar types</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
 <dt id="cosmic.sample.sampler.multidim.get_multidim_sampler">
-<code class="sig-prename descclassname">cosmic.sample.sampler.multidim.</code><code class="sig-name descname">get_multidim_sampler</code><span class="sig-paren">(</span><em class="sig-param">final_kstar1</em>, <em class="sig-param">final_kstar2</em>, <em class="sig-param">rand_seed</em>, <em class="sig-param">nproc</em>, <em class="sig-param">SF_start</em>, <em class="sig-param">SF_duration</em>, <em class="sig-param">met</em>, <em class="sig-param">size</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.get_multidim_sampler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">cosmic.sample.sampler.multidim.</code><code class="sig-name descname">get_multidim_sampler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">final_kstar1</span></em>, <em class="sig-param"><span class="n">final_kstar2</span></em>, <em class="sig-param"><span class="n">rand_seed</span></em>, <em class="sig-param"><span class="n">nproc</span></em>, <em class="sig-param"><span class="n">SF_start</span></em>, <em class="sig-param"><span class="n">SF_duration</span></em>, <em class="sig-param"><span class="n">met</span></em>, <em class="sig-param"><span class="n">size</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.get_multidim_sampler" title="Permalink to this definition">¶</a></dt>
 <dd><p>adapted version of Maxwell Moe’s IDL code that generates a population of single and binary stars</p>
 <p>Below is the adapted version of Maxwell Moe’s IDL code
 that generates a population of single and binary stars
@@ -256,160 +413,6 @@ Please read these careful for understanding the script.
 </dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="cosmic.sample.sampler.multidim.MultiDim">
-<em class="property">class </em><code class="sig-prename descclassname">cosmic.sample.sampler.multidim.</code><code class="sig-name descname">MultiDim</code><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<dl class="method">
-<dt id="cosmic.sample.sampler.multidim.MultiDim.initial_sample">
-<code class="sig-name descname">initial_sample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">M1min=0.08</em>, <em class="sig-param">M2min=0.08</em>, <em class="sig-param">M1max=150.0</em>, <em class="sig-param">M2max=150.0</em>, <em class="sig-param">porb_lo=0.15</em>, <em class="sig-param">porb_hi=8.0</em>, <em class="sig-param">rand_seed=0</em>, <em class="sig-param">size=None</em>, <em class="sig-param">nproc=1</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.initial_sample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample initial binary distribution according to Moe &amp; Di Stefano (2017)
-&lt;<a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJS..230...15M">http://adsabs.harvard.edu/abs/2017ApJS..230…15M</a>&gt;`_</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>M1min</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>minimum primary mass to sample [Msun]
-DEFAULT: 0.08</p>
-</div></blockquote>
-<p><strong>M2min</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>minimum secondary mass to sample [Msun]
-DEFAULT: 0.08</p>
-</div></blockquote>
-<p><strong>M1max</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>maximum primary mass to sample [Msun]
-DEFAULT: 150.0</p>
-</div></blockquote>
-<p><strong>M2max</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>maximum primary mass to sample [Msun]
-DEFAULT: 150.0</p>
-</div></blockquote>
-<p><strong>porb_lo</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>minimum orbital period to sample [log10(days)]</p>
-</div></blockquote>
-<p><strong>porb_hi</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>maximum orbital period to sample [log10(days)]</p>
-</div></blockquote>
-<p><strong>rand_seed</strong> : int</p>
-<blockquote>
-<div><p>random seed generator
-DEFAULT: 0</p>
-</div></blockquote>
-<p><strong>size</strong> : int, optional</p>
-<blockquote>
-<div><p>number of evolution times to sample
-NOTE: this is set in cosmic-pop call as Nstep</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>primary_mass_list</strong> : array</p>
-<blockquote>
-<div><p>array of primary masses with size=size</p>
-</div></blockquote>
-<p><strong>secondary_mass_list</strong> : array</p>
-<blockquote>
-<div><p>array of secondary masses with size=size</p>
-</div></blockquote>
-<p><strong>porb_list</strong> : array</p>
-<blockquote>
-<div><p>array of orbital periods in days with size=size</p>
-</div></blockquote>
-<p><strong>ecc_list</strong> : array</p>
-<blockquote>
-<div><p>array of eccentricities with size=size</p>
-</div></blockquote>
-<p><strong>mass_singles</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>Total mass in single stars needed to generate population</p>
-</div></blockquote>
-<p><strong>mass_binaries</strong> : <cite>float</cite></p>
-<blockquote>
-<div><p>Total mass in binaries needed to generate population</p>
-</div></blockquote>
-<p><strong>n_singles</strong> : <cite>int</cite></p>
-<blockquote>
-<div><p>Number of single stars needed to generate a population</p>
-</div></blockquote>
-<p><strong>n_binaries</strong> : <cite>int</cite></p>
-<blockquote>
-<div><p>Number of binaries needed to generate a population</p>
-</div></blockquote>
-<p><strong>binfrac_list</strong> : array</p>
-<blockquote>
-<div><p>array of binary probabilities based on primary mass and period with size=size</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.multidim.MultiDim.sample_SFH">
-<code class="sig-name descname">sample_SFH</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">SF_start=13700.0</em>, <em class="sig-param">SF_duration=0.0</em>, <em class="sig-param">met=0.02</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.sample_SFH" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sample an evolution time for each binary based on a user-specified
-time at the start of star formation and the duration of star formation.
-The default is a burst of star formation 13,700 Myr in the past.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>SF_start</strong> : float</p>
-<blockquote>
-<div><p>Time in the past when star formation initiates in Myr</p>
-</div></blockquote>
-<p><strong>SF_duration</strong> : float</p>
-<blockquote>
-<div><p>Duration of constant star formation beginning from SF_Start in Myr</p>
-</div></blockquote>
-<p><strong>met</strong> : float</p>
-<blockquote>
-<div><p>metallicity of the population [Z_sun = 0.02]
-Default: 0.02</p>
-</div></blockquote>
-<p><strong>size</strong> : int, optional</p>
-<blockquote>
-<div><p>number of evolution times to sample
-NOTE: this is set in cosmic-pop call as Nstep</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>tphys</strong> : array</p>
-<blockquote>
-<div><p>array of evolution times of size=size</p>
-</div></blockquote>
-<p><strong>metallicity</strong> : array</p>
-<blockquote>
-<div><p>array of metallicities</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="cosmic.sample.sampler.multidim.MultiDim.set_kstar">
-<code class="sig-name descname">set_kstar</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">mass</em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.multidim.MultiDim.set_kstar" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize stellar types according to BSE classification
-kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>mass</strong> : array</p>
-<blockquote>
-<div><p>array of masses</p>
-</div></blockquote>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>kstar</strong> : array</p>
-<blockquote>
-<div><p>array of initial stellar types</p>
-</div></blockquote>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 
 
            </div>
@@ -422,11 +425,19 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Katie Breivik
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -437,7 +448,6 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

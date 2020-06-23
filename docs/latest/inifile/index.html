@@ -1,15 +1,20 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration files for COSMIC &mdash; cosmic 3.2.0+126.g38ee948 documentation</title>
+  <title>Configuration files for COSMIC &mdash; cosmic 3.3.0 documentation</title>
   
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
 
   
   
@@ -17,7 +22,9 @@
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -29,12 +36,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Describing the output of COSMIC/BSE: Columns names/Values/Units" href="../output_info/index.html" />
@@ -52,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> cosmic
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
           
 
           
@@ -62,7 +63,7 @@
             
             
               <div class="version">
-                3.2.0+126.g38ee948
+                3.3.0
               </div>
             
           
@@ -79,6 +80,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -108,6 +110,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -146,7 +149,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Configuration files for COSMIC</li>
     
@@ -199,18 +202,19 @@ its evolution</p>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span></code></p></td>
 <td><p>timestep_conditions allow a user to pick specific time resolutions
-to print at targetted stages of the binary evolution
-This is used in conjuction with the [bse] section value dtp to determine the resolution
-at which thing are printed into the so called bcm array
-For example, if you only want dtp set to a value while the system is
-intact i.e. has not merged or been disrupted you could do so with the following</p>
+to print at targeted stages of the binary evolution.
+This is used in conjuction with the [bse] section value dtp to determine the
+timestep resolution for printing to the bcm array.</p>
+<p>As an example, if you only want to print to the bcm array with
+1.0 Myr timesteps while a binary has not merged or been disrupted
+you would specify this as:</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=[['binstate==0',</span> <span class="pre">'dtp=1.0']]</span></code></p>
 </div></blockquote>
 <p>Special examples include</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=</span> <span class="pre">'dtp=None'</span></code>, only the final time step is printed to the bcm array
-<code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=</span> <span class="pre">'dtp=1.0'</span></code>, a single timestep applied to all evolutionary stages of the binary</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=</span> <span class="pre">'dtp=None'</span></code> : only the final time step is printed to the bcm array</p>
+<p><code class="docutils literal notranslate"><span class="pre">timestep_conditions</span> <span class="pre">=</span> <span class="pre">'dtp=1.0'</span></code> : a single timestep applied to all evolutionary stages of the binary</p>
 </div></blockquote>
 </td>
 </tr>
@@ -280,7 +284,7 @@ in Myr. For a single burst specify:</p>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">metallicity</span></code></p></td>
 <td><p>Single value for the metallicity of the population
-where solar metallicity is Z = 0.02</p></td>
+where solar metallicity is defined using <em>zsun</em> defined below</p></td>
 </tr>
 </tbody>
 </table>
@@ -305,8 +309,8 @@ where solar metallicity is Z = 0.02</p></td>
 <h3>[convergence]<a class="headerlink" href="#convergence" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_params</span></code></p></td>
@@ -356,11 +360,13 @@ and is calculated as match = Log<sub>10</sub> (1-convergence)</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bcm_bpp_initCond_filter</span></code></p></td>
 <td><p>The bcm_bpp_initCond_filter will filter the bcm, bpp, and initCond
-DataFrames to only contain the binaries that satisfy the conv DataFrame.</p>
+DataFrames to only contain the binaries that satisfy the constraints
+from <code class="docutils literal notranslate"><span class="pre">convergence_limits</span></code> and/or <code class="docutils literal notranslate"><span class="pre">convergence_filer</span></code></p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: bcm, bpp, initCond will contain only the binaries which
 are in the conv DataFrame</p>
-<p><code class="docutils literal notranslate"><span class="pre">False</span></code>: bcm, bpp, initCond will contain all systems which satisfy the                                 final kstar selection and will <strong>not</strong> be filtered.</p>
+<p><code class="docutils literal notranslate"><span class="pre">False</span></code>: bcm, bpp, initCond will contain all systems which satisfy the
+final kstar selection and will <strong>not</strong> be filtered.</p>
 </div></blockquote>
 <p><strong>bcm_bpp_initCond_filter=False</strong></p>
 </td>
@@ -422,7 +428,7 @@ are in the conv DataFrame</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rand_seed</span></code></p></td>
-<td><p>Seed used to seed numpy.random.seed</p></td>
+<td><p>Seed used to for numpy.random.seed</p></td>
 </tr>
 </tbody>
 </table>
@@ -485,6 +491,33 @@ HG, HeMS stars</p>
 <span class="na">pts2</span><span class="o">=</span><span class="s">0.01</span>
 <span class="c1">;                 pts3 - HG, HeMS            (default=0.02)</span>
 <span class="na">pts3</span><span class="o">=</span><span class="s">0.02</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>METALLICITY FLAGS</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">zsun</span></code></p></td>
+<td><p>Sets the metallicity of the Sun which primarily affects
+stellar winds.</p>
+<p><strong>zsun = 0.014</strong> following <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2009ARA%26A..47..481A/abstract">Asplund 2009</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; METALLICITY FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">; specify the value for Solar metallicity, which primarily affects</span>
+<span class="c1">; winds in BSE</span>
+<span class="c1">; default = 0.014 (Asplund 2009)</span>
+<span class="na">zsun</span> <span class="o">=</span> <span class="s">0.014</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -553,7 +586,7 @@ See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-da
 <div><p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">value</span></code> : StarTrack (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2008ApJS..174..223B/abstract">Belczynski+2008</a>)</p>
 <p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <img class="math" src="../_images/math/16730af266c711c8a7469e0fa18c2f24e237b5a4.png" alt="{\beta}"/><sub>w</sub> to <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 9 of Hurley+2002</a></p>
 </div></blockquote>
-<p><strong>beta = 0.125</strong></p>
+<p><strong>beta = -1.0</strong></p>
 </td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xi</span></code></p></td>
@@ -564,7 +597,7 @@ Corresponds to <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc083849
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">value</span></code> : supplies <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc08384985b8e643f00926.png" alt="{\mu}"/><sub>w</sub> in <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=3">Equation 11 of Hurley+2002</a></p>
 </div></blockquote>
-<p><strong>xi = 1.0</strong></p>
+<p><strong>xi = 0.5</strong></p>
 </td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">acc2</span></code></p></td>
@@ -648,10 +681,14 @@ The initial binding energy of the stellar envelope
 goes like 1 / <img class="math" src="../_images/math/f1c62eee20a138eac5cff5964b711ee300263b14.png" alt="{\lambda}"/>. See <a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2002MNRAS.329..897H&amp;link_type=ARTICLE&amp;db_key=AST&amp;high=#page=11">Equation 69 in Hurley+2002</a>.</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : uses variable lambda prescription detailed
-in appendix of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014A%26A...563A..83C/abstract">Claeys+2014</a></p>
+in appendix of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2014A%26A...563A..83C/abstract">Claeys+2014</a>
+where lambdaf is the fraction of the ionization energy that can go into ejecting</p>
+<blockquote>
+<div><p>the envelope; to use this prescription without extra ionization energy, set lambdaf=0</p>
+</div></blockquote>
 <p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">values</span></code> : fixes <img class="math" src="../_images/math/f1c62eee20a138eac5cff5964b711ee300263b14.png" alt="{\lambda}"/> to a value of -1.0* <em>lambdaf</em></p>
 </div></blockquote>
-<p><strong>lambdaf = 0.5</strong></p>
+<p><strong>lambdaf = 0.0</strong></p>
 </td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ceflag</span></code></p></td>
@@ -722,17 +759,132 @@ for GB/AGB stars</p>
 <p><code class="docutils literal notranslate"><span class="pre">3</span></code> : same as 2 but with <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1987ApJ...318..794H/abstract">Hjellming &amp; Webbink 1987</a>
 for GB/AGB stars</p>
 <p><code class="docutils literal notranslate"><span class="pre">4</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2008ApJS..174..223B/abstract">Section 5.1 of Belcyznski+2008</a> except for WD donors which follow BSE</p>
+<p><code class="docutils literal notranslate"><span class="pre">5</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2019MNRAS.490.3740N/abstract">Section 2.3 of Neijssel+2020</a> Mass transfer from stripped stars is always assumed to be dynamically stable</p>
 </div></blockquote>
 <p><strong>qcflag = 1</strong></p>
+<table class="docutils align-default" id="id30">
+<caption><span class="caption-text">Comparison of Q Crit Values (Donor Mass/Accretor Mass) For Each Donor Kstar Type Across Flag Options</span><a class="headerlink" href="#id30" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>kstar</p></th>
+<th class="head"><p>qc=0</p></th>
+<th class="head"><p>qc=1</p></th>
+<th class="head"><p>qc=2</p></th>
+<th class="head"><p>qc=3</p></th>
+<th class="head"><p>qc=4</p></th>
+<th class="head"><p>qc=5</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0.695</p></td>
+<td><p>0.695</p></td>
+<td><p>0.695 / 1.0</p></td>
+<td><p>0.695 / 1.0</p></td>
+<td><p>3.0</p></td>
+<td><p>1.717</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>1.6 / 1.0</p></td>
+<td><p>1.6 / 1.0</p></td>
+<td><p>3.0</p></td>
+<td><p>1.717</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>4</p></td>
+<td><p>4.0 / 4.7619</p></td>
+<td><p>4.0 / 4.7619</p></td>
+<td><p>3.0</p></td>
+<td><p>3.825</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Eq.2</p></td>
+<td><p>Eq.1</p></td>
+<td><p>Eq.2 / 1.15</p></td>
+<td><p>Eq.1 / 1.15</p></td>
+<td><p>3.0</p></td>
+<td><p>Eq.1</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>3.0 / 3.0</p></td>
+<td><p>3.0 / 3.0</p></td>
+<td><p>3.0</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Eq.2</p></td>
+<td><p>Eq.1</p></td>
+<td><p>Eq.2 / 1.15</p></td>
+<td><p>Eq.1 / 1.15</p></td>
+<td><p>3.0</p></td>
+<td><p>Eq.1</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Eq.2</p></td>
+<td><p>Eq.1</p></td>
+<td><p>Eq.2 / 1.15</p></td>
+<td><p>Eq.1 / 1.15</p></td>
+<td><p>3.0</p></td>
+<td><p>Eq.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>3.0 / 3.0</p></td>
+<td><p>3.0 / 3.0</p></td>
+<td><p>1.7</p></td>
+<td><p>inf</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>0.784</p></td>
+<td><p>0.784</p></td>
+<td><p>4.0 / 4.7619</p></td>
+<td><p>4.0 / 4.7619</p></td>
+<td><p>3.5</p></td>
+<td><p>inf</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>0.784</p></td>
+<td><p>0.784</p></td>
+<td><p>0.784 / 1.15</p></td>
+<td><p>0.784 / 1.15</p></td>
+<td><p>3.5</p></td>
+<td><p>inf</p></td>
+</tr>
+<tr class="row-even"><td><p>10-14</p></td>
+<td><p>0.628</p></td>
+<td><p>0.628</p></td>
+<td><p>3.0 / 0.625</p></td>
+<td><p>3.0 / 0.625</p></td>
+<td><p>0.628</p></td>
+<td><p>0.628</p></td>
+</tr>
+</tbody>
+</table>
+<p>Eq.1: <code class="docutils literal notranslate"><span class="pre">qc</span> <span class="pre">=</span> <span class="pre">0.362</span> <span class="pre">+</span> <span class="pre">1.0/(3.0*(1.0</span> <span class="pre">-</span> <span class="pre">massc(j1)/mass(j1)))</span></code>, which is from Hjellming &amp; Webbink 1983</p>
+<p>Eq.2: <code class="docutils literal notranslate"><span class="pre">qc</span> <span class="pre">=</span> <span class="pre">(1.67d0-zpars(7)+2.d0*(massc(j1)/mass(j1))**5)/2.13d0</span></code>, which is from Claeys+ 2014</p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">qcrit_array</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">qcrit_array</span></code></p></td>
 <td><p>Array with length: 16 for user-input values for the
 critical mass ratios that govern the onset of unstable
 mass transfer and a common envelope. Each item is set
 individually for its associated kstar, and a value of
-0.0 will apply prescription of the qcflag for that kstar.
-<strong>Note:</strong> there are cases where a common envelope is forced
+0.0 will apply prescription of the qcflag for that kstar.</p>
+<p><strong>Note:</strong> there are cases where a common envelope is forced
 regardless of the critical mass ratio for unstable mass
 transfer; in the following cases, a common envelope occurs
 regardless of the qcrit or qcflag</p>
@@ -785,6 +937,8 @@ regardless of the qcrit or qcflag</p>
 <span class="c1">; 1: BSE but with Hjellming &amp; Webbink, 1987, ApJ, 318, 794 GB/AGB stars</span>
 <span class="c1">; 2: following binary_c from Claeys+2014 Table 2</span>
 <span class="c1">; 3: following binary_c from Claeys+2014 Table 2 but with Hjellming &amp; Webbink, 1987, ApJ, 318, 794 GB/AGB stars</span>
+<span class="c1">; 4: following StarTrack from Belczynski+2008 Section 5.1. WD donors follow standard BSE</span>
+<span class="c1">; 5: following COMPAS from Neijssel+2020 Section 2.3. Stripped stars are always dynamically stable</span>
 <span class="c1">; default=3</span>
 <span class="na">qcflag</span><span class="o">=</span><span class="s">3</span>
 
@@ -804,7 +958,32 @@ regardless of the qcrit or qcflag</p>
 <col style="width: 85%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sigma</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kickflag</span></code></p></td>
+<td><p>Sets the particular natal kick prescription to use
+Note that <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>, <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>,
+<code class="docutils literal notranslate"><span class="pre">aic</span></code>, and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>, which are described below, are
+only used when <code class="docutils literal notranslate"><span class="pre">kickflag=0</span></code></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : The standard COSMIC kick prescription, where
+kicks are drawn from a bimodal distribution with
+standard FeCCSN getting a kick drawn from a Maxwellian
+distribution with dispersion parameter <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and ECSN
+are drawn according to <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>. This setting has
+additional possible options for <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>,
+<code class="docutils literal notranslate"><span class="pre">aic</span></code> and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-1</span></code> : Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and
+scaled by the ejecta mass and remnant mass following Eq. 1 of
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">-2</span></code> : Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and
+scaled by just the ejecta mass following Eq. 2 of
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">-3</span></code> : Natal kicks are drawn according to Eq. 1 of
+<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016MNRAS.461.3747B/abstract">Bray &amp; Eldridge 2016</a></p>
+</div></blockquote>
+<p><strong>default=0</strong></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sigma</span></code></p></td>
 <td><p>Sets the dispersion in the Maxwellian for the
 SN kick velocity in km/s</p>
 <blockquote>
@@ -813,7 +992,7 @@ SN kick velocity in km/s</p>
 <p><strong>default=265.0</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bhflag</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bhflag</span></code></p></td>
 <td><p>Sets the model for how SN kicks are applied to BHs
 where bhflag != 0 allows velocity kick at BH formation</p>
 <blockquote>
@@ -828,7 +1007,7 @@ with dispersion = <em>sigma</em> selected above</p>
 <p><strong>bhflag = 1</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ecsn</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ecsn</span></code></p></td>
 <td><p>Allows for electron capture SN and sets the
 maximum ECSN mass range at the time of SN</p>
 <blockquote>
@@ -841,7 +1020,7 @@ use ecsn = 2.5</p>
 <p><strong>ecsn = 2.5</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ecsn_mlow</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ecsn_mlow</span></code></p></td>
 <td><p>Sets the low end of the ECSN mass range</p>
 <blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">BSE (Hurley+2002)</a>
@@ -852,14 +1031,14 @@ use ecsn_mlow = 1.4</p>
 <p><strong>ecsn_mlow = 1.4</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code></p></td>
 <td><p>Sets the modified ECSN kick strength</p>
 <p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : divide <em>sigma</em> above by <em>sigmadiv</em></p>
 <p><code class="docutils literal notranslate"><span class="pre">negative</span> <span class="pre">values</span></code> : sets the ECSN <em>sigma</em> value</p>
 <p><strong>sigmadiv = -20.0</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">aic</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">aic</span></code></p></td>
 <td><p>reduces kick strengths for accretion induced collapse SN
 according to <em>sigmadiv</em></p>
 <blockquote>
@@ -871,7 +1050,7 @@ NOTE: this will applies even if ecsn = 0.0</p>
 <p><strong>aic = 1</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ussn</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ussn</span></code></p></td>
 <td><p>Reduces kicks according to the <em>sigmadiv</em> selection
 for ultra-stripped supernovae which happen whenever
 a He-star undergoes a CE with a compact companion</p>
@@ -883,7 +1062,7 @@ with dispersion = <em>sigma</em> above</p>
 <p><strong>ussn = 0</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pisn</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pisn</span></code></p></td>
 <td><p>Allows for (pulsational) pair instability supernovae
 and sets either the model to use or the maximum mass
 of the remnant.</p>
@@ -899,7 +1078,7 @@ remnant</p>
 <p><strong>pisn = 45.0</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code></p></td>
 <td><p>Sets a fractional modification which scales down <em>sigma</em>
 for BHs. This works in addition to whatever is chosen for
 <em>bhflag</em>, and is applied to <em>sigma</em> <strong>before</strong> the <em>bhflag</em>
@@ -910,7 +1089,7 @@ prescriptions are applied</p>
 <p><strong>bhsigmafrac = 1.0</strong></p>
 </td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">polar_kick_angle</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">polar_kick_angle</span></code></p></td>
 <td><p>Sets the opening angle of the SN kick relative to the
 pole of the exploding star, where 0 gives strictly polar
 kicks and 90 gives fully isotropic kicks</p>
@@ -920,22 +1099,25 @@ kicks and 90 gives fully isotropic kicks</p>
 <p><strong>polar_kick_angle = 90.0</strong></p>
 </td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">natal_kick_array</span></code></p></td>
-<td><p>Array of lenght: 6 which takes user input values to fix
-the SN natal kick, where the array is
-formatted as: [vk1, vk2, phi1, phi2, theta1, theta2].
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">natal_kick_array</span></code></p></td>
+<td><p>Array of dimensions: (2,5) which takes user input values
+for the SN natal kick, where the first row corresponds to the
+first star and the second row corresponds to the second star and
+columns are: [vk, phi, theta, eccentric_anomaly, rand_seed].
 NOTE: any numbers outside these ranges will be sampled
 in the standard ways detailed above.</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">vk1,</span> <span class="pre">vk2</span></code> : valid on the range [0, inf]</p>
-<p><code class="docutils literal notranslate"><span class="pre">phi1,</span> <span class="pre">phi2</span></code> : co-lateral polar angles valid from
+<div><p><code class="docutils literal notranslate"><span class="pre">vk</span></code> : valid on the range [0, inf]</p>
+<p><code class="docutils literal notranslate"><span class="pre">phi</span></code> : co-lateral polar angle in degrees, valid from
 [-90, 90]</p>
-<p><code class="docutils literal notranslate"><span class="pre">theta1,</span> <span class="pre">theta2</span></code> : azimuthal angles valid from
+<p><code class="docutils literal notranslate"><span class="pre">theta</span></code> : azimuthal angle in degrees, valid from
 [0, 360]</p>
-<p><code class="docutils literal notranslate"><span class="pre">eccentric_anomaly_1,</span> <span class="pre">eccentric_anomaly_2</span></code> : eccentric_anomaly angles
+<p><code class="docutils literal notranslate"><span class="pre">eccentric_anomaly</span></code> : eccentric anomaly in degreed,
 valid from [0, 360]</p>
+<p><code class="docutils literal notranslate"><span class="pre">rand_seed</span></code> : supplied if restarting evolution after
+a supernova has already occurred</p>
 </div></blockquote>
-<p><strong>natal_kick_array = [-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</strong></p>
+<p><strong>natal_kick_array = [[-100.0,-100.0,-100.0,-100.0,0.0][-100.0,-100.0,-100.0,-100.0,0.0]]</strong></p>
 </td>
 </tr>
 </tbody>
@@ -943,6 +1125,19 @@ valid from [0, 360]</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;</span>
 <span class="c1">;;; KICK FLAGS ;;;</span>
 <span class="c1">;;;;;;;;;;;;;;;;;;</span>
+
+<span class="c1">; kickflag sets the particular kick prescription to use</span>
+<span class="c1">; kickflag=0 uses the standard kick prescription, where kicks are drawn from a bimodal</span>
+<span class="c1">; distribution based on whether they go through FeCCSN or ECSN/USSN</span>
+<span class="c1">; kickflag=-1 uses the prescription from Giacobbo &amp; Mapelli 2020 (Eq. 1)</span>
+<span class="c1">; with their default parameters (&lt;m_ns&gt;=1.2 Msun, &lt;m_ej&gt;=9 Msun)</span>
+<span class="c1">; kickflag=-2 uses the prescription from Giacobbo &amp; Mapelli 2020 (Eq. 2),</span>
+<span class="c1">; which does not scale the kick by &lt;m_ns&gt;</span>
+<span class="c1">; kickflag=-3 uses the prescription from Bray &amp; Eldridge 2016 (Eq. 1)</span>
+<span class="c1">; with their default parameters (alpha=70 km/s, beta=120 km/s)</span>
+<span class="c1">; Note: sigmadiv, bhflag, bhsigmafrac, aic, and ussn are only used when kickflag=0</span>
+<span class="c1">; default = 0</span>
+<span class="na">kickflag</span> <span class="o">=</span> <span class="s">0</span>
 
 <span class="c1">; sigma sets is the dispersion in the Maxwellian for the SN kick velocity in km/s</span>
 <span class="c1">; default=265.0</span>
@@ -996,13 +1191,13 @@ valid from [0, 360]</p>
 <span class="c1">; default=90.0</span>
 <span class="na">polar_kick_angle</span> <span class="o">=</span> <span class="s">90.0</span>
 
-<span class="c1">; natal_kick_array is a 8-length array for user-input values for the SN natal kick</span>
-<span class="c1">; formatted as: (vk1, vk2, phi1, phi2, theta1, theta2, eccentric_anomaly_1, eccentric_anomaly_2)</span>
-<span class="c1">; vk is valid on the range [0, inf], phi are the co-lateral polar angles valid from [-90.0, 90.0], theta are azimuthal angles [0, 360],</span>
-<span class="c1">; and eccentric_anomaly are angles [0, 360]</span>
+<span class="c1">; natal_kick_array is a (2,5) array for user-input values for the SN natal kick</span>
+<span class="c1">; The first and second row specify the natal kick information for the first and second star, and columns are formatted as: (vk, phi, theta, eccentric anomaly, rand_seed)</span>
+<span class="c1">; vk is valid on the range [0, inf], phi are the co-lateral polar angles (in degrees) valid from [-90.0, 90.0], theta are azimuthal angles (in degrees) valid from [0, 360], and eccentric anomaly are the eccentric anomaly of the orbit at the time of SN (in degrees) valid from [0, 360]</span>
 <span class="c1">; any number outside of these ranges will be sampled in the standard way in kick.f</span>
-<span class="c1">; default=[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</span>
-<span class="na">natal_kick_array</span><span class="o">=</span><span class="s">[-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0,-100.0]</span>
+<span class="c1">; rand_seed is for reproducing a supernova if the the system is started mid-evolution, set to 0 if starting binary from the beginning</span>
+<span class="c1">; default=[[-100.0,-100.0,-100.0,-100.0,0],[-100.0,-100.0,-100.0,-100.0,0.0]]</span>
+<span class="na">natal_kick_array</span><span class="o">=</span><span class="s">[[-100.0,-100.0,-100.0,-100.0,0],[-100.0,-100.0,-100.0,-100.0,0.0]]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1018,27 +1213,23 @@ valid from [0, 360]</p>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">remnantflag</span></code></p></td>
 <td><p>Determines the remnant mass prescription used for NSs and BHs.</p>
 <blockquote>
-<div><blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2000MNRAS.315..543H/abstract">Section 6 of Hurley+2000</a>
 (default BSE)</p>
 <p><code class="docutils literal notranslate"><span class="pre">1</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002ApJ...572..407B/abstract">Belczynski+2002</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">2</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2008ApJS..174..223B/abstract">Belczynski+2008</a></p>
-<p><code class="docutils literal notranslate"><span class="pre">3</span></code> : follows the rapid prescription from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2012ApJ...749...91F/abstract">Fryer+2012</a></p>
+<p><code class="docutils literal notranslate"><span class="pre">3</span></code> : follows the rapid prescription from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2012ApJ...749...91F/abstract">Fryer+2012</a>, with updated proto-core mass from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a></p>
 <p><code class="docutils literal notranslate"><span class="pre">4</span></code> : delayed prescription from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2012ApJ...749...91F/abstract">Fryer+2012</a></p>
 </div></blockquote>
 <p><strong>remnantflag = 3</strong></p>
-</div></blockquote>
 </td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mxns</span></code></p></td>
 <td><p>Sets the boundary between the maximum NS mass
 and the minimum BH mass</p>
 <blockquote>
-<div><blockquote>
 <div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets the NS/BH mass bounary</p>
 </div></blockquote>
-<p><strong>mxns = 2.5</strong></p>
-</div></blockquote>
+<p><strong>mxns = 3.0</strong></p>
 </td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rembar_massloss</span></code></p></td>
@@ -1049,6 +1240,7 @@ the proto-compact object</p>
 <div><p><code class="docutils literal notranslate"><span class="pre">positive</span> <span class="pre">values</span></code> : sets the maximum amount of mass loss, which should be about 10% of the maximum mass of an iron core (<img class="math" src="../_images/math/8c29aa77564a302a15e8e0fa81d69d88f498dc1e.png" alt="{\sim 5 \mathrm{M}_\odot}"/> Fryer, private communication)</p>
 <p><code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">&lt;</span> <span class="pre">*rembar_massloss*</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> : assumes that proto-compact objects lose a constant fraction of their baryonic mass when collapsing to a black hole (e.g., <em>rembar_massloss</em> = -0.1 gives the black hole a gravitational mass that is 90% of the proto-compact object’s baryonic mass)</p>
 </div></blockquote>
+<p><strong>rembar_massloss = 0.5</strong></p>
 </td>
 </tr>
 </tbody>
@@ -1058,8 +1250,10 @@ the proto-compact object</p>
 <span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
 <span class="c1">; remnantflag determines the remnant mass prescription used</span>
-<span class="c1">; remnantflag=0: default BSE; remnantflag=1: Belczynski et al. 2002, ApJ, 572, 407</span>
-<span class="c1">; remnantflag=2: Belczynski et al. 2008; remnantflag=3: rapid prescription (Fryer+ 2012)</span>
+<span class="c1">; remnantflag=0: default BSE</span>
+<span class="c1">; remnantflag=1: Belczynski et al. 2002, ApJ, 572, 407</span>
+<span class="c1">; remnantflag=2: Belczynski et al. 2008</span>
+<span class="c1">; remnantflag=3: rapid prescription (Fryer+ 2012), updated as in Giacobbo &amp; Mapelli 2020</span>
 <span class="c1">; remnantflag=4: delayed prescription (Fryer+ 2012)</span>
 <span class="c1">; default=3</span>
 <span class="na">remnantflag</span><span class="o">=</span><span class="s">3</span>
@@ -1157,7 +1351,7 @@ if it is a wind from the secondary</p>
 <p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code> : assumes that the lost material takes away a
 fraction <em>gamma</em> of the orbital angular momentum</p>
 </div></blockquote>
-<p><strong>gamma = -1.0</strong></p>
+<p><strong>gamma = -2.0</strong></p>
 </td>
 </tr>
 </tbody>
@@ -1510,11 +1704,19 @@ He core mass at the base of the giant branch</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, Katie Breivik
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1525,7 +1727,6 @@ He core mass at the base of the giant branch</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
