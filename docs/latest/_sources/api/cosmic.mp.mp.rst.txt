@@ -1,4 +1,0 @@
-.. automodule:: cosmic.mp.mp
-   :members:
-   :undoc-members:
-   :show-inheritance:

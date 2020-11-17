@@ -1,4 +1,0 @@
-.. automodule:: cosmic.sample.initialbinarytable
-   :members:
-   :undoc-members:
-   :show-inheritance:

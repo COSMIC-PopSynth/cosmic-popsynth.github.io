@@ -1,4 +1,0 @@
-.. automodule:: cosmic.checkstate
-   :members:
-   :undoc-members:
-   :show-inheritance:
