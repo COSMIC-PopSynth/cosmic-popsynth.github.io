@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.3.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.4.0 documentation</title>
   
 
   
@@ -18,7 +18,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -31,7 +34,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
+            <a href="../index.html" class="icon icon-home"> cosmic
           
 
           
@@ -61,7 +63,7 @@
             
             
               <div class="version">
-                3.3.0
+                3.4.0
               </div>
             
           
@@ -133,6 +135,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -144,7 +148,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/api/cosmic.filter.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -160,14 +164,26 @@
             
   <span class="target" id="module-cosmic.filter"></span><p>Utilies for filtering a <cite>Table</cite> using column slice definitions</p>
 <dl class="py function">
+<dt id="cosmic.filter._flatten">
+<code class="sig-prename descclassname"><span class="pre">cosmic.filter.</span></code><code class="sig-name descname"><span class="pre">_flatten</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">container</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter._flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flatten arbitrary nested list of filters into a 1-D list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cosmic.filter._float_or_str">
+<code class="sig-prename descclassname"><span class="pre">cosmic.filter.</span></code><code class="sig-name descname"><span class="pre">_float_or_str</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter._float_or_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal method to attempt <cite>float(value)</cite> handling a <cite>ValueError</cite></p>
+</dd></dl>
+
+<dl class="py function">
 <dt id="cosmic.filter.is_filter_tuple">
-<code class="sig-prename descclassname">cosmic.filter.</code><code class="sig-name descname">is_filter_tuple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tup</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.is_filter_tuple" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cosmic.filter.</span></code><code class="sig-name descname"><span class="pre">is_filter_tuple</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tup</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.is_filter_tuple" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return whether a <cite>tuple</cite> matches the format for a column filter</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cosmic.filter.parse_column_filter">
-<code class="sig-prename descclassname">cosmic.filter.</code><code class="sig-name descname">parse_column_filter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">definition</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.parse_column_filter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cosmic.filter.</span></code><code class="sig-name descname"><span class="pre">parse_column_filter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">definition</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.parse_column_filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a <cite>str</cite> of the form ‘column&gt;50’</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -221,7 +237,7 @@ be passed as <code class="docutils literal notranslate"><span class="pre">channe
 
 <dl class="py function">
 <dt id="cosmic.filter.parse_column_filters">
-<code class="sig-prename descclassname">cosmic.filter.</code><code class="sig-name descname">parse_column_filters</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">definitions</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.parse_column_filters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cosmic.filter.</span></code><code class="sig-name descname"><span class="pre">parse_column_filters</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">definitions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.parse_column_filters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse multiple compound column filter definitions</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_column_filters</span><span class="p">(</span><span class="s1">&#39;snr &gt; 10&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency &lt; 1000&#39;</span><span class="p">)</span>
@@ -234,7 +250,7 @@ be passed as <code class="docutils literal notranslate"><span class="pre">channe
 
 <dl class="py function">
 <dt id="cosmic.filter.parse_operator">
-<code class="sig-prename descclassname">cosmic.filter.</code><code class="sig-name descname">parse_operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mathstr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.parse_operator" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cosmic.filter.</span></code><code class="sig-name descname"><span class="pre">parse_operator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mathstr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.filter.parse_operator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a <cite>str</cite> as a function from the <cite>operator</cite> module</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -269,28 +285,25 @@ be passed as <code class="docutils literal notranslate"><span class="pre">channe
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Katie Breivik
+        &#169; Copyright 2021, Katie Breivik.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

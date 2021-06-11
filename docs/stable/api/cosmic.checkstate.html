@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.3.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.4.0 documentation</title>
   
 
   
@@ -18,7 +18,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -31,7 +34,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
+            <a href="../index.html" class="icon icon-home"> cosmic
           
 
           
@@ -61,7 +63,7 @@
             
             
               <div class="version">
-                3.3.0
+                3.4.0
               </div>
             
           
@@ -133,6 +135,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -144,7 +148,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/api/cosmic.checkstate.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -160,20 +164,18 @@
             
   <span class="target" id="module-cosmic.checkstate"></span><dl class="py function">
 <dt id="cosmic.checkstate.set_checkstates">
-<code class="sig-prename descclassname">cosmic.checkstate.</code><code class="sig-name descname">set_checkstates</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timestep_conditions</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.checkstate.set_checkstates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cosmic.checkstate.</span></code><code class="sig-name descname"><span class="pre">set_checkstates</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timestep_conditions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.checkstate.set_checkstates" title="Permalink to this definition">¶</a></dt>
 <dd><p>A function which will detemine different time resolution for different states</p>
 <dl>
 <dt>Parameters:</dt><dd><dl>
-<dt>timestep_conditions<span class="classifier">(list) default empty (no dynamic dtp setting) </span></dt><dd><p>a nest list of the many different time resolutions and conditions
-for which you would like to apply those time resolution, e.g.,
-<a href="#id1"><span class="problematic" id="id2">``</span></a>`
-timestep_conditions =[[‘20.0&lt;mass_1&lt;25.5’, ‘15.5&gt;mass_2&gt;10.0’, ‘dtp=1.0’],</p>
-<blockquote>
-<div><p>[‘kstar_1=14’, ‘lum_1&gt;10.0’, ‘dtp=0.01’],
-[‘2&gt;=binstate&gt;=1’, ‘dtp=None’]]</p>
-</div></blockquote>
-<p><a href="#id3"><span class="problematic" id="id4">``</span></a>`
-The first two sets of conditons would be done in a AND fashion.
+<dt>timestep_conditions<span class="classifier">(list) default empty (no dynamic dtp setting)</span></dt><dd><p>a nested list of the many different time resolutions and conditions
+for which you would like to apply those time resolution, e.g.,</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">timestep_conditions</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;20.0&lt;mass_1&lt;25.5&#39;</span><span class="p">,</span> <span class="s1">&#39;15.5&gt;mass_2&gt;10.0&#39;</span><span class="p">,</span> <span class="s1">&#39;dtp=1.0&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="s1">&#39;kstar_1=14&#39;</span><span class="p">,</span> <span class="s1">&#39;lum_1&gt;10.0&#39;</span><span class="p">,</span> <span class="s1">&#39;dtp=0.01&#39;</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="s1">&#39;2&gt;=binstate&gt;=1&#39;</span><span class="p">,</span> <span class="s1">&#39;dtp=None&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>The first two sets of conditons would be done in a AND fashion.
 The last condition would end time resolution for the BCM array and it
 would skip to only printing the final state</p>
 </dd>
@@ -188,28 +190,25 @@ would skip to only printing the final state</p>
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Katie Breivik
+        &#169; Copyright 2021, Katie Breivik.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

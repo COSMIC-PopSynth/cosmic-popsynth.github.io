@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; cosmic 3.3.0 documentation</title>
+  <title>Installation &mdash; cosmic 3.4.0 documentation</title>
   
 
   
@@ -18,7 +18,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -31,7 +34,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -53,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
+            <a href="../index.html" class="icon icon-home"> cosmic
           
 
           
@@ -63,7 +65,7 @@
             
             
               <div class="version">
-                3.3.0
+                3.4.0
               </div>
             
           
@@ -143,6 +145,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -154,7 +158,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/install/index.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -172,16 +176,17 @@
 <span id="install"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="conda">
 <h2>Conda<a class="headerlink" href="#conda" title="Permalink to this headline">¶</a></h2>
+<p>Since COSMIC requires compilation of Fortran code, we strongly recommend the use of virtual environments like Anaconda to mitigate any potential compiling issues with other Fortran code bases.</p>
 <div class="section" id="macos">
 <h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>IMPORTANT NOTE: On OS X 10.14 (Mojave), you need to install the development header files. These must be installed by hand. To do so, run the command</p>
-<p><code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">/Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg</span></code></p>
+<p>IMPORTANT NOTE: On OS X 10.16 (Big Sur), you may need to supply the following extra linker flag</p>
+<p><code class="docutils literal notranslate"><span class="pre">LDFLAGS=&quot;-L</span> <span class="pre">/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib&quot;</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">cosmic-popsynth</span></code></p>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n cosmic gfortran_osx-64 numpy h5py <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7
 <span class="nb">source</span> activate cosmic
-pip install --upgrade cosmic-popsynth
+pip install cosmic-popsynth
 </pre></div>
 </div>
 </div>
@@ -189,7 +194,7 @@ pip install --upgrade cosmic-popsynth
 <h3>Unix<a class="headerlink" href="#unix" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name cosmic <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.7 numpy h5py
 <span class="nb">source</span> activate cosmic
-pip install --upgrade cosmic-popsynth
+pip install cosmic-popsynth
 </pre></div>
 </div>
 </div>
@@ -222,37 +227,29 @@ from the GITHUB folder itself, i.e.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../inifile/index.html" class="btn btn-neutral float-right" title="Configuration files for COSMIC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to COSMIC’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../inifile/index.html" class="btn btn-neutral float-right" title="Configuration files for COSMIC" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to COSMIC’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Katie Breivik
+        &#169; Copyright 2021, Katie Breivik.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

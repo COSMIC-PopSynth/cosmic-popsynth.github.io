@@ -1,0 +1,26 @@
+cosmic.sample package
+=====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   cosmic.sample.sampler
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   cosmic.sample.initialbinarytable
+
+Module contents
+---------------
+
+.. automodule:: cosmic.sample
+   :members:
+   :undoc-members:
+   :show-inheritance:

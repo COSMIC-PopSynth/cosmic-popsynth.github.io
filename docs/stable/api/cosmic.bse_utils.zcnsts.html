@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.3.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.4.0 documentation</title>
   
 
   
@@ -18,7 +18,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -31,7 +34,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
+            <a href="../index.html" class="icon icon-home"> cosmic
           
 
           
@@ -61,7 +63,7 @@
             
             
               <div class="version">
-                3.3.0
+                3.4.0
               </div>
             
           
@@ -133,6 +135,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -144,7 +148,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/api/cosmic.bse_utils.zcnsts.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -160,29 +164,22 @@
             
   <span class="target" id="module-cosmic.bse_utils.zcnsts"></span><dl class="py function">
 <dt id="cosmic.bse_utils.zcnsts.zcnsts">
-<code class="sig-prename descclassname">cosmic.bse_utils.zcnsts.</code><code class="sig-name descname">zcnsts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.bse_utils.zcnsts.zcnsts" title="Permalink to this definition">¶</a></dt>
-<dd><ul class="simple">
-<li></li>
-<li></li>
-<li></li>
-<li><p>zpars:  1; M below which hook doesn’t appear on MS, Mhook.</p></li>
-<li><p>2; M above which He ignition occurs non-degenerately, Mhef.</p></li>
-<li><p>3; M above which He ignition occurs on the HG, Mfgb.</p></li>
-<li><p>4; M below which C/O ignition doesn’t occur, Mup.</p></li>
-<li><p>5; M above which C ignites in the centre, Mec.</p></li>
-<li><p>6; value of log D for M&lt;= zpars[2]</p></li>
-<li><p>7; value of x for Rgb propto M^(-x)</p></li>
-<li><p>8; value of x for tMS = numpy.maximum(tHOOK,x*tBGB)</p></li>
-<li><p>9; constant for McHeIf when computing Mc,BGB, mchefl.</p></li>
-<li><p>10; constant for McHeIf when computing Mc,HeI, mchefl.</p></li>
-<li><p>11; hydrogen abundance.</p></li>
-<li><p>12; helium abundance.</p></li>
-<li><p>13; constant x in rnumpy.minimum = rgb*x**y used by LM CHeB.</p></li>
-<li><p>14; z**0.4 to be used for WD L formula.</p></li>
-<li></li>
-<li></li>
-<li></li>
-</ul>
+<code class="sig-prename descclassname"><span class="pre">cosmic.bse_utils.zcnsts.</span></code><code class="sig-name descname"><span class="pre">zcnsts</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.bse_utils.zcnsts.zcnsts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate constants based on the metallicty
+*      zpars:  1; M below which hook doesn’t appear on MS, Mhook.
+*              2; M above which He ignition occurs non-degenerately, Mhef.
+*              3; M above which He ignition occurs on the HG, Mfgb.
+*              4; M below which C/O ignition doesn’t occur, Mup.
+*              5; M above which C ignites in the centre, Mec.
+*              6; value of log D for M&lt;= zpars[2]
+*              7; value of x for Rgb propto M^(-x)
+*              8; value of x for tMS = numpy.maximum(tHOOK,x*tBGB)
+*              9; constant for McHeIf when computing Mc,BGB, mchefl.
+*             10; constant for McHeIf when computing Mc,HeI, mchefl.
+*             11; hydrogen abundance.
+*             12; helium abundance.
+*             13; constant x in rnumpy.minimum = rgb*x**y used by LM CHeB.
+*             14; z**0.4 to be used for WD L formula.</p>
 </dd></dl>
 
 
@@ -191,28 +188,25 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Katie Breivik
+        &#169; Copyright 2021, Katie Breivik.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

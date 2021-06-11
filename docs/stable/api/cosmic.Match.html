@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; cosmic 3.3.0 documentation</title>
+  <title>&lt;no title&gt; &mdash; cosmic 3.4.0 documentation</title>
   
 
   
@@ -18,7 +18,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -31,7 +34,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -51,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
+            <a href="../index.html" class="icon icon-home"> cosmic
           
 
           
@@ -61,7 +63,7 @@
             
             
               <div class="version">
-                3.3.0
+                3.4.0
               </div>
             
           
@@ -133,6 +135,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -144,7 +148,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/api/cosmic.Match.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -160,8 +164,33 @@
             
   <span class="target" id="module-cosmic.Match"></span><p><cite>Match</cite></p>
 <dl class="py function">
+<dt id="cosmic.Match.dat_transform">
+<code class="sig-prename descclassname"><span class="pre">cosmic.Match.</span></code><code class="sig-name descname"><span class="pre">dat_transform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dat_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.Match.dat_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform a data set to have limits between zero and one using
+param_transform, then transform to log space</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dat ” DataFrame</strong></p>
+<blockquote>
+<div><p>Data to transform to eventually perform KDE</p>
+</div></blockquote>
+<p><strong>dat_list</strong> : list</p>
+<blockquote>
+<div><p>List of DataFrame columns to include in transformation</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>dat_trans</strong> : array</p>
+<blockquote>
+<div><p>Transformed data for columns in dat_list</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="cosmic.Match.match">
-<code class="sig-prename descclassname">cosmic.Match.</code><code class="sig-name descname">match</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataCm</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.Match.match" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cosmic.Match.</span></code><code class="sig-name descname"><span class="pre">match</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataCm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.Match.match" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs the Match calculation in Eq. 1 of Breivik &amp; Larson (2018)</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -185,7 +214,7 @@
 
 <dl class="py function">
 <dt id="cosmic.Match.perform_convergence">
-<code class="sig-prename descclassname">cosmic.Match.</code><code class="sig-name descname">perform_convergence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conv_params</span></em>, <em class="sig-param"><span class="n">conv_1</span></em>, <em class="sig-param"><span class="n">conv_2</span></em>, <em class="sig-param"><span class="n">log_file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.Match.perform_convergence" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cosmic.Match.</span></code><code class="sig-name descname"><span class="pre">perform_convergence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conv_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conv_2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.Match.perform_convergence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Performs the convergence calculations for each convergence parameter
 and binary state</p>
 <dl class="field-list">
@@ -223,28 +252,25 @@ e.g. eccentricity for a disrupted system</p>
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Katie Breivik
+        &#169; Copyright 2021, Katie Breivik.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

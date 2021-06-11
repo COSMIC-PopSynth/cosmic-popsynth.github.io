@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Describing the output of COSMIC/BSE: Columns names/Values/Units &mdash; cosmic 3.3.0 documentation</title>
+  <title>Describing the output of COSMIC/BSE: Columns names/Values/Units &mdash; cosmic 3.4.0 documentation</title>
   
 
   
@@ -18,7 +18,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -31,7 +34,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -53,7 +55,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cosmic
+            <a href="../index.html" class="icon icon-home"> cosmic
           
 
           
@@ -63,7 +65,7 @@
             
             
               <div class="version">
-                3.3.0
+                3.4.0
               </div>
             
           
@@ -141,6 +143,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -152,7 +156,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/output_info/index.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -257,7 +261,7 @@
 <td><p>begin Roche lobe overflow</p></td>
 </tr>
 <tr class="row-odd"><td><p>4</p></td>
-<td><p>end Roche lobe overlow</p></td>
+<td><p>end Roche lobe overflow</p></td>
 </tr>
 <tr class="row-even"><td><p>5</p></td>
 <td><p>contact</p></td>
@@ -302,7 +306,7 @@
 <h2>bpp<a class="headerlink" href="#bpp" title="Permalink to this headline">¶</a></h2>
 <p>This <cite>pandas.DataFrame</cite> tracks a selection of binary parameters at key evolutionary changes.
 Entries are added with changes in the <a class="reference internal" href="#evolve-type-table"><span class="std std-ref">Evolve Type</span></a>.
-All values with a <cite>_1</cite> label refer to the primary; the bpp DataFrame also includes the same column for the secondary with <cite>_1</cite> replaced by <cite>_2</cite></p>
+All values with a <cite>_1</cite> label refer to the primary (i.e., the initially more massive component); the bpp DataFrame also includes the same column for the secondary with <cite>_1</cite> replaced by <cite>_2</cite></p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 14%" />
@@ -370,19 +374,19 @@ All values with a <cite>_1</cite> label refer to the primary; the bpp DataFrame 
 <td><p>Neutron star magnetic field [<img class="math" src="../_images/math/726cf670be727f46faf2e2c1a29b50b7b40a8984.png" alt="{\rm{G}}"/>]</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bacc_1</span></code></p></td>
-<td><p>(only for pulsars) <img class="math" src="../_images/math/4e68fa3bba4eb66d3e051d3fa23f34ef358b60a3.png" alt="\delta{\mathrm{M}_\odot}"/> during accretion see Equation 7 in COSMIC paper</p></td>
+<td><p>(only for pulsars) <img class="math" src="../_images/math/4e68fa3bba4eb66d3e051d3fa23f34ef358b60a3.png" alt="\delta{\mathrm{M}_\odot}"/> during accretion, see Equation 7 in COSMIC paper</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tacc_1</span></code></p></td>
 <td><p>Accretion duration (used for magnetic field decay) [<img class="math" src="../_images/math/e82addbe58df2cc87d7467f7bc0abb9c65e42c8b.png" alt="{\rm{Myr}}"/>]</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">epoch_1</span></code></p></td>
-<td></td>
+<td><p>Time spent in current evolutionary epoch [<img class="math" src="../_images/math/e82addbe58df2cc87d7467f7bc0abb9c65e42c8b.png" alt="{\rm{Myr}}"/>]</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bhspin_1</span></code></p></td>
-<td><p>Black hole spin magnitude [unitless]</p></td>
+<td><p>Black hole spin magnitude [dimensionless]</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bin_num</span></code></p></td>
-<td><p>Unique binary index that is consistent across initial conditions, bcm and bpp DataFrames</p></td>
+<td><p>Unique binary index that is consistent across initial conditions, bcm, bpp, and kick_info DataFrames</p></td>
 </tr>
 </tbody>
 </table>
@@ -394,8 +398,8 @@ By default, COSMIC saves only the first and last timestep in the bcm DataFrame.
 All values with a <cite>_1</cite> label refer to the primary; the bcm DataFrame also includes the same column for the secondary with <cite>_1</cite> replaced by <cite>_2</cite></p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 86%" />
+<col style="width: 11%" />
+<col style="width: 89%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tphys</span></code></p></td>
@@ -458,13 +462,13 @@ All values with a <cite>_1</cite> label refer to the primary; the bcm DataFrame 
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SN_1</span></code></p></td>
 <td><p>Supernova type:</p>
 <blockquote>
-<div><p>1: Fe Core-collapse SN</p>
-<p>2: Electron capture SN</p>
-<p>3: Ultra-stripped supernovae (these happen whenever a He-star undergoes a CE with a compact companion)</p>
-<p>4: Accretion induced collapse SN</p>
+<div><p>1: Iron core-collapse supernova</p>
+<p>2: Electron capture supernova</p>
+<p>3: Ultra-stripped supernova (these happen whenever a He-star undergoes a common envelope with a compact companion)</p>
+<p>4: Accretion induced collapse supernova</p>
 <p>5: Merger induced collapse</p>
-<p>6: Pulsational-pair instability</p>
-<p>7: Pair instability SN</p>
+<p>6: Pulsational pair instability</p>
+<p>7: Pair instability supernova</p>
 </div></blockquote>
 </td>
 </tr>
@@ -472,17 +476,17 @@ All values with a <cite>_1</cite> label refer to the primary; the bcm DataFrame 
 <td><p>State of the binary: 0 [binary], 1 [merged], 2 [disrupted]</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">merger_type</span></code></p></td>
-<td><p>String of the kstar’s in the merger, ‘-001’ if not merged</p></td>
+<td><p>String of the kstar’s in the merger. For example, two neutron stars that merged will be ‘1313’. Set to ‘-001’ if binary has not merged.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bin_num</span></code></p></td>
-<td><p>Unique binary index that is consistent across initial conditions, bcm and bpp DataFrames</p></td>
+<td><p>Unique binary index that is consistent across initial conditions, bcm. bpp, and kick_info DataFrames</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="kick-info">
 <h2>kick_info<a class="headerlink" href="#kick-info" title="Permalink to this headline">¶</a></h2>
-<p>kick_info is a (2,17) array that tracks information about the supernova
+<p>kick_info is a (2,17) array that tracks information about supernova
 kicks. This allows us to track the total change to the systemic
 velocity and the total change in the orbital plane tilt after both
 supernovae, as well as reproduce systems.
@@ -491,77 +495,61 @@ occurs, the second row the second supernova.
 Note that some values the second row will take into account the
 effect of the first SN (e.g., kick_info[2,10] is the total systemic
 velocity after both supernovae).</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>kick_info[i,1]: snstar of exploding star</p></li>
-<li><p>kick_info[i,2]: disrupted (0=no, 1=yes)</p></li>
-<li><p>kick_info[i,3]: magnitude of the natal kick</p></li>
-<li><p>kick_info[i,4-5]: phi and theta (in the frame of the exploding star)</p></li>
-<li><p>kick_info[i,6]: eccentric anomaly</p></li>
-<li><p>kick_info[i,7-9]: change in 3D systemic velocity of the binary, or the change in 3D velocity of snstar=1 if the system is disrupted</p></li>
-<li><p>kick_info[i,10]: magnitude of systemic velocity of the binary if bound or magnitude of total velocity of snstar=1 if disrupted, accounting for both SNe</p></li>
-<li><p>kick_info[i,11-13]: change in 3D velocity of the snstar=2 if system is disrupted</p></li>
-<li><p>kick_info[i,14]: magnitude of velocity of snstar=2 if disrupted,  accounting for both SNe</p></li>
-<li><p>kick_info[i,15]: (total) tilt of the orbital plane after each SN w.r.t. the original angular momentum axis after each SN</p></li>
-<li><p>kick_info[i,16]: azimuthal angle of the orbital plane w.r.t. spins</p></li>
-<li><p>kick_info[i,17]: random seed at the start of call to kick.f</p></li>
-</ul>
-</div></blockquote>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 14%" />
-<col style="width: 86%" />
+<col style="width: 24%" />
+<col style="width: 76%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">star</span></code></p></td>
-<td><p>snstar of exploding star</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,1]:</span> <span class="pre">star</span></code></p></td>
+<td><p>whether the exploding star is the primary (1) or secondary (2)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">disrupted</span></code></p></td>
-<td><p>disrupted (0=no, 1=yes)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,2]:</span> <span class="pre">disrupted</span></code></p></td>
+<td><p>whether the system was disrupted from the SN (0=no, 1=yes)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">natal_kick</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,3]:</span> <span class="pre">natal_kick</span></code></p></td>
 <td><p>magnitude of the natal kick [<img class="math" src="../_images/math/fcee70263a872624d5a424cce89867699814f1c8.png" alt="{\rm{km/s}}"/>]</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">phi</span></code></p></td>
-<td><p>of explosion (in the frame of the exploding star) [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,4]:</span> <span class="pre">phi</span></code></p></td>
+<td><p>polar angle of explosion (in the frame of the exploding star) [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">theta</span></code></p></td>
-<td><p>of explosion (in the frame of the exploding star) [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,5]:</span> <span class="pre">theta</span></code></p></td>
+<td><p>azimuthal angle of explosion (in the frame of the exploding star) [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">eccentric</span> <span class="pre">anomaly</span></code></p></td>
-<td><p>eccentric anomaly [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,6]:</span> <span class="pre">mean</span> <span class="pre">anomaly</span></code></p></td>
+<td><p>mean anomaly at time of explosion [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">delta_vsysx_1</span></code></p></td>
-<td><p>change in 3D systemic velocity of the binary, or the change in 3D velocity of snstar=1 if the system is disrupted (x)</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,7]:</span> <span class="pre">delta_vsysx_1</span></code></p></td>
+<td><p>change in 3D systemic velocity of the binary, or the change in 3D velocity of star=1 if the system is disrupted (x-component)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">delta_vsysy_1</span></code></p></td>
-<td><p>change in 3D systemic velocity of the binary, or the change in 3D velocity of snstar=1 if the system is disrupted (y)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,8]:</span> <span class="pre">delta_vsysy_1</span></code></p></td>
+<td><p>change in 3D systemic velocity of the binary, or the change in 3D velocity of star=1 if the system is disrupted (y-component)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">delta_vsysz_1</span></code></p></td>
-<td><p>change in 3D systemic velocity of the binary, or the change in 3D velocity of snstar=1 if the system is disrupted (z)</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,9]:</span> <span class="pre">delta_vsysz_1</span></code></p></td>
+<td><p>change in 3D systemic velocity of the binary, or the change in 3D velocity of star=1 if the system is disrupted (z-component)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vsys_1_total</span></code></p></td>
-<td><p>magnitude of systemic velocity of the binary if bound or magnitude of total velocity of snstar=1 if disrupted, accounting for both SNe</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,10]:</span> <span class="pre">vsys_1_total</span></code></p></td>
+<td><p>magnitude of systemic velocity of the binary if bound, or magnitude of total velocity of star=1 if disrupted, accounting for both SNe</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">delta_vsysx_2</span></code></p></td>
-<td><p>change in 3D velocity of the snstar=2 if system is disrupted (x)</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,11]:</span> <span class="pre">delta_vsysx_2</span></code></p></td>
+<td><p>change in 3D velocity of the star=2 if system is disrupted (x-component)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">delta_vsysy_2</span></code></p></td>
-<td><p>change in 3D velocity of the snstar=2 if system is disrupted (y)</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,12]:</span> <span class="pre">delta_vsysy_2</span></code></p></td>
+<td><p>change in 3D velocity of the star=2 if system is disrupted (y-component)</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">delta_vsysz_2</span></code></p></td>
-<td><p>change in 3D velocity of the snstar=2 if system is disrupted (z)</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,13]:</span> <span class="pre">delta_vsysz_2</span></code></p></td>
+<td><p>change in 3D velocity of the star=2 if system is disrupted (z-component)</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vsys_2_total</span></code></p></td>
-<td><p>magnitude of velocity of snstar=2 if disrupted,  accounting for both SNe [<img class="math" src="../_images/math/fcee70263a872624d5a424cce89867699814f1c8.png" alt="{\rm{km/s}}"/>]</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,14]:</span> <span class="pre">vsys_2_total</span></code></p></td>
+<td><p>magnitude of velocity of star=2 if disrupted, accounting for both SNe [<img class="math" src="../_images/math/fcee70263a872624d5a424cce89867699814f1c8.png" alt="{\rm{km/s}}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">delta_theta_total</span></code></p></td>
-<td><p>Angular change in orbital plane due to supernova [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,15]:</span> <span class="pre">delta_theta_total</span></code></p></td>
+<td><p>angular change in orbital plane due to supernovae, relative to the pre-SN1 orbital plane [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">omega</span></code></p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,16]:</span> <span class="pre">omega</span></code></p></td>
 <td><p>azimuthal angle of the orbital plane w.r.t. spins [<img class="math" src="../_images/math/959a17fd2b0357204a6ed691a863952dd421ac01.png" alt="{\rm{degrees}}"/>]</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">randomseed</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kick_info[i,17]:</span> <span class="pre">randomseed</span></code></p></td>
 <td><p>random seed at the start of call to kick.f</p></td>
 </tr>
 </tbody>
@@ -574,37 +562,29 @@ velocity after both supernovae).</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Using COSMIC to evolve binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../inifile/index.html" class="btn btn-neutral float-left" title="Configuration files for COSMIC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Using COSMIC to evolve binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../inifile/index.html" class="btn btn-neutral float-left" title="Configuration files for COSMIC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2020, Katie Breivik
+        &#169; Copyright 2021, Katie Breivik.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
