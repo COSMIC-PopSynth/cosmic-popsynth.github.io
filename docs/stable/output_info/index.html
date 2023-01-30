@@ -1,76 +1,42 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Describing the output of COSMIC/BSE: Columns names/Values/Units &mdash; cosmic 3.4.0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Describing the output of COSMIC/BSE: Columns names/Values/Units &mdash; cosmic 3.4.7 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Using COSMIC to evolve binaries" href="../examples/index.html" />
     <link rel="prev" title="Configuration files for COSMIC" href="../inifile/index.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> cosmic
-          
-
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                3.4.0
+                3.4.7
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,18 +44,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
@@ -105,79 +60,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>COSMIC</cite> way</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">cosmic</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Describing the output of COSMIC/BSE: Columns names/Values/Units</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/output_info/index.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="describing-the-output-of-cosmic-bse-columns-names-values-units">
-<span id="output-info"></span><h1>Describing the output of COSMIC/BSE: Columns names/Values/Units<a class="headerlink" href="#describing-the-output-of-cosmic-bse-columns-names-values-units" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="evolutionary-states-of-stars-binaries">
-<h2>Evolutionary states of stars/binaries<a class="headerlink" href="#evolutionary-states-of-stars-binaries" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="describing-the-output-of-cosmic-bse-columns-names-values-units">
+<span id="output-info"></span><h1>Describing the output of COSMIC/BSE: Columns names/Values/Units<a class="headerlink" href="#describing-the-output-of-cosmic-bse-columns-names-values-units" title="Permalink to this heading"></a></h1>
+<section id="evolutionary-states-of-stars-binaries">
+<h2>Evolutionary states of stars/binaries<a class="headerlink" href="#evolutionary-states-of-stars-binaries" title="Permalink to this heading"></a></h2>
 <p>Since COSMIC uses BSE as it’s core binary evolution algorithm, the output of COSMIC follows most of the same conventions as BSE. The kstar values and evolution stages are nearly identical to their BSE counterparts.</p>
 <p>The kstar value specifies the evolutionary state of the star:</p>
 <span id="kstar-table"></span><table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Evolutionary State of the Star</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">Evolutionary State of the Star</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 9%" />
 <col style="width: 91%" />
@@ -240,7 +154,7 @@
 </table>
 <p>The evolutionary changes of the binary are logged in the evol_type column, which is filled with integer values. The key for each integer is listed below:</p>
 <span id="evolve-type-table"></span><table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Evolve Type</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">Evolve Type</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 26%" />
 <col style="width: 74%" />
@@ -301,9 +215,9 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="bpp">
-<h2>bpp<a class="headerlink" href="#bpp" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="bpp">
+<h2>bpp<a class="headerlink" href="#bpp" title="Permalink to this heading"></a></h2>
 <p>This <cite>pandas.DataFrame</cite> tracks a selection of binary parameters at key evolutionary changes.
 Entries are added with changes in the <a class="reference internal" href="#evolve-type-table"><span class="std std-ref">Evolve Type</span></a>.
 All values with a <cite>_1</cite> label refer to the primary (i.e., the initially more massive component); the bpp DataFrame also includes the same column for the secondary with <cite>_1</cite> replaced by <cite>_2</cite></p>
@@ -390,9 +304,9 @@ All values with a <cite>_1</cite> label refer to the primary (i.e., the initiall
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="bcm">
-<h2>bcm<a class="headerlink" href="#bcm" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="bcm">
+<h2>bcm<a class="headerlink" href="#bcm" title="Permalink to this heading"></a></h2>
 <p>This <cite>pandas.DataFrame</cite> provides several binary parameters at user-specified timesteps in the evolution.
 By default, COSMIC saves only the first and last timestep in the bcm DataFrame.
 All values with a <cite>_1</cite> label refer to the primary; the bcm DataFrame also includes the same column for the secondary with <cite>_1</cite> replaced by <cite>_2</cite></p>
@@ -483,9 +397,9 @@ All values with a <cite>_1</cite> label refer to the primary; the bcm DataFrame 
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="kick-info">
-<h2>kick_info<a class="headerlink" href="#kick-info" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="kick-info">
+<h2>kick_info<a class="headerlink" href="#kick-info" title="Permalink to this heading"></a></h2>
 <p>kick_info is a (2,17) array that tracks information about supernova
 kicks. This allows us to track the total change to the systemic
 velocity and the total change in the orbital plane tilt after both
@@ -554,55 +468,38 @@ velocity after both supernovae).</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Using COSMIC to evolve binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../inifile/index.html" class="btn btn-neutral float-left" title="Configuration files for COSMIC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Using COSMIC to evolve binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2021, Katie Breivik.
-
-    </p>
+    <p>&#169; Copyright 2021, Katie Breivik.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

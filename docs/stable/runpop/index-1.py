@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 final_kstar = np.linspace(0,14,15)
-colors = {'green' : '#1b9e77', 'purple' : '#d95f02', 'orange' : '#7570b3'}
+colors = {'green' : '#1b9e77', 'orange' : '#d95f02', 'purple' : '#7570b3'}
 initC_logP, m_sin_logP, m_bin_logP, n_sin_logP, n_bin_logP = InitialBinaryTable.sampler('independent',
                                                                                         final_kstar1=final_kstar,
                                                                                         final_kstar2=final_kstar,
