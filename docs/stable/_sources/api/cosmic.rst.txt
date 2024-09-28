@@ -20,6 +20,7 @@ Submodules
    cosmic.checkstate
    cosmic.evolve
    cosmic.filter
+   cosmic.get_commit_hash
    cosmic.plotting
    cosmic.utils
 

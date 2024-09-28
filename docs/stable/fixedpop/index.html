@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Generate a population the COSMIC way &mdash; cosmic 3.4.7 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <title>Generate a population the COSMIC way &mdash; cosmic 3.4.17 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
       <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=521b3960"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -31,14 +32,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> cosmic
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            cosmic
           </a>
               <div class="version">
-                3.4.7
+                3.4.17
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -79,8 +84,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Generate a population the <cite>COSMIC</cite> way</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Generate a population the <cite>COSMIC</cite> way</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/fixedpop/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -91,12 +96,12 @@
            <div itemprop="articleBody">
              
   <section id="generate-a-population-the-cosmic-way">
-<span id="fixedpop"></span><h1>Generate a population the <cite>COSMIC</cite> way<a class="headerlink" href="#generate-a-population-the-cosmic-way" title="Permalink to this heading"></a></h1>
+<span id="fixedpop"></span><h1>Generate a population the <cite>COSMIC</cite> way<a class="headerlink" href="#generate-a-population-the-cosmic-way" title="Link to this heading"></a></h1>
 <p>Beyond providing a simple interface and several updates to BSE (<a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">Hurley+2002</a>), COSMIC is designed to adapt the number of systems simulated to each binary evolution model a user selects. This is done by iteratively simulating binaries initialized with ZAMS binary parameters and a star formation history until the distributions of binary parameters specified by the user converge. This process is carried out by <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code>. Once this population is simulated, an astrophysical population can be sampled from the output of <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code>.</p>
 <section id="cosmic-pop">
-<h2>cosmic-pop<a class="headerlink" href="#cosmic-pop" title="Permalink to this heading"></a></h2>
+<h2>cosmic-pop<a class="headerlink" href="#cosmic-pop" title="Link to this heading"></a></h2>
 <p>The <cite>fixed population</cite> is the output of <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code> and is designed to fully describe the distribution of binary parameters that results from a user specified star formation history (SFH) and binary evolution model (BSEDict, specified in an inifile). The fixed population is only simulated once and only contains information about the intrinsic properties of the binary (e.g. masses, semimajor axes, metallicities, etc.) Information about the location and orientation of each binary is <cite>not</cite> contained in the fixed population. The arguments necessary to run the <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code> executable can be found using the help command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cosmic-pop -h
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cosmic-pop<span class="w"> </span>-h
 </pre></div>
 </div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>usage: cosmic-pop [-h] [--inifile FILE] --final-kstar1 FINAL_KSTAR1
@@ -112,7 +117,8 @@
                   [--convergence_limits CONVERGENCE_LIMITS]
                   [--pop_select POP_SELECT] [--match MATCH]
                   [--apply_convergence_limits [APPLY_CONVERGENCE_LIMITS]]
-                  [--seed SEED] [--verbose] [-n NPROC | --mpi]
+                  [--seed SEED] [--verbose] [--complib COMPLIB]
+                  [--complevel COMPLEVEL] [-n NPROC | --mpi]
 
 options:
   -h, --help            show this help message and exit
@@ -163,15 +169,18 @@ options:
                         the binaries that satsify the convergence limits
   --seed SEED
   --verbose             Run in Verbose Mode
+  --complib COMPLIB     HDFStore compression library
+  --complevel COMPLEVEL
+                        HDFStore compression level
   -n NPROC, --nproc NPROC
                         number of processors
   --mpi                 Run with MPI.
 </pre></div>
 </div>
 <section id="inputs">
-<h3>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading"></a></h3>
+<h3>Inputs<a class="headerlink" href="#inputs" title="Link to this heading"></a></h3>
 <section id="params-ini">
-<h4>Params.ini<a class="headerlink" href="#params-ini" title="Permalink to this heading"></a></h4>
+<h4>Params.ini<a class="headerlink" href="#params-ini" title="Link to this heading"></a></h4>
 <p>PLEASE SEE <a class="reference internal" href="../inifile/index.html#inifile"><span class="std std-ref">Configuration files for COSMIC</span></a> for detailed information about the inifile and how it is constructed</p>
 <p>The inifile contains five subsections: <code class="docutils literal notranslate"><span class="pre">filters</span></code>, <code class="docutils literal notranslate"><span class="pre">convergence</span></code>, <code class="docutils literal notranslate"><span class="pre">rand_seed</span></code>, and <code class="docutils literal notranslate"><span class="pre">bse</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">filters</span></code> subsection allows you to specify how you would like to filter the binary population. See the inifile for a description of each flag.</p>
@@ -181,13 +190,13 @@ options:
 <p>The <code class="docutils literal notranslate"><span class="pre">bse</span></code> subsection is where all the BSE flags are specified.</p>
 </section>
 <section id="sample-command-line">
-<h4>Sample command line<a class="headerlink" href="#sample-command-line" title="Permalink to this heading"></a></h4>
+<h4>Sample command line<a class="headerlink" href="#sample-command-line" title="Link to this heading"></a></h4>
 <p>Below is an example command line call for <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code> with multiprocessing (i.e. shared memory on a single computer):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cosmic-pop --final-kstar1 <span class="m">13</span> <span class="m">14</span> --final-kstar2 <span class="m">13</span> <span class="m">14</span> --inifile Params.ini --Nstep <span class="m">1000</span> --Niter <span class="m">1000000000</span> -n <span class="m">2</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cosmic-pop<span class="w"> </span>--final-kstar1<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">14</span><span class="w"> </span>--final-kstar2<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">14</span><span class="w"> </span>--inifile<span class="w"> </span>Params.ini<span class="w"> </span>--Nstep<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--Niter<span class="w"> </span><span class="m">1000000000</span><span class="w"> </span>-n<span class="w"> </span><span class="m">2</span>
 </pre></div>
 </div>
 <p>Below is an example command line call for <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code> with MPI (i.e. across many computers):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec -n <span class="m">2</span> python PATHTOEXECTUABLEDIRECTORY/cosmic-pop --final-kstar1 <span class="m">13</span> <span class="m">14</span> --final-kstar2 <span class="m">13</span> <span class="m">14</span> --inifile Params.ini --Nstep <span class="m">1000</span> --Niter <span class="m">1000000000</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpiexec<span class="w"> </span>-n<span class="w"> </span><span class="m">2</span><span class="w"> </span>python<span class="w"> </span>PATHTOEXECTUABLEDIRECTORY/cosmic-pop<span class="w"> </span>--final-kstar1<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">14</span><span class="w"> </span>--final-kstar2<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">14</span><span class="w"> </span>--inifile<span class="w"> </span>Params.ini<span class="w"> </span>--Nstep<span class="w"> </span><span class="m">1000</span><span class="w"> </span>--Niter<span class="w"> </span><span class="m">1000000000</span>
 </pre></div>
 </div>
 <p>A breakdown of each argument follows:</p>
@@ -199,7 +208,7 @@ options:
 </section>
 </section>
 <section id="stopping-conditions">
-<h3>Stopping conditions<a class="headerlink" href="#stopping-conditions" title="Permalink to this heading"></a></h3>
+<h3>Stopping conditions<a class="headerlink" href="#stopping-conditions" title="Link to this heading"></a></h3>
 <p>There are two stopping conditions for <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code>:</p>
 <ol class="arabic simple">
 <li><p>The shape of the parameter distributions for the parameters specified in convergence_params section of the inifile file converge to a shape, regardless of adding new binaries to the evolved population. This is quantified by the match criteria detailed in Breivik+2020</p></li>
@@ -207,7 +216,7 @@ options:
 </ol>
 </section>
 <section id="output-of-cosmic-pop">
-<h3>Output of cosmic-pop<a class="headerlink" href="#output-of-cosmic-pop" title="Permalink to this heading"></a></h3>
+<h3>Output of cosmic-pop<a class="headerlink" href="#output-of-cosmic-pop" title="Link to this heading"></a></h3>
 <p>PLEASE SEE <a class="reference internal" href="../output_info/index.html#output-info"><span class="std std-ref">Describing the output of COSMIC/BSE: Columns names/Values/Units</span></a> for more information about the output data frames including
 what each column means and the units.</p>
 <p>The output of <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code> is the <cite>fixed population</cite>, an hdf5 file with a naming scheme that tells you the Galactic component and final kstars of the population; the data file created by the <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code> call above is: dat_DeltaBurst_13_14_13_14.h5.</p>
@@ -231,7 +240,7 @@ what each column means and the units.</p>
 </section>
 </section>
 <section id="scaling-to-an-astrophysical-population">
-<h2>scaling to an astrophysical population<a class="headerlink" href="#scaling-to-an-astrophysical-population" title="Permalink to this heading"></a></h2>
+<h2>scaling to an astrophysical population<a class="headerlink" href="#scaling-to-an-astrophysical-population" title="Link to this heading"></a></h2>
 <p>Once the fixed population is simulated, you can scale the simulation to an astrophysical population by resampling the <code class="docutils literal notranslate"><span class="pre">conv</span></code> DataFrame.</p>
 <p>First, we need to load the data which is saved in the same directory where` <code class="docutils literal notranslate"><span class="pre">cosmic-pop</span></code> is called:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span>

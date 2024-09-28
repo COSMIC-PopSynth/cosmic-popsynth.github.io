@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuration files for COSMIC &mdash; cosmic 3.4.7 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/plot_directive.css" type="text/css" />
+  <title>Configuration files for COSMIC &mdash; cosmic 3.4.17 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
       <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=521b3960"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -32,14 +33,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> cosmic
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            cosmic
           </a>
               <div class="version">
-                3.4.7
+                3.4.17
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -77,8 +82,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Configuration files for COSMIC</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Configuration files for COSMIC</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/inifile/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,9 +94,9 @@
            <div itemprop="articleBody">
              
   <section id="configuration-files-for-cosmic">
-<span id="inifile"></span><h1>Configuration files for COSMIC<a class="headerlink" href="#configuration-files-for-cosmic" title="Permalink to this heading"></a></h1>
+<span id="inifile"></span><h1>Configuration files for COSMIC<a class="headerlink" href="#configuration-files-for-cosmic" title="Link to this heading"></a></h1>
 <section id="how-to-write-a-configuration-file">
-<h2>How to write a configuration file<a class="headerlink" href="#how-to-write-a-configuration-file" title="Permalink to this heading"></a></h2>
+<h2>How to write a configuration file<a class="headerlink" href="#how-to-write-a-configuration-file" title="Link to this heading"></a></h2>
 <p>The <cite>cosmic-pop</cite> command-line executable cannot run without a configuration file.
 Each of the sections below lists inputs for COSMIC’s modified version of BSE. Each input has a description of the allowed values and an example of what that section might look like in the INI format; recommended  default settings for many parameters are
 given after their description in boldface.</p>
@@ -99,12 +104,8 @@ given after their description in boldface.</p>
 inifile for COSMIC: <a class="reference external" href="https://github.com/COSMIC-PopSynth/COSMIC/blob/master/examples/Params.ini">Stable Version INIFILE</a></p>
 <p>Here is a link to the unstable development version of the default inifile for COSMIC: <a class="reference external" href="https://github.com/COSMIC-PopSynth/COSMIC/blob/develop/examples/Params.ini">Development Version INIFILE</a></p>
 <section id="filters">
-<h3>filters<a class="headerlink" href="#filters" title="Permalink to this heading"></a></h3>
+<h3>filters<a class="headerlink" href="#filters" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 82%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">binary_state</span></code></p></td>
 <td><p>Each binary system will end its evolution in one of
@@ -139,33 +140,29 @@ you would specify this as:</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[filters]</span><span class="w"></span>
-<span class="c1">; binary_state determines which types of binaries endstates to retain</span><span class="w"></span>
-<span class="c1">; 0 alive today, 1 merged, 2 disrupted</span><span class="w"></span>
-<span class="c1">; default = [0,1]</span><span class="w"></span>
-<span class="na">binary_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[0,1]</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[filters]</span>
+<span class="c1">; binary_state determines which types of binaries endstates to retain</span>
+<span class="c1">; 0 alive today, 1 merged, 2 disrupted</span>
+<span class="c1">; default = [0,1]</span>
+<span class="na">binary_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[0,1]</span>
 
-<span class="c1">; timestep_conditions allow a user to pick specific time resolutions</span><span class="w"></span>
-<span class="c1">; to print at targeted stages of the binary evolution</span><span class="w"></span>
-<span class="c1">; This is used in conjunction with the [bse] section value dtp to determine the resolution</span><span class="w"></span>
-<span class="c1">; at which thing are printed into the so called bcm array</span><span class="w"></span>
-<span class="c1">; For example, if you only want dtp set to a value while the system is</span><span class="w"></span>
-<span class="c1">; intact i.e. has not merged or been disrupted you could do so with the following</span><span class="w"></span>
-<span class="c1">; timestep_conditions =[[&#39;binstate==0&#39;, &#39;dtp=1.0&#39;]]</span><span class="w"></span>
-<span class="c1">; Special examples include</span><span class="w"></span>
-<span class="c1">; timestep_conditions = &#39;dtp=None&#39;, only the final time step is printed to the bcm array</span><span class="w"></span>
-<span class="c1">; timestep_conditions = &#39;dtp=1.0&#39;, a single timestep applied to all evolutionary stages of the binary</span><span class="w"></span>
-<span class="na">timestep_conditions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;dtp=None&#39;</span><span class="w"></span>
+<span class="c1">; timestep_conditions allow a user to pick specific time resolutions</span>
+<span class="c1">; to print at targeted stages of the binary evolution</span>
+<span class="c1">; This is used in conjunction with the [bse] section value dtp to determine the resolution</span>
+<span class="c1">; at which thing are printed into the so called bcm array</span>
+<span class="c1">; For example, if you only want dtp set to a value while the system is</span>
+<span class="c1">; intact i.e. has not merged or been disrupted you could do so with the following</span>
+<span class="c1">; timestep_conditions =[[&#39;binstate==0&#39;, &#39;dtp=1.0&#39;]]</span>
+<span class="c1">; Special examples include</span>
+<span class="c1">; timestep_conditions = &#39;dtp=None&#39;, only the final time step is printed to the bcm array</span>
+<span class="c1">; timestep_conditions = &#39;dtp=1.0&#39;, a single timestep applied to all evolutionary stages of the binary</span>
+<span class="na">timestep_conditions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;dtp=None&#39;</span>
 </pre></div>
 </div>
 </section>
 <section id="sampling">
-<h3>sampling<a class="headerlink" href="#sampling" title="Permalink to this heading"></a></h3>
+<h3>sampling<a class="headerlink" href="#sampling" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 22%" />
-<col style="width: 78%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sampling_method</span></code></p></td>
 <td><p>Select which models to use to generate an initial
@@ -210,30 +207,26 @@ set <em>metallicity=0.02</em>.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sampling]</span><span class="w"></span>
-<span class="c1">; Specify if you would like to sample initial conditions via</span><span class="w"></span>
-<span class="c1">; the independent method (independent) or would like to sample</span><span class="w"></span>
-<span class="c1">; initial conditions follow Moe &amp; Di Stefano (2017) (multidim)</span><span class="w"></span>
-<span class="na">sampling_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">multidim</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[sampling]</span>
+<span class="c1">; Specify if you would like to sample initial conditions via</span>
+<span class="c1">; the independent method (independent) or would like to sample</span>
+<span class="c1">; initial conditions follow Moe &amp; Di Stefano (2017) (multidim)</span>
+<span class="na">sampling_method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">multidim</span>
 
-<span class="c1">; Sets the time in the past when star formation initiates in Myr</span><span class="w"></span>
-<span class="na">SF_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">13700.0</span><span class="w"></span>
+<span class="c1">; Sets the time in the past when star formation initiates in Myr</span>
+<span class="na">SF_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">13700.0</span>
 
-<span class="c1">; Sets the duration of constant star formation in Myr</span><span class="w"></span>
-<span class="na">SF_duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0</span><span class="w"></span>
+<span class="c1">; Sets the duration of constant star formation in Myr</span>
+<span class="na">SF_duration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0</span>
 
-<span class="c1">; Metallicity of the population of initial binaries</span><span class="w"></span>
-<span class="na">metallicity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.02</span><span class="w"></span>
+<span class="c1">; Metallicity of the population of initial binaries</span>
+<span class="na">metallicity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.02</span>
 </pre></div>
 </div>
 </section>
 <section id="convergence">
-<h3>[convergence]<a class="headerlink" href="#convergence" title="Permalink to this heading"></a></h3>
+<h3>[convergence]<a class="headerlink" href="#convergence" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">convergence_params</span></code></p></td>
 <td><p>A list of parameters you would like to verify have converged
@@ -299,74 +292,70 @@ convergence limits</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[convergence]</span><span class="w"></span>
-<span class="c1">; A list of parameters you would like to verify have converged</span><span class="w"></span>
-<span class="c1">; to a single distribution shape.</span><span class="w"></span>
-<span class="c1">; Options include mass_1, mass_2, sep, porb, ecc, massc_1, massc_2</span><span class="w"></span>
-<span class="c1">; rad_1, rad_2</span><span class="w"></span>
-<span class="na">convergence_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[mass_1,mass_2,porb,ecc]</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[convergence]</span>
+<span class="c1">; A list of parameters you would like to verify have converged</span>
+<span class="c1">; to a single distribution shape.</span>
+<span class="c1">; Options include mass_1, mass_2, sep, porb, ecc, massc_1, massc_2</span>
+<span class="c1">; rad_1, rad_2</span>
+<span class="na">convergence_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[mass_1,mass_2,porb,ecc]</span>
 
-<span class="c1">; convergence_limits is a dictionary that can contain limits for convergence params</span><span class="w"></span>
-<span class="c1">; convergence_limits = {&quot;mass_1&quot; : [0, 20], &quot;sep&quot; : [0,5000]}</span><span class="w"></span>
-<span class="na">convergence_limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{}</span><span class="w"></span>
+<span class="c1">; convergence_limits is a dictionary that can contain limits for convergence params</span>
+<span class="c1">; convergence_limits = {&quot;mass_1&quot; : [0, 20], &quot;sep&quot; : [0,5000]}</span>
+<span class="na">convergence_limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">{}</span>
 
-<span class="c1">; formation computes convergence on binary properties</span><span class="w"></span>
-<span class="c1">; at formation with user-specified final kstars</span><span class="w"></span>
+<span class="c1">; formation computes convergence on binary properties</span>
+<span class="c1">; at formation with user-specified final kstars</span>
 
-<span class="c1">; 1_SN computes convergence on binary properties</span><span class="w"></span>
-<span class="c1">; just before the first supernova for the population with</span><span class="w"></span>
-<span class="c1">; user-specified final kstars</span><span class="w"></span>
+<span class="c1">; 1_SN computes convergence on binary properties</span>
+<span class="c1">; just before the first supernova for the population with</span>
+<span class="c1">; user-specified final kstars</span>
 
-<span class="c1">; 2_SN computes convergence on binary properties</span><span class="w"></span>
-<span class="c1">; just before the second supernova for the population with</span><span class="w"></span>
-<span class="c1">; user-specified final kstars</span><span class="w"></span>
+<span class="c1">; 2_SN computes convergence on binary properties</span>
+<span class="c1">; just before the second supernova for the population with</span>
+<span class="c1">; user-specified final kstars</span>
 
-<span class="c1">; disruption computes convergence on binary properties</span><span class="w"></span>
-<span class="c1">; just before disruption of the population with</span><span class="w"></span>
-<span class="c1">; user-specified final kstars</span><span class="w"></span>
+<span class="c1">; disruption computes convergence on binary properties</span>
+<span class="c1">; just before disruption of the population with</span>
+<span class="c1">; user-specified final kstars</span>
 
-<span class="c1">; final_state computes convergence on binary properties</span><span class="w"></span>
-<span class="c1">; after the full evolution specified by the user-supplied evolution time</span><span class="w"></span>
-<span class="c1">; and with the user specified final kstars</span><span class="w"></span>
+<span class="c1">; final_state computes convergence on binary properties</span>
+<span class="c1">; after the full evolution specified by the user-supplied evolution time</span>
+<span class="c1">; and with the user specified final kstars</span>
 
-<span class="c1">; XRB_form computes convergence on binary properties</span><span class="w"></span>
-<span class="c1">; at the start of RLO following the first supernova on the population with</span><span class="w"></span>
-<span class="c1">; user-specified final kstars</span><span class="w"></span>
-<span class="na">pop_select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">formation</span><span class="w"></span>
+<span class="c1">; XRB_form computes convergence on binary properties</span>
+<span class="c1">; at the start of RLO following the first supernova on the population with</span>
+<span class="c1">; user-specified final kstars</span>
+<span class="na">pop_select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">formation</span>
 
-<span class="c1">; apply_convergence_limits filters the evolved binary population</span><span class="w"></span>
-<span class="c1">; to only the binaries that satisfy the convergence limits</span><span class="w"></span>
-<span class="c1">; selection criteria if True</span><span class="w"></span>
-<span class="na">apply_convergence_limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span><span class="w"></span>
+<span class="c1">; apply_convergence_limits filters the evolved binary population</span>
+<span class="c1">; to only the binaries that satisfy the convergence limits</span>
+<span class="c1">; selection criteria if True</span>
+<span class="na">apply_convergence_limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span>
 
-<span class="c1">; match provides the tolerance for the convergence calculation</span><span class="w"></span>
-<span class="c1">; and is calculated as match = log10(1-convergence)</span><span class="w"></span>
-<span class="c1">; default = -5.0</span><span class="w"></span>
-<span class="na">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-5.0</span><span class="w"></span>
+<span class="c1">; match provides the tolerance for the convergence calculation</span>
+<span class="c1">; and is calculated as match = log10(1-convergence)</span>
+<span class="c1">; default = -5.0</span>
+<span class="na">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-5.0</span>
 </pre></div>
 </div>
 </section>
 <section id="rand-seed">
-<h3>[rand_seed]<a class="headerlink" href="#rand-seed" title="Permalink to this heading"></a></h3>
+<h3>[rand_seed]<a class="headerlink" href="#rand-seed" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 26%" />
-<col style="width: 74%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rand_seed</span></code></p></td>
 <td><p>Seed used to for numpy.random.seed</p></td>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[rand_seed]</span><span class="w"></span>
-<span class="c1">; random seed int</span><span class="w"></span>
-<span class="na">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">42</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[rand_seed]</span>
+<span class="c1">; random seed int</span>
+<span class="na">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">42</span>
 </pre></div>
 </div>
 </section>
 <section id="bse">
-<h3>[bse]<a class="headerlink" href="#bse" title="Permalink to this heading"></a></h3>
+<h3>[bse]<a class="headerlink" href="#bse" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Although this is all one section, we have grouped the
@@ -379,10 +368,6 @@ the type of parameter or flag.</p>
 <p>SAMPLING FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pts1</span></code></p></td>
 <td><p>determines the timesteps chosen in each evolution phase as
@@ -408,17 +393,17 @@ HG, HeMS stars</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; SAMPLING FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; SAMPLING FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; pts1,pts2,pts3 determine the timesteps chosen in each</span><span class="w"></span>
-<span class="c1">;                 pts1 - MS                  (default = 0.001, see Banerjee+ 2019)</span><span class="w"></span>
-<span class="na">pts1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.001</span><span class="w"></span>
-<span class="c1">;                 pts2 - GB, CHeB, AGB, HeGB (default = 0.01)</span><span class="w"></span>
-<span class="na">pts2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.01</span><span class="w"></span>
-<span class="c1">;                 pts3 - HG, HeMS            (default = 0.02)</span><span class="w"></span>
-<span class="na">pts3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.02</span><span class="w"></span>
+<span class="c1">; pts1,pts2,pts3 determine the timesteps chosen in each</span>
+<span class="c1">;                 pts1 - MS                  (default = 0.001, see Banerjee+ 2019)</span>
+<span class="na">pts1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.001</span>
+<span class="c1">;                 pts2 - GB, CHeB, AGB, HeGB (default = 0.01)</span>
+<span class="na">pts2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.01</span>
+<span class="c1">;                 pts3 - HG, HeMS            (default = 0.02)</span>
+<span class="na">pts3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.02</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -426,10 +411,6 @@ HG, HeMS stars</p>
 <p>METALLICITY FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 83%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">zsun</span></code></p></td>
 <td><p>Sets the metallicity of the Sun which primarily affects
@@ -441,13 +422,13 @@ prescriptions are calibrated to zsun = 0.019 as described in
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; METALLICITY FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">; specify the value for Solar metallicity, which primarily affects</span><span class="w"></span>
-<span class="c1">; winds in BSE; note that Vink+2001 winds for OB stars are calibrated to zsun = 0.019</span><span class="w"></span>
-<span class="c1">; default = 0.014 (Asplund 2009)</span><span class="w"></span>
-<span class="na">zsun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.014</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; METALLICITY FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">; specify the value for Solar metallicity, which primarily affects</span>
+<span class="c1">; winds in BSE; note that Vink+2001 winds for OB stars are calibrated to zsun = 0.019</span>
+<span class="c1">; default = 0.014 (Asplund 2009)</span>
+<span class="na">zsun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.014</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -455,10 +436,6 @@ prescriptions are calibrated to zsun = 0.019 as described in
 <p>WIND FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 91%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">windflag</span></code></p></td>
 <td><p>Selects the model for wind mass loss for each star</p>
@@ -540,43 +517,43 @@ Corresponds to <img class="math" src="../_images/math/51e5ca5b60ab544ba9cc083849
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; WIND FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; WIND FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; windflag sets the wind prescription</span><span class="w"></span>
-<span class="c1">; windflag=0: stock BSE; windflag=1: StarTrack 2008</span><span class="w"></span>
-<span class="c1">; windflag=2: Vink+2001; windflag=3: Vink+2005 (Vink plus LBV winds)</span><span class="w"></span>
-<span class="c1">; default = 3</span><span class="w"></span>
-<span class="na">windflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3</span><span class="w"></span>
+<span class="c1">; windflag sets the wind prescription</span>
+<span class="c1">; windflag=0: stock BSE; windflag=1: StarTrack 2008</span>
+<span class="c1">; windflag=2: Vink+2001; windflag=3: Vink+2005 (Vink plus LBV winds)</span>
+<span class="c1">; default = 3</span>
+<span class="na">windflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3</span>
 
-<span class="c1">; neta is the Reimers mass-loss coefficent</span><span class="w"></span>
-<span class="c1">; for more information, see Kudritzki &amp; Reimers 1978, A&amp;A 70, 227</span><span class="w"></span>
-<span class="c1">; default = 0.5</span><span class="w"></span>
-<span class="na">neta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span><span class="w"></span>
+<span class="c1">; neta is the Reimers mass-loss coefficent</span>
+<span class="c1">; for more information, see Kudritzki &amp; Reimers 1978, A&amp;A 70, 227</span>
+<span class="c1">; default = 0.5</span>
+<span class="na">neta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span>
 
-<span class="c1">; bwind is the binary enhanced mass loss parameter</span><span class="w"></span>
-<span class="c1">; bwind it is always inactive for single stars</span><span class="w"></span>
-<span class="c1">; default = 0.0</span><span class="w"></span>
-<span class="na">bwind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0</span><span class="w"></span>
+<span class="c1">; bwind is the binary enhanced mass loss parameter</span>
+<span class="c1">; bwind it is always inactive for single stars</span>
+<span class="c1">; default = 0.0</span>
+<span class="na">bwind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0</span>
 
-<span class="c1">; hewind is a helium star mass loss factor, between 0 and 1</span><span class="w"></span>
-<span class="c1">; only applies if windflag=0, otherwise it is overwritten</span><span class="w"></span>
-<span class="c1">; default = 0.5</span><span class="w"></span>
-<span class="na">hewind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span><span class="w"></span>
+<span class="c1">; hewind is a helium star mass loss factor, between 0 and 1</span>
+<span class="c1">; only applies if windflag=0, otherwise it is overwritten</span>
+<span class="c1">; default = 0.5</span>
+<span class="na">hewind</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span>
 
-<span class="c1">; beta is wind velocity factor: proportional to vwind^2</span><span class="w"></span>
-<span class="c1">; beta&lt;0: follows StarTrack 2008; beta=0.125: stock BSE</span><span class="w"></span>
-<span class="c1">; default = -1</span><span class="w"></span>
-<span class="na">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-1</span><span class="w"></span>
+<span class="c1">; beta is wind velocity factor: proportional to vwind^2</span>
+<span class="c1">; beta&lt;0: follows StarTrack 2008; beta=0.125: stock BSE</span>
+<span class="c1">; default = -1</span>
+<span class="na">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-1</span>
 
-<span class="c1">; xi is the wind accretion efficiency factor, which gives the fraction of angular momentum lost via winds from the primary that transfers to the spin angular momentum of the companion</span><span class="w"></span>
-<span class="c1">; default = 1.0</span><span class="w"></span>
-<span class="na">xi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span><span class="w"></span>
+<span class="c1">; xi is the wind accretion efficiency factor, which gives the fraction of angular momentum lost via winds from the primary that transfers to the spin angular momentum of the companion</span>
+<span class="c1">; default = 1.0</span>
+<span class="na">xi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span>
 
-<span class="c1">; acc2 sets the Bondi-Hoyle wind accretion factor onto companion</span><span class="w"></span>
-<span class="c1">; default = 1.5</span><span class="w"></span>
-<span class="na">acc2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.5</span><span class="w"></span>
+<span class="c1">; acc2 sets the Bondi-Hoyle wind accretion factor onto companion</span>
+<span class="c1">; default = 1.5</span>
+<span class="na">acc2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.5</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -590,10 +567,6 @@ common envelope occurs regardless of the choices below:</p>
 <p><strong>periapse contact</strong> : the periapse distance is smaller than either of the stellar radii (common for highly eccentric systems)</p>
 <p><strong>core Roche overflow</strong> : either of the stellar radii overflow their component’s Roche radius (in this case, mass transfer from the convective core is always dynamically unstable)</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 11%" />
-<col style="width: 89%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">alpha1</span></code></p></td>
 <td><p>Common-envelope efficiency parameter which scales the
@@ -695,16 +668,7 @@ for GB/AGB stars</p>
 </div></blockquote>
 <p><strong>qcflag = 1</strong></p>
 <table class="docutils align-default" id="id36">
-<caption><span class="caption-text">Comparison of qcrit Values (Donor Mass/Accretor Mass) For Each Donor Kstar Type Across Flag Options</span><a class="headerlink" href="#id36" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-</colgroup>
+<caption><span class="caption-text">Comparison of qcrit Values (Donor Mass/Accretor Mass) For Each Donor Kstar Type Across Flag Options</span><a class="headerlink" href="#id36" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>kstar</p></th>
 <th class="head"><p>qc=0</p></th>
@@ -828,59 +792,59 @@ same time.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; COMMON ENVELOPE FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; COMMON ENVELOPE FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; alpha1 is the common-envelope efficiency parameter</span><span class="w"></span>
-<span class="c1">; default = 1.0</span><span class="w"></span>
-<span class="na">alpha1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span><span class="w"></span>
+<span class="c1">; alpha1 is the common-envelope efficiency parameter</span>
+<span class="c1">; default = 1.0</span>
+<span class="na">alpha1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span>
 
-<span class="c1">; lambdaf is the binding energy factor for common envelope evolution</span><span class="w"></span>
-<span class="c1">; lambdaf&gt;0.0 uses variable lambda prescription in appendix of Claeys+2014</span><span class="w"></span>
-<span class="c1">; lambdaf&lt;0 uses fixes lambda to a value of -1.0*lambdaf</span><span class="w"></span>
-<span class="c1">; default = 0.5</span><span class="w"></span>
-<span class="na">lambdaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span><span class="w"></span>
+<span class="c1">; lambdaf is the binding energy factor for common envelope evolution</span>
+<span class="c1">; lambdaf&gt;0.0 uses variable lambda prescription in appendix of Claeys+2014</span>
+<span class="c1">; lambdaf&lt;0 uses fixes lambda to a value of -1.0*lambdaf</span>
+<span class="c1">; default = 0.5</span>
+<span class="na">lambdaf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span>
 
-<span class="c1">; ceflag=1 used the method from de Kool 1990 for setting the initial orbital energy</span><span class="w"></span>
-<span class="c1">; ceflag=0 does not use this method (uses the core mass to calculate initial orbital energy)</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">ceflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; ceflag=1 used the method from de Kool 1990 for setting the initial orbital energy</span>
+<span class="c1">; ceflag=0 does not use this method (uses the core mass to calculate initial orbital energy)</span>
+<span class="c1">; default = 1</span>
+<span class="na">ceflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; cekickflag determined the prescription for calling kick.f in comenv.f</span><span class="w"></span>
-<span class="c1">; 0: default BSE</span><span class="w"></span>
-<span class="c1">; 1: uses pre-CE mass and sep values</span><span class="w"></span>
-<span class="c1">; 2: uses post-CE mass and sep</span><span class="w"></span>
-<span class="c1">; default = 2</span><span class="w"></span>
-<span class="na">cekickflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span><span class="w"></span>
+<span class="c1">; cekickflag determined the prescription for calling kick.f in comenv.f</span>
+<span class="c1">; 0: default BSE</span>
+<span class="c1">; 1: uses pre-CE mass and sep values</span>
+<span class="c1">; 2: uses post-CE mass and sep</span>
+<span class="c1">; default = 2</span>
+<span class="na">cekickflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2</span>
 
-<span class="c1">; cemergeflag determines whether stars without a core-envelope boundary automatically lead to merger in CE</span><span class="w"></span>
-<span class="c1">; cemergeflag=1 turns this on (causes these systems to merge)</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">cemergeflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; cemergeflag determines whether stars without a core-envelope boundary automatically lead to merger in CE</span>
+<span class="c1">; cemergeflag=1 turns this on (causes these systems to merge)</span>
+<span class="c1">; default = 1</span>
+<span class="na">cemergeflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; cehestarflag uses fitting formulae from TLP, 2015, MNRAS, 451 for evolving RLO systems with a helium star donor and compact object accretor</span><span class="w"></span>
-<span class="c1">; this flag will override choice made by cekickflag if set</span><span class="w"></span>
-<span class="c1">; 0: off</span><span class="w"></span>
-<span class="c1">; 1: fits for final period only</span><span class="w"></span>
-<span class="c1">; 2: fits for both final mass and final period</span><span class="w"></span>
-<span class="c1">; default = 0</span><span class="w"></span>
-<span class="na">cehestarflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span><span class="w"></span>
+<span class="c1">; cehestarflag uses fitting formulae from TLP, 2015, MNRAS, 451 for evolving RLO systems with a helium star donor and compact object accretor</span>
+<span class="c1">; this flag will override choice made by cekickflag if set</span>
+<span class="c1">; 0: off</span>
+<span class="c1">; 1: fits for final period only</span>
+<span class="c1">; 2: fits for both final mass and final period</span>
+<span class="c1">; default = 0</span>
+<span class="na">cehestarflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
 
-<span class="c1">; qcflag is an integer flag that sets the model to determine which critical mass ratios to use for the onset of unstable mass transfer and/or a common envelope. NOTE: this is overridden by qcrit_array if any of the values are non-zero.</span><span class="w"></span>
-<span class="c1">; 0: standard BSE</span><span class="w"></span>
-<span class="c1">; 1: BSE but with Hjellming &amp; Webbink, 1987, ApJ, 318, 794 GB/AGB stars</span><span class="w"></span>
-<span class="c1">; 2: following binary_c from Claeys+2014 Table 2</span><span class="w"></span>
-<span class="c1">; 3: following binary_c from Claeys+2014 Table 2 but with Hjellming &amp; Webbink, 1987, ApJ, 318, 794 GB/AGB stars</span><span class="w"></span>
-<span class="c1">; 4: following StarTrack from Belczynski+2008 Section 5.1. WD donors follow standard BSE</span><span class="w"></span>
-<span class="c1">; 5: following COMPAS from Neijssel+2020 Section 2.3. Stripped stars are always dynamically stable</span><span class="w"></span>
-<span class="c1">; default = 5 for double compact object progenitors, 3 for DWD progenitors</span><span class="w"></span>
-<span class="na">qcflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span><span class="w"></span>
+<span class="c1">; qcflag is an integer flag that sets the model to determine which critical mass ratios to use for the onset of unstable mass transfer and/or a common envelope. NOTE: this is overridden by qcrit_array if any of the values are non-zero.</span>
+<span class="c1">; 0: standard BSE</span>
+<span class="c1">; 1: BSE but with Hjellming &amp; Webbink, 1987, ApJ, 318, 794 GB/AGB stars</span>
+<span class="c1">; 2: following binary_c from Claeys+2014 Table 2</span>
+<span class="c1">; 3: following binary_c from Claeys+2014 Table 2 but with Hjellming &amp; Webbink, 1987, ApJ, 318, 794 GB/AGB stars</span>
+<span class="c1">; 4: following StarTrack from Belczynski+2008 Section 5.1. WD donors follow standard BSE</span>
+<span class="c1">; 5: following COMPAS from Neijssel+2020 Section 2.3. Stripped stars are always dynamically stable</span>
+<span class="c1">; default = 5 for double compact object progenitors, 3 for DWD progenitors</span>
+<span class="na">qcflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">5</span>
 
-<span class="c1">; qcrit_array is a 16-length array for user-input values for the critical mass ratios that govern the onset of unstable mass transfer and a common envelope</span><span class="w"></span>
-<span class="c1">; each item is set individually for its associated kstar, and a value of 0.0 will apply prescription of the qcflag for that kstar</span><span class="w"></span>
-<span class="c1">; default = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]</span><span class="w"></span>
-<span class="na">qcrit_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]</span><span class="w"></span>
+<span class="c1">; qcrit_array is a 16-length array for user-input values for the critical mass ratios that govern the onset of unstable mass transfer and a common envelope</span>
+<span class="c1">; each item is set individually for its associated kstar, and a value of 0.0 will apply prescription of the qcflag for that kstar</span>
+<span class="c1">; default = [0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]</span>
+<span class="na">qcrit_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -888,10 +852,6 @@ same time.</p>
 <p>KICK FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">kickflag</span></code></p></td>
 <td><p>Sets the particular natal kick prescription to use.
@@ -1068,82 +1028,82 @@ a supernova has already occurred</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; KICK FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; KICK FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; kickflag sets the particular kick prescription to use</span><span class="w"></span>
-<span class="c1">; kickflag=0 uses the standard kick prescription, where kicks are drawn from a bimodal</span><span class="w"></span>
-<span class="c1">; distribution based on whether they go through FeCCSN or ECSN/USSN</span><span class="w"></span>
-<span class="c1">; kickflag=-1 uses the prescription from Giacobbo &amp; Mapelli 2020 (Eq. 1)</span><span class="w"></span>
-<span class="c1">; with their default parameters (&lt;m_ns&gt;=1.2 Msun, &lt;m_ej&gt;=9 Msun)</span><span class="w"></span>
-<span class="c1">; kickflag=-2 uses the prescription from Giacobbo &amp; Mapelli 2020 (Eq. 2),</span><span class="w"></span>
-<span class="c1">; which does not scale the kick by &lt;m_ns&gt;</span><span class="w"></span>
-<span class="c1">; kickflag=-3 uses the prescription from Bray &amp; Eldridge 2016 (Eq. 1)</span><span class="w"></span>
-<span class="c1">; with their default parameters (alpha=70 km/s, beta=120 km/s)</span><span class="w"></span>
-<span class="c1">; Note: sigmadiv, bhflag, bhsigmafrac, aic, and ussn are only used when kickflag=0</span><span class="w"></span>
-<span class="c1">; default = 0</span><span class="w"></span>
-<span class="na">kickflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span><span class="w"></span>
+<span class="c1">; kickflag sets the particular kick prescription to use</span>
+<span class="c1">; kickflag=0 uses the standard kick prescription, where kicks are drawn from a bimodal</span>
+<span class="c1">; distribution based on whether they go through FeCCSN or ECSN/USSN</span>
+<span class="c1">; kickflag=-1 uses the prescription from Giacobbo &amp; Mapelli 2020 (Eq. 1)</span>
+<span class="c1">; with their default parameters (&lt;m_ns&gt;=1.2 Msun, &lt;m_ej&gt;=9 Msun)</span>
+<span class="c1">; kickflag=-2 uses the prescription from Giacobbo &amp; Mapelli 2020 (Eq. 2),</span>
+<span class="c1">; which does not scale the kick by &lt;m_ns&gt;</span>
+<span class="c1">; kickflag=-3 uses the prescription from Bray &amp; Eldridge 2016 (Eq. 1)</span>
+<span class="c1">; with their default parameters (alpha=70 km/s, beta=120 km/s)</span>
+<span class="c1">; Note: sigmadiv, bhflag, bhsigmafrac, aic, and ussn are only used when kickflag=0</span>
+<span class="c1">; default = 0</span>
+<span class="na">kickflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
 
-<span class="c1">; sigma sets is the dispersion in the Maxwellian for the SN kick velocity in km/s</span><span class="w"></span>
-<span class="c1">; default = 265.0</span><span class="w"></span>
-<span class="na">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">265.0</span><span class="w"></span>
+<span class="c1">; sigma sets is the dispersion in the Maxwellian for the SN kick velocity in km/s</span>
+<span class="c1">; default = 265.0</span>
+<span class="na">sigma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">265.0</span>
 
-<span class="c1">; bhflag != 0 allows velocity kick at BH formation</span><span class="w"></span>
-<span class="c1">; bhflag=0: no BH kicks; bhflag=1: fallback-modulated kicks</span><span class="w"></span>
-<span class="c1">; bhflag=2: mass-weighted (proportional) kicks; bhflag=3: full NS kicks</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">bhflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; bhflag != 0 allows velocity kick at BH formation</span>
+<span class="c1">; bhflag=0: no BH kicks; bhflag=1: fallback-modulated kicks</span>
+<span class="c1">; bhflag=2: mass-weighted (proportional) kicks; bhflag=3: full NS kicks</span>
+<span class="c1">; default = 1</span>
+<span class="na">bhflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; bhsigmafrac sets the fractional modification used for scaling down the sigma for BHs</span><span class="w"></span>
-<span class="c1">; this works in addition to whatever is chosen for bhflag, and is applied to the sigma beforehand these prescriptions are implemented</span><span class="w"></span>
-<span class="c1">; default = 1.0</span><span class="w"></span>
-<span class="na">bhsigmafrac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span><span class="w"></span>
+<span class="c1">; bhsigmafrac sets the fractional modification used for scaling down the sigma for BHs</span>
+<span class="c1">; this works in addition to whatever is chosen for bhflag, and is applied to the sigma beforehand these prescriptions are implemented</span>
+<span class="c1">; default = 1.0</span>
+<span class="na">bhsigmafrac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span>
 
-<span class="c1">; sigmadiv sets the modified ECSN kick</span><span class="w"></span>
-<span class="c1">; negative values sets the ECSN sigma value, positive values divide sigma above by sigmadiv</span><span class="w"></span>
-<span class="c1">; default = -20.0</span><span class="w"></span>
-<span class="na">sigmadiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-20.0</span><span class="w"></span>
+<span class="c1">; sigmadiv sets the modified ECSN kick</span>
+<span class="c1">; negative values sets the ECSN sigma value, positive values divide sigma above by sigmadiv</span>
+<span class="c1">; default = -20.0</span>
+<span class="na">sigmadiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-20.0</span>
 
-<span class="c1">; ecsn&gt;0 turns on ECSN and also sets the maximum ECSN mass range (at the time of the SN)</span><span class="w"></span>
-<span class="c1">; stock BSE and StarTrack: ecsn=2.25; Podsiadlowski+2004: ecsn=2.5)</span><span class="w"></span>
-<span class="c1">; default = 2.25</span><span class="w"></span>
-<span class="na">ecsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2.25</span><span class="w"></span>
+<span class="c1">; ecsn&gt;0 turns on ECSN and also sets the maximum ECSN mass range (at the time of the SN)</span>
+<span class="c1">; stock BSE and StarTrack: ecsn=2.25; Podsiadlowski+2004: ecsn=2.5)</span>
+<span class="c1">; default = 2.25</span>
+<span class="na">ecsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">2.25</span>
 
-<span class="c1">; ecsn_mlow sets the low end of the ECSN mass range</span><span class="w"></span>
-<span class="c1">; stock BSE:1.6; StarTrack:1.85; Podsiadlowski+2004:1.4)</span><span class="w"></span>
-<span class="c1">; default = 1.6</span><span class="w"></span>
-<span class="na">ecsn_mlow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.6</span><span class="w"></span>
+<span class="c1">; ecsn_mlow sets the low end of the ECSN mass range</span>
+<span class="c1">; stock BSE:1.6; StarTrack:1.85; Podsiadlowski+2004:1.4)</span>
+<span class="c1">; default = 1.6</span>
+<span class="na">ecsn_mlow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.6</span>
 
-<span class="c1">; aic=1 turns on low kicks for accretion induced collapse</span><span class="w"></span>
-<span class="c1">; works even if ecsn=0</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">aic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; aic=1 turns on low kicks for accretion induced collapse</span>
+<span class="c1">; works even if ecsn=0</span>
+<span class="c1">; default = 1</span>
+<span class="na">aic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; ussn=1 uses reduced kicks (drawn from the sigmadiv distritbuion) for ultra-stripped supernovae</span><span class="w"></span>
-<span class="c1">; these happen whenever a He-star undergoes a CE with a compact companion</span><span class="w"></span>
-<span class="c1">; default = 0</span><span class="w"></span>
-<span class="na">ussn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; ussn=1 uses reduced kicks (drawn from the sigmadiv distritbuion) for ultra-stripped supernovae</span>
+<span class="c1">; these happen whenever a He-star undergoes a CE with a compact companion</span>
+<span class="c1">; default = 0</span>
+<span class="na">ussn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; pisn&gt;0 allows for (pulsational) pair instability supernovae</span><span class="w"></span>
-<span class="c1">; and sets the maximum mass of the remnant</span><span class="w"></span>
-<span class="c1">; pisn=-1 uses the formulae from Spera+Mapelli 2017 for the mass</span><span class="w"></span>
-<span class="c1">; pisn=0 turns off (pulsational) pair instability supernovae</span><span class="w"></span>
-<span class="c1">; default = -2</span><span class="w"></span>
-<span class="na">pisn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-2</span><span class="w"></span>
+<span class="c1">; pisn&gt;0 allows for (pulsational) pair instability supernovae</span>
+<span class="c1">; and sets the maximum mass of the remnant</span>
+<span class="c1">; pisn=-1 uses the formulae from Spera+Mapelli 2017 for the mass</span>
+<span class="c1">; pisn=0 turns off (pulsational) pair instability supernovae</span>
+<span class="c1">; default = -2</span>
+<span class="na">pisn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-2</span>
 
-<span class="c1">; polar_kick_angle sets the opening angle of the kick relative to the pole of the exploding star</span><span class="w"></span>
-<span class="c1">; this can range from 0 (strictly polar kicks) to 90 (fully isotropic kicks)</span><span class="w"></span>
-<span class="c1">; default = 90.0</span><span class="w"></span>
-<span class="na">polar_kick_angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">90.0</span><span class="w"></span>
+<span class="c1">; polar_kick_angle sets the opening angle of the kick relative to the pole of the exploding star</span>
+<span class="c1">; this can range from 0 (strictly polar kicks) to 90 (fully isotropic kicks)</span>
+<span class="c1">; default = 90.0</span>
+<span class="na">polar_kick_angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">90.0</span>
 
-<span class="c1">; natal_kick_array is a (2,5) array for user-input values for the SN natal kick</span><span class="w"></span>
-<span class="c1">; The first and second row specify the natal kick information for the first and second star, and columns are formatted as: (vk, phi, theta, eccentric anomaly, rand_seed)</span><span class="w"></span>
-<span class="c1">; vk is valid on the range [0, inf], phi are the co-lateral polar angles (in degrees) valid from [-90.0, 90.0], theta are azimuthal angles (in degrees) valid from [0, 360], and eccentric anomaly are the eccentric anomaly of the orbit at the time of SN (in degrees) valid from [0, 360]</span><span class="w"></span>
-<span class="c1">; any number outside of these ranges will be sampled in the standard way in kick.f</span><span class="w"></span>
-<span class="c1">; rand_seed is for reproducing a supernova if the the system is started mid-evolution, set to 0 if starting binary from the beginning</span><span class="w"></span>
-<span class="c1">; default = [[-100.0,-100.0,-100.0,-100.0,0],[-100.0,-100.0,-100.0,-100.0,0.0]]</span><span class="w"></span>
-<span class="na">natal_kick_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[[-100.0,-100.0,-100.0,-100.0,0],[-100.0,-100.0,-100.0,-100.0,0.0]]</span><span class="w"></span>
+<span class="c1">; natal_kick_array is a (2,5) array for user-input values for the SN natal kick</span>
+<span class="c1">; The first and second row specify the natal kick information for the first and second star, and columns are formatted as: (vk, phi, theta, eccentric anomaly, rand_seed)</span>
+<span class="c1">; vk is valid on the range [0, inf], phi are the co-lateral polar angles (in degrees) valid from [-90.0, 90.0], theta are azimuthal angles (in degrees) valid from [0, 360], and eccentric anomaly are the eccentric anomaly of the orbit at the time of SN (in degrees) valid from [0, 360]</span>
+<span class="c1">; any number outside of these ranges will be sampled in the standard way in kick.f</span>
+<span class="c1">; rand_seed is for reproducing a supernova if the the system is started mid-evolution, set to 0 if starting binary from the beginning</span>
+<span class="c1">; default = [[-100.0,-100.0,-100.0,-100.0,0],[-100.0,-100.0,-100.0,-100.0,0.0]]</span>
+<span class="na">natal_kick_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[[-100.0,-100.0,-100.0,-100.0,0],[-100.0,-100.0,-100.0,-100.0,0.0]]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1151,10 +1111,6 @@ a supernova has already occurred</p>
 <p>REMNANT MASS FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 94%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">remnantflag</span></code></p></td>
 <td><p>Determines the remnant mass prescription used for NSs and BHs.</p>
@@ -1188,32 +1144,43 @@ neutrino emission during the collapse of the proto-compact object</p>
 <p><strong>rembar_massloss = 0.5</strong></p>
 </td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">wd_mass_lim</span></code></p></td>
+<td><p>Determines if the maximum white dwarf mass is limited to
+the chandraekhar mass during mic. 1 implements the limit.</p>
+<p><strong>wd_mass_lim = 1</strong></p>
+</td>
+</tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; REMNANT MASS FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; REMNANT MASS FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; remnantflag determines the remnant mass prescription used</span><span class="w"></span>
-<span class="c1">; remnantflag=0: default BSE</span><span class="w"></span>
-<span class="c1">; remnantflag=1: Belczynski et al. 2002, ApJ, 572, 407</span><span class="w"></span>
-<span class="c1">; remnantflag=2: Belczynski et al. 2008</span><span class="w"></span>
-<span class="c1">; remnantflag=3: rapid prescription (Fryer+ 2012), updated as in Giacobbo &amp; Mapelli 2020</span><span class="w"></span>
-<span class="c1">; remnantflag=4: delayed prescription (Fryer+ 2012)</span><span class="w"></span>
-<span class="c1">; default = 4</span><span class="w"></span>
-<span class="na">remnantflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">4</span><span class="w"></span>
+<span class="c1">; remnantflag determines the remnant mass prescription used</span>
+<span class="c1">; remnantflag=0: default BSE</span>
+<span class="c1">; remnantflag=1: Belczynski et al. 2002, ApJ, 572, 407</span>
+<span class="c1">; remnantflag=2: Belczynski et al. 2008</span>
+<span class="c1">; remnantflag=3: rapid prescription (Fryer+ 2012), updated as in Giacobbo &amp; Mapelli 2020</span>
+<span class="c1">; remnantflag=4: delayed prescription (Fryer+ 2012)</span>
+<span class="c1">; default = 4</span>
+<span class="na">remnantflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">4</span>
 
-<span class="c1">; mxns sets the maximum NS mass</span><span class="w"></span>
-<span class="c1">; default = 3.0</span><span class="w"></span>
-<span class="na">mxns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3.0</span><span class="w"></span>
+<span class="c1">; mxns sets the maximum NS mass</span>
+<span class="c1">; default = 3.0</span>
+<span class="na">mxns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3.0</span>
 
-<span class="c1">; rembar_massloss determines the mass conversion from baryonic to</span><span class="w"></span>
-<span class="c1">; gravitational mass</span><span class="w"></span>
-<span class="c1">; rembar_massloss &gt;= 0: sets the maximum amount of mass loss</span><span class="w"></span>
-<span class="c1">; -1 &lt; rembar_massloss &lt; 0: uses the prescription from Fryer et al. 2012,</span><span class="w"></span>
-<span class="c1">; assuming for BHs Mrem = (1+rembar_massloss)*Mrem,bar for negative rembar_massloss</span><span class="w"></span>
-<span class="c1">; default = 0.5</span><span class="w"></span>
-<span class="na">rembar_massloss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span><span class="w"></span>
+<span class="c1">; rembar_massloss determines the mass conversion from baryonic to</span>
+<span class="c1">; gravitational mass</span>
+<span class="c1">; rembar_massloss &gt;= 0: sets the maximum amount of mass loss</span>
+<span class="c1">; -1 &lt; rembar_massloss &lt; 0: uses the prescription from Fryer et al. 2012,</span>
+<span class="c1">; assuming for BHs Mrem = (1+rembar_massloss)*Mrem,bar for negative rembar_massloss</span>
+<span class="c1">; default = 0.5</span>
+<span class="na">rembar_massloss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.5</span>
+
+<span class="c1">; wd_mass_lim determines if the maximum white dwarf mass is limited to</span>
+<span class="c1">; the chandraekhar mass during mic. 1 implements the limit.</span>
+<span class="c1">; default = 1</span>
+<span class="na">wd_mass_lim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1221,10 +1188,6 @@ neutrino emission during the collapse of the proto-compact object</p>
 <p>REMNANT SPIN FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 82%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bhspinflag</span></code></p></td>
 <td><p>Uses different prescriptions for BH spin after formation</p>
@@ -1246,21 +1209,21 @@ neutrino emission during the collapse of the proto-compact object</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; REMNANT SPIN FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; REMNANT SPIN FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; bhspinflag uses different prescriptions for BH spin after formation</span><span class="w"></span>
-<span class="c1">; bhspinflag=0; sets all BH spins to bhspinmag</span><span class="w"></span>
-<span class="c1">; bhspinflag=1; draws a random BH spin between 0 and bhspinmag for every BH</span><span class="w"></span>
-<span class="c1">; bhspinflag=2; core-mass dependent BH spin (based on Belczynski+2017; 1706.07053, v1)</span><span class="w"></span>
-<span class="c1">; default = 0</span><span class="w"></span>
-<span class="na">bhspinflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span><span class="w"></span>
+<span class="c1">; bhspinflag uses different prescriptions for BH spin after formation</span>
+<span class="c1">; bhspinflag=0; sets all BH spins to bhspinmag</span>
+<span class="c1">; bhspinflag=1; draws a random BH spin between 0 and bhspinmag for every BH</span>
+<span class="c1">; bhspinflag=2; core-mass dependent BH spin (based on Belczynski+2017; 1706.07053, v1)</span>
+<span class="c1">; default = 0</span>
+<span class="na">bhspinflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
 
-<span class="c1">; bhspinmag sets either the spin of all BHs or the upper limit of the uniform</span><span class="w"></span>
-<span class="c1">; distribution for BH spins</span><span class="w"></span>
-<span class="c1">; default = 0.0</span><span class="w"></span>
-<span class="na">bhspinmag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0</span><span class="w"></span>
+<span class="c1">; bhspinmag sets either the spin of all BHs or the upper limit of the uniform</span>
+<span class="c1">; distribution for BH spins</span>
+<span class="c1">; default = 0.0</span>
+<span class="na">bhspinmag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.0</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1268,10 +1231,6 @@ neutrino emission during the collapse of the proto-compact object</p>
 <p>GR ORBITAL DECAY FLAG</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 26%" />
-<col style="width: 74%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">grflag</span></code></p></td>
 <td><p>Turns on or off orbital decay due to gravitational wave emission</p>
@@ -1284,14 +1243,14 @@ neutrino emission during the collapse of the proto-compact object</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; GR ORBITAL DECAY FLAG ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">; grflag turns on or off orbital decay due to gravitational wave radiation</span><span class="w"></span>
-<span class="c1">; grflag=0; no orbital decay due to GR</span><span class="w"></span>
-<span class="c1">; grflag=1; orbital decay due to GR is included</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">grflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; GR ORBITAL DECAY FLAG ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">; grflag turns on or off orbital decay due to gravitational wave radiation</span>
+<span class="c1">; grflag=0; no orbital decay due to GR</span>
+<span class="c1">; grflag=1; orbital decay due to GR is included</span>
+<span class="c1">; default = 1</span>
+<span class="na">grflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1299,10 +1258,6 @@ neutrino emission during the collapse of the proto-compact object</p>
 <p>MASS TRANSFER FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 79%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">eddfac</span></code></p></td>
 <td><p>Eddington limit factor for mass transfer.</p>
@@ -1326,6 +1281,9 @@ at super-Eddington mass transfer rates</p>
 specific angular momentum of the primary</p>
 <p><code class="docutils literal notranslate"><span class="pre">-2</span></code> : assumes material is lost from the system as
 if it is a wind from the secondary</p>
+<p><code class="docutils literal notranslate"><span class="pre">-3</span></code> : assumes mass is lost through the outer Lagrangian point,
+forming a circumbinary disk. See Zapartas+17 Eq. 9 and
+Artymowicz &amp; Lubow (1994).</p>
 <p><code class="docutils literal notranslate"><span class="pre">&gt;0</span></code> : assumes that the lost material takes away a
 fraction <em>gamma</em> of the orbital angular momentum</p>
 </div></blockquote>
@@ -1365,35 +1323,36 @@ accreted, with the rest being lost from the system
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; MASS TRANSFER FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; MASS TRANSFER FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; eddfac is Eddington limit factor for mass transfer</span><span class="w"></span>
-<span class="c1">; default = 1.0</span><span class="w"></span>
-<span class="na">eddfac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span><span class="w"></span>
+<span class="c1">; eddfac is Eddington limit factor for mass transfer</span>
+<span class="c1">; default = 1.0</span>
+<span class="na">eddfac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span>
 
-<span class="c1">; gamma is the angular momentum factor for mass lost during Roche-lobe overflow</span><span class="w"></span>
-<span class="c1">; gamma=-2: assumes material is lost from the system as if it is a wind from the secondary (for super-Eddington mass transfer rates)</span><span class="w"></span>
-<span class="c1">; gamma=-1: assumes the lost material carries with is the specific angular momentum of the primary</span><span class="w"></span>
-<span class="c1">; gamma&gt;0: assumes that the lost material take away a fraction (gamma) of the orbital angular momentum</span><span class="w"></span>
-<span class="c1">; default = -2</span><span class="w"></span>
-<span class="na">gamma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-2</span><span class="w"></span>
+<span class="c1">; gamma is the angular momentum factor for mass lost during Roche-lobe overflow</span>
+<span class="c1">; gamma=-3: assumes mass is lost through the outer Lagrangian point, forming a circumbinary disk. See Zapartas+17 Eq. 9 and Artymowicz &amp; Lubow (1994).</span>
+<span class="c1">; gamma=-2: assumes material is lost from the system as if it is a wind from the secondary (for super-Eddington mass transfer rates)</span>
+<span class="c1">; gamma=-1: assumes the lost material carries with is the specific angular momentum of the primary</span>
+<span class="c1">; gamma&gt;0: assumes that the lost material take away a fraction (gamma) of the orbital angular momentum</span>
+<span class="c1">; default = -2</span>
+<span class="na">gamma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-2</span>
 
-<span class="c1">; don_lim is a flag which determines how much mass is lost during Roche-lobe overflow</span><span class="w"></span>
-<span class="c1">; don_lim = -1: assumes standard BSE choice as outlined in Hurley+2002</span><span class="w"></span>
-<span class="c1">; don_lim = -2: Follows Claeys+2014</span><span class="w"></span>
-<span class="c1">; default = -1</span><span class="w"></span>
-<span class="na">don_lim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-1</span><span class="w"></span>
+<span class="c1">; don_lim is a flag which determines how much mass is lost during Roche-lobe overflow</span>
+<span class="c1">; don_lim = -1: assumes standard BSE choice as outlined in Hurley+2002</span>
+<span class="c1">; don_lim = -2: Follows Claeys+2014</span>
+<span class="c1">; default = -1</span>
+<span class="na">don_lim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-1</span>
 
-<span class="c1">; acc_lim is a flag which determines how much mass is accreted from the donor during Roche-lobe overflow</span><span class="w"></span>
-<span class="c1">; if acc_lim &gt;= 0: this provides the fraction of mass accreted</span><span class="w"></span>
-<span class="c1">; acc_lim = -1: assumes standard BSE choice as outlined in Hurley+2002, limited to 10x the thermal rate of the accretor for MS/HG/CHeB and unlimited for GB/EAGB/AGB stars</span><span class="w"></span>
-<span class="c1">; acc_lim = -2: limited to 1x the thermal rate of the accretor for MS/HG/CHeB and unlimited for GB/EAGB/AGB stars</span><span class="w"></span>
-<span class="c1">; acc_lim = -3: limited to 10x the thermal rate of the accretor for all stars</span><span class="w"></span>
-<span class="c1">; acc_lim = -4: limited to 1x the thermal rate of the accretor for all stars</span><span class="w"></span>
-<span class="c1">; default = -1</span><span class="w"></span>
-<span class="na">acc_lim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-1</span><span class="w"></span>
+<span class="c1">; acc_lim is a flag which determines how much mass is accreted from the donor during Roche-lobe overflow</span>
+<span class="c1">; if acc_lim &gt;= 0: this provides the fraction of mass accreted</span>
+<span class="c1">; acc_lim = -1: assumes standard BSE choice as outlined in Hurley+2002, limited to 10x the thermal rate of the accretor for MS/HG/CHeB and unlimited for GB/EAGB/AGB stars</span>
+<span class="c1">; acc_lim = -2: limited to 1x the thermal rate of the accretor for MS/HG/CHeB and unlimited for GB/EAGB/AGB stars</span>
+<span class="c1">; acc_lim = -3: limited to 10x the thermal rate of the accretor for all stars</span>
+<span class="c1">; acc_lim = -4: limited to 1x the thermal rate of the accretor for all stars</span>
+<span class="c1">; default = -1</span>
+<span class="na">acc_lim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-1</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1401,10 +1360,6 @@ accreted, with the rest being lost from the system
 <p>TIDES FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 2%" />
-<col style="width: 98%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">tflag</span></code></p></td>
 <td><p>Activates tidal circularisation following
@@ -1441,27 +1396,27 @@ Equation 21 referenced above</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; TIDES FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; TIDES FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; tflag=1 activates tidal circularisation</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">tflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; tflag=1 activates tidal circularisation</span>
+<span class="c1">; default = 1</span>
+<span class="na">tflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; ST_tide sets which tidal method to use. 0=Hurley+2002, 1=StarTrack: Belczynski+2008</span><span class="w"></span>
-<span class="c1">; Note, here startrack method does not use a better integration scheme (yet) but simply</span><span class="w"></span>
-<span class="c1">; follows similar set up to startrack (including initial vrot, using roche-lobe check</span><span class="w"></span>
-<span class="c1">; at periastron, and circularisation and synchronisation at start of MT).</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">ST_tide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; ST_tide sets which tidal method to use. 0=Hurley+2002, 1=StarTrack: Belczynski+2008</span>
+<span class="c1">; Note, here startrack method does not use a better integration scheme (yet) but simply</span>
+<span class="c1">; follows similar set up to startrack (including initial vrot, using roche-lobe check</span>
+<span class="c1">; at periastron, and circularisation and synchronisation at start of MT).</span>
+<span class="c1">; default = 1</span>
+<span class="na">ST_tide</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; fprimc_array controls the scaling factor for convective tides</span><span class="w"></span>
-<span class="c1">; each item is set individually for its associated kstar</span><span class="w"></span>
-<span class="c1">; The releveant equation is Equation 21 from the BSE paper</span><span class="w"></span>
-<span class="c1">; The default is to send the same coefficient (2/21) as is in the equation</span><span class="w"></span>
-<span class="c1">; for every kstar</span><span class="w"></span>
-<span class="na">fprimc_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0]</span><span class="w"></span>
+<span class="c1">; fprimc_array controls the scaling factor for convective tides</span>
+<span class="c1">; each item is set individually for its associated kstar</span>
+<span class="c1">; The releveant equation is Equation 21 from the BSE paper</span>
+<span class="c1">; The default is to send the same coefficient (2/21) as is in the equation</span>
+<span class="c1">; for every kstar</span>
+<span class="na">fprimc_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">[2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0,2.0/21.0]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1469,10 +1424,6 @@ Equation 21 referenced above</p>
 <p>WHITE DWARF FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 13%" />
-<col style="width: 87%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ifflag</span></code></p></td>
 <td><p>Activates the initial-final white dwarf mass relation
@@ -1509,21 +1460,21 @@ fraction of accreted matter</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;;; WHITE DWARF FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;;; WHITE DWARF FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; ifflag &gt; 0 uses WD IFMR of HPE, 1995, MNRAS, 272, 800</span><span class="w"></span>
-<span class="c1">; default = 0</span><span class="w"></span>
-<span class="na">ifflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span><span class="w"></span>
+<span class="c1">; ifflag &gt; 0 uses WD IFMR of HPE, 1995, MNRAS, 272, 800</span>
+<span class="c1">; default = 0</span>
+<span class="na">ifflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
 
-<span class="c1">; wdflag &gt; 0 uses modified-Mestel cooling for WDs</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">wdflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; wdflag &gt; 0 uses modified-Mestel cooling for WDs</span>
+<span class="c1">; default = 1</span>
+<span class="na">wdflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; epsnov is the fraction of accreted matter retained in nova eruptions</span><span class="w"></span>
-<span class="c1">; default = 0.001</span><span class="w"></span>
-<span class="na">epsnov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.001</span><span class="w"></span>
+<span class="c1">; epsnov is the fraction of accreted matter retained in nova eruptions</span>
+<span class="c1">; default = 0.001</span>
+<span class="na">epsnov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0.001</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1531,10 +1482,6 @@ fraction of accreted matter</p>
 <p>PULSAR FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bdecayfac</span></code></p></td>
 <td><p>Activates different models for accretion induced field decay; see
@@ -1568,22 +1515,22 @@ from Equation 2 to  <em>ck</em></p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;; PULSAR FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; PULSAR FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; bdecayfac determines which accretion induced field decay method to</span><span class="w"></span>
-<span class="c1">; use from Kiel+2008: 0=exp, 1=inverse</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">bdecayfac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; bdecayfac determines which accretion induced field decay method to</span>
+<span class="c1">; use from Kiel+2008: 0=exp, 1=inverse</span>
+<span class="c1">; default = 1</span>
+<span class="na">bdecayfac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 
-<span class="c1">; bconst is related to magnetic field evolution of pulsars, see Kiel+2008</span><span class="w"></span>
-<span class="c1">; default = 3000</span><span class="w"></span>
-<span class="na">bconst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3000</span><span class="w"></span>
+<span class="c1">; bconst is related to magnetic field evolution of pulsars, see Kiel+2008</span>
+<span class="c1">; default = 3000</span>
+<span class="na">bconst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">3000</span>
 
-<span class="c1">; ck is related to magnetic field evolution of pulsars, see Kiel+2008</span><span class="w"></span>
-<span class="c1">; default = 1000</span><span class="w"></span>
-<span class="na">ck</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000</span><span class="w"></span>
+<span class="c1">; ck is related to magnetic field evolution of pulsars, see Kiel+2008</span>
+<span class="c1">; default = 1000</span>
+<span class="na">ck</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1000</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1591,10 +1538,6 @@ from Equation 2 to  <em>ck</em></p>
 <p>MIXING VARIABLES</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 85%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rejuv_fac</span></code></p></td>
 <td><p>Sets the mixing factor in main sequence star collisions.
@@ -1628,28 +1571,28 @@ not destroyed if Mstar &gt; Mbh</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;; MIXING VARIABLES ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; MIXING VARIABLES ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; rejuv_fac allows different mixing factors in Equation 80 from the BSE</span><span class="w"></span>
-<span class="c1">; paper. This was originally hard coded to 0.1, which leads massive</span><span class="w"></span>
-<span class="c1">; stars to potentially have extended main sequence lifetimes.</span><span class="w"></span>
-<span class="c1">; default = 1.0</span><span class="w"></span>
-<span class="na">rejuv_fac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span><span class="w"></span>
+<span class="c1">; rejuv_fac allows different mixing factors in Equation 80 from the BSE</span>
+<span class="c1">; paper. This was originally hard coded to 0.1, which leads massive</span>
+<span class="c1">; stars to potentially have extended main sequence lifetimes.</span>
+<span class="c1">; default = 1.0</span>
+<span class="na">rejuv_fac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.0</span>
 
-<span class="c1">; rejuvflag toggles between the original BSE prescription for MS mixing and</span><span class="w"></span>
-<span class="c1">; lifetimes of stars based on the mass of the MS stars (equation 80) or a</span><span class="w"></span>
-<span class="c1">; prescription that uses the ratio of helium core mass of the pre-merger stars</span><span class="w"></span>
-<span class="c1">; at the base of the first ascent of the giant branch to determine relative to the</span><span class="w"></span>
-<span class="c1">; helium core mass of the merger product at the base of the giant branch</span><span class="w"></span>
-<span class="c1">; default = 0</span><span class="w"></span>
-<span class="na">rejuvflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span><span class="w"></span>
+<span class="c1">; rejuvflag toggles between the original BSE prescription for MS mixing and</span>
+<span class="c1">; lifetimes of stars based on the mass of the MS stars (equation 80) or a</span>
+<span class="c1">; prescription that uses the ratio of helium core mass of the pre-merger stars</span>
+<span class="c1">; at the base of the first ascent of the giant branch to determine relative to the</span>
+<span class="c1">; helium core mass of the merger product at the base of the giant branch</span>
+<span class="c1">; default = 0</span>
+<span class="na">rejuvflag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
 
-<span class="c1">; bhms_coll_flag</span><span class="w"></span>
-<span class="c1">; If set to 1 then if BH+star collision and if Mstar &gt; Mbh, do not destroy the star</span><span class="w"></span>
-<span class="c1">; default = 0</span><span class="w"></span>
-<span class="na">bhms_coll_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span><span class="w"></span>
+<span class="c1">; bhms_coll_flag</span>
+<span class="c1">; If set to 1 then if BH+star collision and if Mstar &gt; Mbh, do not destroy the star</span>
+<span class="c1">; default = 0</span>
+<span class="na">bhms_coll_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1657,15 +1600,12 @@ not destroyed if Mstar &gt; Mbh</p>
 <p>MAGNETIC BRAKING FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 82%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">htpmb</span></code></p></td>
 <td><p>Activates different models for magnetic braking</p>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">0</span></code> : no modifications to BSE</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> : no magnetic braking</p>
+<p><code class="docutils literal notranslate"><span class="pre">0</span></code> : no modifications to BSE</p>
 <p><code class="docutils literal notranslate"><span class="pre">1</span></code> : follows <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2003ApJ...599..516I/abstract">Ivanona and Taam 2003</a></p>
 </div></blockquote>
 <p><strong>htpmb = 1</strong></p>
@@ -1673,15 +1613,16 @@ not destroyed if Mstar &gt; Mbh</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;; MAGNETIC BRAKING FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; MAGNETIC BRAKING FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; htpmb allows for different magnetic braking models.</span><span class="w"></span>
-<span class="c1">; 0=follows BSE paper Section 2.4</span><span class="w"></span>
-<span class="c1">; 1=follows Ivanova &amp; Taam 2003 method which kicks in later than the standard</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">htpmb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; htpmb allows for different magnetic braking models.</span>
+<span class="c1">; 0=follows BSE paper Section 2.4</span>
+<span class="c1">; 1=follows Ivanova &amp; Taam 2003 method which kicks in later than the standard</span>
+<span class="c1">; -1=turns off magnetic braking</span>
+<span class="c1">; default = 1</span>
+<span class="na">htpmb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1689,10 +1630,6 @@ not destroyed if Mstar &gt; Mbh</p>
 <p>MISCELLANEOUS FLAGS</p>
 </div>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 19%" />
-<col style="width: 81%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ST_cr</span></code></p></td>
 <td><p>Activates different convective vs radiative boundaries</p>
@@ -1705,15 +1642,15 @@ not destroyed if Mstar &gt; Mbh</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
-<span class="c1">;; MISCELLANEOUS FLAGS ;;;</span><span class="w"></span>
-<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span><span class="w"></span>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
+<span class="c1">;; MISCELLANEOUS FLAGS ;;;</span>
+<span class="c1">;;;;;;;;;;;;;;;;;;;;;;;;;;</span>
 
-<span class="c1">; ST_cr sets which convective/radiative boundary to use</span><span class="w"></span>
-<span class="c1">; 0=follows BSE paper</span><span class="w"></span>
-<span class="c1">; 1=follows StarTrack (Belcyznski+2008)</span><span class="w"></span>
-<span class="c1">; default = 1</span><span class="w"></span>
-<span class="na">ST_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+<span class="c1">; ST_cr sets which convective/radiative boundary to use</span>
+<span class="c1">; 0=follows BSE paper</span>
+<span class="c1">; 1=follows StarTrack (Belcyznski+2008)</span>
+<span class="c1">; default = 1</span>
+<span class="na">ST_cr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span>
 </pre></div>
 </div>
 </section>
