@@ -1,120 +1,335 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../">
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; cosmic 3.4.17 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
-      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
-      <link rel="stylesheet" href="../_static/cosmic-docs.css" type="text/css" />
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
+        <title>&lt;no title&gt; - COSMIC v3.6.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e15ddae3" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/brands.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cosmic-docs.css?v=4e6f89a8" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-grid.min.css?v=ebdf2caa" />
+    
+    
 
+
+<style>
+  body {
+    --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #3f95e1;
+  --color-brand-content: #3f95e1;
+  --color-brand-visited: #3f95e1;
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #f08c33;
+  --color-brand-content: #f08c33;
+  --color-brand-visited: #f08c33;
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=521b3960"></script>
-        <script src="../_static/doctools.js?v=9a2dae69"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
-</head>
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-brand-primary: #f08c33;
+  --color-brand-content: #f08c33;
+  --color-brand-visited: #f08c33;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
 
-          
-          
-          <a href="../index.html" class="icon icon-home">
-            cosmic
-          </a>
-              <div class="version">
-                3.4.17
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../inifile/index.html">Configuration files for COSMIC</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../output_info/index.html">Describing the output of COSMIC/BSE: Columns names/Values/Units</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Using COSMIC to evolve binaries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../runpop/index.html">Generate a binary population by hand</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fixedpop/index.html">Generate a population the <cite>COSMIC</cite> way</a></li>
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../pages/about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/install.html">Installation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pages/reference_material.html">Configuration and output</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Configuration and output</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pages/inifile.html">Configuration files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/output_info.html">Understanding COSMIC outputs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pages/examples.html">Evolving binaries</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Evolving binaries</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pages/evolve/single.html">Evolving a single binary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/evolve/multiple.html">Evolving multiple binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/evolve/grid.html">Evolving a fixed grid of binaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/evolve/evolve_sample.html">Evolving a Monte-Carlo sampled population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/evolve/resolution.html">Dynamic time resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/evolve/restart.html">Restarting a binary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pages/runpop.html">Sampling initial populations</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Sampling initial populations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pages/sample/independent.html">Independent distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/sample/multidim.html">Multidimensional distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/sample/cluster.html">ClusterMonteCarlo Sampling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/fixedpop.html">Generate a population the <cite>COSMIC</cite> way</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pages/cite.html">Citing COSMIC</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pages/developers.html">For Developers</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of For Developers</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pages/develop/how-it-works.html">Codebase overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/develop/new-settings.html">Creating new settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/develop/adding-options.html">Adding options to existing settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/develop/debugging-vscode.html">Debugging COSMIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pages/develop/settings-json-file.html"><code class="docutils literal notranslate"><span class="pre">cosmic-settings.json</span></code> file explained</a></li>
+</ul>
+</li>
 </ul>
 
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">cosmic</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/cosmic.sample.sampler.cmc.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
-  <p id="module-cosmic.sample.sampler.cmc"><cite>cmc</cite></p>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/COSMIC-popsynth/COSMIC/blob/develop/docs/api/cosmic.sample.sampler.cmc.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/COSMIC-popsynth/COSMIC/edit/develop/docs/api/cosmic.sample.sampler.cmc.rst" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <p id="module-cosmic.sample.sampler.cmc"><cite>cmc</cite></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.CMCSample">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">CMCSample</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">CMCSample</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="cosmic.sample.sampler.independent.html#cosmic.sample.sampler.independent.Sample" title="cosmic.sample.sampler.independent.Sample"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sample</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.CMCSample.__doc__">
-<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.__doc__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.__doc__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.CMCSample.__module__">
-<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.sampler.cmc'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.__module__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.sampler.cmc'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.__module__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.CMCSample.calc_porb_max">
-<span class="sig-name descname"><span class="pre">calc_porb_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass1_binary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass2_binary</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.calc_porb_max" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">calc_porb_max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass1_binary</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass2_binary</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.calc_porb_max" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.CMCSample.set_r_vr_vt">
-<span class="sig-name descname"><span class="pre">set_r_vr_vt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_profile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.set_r_vr_vt" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_r_vr_vt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_profile</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.CMCSample.set_r_vr_vt" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">InitialBinaryTable</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">InitialBinaryTable</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable.InitialBinaries">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InitialBinaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tphysf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kstar1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kstar2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metallicity</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.InitialBinaries" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InitialBinaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tphysf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kstar1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kstar2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metallicity</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.InitialBinaries" title="Link to this definition">¶</a></dt>
 <dd><p>Create single binary</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -160,33 +375,33 @@ bhspin1,bhspin2</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable.__annotations__">
-<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__annotations__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__annotations__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable.__dict__">
-<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'cosmic.sample.initialbinarytable',</span> <span class="pre">'InitialBinaries':</span> <span class="pre">&lt;classmethod(&lt;function</span> <span class="pre">InitialBinaryTable.InitialBinaries&gt;)&gt;,</span> <span class="pre">'sampler':</span> <span class="pre">&lt;classmethod(&lt;function</span> <span class="pre">InitialBinaryTable.sampler&gt;)&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'InitialBinaryTable'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'InitialBinaryTable'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__dict__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'cosmic.sample.initialbinarytable',</span> <span class="pre">'InitialBinaries':</span> <span class="pre">&lt;classmethod(&lt;function</span> <span class="pre">InitialBinaryTable.InitialBinaries&gt;)&gt;,</span> <span class="pre">'sampler':</span> <span class="pre">&lt;classmethod(&lt;function</span> <span class="pre">InitialBinaryTable.sampler&gt;)&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'InitialBinaryTable'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'InitialBinaryTable'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__dict__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable.__doc__">
-<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__doc__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__doc__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable.__module__">
-<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.initialbinarytable'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__module__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.initialbinarytable'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__module__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable.__weakref__">
-<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__weakref__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__weakref__" title="Link to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialBinaryTable.sampler">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.sampler" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.sampler" title="Link to this definition">¶</a></dt>
 <dd><p>Fetch a method to generate an initial binary sample</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -213,11 +428,11 @@ to see the arguments necessary for the independent sample</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">InitialCMCTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dtype</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">InitialCMCTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dtype</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCBinaries">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InitialCMCBinaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reff1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reff2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCBinaries" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InitialCMCBinaries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reff1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reff2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCBinaries" title="Link to this definition">¶</a></dt>
 <dd><p>Create A Table of CMC Binaries</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -256,7 +471,7 @@ main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCSingles">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InitialCMCSingles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binind</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCSingles" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InitialCMCSingles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Reff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binind</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCSingles" title="Link to this definition">¶</a></dt>
 <dd><p>Create A Table of CMC Singles</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -295,7 +510,7 @@ main sequence stars are 0 if m &lt; 0.7 Msun and 1 otherwise</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.ScaleCentralBHMass">
-<span class="sig-name descname"><span class="pre">ScaleCentralBHMass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mtotal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.ScaleCentralBHMass" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ScaleCentralBHMass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Mtotal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.ScaleCentralBHMass" title="Link to this definition">¶</a></dt>
 <dd><p>Rescale the central BH mass; needed since this is a class attribute
 Parameters
 ———-</p>
@@ -307,7 +522,7 @@ Parameters
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.ScaleToNBodyUnits">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ScaleToNBodyUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Singles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Binaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">virial_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_bh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_with_central_bh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.ScaleToNBodyUnits" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ScaleToNBodyUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Singles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Binaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">virial_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_bh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_with_central_bh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.ScaleToNBodyUnits" title="Link to this definition">¶</a></dt>
 <dd><dl class="simple">
 <dt>Rescale the single masses, radii, and velocities into N-body units</dt><dd><dl class="simple">
 <dt>i.e. sum m = M = 1</dt><dd><p>Kinetic Energy   = 0.25
@@ -340,52 +555,52 @@ the stellar radii and seperations need to be converted from RSUN to code units</
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.__annotations__">
-<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'_AXIS_LEN':</span> <span class="pre">'int',</span> <span class="pre">'_AXIS_ORDERS':</span> <span class="pre">&quot;list[Literal['index',</span> <span class="pre">'columns']]&quot;,</span> <span class="pre">'_AXIS_TO_AXIS_NUMBER':</span> <span class="pre">'dict[Axis,</span> <span class="pre">int]',</span> <span class="pre">'__array_priority__':</span> <span class="pre">'int',</span> <span class="pre">'__hash__':</span> <span class="pre">'ClassVar[None]',</span> <span class="pre">'_accessors':</span> <span class="pre">'set[str]',</span> <span class="pre">'_attrs':</span> <span class="pre">'dict[Hashable,</span> <span class="pre">Any]',</span> <span class="pre">'_cache':</span> <span class="pre">'dict[str,</span> <span class="pre">Any]',</span> <span class="pre">'_constructor_sliced':</span> <span class="pre">'Callable[...,</span> <span class="pre">Series]',</span> <span class="pre">'_hidden_attrs':</span> <span class="pre">'frozenset[str]',</span> <span class="pre">'_info_axis_name':</span> <span class="pre">&quot;Literal['columns']&quot;,</span> <span class="pre">'_info_axis_number':</span> <span class="pre">'Literal[1]',</span> <span class="pre">'_internal_names':</span> <span class="pre">'list[str]',</span> <span class="pre">'_internal_names_set':</span> <span class="pre">'set[str]',</span> <span class="pre">'_is_copy':</span> <span class="pre">'weakref.ReferenceType[NDFrame]</span> <span class="pre">|</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None',</span> <span class="pre">'_metadata':</span> <span class="pre">'list[str]',</span> <span class="pre">'_mgr':</span> <span class="pre">'BlockManager</span> <span class="pre">|</span> <span class="pre">ArrayManager',</span> <span class="pre">'_typ':</span> <span class="pre">'str'}</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__annotations__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'_AXIS_LEN':</span> <span class="pre">'int',</span> <span class="pre">'_AXIS_ORDERS':</span> <span class="pre">&quot;list[Literal['index',</span> <span class="pre">'columns']]&quot;,</span> <span class="pre">'_AXIS_TO_AXIS_NUMBER':</span> <span class="pre">'dict[Axis,</span> <span class="pre">int]',</span> <span class="pre">'__array_priority__':</span> <span class="pre">'int',</span> <span class="pre">'__hash__':</span> <span class="pre">'ClassVar[None]',</span> <span class="pre">'_accessors':</span> <span class="pre">'set[str]',</span> <span class="pre">'_attrs':</span> <span class="pre">'dict[Hashable,</span> <span class="pre">Any]',</span> <span class="pre">'_cache':</span> <span class="pre">'dict[str,</span> <span class="pre">Any]',</span> <span class="pre">'_constructor_sliced':</span> <span class="pre">'Callable[...,</span> <span class="pre">Series]',</span> <span class="pre">'_hidden_attrs':</span> <span class="pre">'frozenset[str]',</span> <span class="pre">'_info_axis_name':</span> <span class="pre">&quot;Literal['columns']&quot;,</span> <span class="pre">'_info_axis_number':</span> <span class="pre">'Literal[1]',</span> <span class="pre">'_internal_names':</span> <span class="pre">'list[str]',</span> <span class="pre">'_internal_names_set':</span> <span class="pre">'set[str]',</span> <span class="pre">'_is_copy':</span> <span class="pre">'weakref.ReferenceType[NDFrame]</span> <span class="pre">|</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None',</span> <span class="pre">'_metadata':</span> <span class="pre">'list[str]',</span> <span class="pre">'_mgr':</span> <span class="pre">'BlockManager</span> <span class="pre">|</span> <span class="pre">ArrayManager',</span> <span class="pre">'_typ':</span> <span class="pre">'str'}</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__annotations__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.__doc__">
-<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__doc__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__doc__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.__module__">
-<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.initialcmctable'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__module__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.initialcmctable'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__module__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable._attrs">
-<span class="sig-name descname"><span class="pre">_attrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable._attrs" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_attrs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Hashable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable._attrs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable._cache">
-<span class="sig-name descname"><span class="pre">_cache</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable._cache" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_cache</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable._cache" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable._mgr">
-<span class="sig-name descname"><span class="pre">_mgr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BlockManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ArrayManager</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable._mgr" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_mgr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BlockManager</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ArrayManager</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable._mgr" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.central_bh">
-<span class="sig-name descname"><span class="pre">central_bh</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.central_bh" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">central_bh</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.central_bh" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.mass_of_cluster">
-<span class="sig-name descname"><span class="pre">mass_of_cluster</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.mass_of_cluster" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mass_of_cluster</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.mass_of_cluster" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.metallicity">
-<span class="sig-name descname"><span class="pre">metallicity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.metallicity" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">metallicity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.metallicity" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.read">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.read" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.read" title="Link to this definition">¶</a></dt>
 <dd><p>Read Singles and Binaries to HDF5 or FITS file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -407,7 +622,7 @@ the stellar radii and seperations need to be converted from RSUN to code units</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.sampler">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.sampler" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format_</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.sampler" title="Link to this definition">¶</a></dt>
 <dd><p>Fetch a method to generate an initial binary sample</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -432,27 +647,27 @@ to see the arguments necessary for the independent sample</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.scale_with_central_bh">
-<span class="sig-name descname"><span class="pre">scale_with_central_bh</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.scale_with_central_bh" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">scale_with_central_bh</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.scale_with_central_bh" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.scaled_to_nbody_units">
-<span class="sig-name descname"><span class="pre">scaled_to_nbody_units</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.scaled_to_nbody_units" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">scaled_to_nbody_units</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.scaled_to_nbody_units" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.tidal_radius">
-<span class="sig-name descname"><span class="pre">tidal_radius</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.tidal_radius" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">tidal_radius</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.tidal_radius" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.virial_radius">
-<span class="sig-name descname"><span class="pre">virial_radius</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.virial_radius" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">virial_radius</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.virial_radius" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.InitialCMCTable.write">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Singles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Binaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'input.hdf5'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.write" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Singles</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Binaries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'input.hdf5'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.InitialCMCTable.write" title="Link to this definition">¶</a></dt>
 <dd><p>Save Singles and Binaries to HDF5 or FITS file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -477,37 +692,37 @@ to see the arguments necessary for the independent sample</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">Sample</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">Sample</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.__annotations__">
-<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__annotations__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__annotations__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.__dict__">
-<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'cosmic.sample.sampler.independent',</span> <span class="pre">'sample_primary':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_primary&gt;,</span> <span class="pre">'sample_secondary':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_secondary&gt;,</span> <span class="pre">'binary_select':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.binary_select&gt;,</span> <span class="pre">'sample_porb':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_porb&gt;,</span> <span class="pre">'sample_ecc':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_ecc&gt;,</span> <span class="pre">'sample_SFH':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_SFH&gt;,</span> <span class="pre">'set_kstar':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.set_kstar&gt;,</span> <span class="pre">'set_reff':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.set_reff&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Sample'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Sample'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__dict__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'cosmic.sample.sampler.independent',</span> <span class="pre">'sample_primary':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_primary&gt;,</span> <span class="pre">'sample_secondary':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_secondary&gt;,</span> <span class="pre">'binary_select':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.binary_select&gt;,</span> <span class="pre">'sample_porb':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_porb&gt;,</span> <span class="pre">'sample_ecc':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_ecc&gt;,</span> <span class="pre">'sample_SFH':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.sample_SFH&gt;,</span> <span class="pre">'set_kstar':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.set_kstar&gt;,</span> <span class="pre">'set_reff':</span> <span class="pre">&lt;function</span> <span class="pre">Sample.set_reff&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Sample'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Sample'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__dict__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.__doc__">
-<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__doc__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__doc__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.__module__">
-<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.sampler.independent'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__module__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cosmic.sample.sampler.independent'</span></em><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__module__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.__weakref__">
-<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__weakref__" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.__weakref__" title="Link to this definition">¶</a></dt>
 <dd><p>list of weak references to the object (if defined)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.binary_select">
-<span class="sig-name descname"><span class="pre">binary_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binfrac_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.binary_select" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">binary_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binfrac_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.binary_select" title="Link to this definition">¶</a></dt>
 <dd><p>Select which primary masses will have a companion using
 either a binary fraction specified by a float or a
 primary-mass dependent binary fraction following
@@ -547,7 +762,7 @@ means every star is in a binary pair</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.sample_SFH">
-<span class="sig-name descname"><span class="pre">sample_SFH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SF_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">13700.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SF_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">met</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_SFH" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample_SFH</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">SF_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">13700.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SF_duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">met</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_SFH" title="Link to this definition">¶</a></dt>
 <dd><p>Sample an evolution time for each binary based on a user-specified
 time at the start of star formation and the duration of star formation.
 The default is a burst of star formation 13,700 Myr in the past.</p>
@@ -579,7 +794,7 @@ NOTE: this is set in cosmic-pop call as Nstep</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.sample_ecc">
-<span class="sig-name descname"><span class="pre">sample_ecc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aRL_over_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecc_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sana12'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_ecc" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample_ecc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aRL_over_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecc_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sana12'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_ecc" title="Link to this definition">¶</a></dt>
 <dd><p>Sample the eccentricity according to a user specified model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -610,7 +825,7 @@ this is set in cosmic-pop call as Nstep</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.sample_porb">
-<span class="sig-name descname"><span class="pre">sample_porb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rad1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rad2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_porb" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample_porb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mass2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rad1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rad2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_porb" title="Link to this definition">¶</a></dt>
 <dd><p>Sample the orbital period according to the user-specified model</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -666,7 +881,7 @@ used to truncate the eccentricitiy distribution</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.sample_primary">
-<span class="sig-name descname"><span class="pre">sample_primary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kroupa01'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_primary" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample_primary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'kroupa01'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_primary" title="Link to this definition">¶</a></dt>
 <dd><p>Sample the primary mass (always the most massive star) from a user-selected model</p>
 <p>kroupa93 follows Kroupa (1993), normalization comes from
 <a class="reference external" href="https://arxiv.org/abs/astro-ph/0201220">Hurley 2002</a>
@@ -719,7 +934,7 @@ between 0.08 and 100 Msun</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.sample_secondary">
-<span class="sig-name descname"><span class="pre">sample_secondary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_power_law</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_secondary" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample_secondary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_power_law</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.sample_secondary" title="Link to this definition">¶</a></dt>
 <dd><p>Sample a secondary mass using draws from a uniform mass ratio distribution motivated by
 <a class="reference external" href="http://adsabs.harvard.edu/abs/1992ApJ...401..265M">Mazeh et al. (1992)</a>
 and <a class="reference external" href="http://adsabs.harvard.edu/abs/1994ApJ...429..362G">Goldberg &amp; Mazeh (1994)</a></p>
@@ -744,7 +959,7 @@ primary_mass</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.set_kstar">
-<span class="sig-name descname"><span class="pre">set_kstar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.set_kstar" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_kstar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.set_kstar" title="Link to this definition">¶</a></dt>
 <dd><p>Initialize stellar types according to BSE classification
 kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 <dl class="field-list simple">
@@ -765,7 +980,7 @@ kstar=1 if M&gt;=0.7 Msun; kstar=0 if M&lt;0.7 Msun</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.Sample.set_reff">
-<span class="sig-name descname"><span class="pre">set_reff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metallicity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zsun</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.set_reff" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_reff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metallicity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zsun</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.Sample.set_reff" title="Link to this definition">¶</a></dt>
 <dd><p>Better way to set the radii from BSE, by calling it directly</p>
 <p>takes masses and metallicities, and returns the radii</p>
 <p>Note that the BSE function is hard-coded to go through arrays
@@ -777,7 +992,7 @@ need to divide it into chunks</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.get_cmc_point_mass_sampler">
-<span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">get_cmc_point_mass_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.get_cmc_point_mass_sampler" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">get_cmc_point_mass_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.get_cmc_point_mass_sampler" title="Link to this definition">¶</a></dt>
 <dd><p>Generates an CMC cluster model according to user-specified model.
 Note here that masses will all be unity (with total cluster normalized accordingly)</p>
 <dl class="field-list">
@@ -830,7 +1045,7 @@ Options include:
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.get_cmc_sampler">
-<span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">get_cmc_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecc_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binfrac_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">met</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.get_cmc_sampler" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">get_cmc_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_profile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ecc_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">porb_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binfrac_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">met</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.get_cmc_sampler" title="Link to this definition">¶</a></dt>
 <dd><p>Generates an initial cluster sample according to user specified models</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -922,7 +1137,7 @@ the secondary as uniform in mass_2 between m2_min and mass_1</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="cosmic.sample.sampler.cmc.register_sampler">
-<span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">register_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.register_sampler" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">cosmic.sample.sampler.cmc.</span></span><span class="sig-name descname"><span class="pre">register_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cosmic.sample.sampler.cmc.register_sampler" title="Link to this definition">¶</a></dt>
 <dd><p>Register a new method to InitialBinaryTable.sampler() for a given format</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -942,32 +1157,121 @@ default: <cite>False</cite></p>
 </dd></dl>
 
 
-
-           </div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2021, Katie Breivik
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
           </div>
-          <footer>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link fa-brands fa-solid fa-github fa-2x" href="https://github.com/COSMIC-PopSynth/COSMIC" aria-label="GitHub"></a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">CMCSample</span></code></a><ul>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.CMCSample.__doc__"><code class="docutils literal notranslate"><span class="pre">CMCSample.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.CMCSample.__module__"><code class="docutils literal notranslate"><span class="pre">CMCSample.__module__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.CMCSample.calc_porb_max"><code class="docutils literal notranslate"><span class="pre">CMCSample.calc_porb_max()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.CMCSample.set_r_vr_vt"><code class="docutils literal notranslate"><span class="pre">CMCSample.set_r_vr_vt()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable</span></code></a><ul>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.InitialBinaries"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable.InitialBinaries()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__annotations__"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__dict__"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__doc__"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__module__"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable.__module__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.__weakref__"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialBinaryTable.sampler"><code class="docutils literal notranslate"><span class="pre">InitialBinaryTable.sampler()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable</span></code></a><ul>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCBinaries"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.InitialCMCBinaries()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.InitialCMCSingles"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.InitialCMCSingles()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.ScaleCentralBHMass"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.ScaleCentralBHMass()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.ScaleToNBodyUnits"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.ScaleToNBodyUnits()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__annotations__"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__doc__"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.__module__"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.__module__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable._attrs"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable._attrs</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable._cache"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable._cache</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable._mgr"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable._mgr</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.central_bh"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.central_bh</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.mass_of_cluster"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.mass_of_cluster</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.metallicity"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.metallicity</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.read"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.read()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.sampler"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.sampler()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.scale_with_central_bh"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.scale_with_central_bh</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.scaled_to_nbody_units"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.scaled_to_nbody_units</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.tidal_radius"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.tidal_radius</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.virial_radius"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.virial_radius</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.InitialCMCTable.write"><code class="docutils literal notranslate"><span class="pre">InitialCMCTable.write()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample"><code class="docutils literal notranslate"><span class="pre">Sample</span></code></a><ul>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.__annotations__"><code class="docutils literal notranslate"><span class="pre">Sample.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.__dict__"><code class="docutils literal notranslate"><span class="pre">Sample.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.__doc__"><code class="docutils literal notranslate"><span class="pre">Sample.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.__module__"><code class="docutils literal notranslate"><span class="pre">Sample.__module__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.__weakref__"><code class="docutils literal notranslate"><span class="pre">Sample.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.binary_select"><code class="docutils literal notranslate"><span class="pre">Sample.binary_select()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.sample_SFH"><code class="docutils literal notranslate"><span class="pre">Sample.sample_SFH()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.sample_ecc"><code class="docutils literal notranslate"><span class="pre">Sample.sample_ecc()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.sample_porb"><code class="docutils literal notranslate"><span class="pre">Sample.sample_porb()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.sample_primary"><code class="docutils literal notranslate"><span class="pre">Sample.sample_primary()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.sample_secondary"><code class="docutils literal notranslate"><span class="pre">Sample.sample_secondary()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.set_kstar"><code class="docutils literal notranslate"><span class="pre">Sample.set_kstar()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.Sample.set_reff"><code class="docutils literal notranslate"><span class="pre">Sample.set_reff()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.get_cmc_point_mass_sampler"><code class="docutils literal notranslate"><span class="pre">get_cmc_point_mass_sampler()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.get_cmc_sampler"><code class="docutils literal notranslate"><span class="pre">get_cmc_sampler()</span></code></a></li>
+<li><a class="reference internal" href="#cosmic.sample.sampler.cmc.register_sampler"><code class="docutils literal notranslate"><span class="pre">register_sampler()</span></code></a></li>
+</ul>
 
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Katie Breivik.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
+          </div>
         </div>
       </div>
-    </section>
+      
+      
+    </aside>
   </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
-
-</body>
+</div><script src="../_static/documentation_options.js?v=5349f462"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=5eb46824"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/custom.js?v=fedf5a9c"></script>
+    </body>
 </html>

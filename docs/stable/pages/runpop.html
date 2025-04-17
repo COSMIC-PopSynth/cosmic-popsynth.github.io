@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Independent distributions" href="sample/independent.html" /><link rel="prev" title="Restarting a binary" href="evolve/restart.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Sampling populations - COSMIC v3.4.14</title>
+        <title>Sampling initial populations - COSMIC v3.6.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e15ddae3" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.4.14</div></a>
+      <a href="../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.4.14</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -231,16 +231,13 @@
 <li class="toctree-l2"><a class="reference internal" href="evolve/single.html">Evolving a single binary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/multiple.html">Evolving multiple binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/grid.html">Evolving a fixed grid of binaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolve/evolve_sample.html">Evolving a sampled population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolve/evolve_sample.html">Evolving a Monte-Carlo sampled population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/resolution.html">Dynamic time resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/restart.html">Restarting a binary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Sampling populations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Sampling populations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Sampling initial populations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Sampling initial populations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="sample/independent.html">Independent distributions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample/independent.html#multidim">multidim</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample/independent.html#evolving-an-initial-binary-population">Evolving an initial binary population</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample/independent.html#clustermontecarlo">ClusterMonteCarlo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample/multidim.html">Multidimensional distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample/cluster.html">ClusterMonteCarlo Sampling</a></li>
 </ul>
@@ -299,8 +296,8 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="sampling-populations">
-<span id="runpop"></span><h1>Sampling populations<a class="headerlink" href="#sampling-populations" title="Link to this heading">¶</a></h1>
+          <section id="sampling-initial-populations">
+<span id="runpop"></span><h1>Sampling initial populations<a class="headerlink" href="#sampling-initial-populations" title="Link to this heading">¶</a></h1>
 <p>The process to generate a synthetic binary population, is similar to the
 process to evolve a single/multiple binaries by hand: first generate an
 initial population, then evolve it with the <a class="reference internal" href="../api/cosmic.evolve.html#cosmic.evolve.Evolve" title="cosmic.evolve.Evolve"><code class="xref py py-class docutils literal notranslate"><span class="pre">Evolve</span></code></a> class.</p>
@@ -319,9 +316,6 @@ distributions according to <a class="reference external" href="http://adsabs.har
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sample/independent.html">Independent distributions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample/independent.html#multidim">multidim</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample/independent.html#evolving-an-initial-binary-population">Evolving an initial binary population</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sample/independent.html#clustermontecarlo">ClusterMonteCarlo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sample/multidim.html">Multidimensional distributions</a></li>
 </ul>
 </div>
@@ -392,7 +386,7 @@ This is demonstrated in <a class="reference external" href="evolve/evolve_sample
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=65e3b30a"></script>
+</div><script src="../_static/documentation_options.js?v=5349f462"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>

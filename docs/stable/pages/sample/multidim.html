@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="ClusterMonteCarlo Sampling" href="cluster.html" /><link rel="prev" title="Independent distributions" href="independent.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Multidimensional distributions - COSMIC v3.4.14</title>
+        <title>Multidimensional distributions - COSMIC v3.6.0</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.4.14</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.4.14</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -231,12 +231,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../evolve/single.html">Evolving a single binary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../evolve/multiple.html">Evolving multiple binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../evolve/grid.html">Evolving a fixed grid of binaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../evolve/evolve_sample.html">Evolving a sampled population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evolve/evolve_sample.html">Evolving a Monte-Carlo sampled population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../evolve/resolution.html">Dynamic time resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../evolve/restart.html">Restarting a binary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="../runpop.html">Sampling populations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Sampling populations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../runpop.html">Sampling initial populations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Sampling initial populations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="independent.html">Independent distributions</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Multidimensional distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cluster.html">ClusterMonteCarlo Sampling</a></li>
@@ -400,17 +400,17 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;multidim&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">final_kstar2</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">rand_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="gp">In [5]: </span><span class="nb">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">   kstar_1  kstar_2     mass_1    mass_2           porb       ecc  metallicity   tphysf    mass0_1  ...  tacc_2  epoch_1  epoch_2  tms_1  tms_2  bhspin_1  bhspin_2  tphys   binfrac</span>
-<span class="go">0      1.0      1.0   1.496663  1.474208  153145.548650  0.617960         0.02  13700.0   1.496663  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.442176</span>
-<span class="go">1      1.0      1.0   4.476178  2.620572     272.239945  0.290215         0.02  13700.0   4.476178  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.680490</span>
-<span class="go">2      1.0      1.0   2.983804  0.882177  488349.651511  0.945957         0.02  13700.0   2.983804  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.568435</span>
-<span class="go">3      1.0      1.0   2.313269  1.129829   48521.218408  0.393425         0.02  13700.0   2.313269  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.513600</span>
-<span class="go">4      1.0      1.0   5.096958  3.458565     466.684668  0.481318         0.02  13700.0   5.096958  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.726095</span>
-<span class="go">5      1.0      1.0   1.252850  1.047598    5376.449730  0.731587         0.02  13700.0   1.252850  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.416627</span>
-<span class="go">6      1.0      1.0  16.446315  1.745968    1038.913867  0.770849         0.02  13700.0  16.446315  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.899057</span>
-<span class="go">7      1.0      1.0   1.185019  1.043142  435317.105708  0.287915         0.02  13700.0   1.185019  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.413086</span>
-<span class="go">8      1.0      1.0   9.969190  1.657964     478.129775  0.403148         0.02  13700.0   9.969190  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.849914</span>
-<span class="go">9      1.0      1.0   1.398886  0.946875    6918.835134  0.641948         0.02  13700.0   1.398886  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.431419</span>
+<span class="go">   kstar_1  kstar_2     mass_1    mass_2  ...  bhspin_1  bhspin_2  tphys   binfrac</span>
+<span class="go">0      1.0      1.0   1.496663  1.474208  ...       0.0       0.0    0.0  0.442176</span>
+<span class="go">1      1.0      1.0   4.476178  2.620572  ...       0.0       0.0    0.0  0.680490</span>
+<span class="go">2      1.0      1.0   2.983804  0.882177  ...       0.0       0.0    0.0  0.568435</span>
+<span class="go">3      1.0      1.0   2.313269  1.129829  ...       0.0       0.0    0.0  0.513600</span>
+<span class="go">4      1.0      1.0   5.096958  3.458565  ...       0.0       0.0    0.0  0.726095</span>
+<span class="go">5      1.0      1.0   1.252850  1.047598  ...       0.0       0.0    0.0  0.416627</span>
+<span class="go">6      1.0      1.0  16.446315  1.745968  ...       0.0       0.0    0.0  0.899057</span>
+<span class="go">7      1.0      1.0   1.185019  1.043142  ...       0.0       0.0    0.0  0.413086</span>
+<span class="go">8      1.0      1.0   9.969190  1.657964  ...       0.0       0.0    0.0  0.849914</span>
+<span class="go">9      1.0      1.0   1.398886  0.946875  ...       0.0       0.0    0.0  0.431419</span>
 
 <span class="go">[10 rows x 38 columns]</span>
 </pre></div>
@@ -473,7 +473,7 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=65e3b30a"></script>
+</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>

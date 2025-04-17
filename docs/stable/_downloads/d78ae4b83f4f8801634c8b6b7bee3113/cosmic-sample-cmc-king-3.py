@@ -23,8 +23,7 @@ plt.plot(bins, 1/(sigma * np.sqrt(2 * np.pi)) *
          linewidth=2, color='r')
 plt.show()
 #
-# Two-by-four array of samples from the normal distribution with
-# mean 3 and standard deviation 2.5:
+# Two-by-four array of samples from N(3, 6.25):
 #
 np.random.normal(3, 2.5, size=(2, 4))
 # Expected:

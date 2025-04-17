@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Understanding COSMIC outputs" href="output_info.html" /><link rel="prev" title="Configuration and output" href="reference_material.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Configuration files - COSMIC v3.4.14</title>
+        <title>Configuration files - COSMIC v3.6.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e15ddae3" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.4.14</div></a>
+      <a href="../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.4.14</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -231,16 +231,13 @@
 <li class="toctree-l2"><a class="reference internal" href="evolve/single.html">Evolving a single binary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/multiple.html">Evolving multiple binaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/grid.html">Evolving a fixed grid of binaries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="evolve/evolve_sample.html">Evolving a sampled population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evolve/evolve_sample.html">Evolving a Monte-Carlo sampled population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/resolution.html">Dynamic time resolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="evolve/restart.html">Restarting a binary</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="runpop.html">Sampling populations</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Sampling populations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="runpop.html">Sampling initial populations</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Sampling initial populations</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="sample/independent.html">Independent distributions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample/independent.html#multidim">multidim</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample/independent.html#evolving-an-initial-binary-population">Evolving an initial binary population</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sample/independent.html#clustermontecarlo">ClusterMonteCarlo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample/multidim.html">Multidimensional distributions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sample/cluster.html">ClusterMonteCarlo Sampling</a></li>
 </ul>
@@ -371,9 +368,9 @@ In each of the following sections you can edit the values of the parameter and t
 <div class="col-9">
 <h3 class="name"><code>sampling_method</code></h3>
 <p class="description">Select which models to use to generate an initial sample of binary parameters at Zero Age Main Sequence</p>
-<p class="default">Default: multidim</p>
+<p class="default">Default: independent</p>
 </div>
-<div class="col-3"><input class="form-control" type="text" value="multidim"/></div>
+<div class="col-3"><select class="form-control"><option selected="true" value="independent">independent</option><option value="multidim">multidim</option></select></div>
 </div>
 <div class="options-expander" style="color: darkseagreen;">Option details <i class="fa fa-chevron-down"></i></div>
 <div class="row options hide">
@@ -654,7 +651,7 @@ In each of the following sections you can edit the values of the parameter and t
 </div><div class="setting">
 <div class="row align-items-center setting-chooser">
 <div class="col-9">
-<h3 class="name"><code>pts2</code></h3>
+<h3 class="name"><code>pts3</code></h3>
 <p class="description">Sets the timestep modifier for HG, HeMS stars (<code>dtp *= pts3</code>)</p>
 <p class="default">Default: 0.02</p>
 </div>
@@ -754,9 +751,9 @@ In each of the following sections you can edit the values of the parameter and t
 <div class="col-9">
 <h3 class="name"><code>beta</code></h3>
 <p class="description">Wind velocity factor. \( v_{\rm wind}^2 \propto \beta\), see <a href="https://ui.adsabs.harvard.edu/abs/2002MNRAS.329..897H/abstract">Hurley+2002, Eq. 9</a>.</p>
-<p class="default">Default: -1</p>
+<p class="default">Default: 0.125</p>
 </div>
-<div class="col-3"><input class="form-control" type="number" value="-1"/></div>
+<div class="col-3"><input class="form-control" type="number" value="0.125"/></div>
 </div>
 <div class="options-expander" style="color: lightcoral;">Option details <i class="fa fa-chevron-down"></i></div>
 <div class="row options hide">
@@ -1020,15 +1017,15 @@ In each of the following sections you can edit the values of the parameter and t
 <div class="row align-items-center setting-chooser">
 <div class="col-9">
 <h3 class="name"><code>kickflag</code></h3>
-<p class="description">Sets the particular natal kick prescription to use. Note that <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>, <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>, <code class="docutils literal notranslate"><span class="pre">aic</span></code>, and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>, which are described below, are only used when <code class="docutils literal notranslate"><span class="pre">kickflag=0</span></code></p>
-<p class="default">Default: 0</p>
+<p class="description">Sets the particular natal kick prescription to use. Note that <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>, <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>, <code class="docutils literal notranslate"><span class="pre">aic</span></code>, and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>, which are described below, are only used when <code class="docutils literal notranslate"><span class="pre">abs(kickflag)=1</span></code>. Positive values use the Pfahl+2002 prescription for handling natal kicks.</p>
+<p class="default">Default: 1</p>
 </div>
-<div class="col-3"><select class="form-control"><option selected="true" value="0">0</option><option value="-1">-1</option><option value="-2">-2</option><option value="-3">-3</option></select></div>
+<div class="col-3"><select class="form-control"><option selected="true" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="negative values">negative values</option></select></div>
 </div>
 <div class="options-expander" style="color: lightcoral;">Option details <i class="fa fa-chevron-down"></i></div>
 <div class="row options hide">
 <p class="options-preface"></p>
-<ul style="margin-left: 2rem; max-width: calc(100% - 2rem)"><li><code class="docutils literal notranslate"><span class="pre opt-val">0</span></code>: <span class="opt-desc">The standard COSMIC kick prescription, where kicks are drawn from a bimodal distribution with standard FeCCSN getting a kick drawn from a Maxwellian distribution with dispersion parameter <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and ECSN/USSN are drawn according to <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>. This setting has additional possible options for <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>, <code class="docutils literal notranslate"><span class="pre">aic</span></code> and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>.</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">-1</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by the ejecta mass and remnant mass following Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a> with their default parameters (\(m_{\rm NS = 1.2 {\rm M_\odot}\), \(m_{\rm ej = 9 {\rm M_\odot}\))</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">-2</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by just the ejecta mass following Eq. 2 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a>, which does not scale the kick by (\(m_{\rm NS\)</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">-3</span></code>: <span class="opt-desc">Natal kicks are drawn according to Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016MNRAS.461.3747B/abstract">Bray &amp; Eldridge 2016</a>, with their default parameters (\(\alpha=70 \, {\rm km/s}, \beta = 120 \, {\rm km/s)}</span></li></ul>
+<ul style="margin-left: 2rem; max-width: calc(100% - 2rem)"><li><code class="docutils literal notranslate"><span class="pre opt-val">1</span></code>: <span class="opt-desc">The standard COSMIC kick prescription, where kicks are drawn from a bimodal distribution with standard FeCCSN getting a kick drawn from a Maxwellian distribution with dispersion parameter <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and ECSN/USSN are drawn according to <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>. This setting has additional possible options for <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>, <code class="docutils literal notranslate"><span class="pre">aic</span></code> and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>.</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">2</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by the ejecta mass and remnant mass following Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a> with their default parameters (\(m_{\rm NS = 1.2 {\rm M_\odot}\), \(m_{\rm ej = 9 {\rm M_\odot}\))</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">3</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by just the ejecta mass following Eq. 2 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a>, which does not scale the kick by (\(m_{\rm NS\)</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">4</span></code>: <span class="opt-desc">Natal kicks are drawn according to Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016MNRAS.461.3747B/abstract">Bray &amp; Eldridge 2016</a>, with their default parameters (\(\alpha=70 \, {\rm km/s}, \beta = 120 \, {\rm km/s)}</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">negative values</span></code>: <span class="opt-desc">Same as above settings but using the old Kiel &amp; Hurley 2009 prescription for changing the orbital configuration of the binary, available for reproducibility purposes but not recommended for new work</span></li></ul>
 </div>
 </div><div class="setting">
 <div class="row align-items-center setting-chooser">
@@ -1662,7 +1659,7 @@ In each of the following sections you can edit the values of the parameter and t
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=65e3b30a"></script>
+</div><script src="../_static/documentation_options.js?v=5349f462"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
