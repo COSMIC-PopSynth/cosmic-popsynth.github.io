@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Evolving multiple binaries" href="multiple.html" /><link rel="prev" title="Evolving binaries" href="../examples.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Evolving a single binary - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Evolving a single binary - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -301,9 +301,9 @@
 <p>Below is the process to initialize and evolve a binary that
 could have formed a GW150914-like binary. First, import the modules in COSMIC
 that initialize and evolve the binary.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.initialbinarytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
-<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">cosmic.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
+<span class="gp">In [2]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.evolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evolve</span>
 </pre></div>
 </div>
 <p>To initialize a single binary, populate the InitialBinaries method in the
@@ -324,8 +324,8 @@ InitialBinaryTable class. Each initialized binary requires the following paramet
 <span class="gp">   ...: </span>
 
 <span class="gp">In [4]: </span><span class="nb">print</span><span class="p">(</span><span class="n">single_binary</span><span class="p">)</span>
-<span class="go">   kstar_1  kstar_2     mass_1    mass_2  ...  bhspin_1  bhspin_2  tphys  binfrac</span>
-<span class="go">0      1.0      1.0  85.543645  84.99784  ...       0.0       0.0    0.0      1.0</span>
+<span class="go">   kstar_1  kstar_2     mass_1    mass_2        porb       ecc  metallicity   tphysf    mass0_1   mass0_2  ...  tacc_1  tacc_2  epoch_1  epoch_2  tms_1  tms_2  bhspin_1  bhspin_2  tphys  binfrac</span>
+<span class="go">0      1.0      1.0  85.543645  84.99784  446.795757  0.448872        0.002  13700.0  85.543645  84.99784  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      1.0</span>
 
 <span class="go">[1 rows x 38 columns]</span>
 </pre></div>
@@ -384,8 +384,8 @@ The meaning of each number is described here, <a class="reference internal" href
 <span class="go">0     72.504133</span>
 <span class="go">0    114.941973</span>
 <span class="go">0    114.827105</span>
-<span class="go">0     64.562553</span>
-<span class="go">0     62.286136</span>
+<span class="go">0     64.562614</span>
+<span class="go">0     62.286075</span>
 <span class="go">0     44.500000</span>
 <span class="go">0     44.500000</span>
 <span class="go">Name: mass_1, dtype: float64</span>
@@ -396,30 +396,28 @@ The meaning of each number is described here, <a class="reference internal" href
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">utils.convert_kstar_evol_type</span></code> function to convert the
 <code class="docutils literal notranslate"><span class="pre">kstar_1</span></code>, <code class="docutils literal notranslate"><span class="pre">kstar_2</span></code>, and <code class="docutils literal notranslate"><span class="pre">evol_type</span></code> columns from integers to strings
 that describe each int:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="kn">from</span> <span class="nn">cosmic.utils</span> <span class="kn">import</span> <span class="n">convert_kstar_evol_type</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_kstar_evol_type</span>
 
 <span class="gp">In [12]: </span><span class="n">convert_kstar_evol_type</span><span class="p">(</span><span class="n">bpp</span><span class="p">)</span>
 <span class="gh">Out[12]: </span>
-<span class="go">       mass_1     mass_2  ...          sep                  evol_type</span>
-<span class="go">0   85.543645  84.997840  ...  1363.435508              initial state</span>
-<span class="go">0   72.720332  72.376321  ...  1602.531512               kstar change</span>
-<span class="go">0   72.589218  72.377845  ...   883.827396  begin Roche lobe overflow</span>
-<span class="go">0   72.504133  72.396628  ...   883.794364                    contact</span>
-<span class="go">0   72.504133  72.396628  ...   883.794364      begin common envelope</span>
-<span class="go">0  114.941973  72.396628  ...     0.000000        end common envelope</span>
-<span class="go">0  114.827105   0.000000  ...     0.000000               kstar change</span>
-<span class="go">0   64.562553   0.000000  ...     0.000000               kstar change</span>
-<span class="go">0   62.286136   0.000000  ...     0.000000       supernova of primary</span>
-<span class="go">0   44.500000   0.000000  ...     0.000000               kstar change</span>
-<span class="go">0   44.500000   0.000000  ...     0.000000         max evolution time</span>
-
-<span class="go">[11 rows x 6 columns]</span>
+<span class="go">       mass_1     mass_2                              kstar_1           kstar_2          sep                  evol_type</span>
+<span class="go">0   85.543645  84.997840                         MS, &gt; 0.7 M⊙      MS, &gt; 0.7 M⊙  1363.435508              initial state</span>
+<span class="go">0   72.720332  72.376321                      Hertzsprung Gap      MS, &gt; 0.7 M⊙  1602.531512               kstar change</span>
+<span class="go">0   72.589218  72.377845                      Hertzsprung Gap      MS, &gt; 0.7 M⊙   883.827396  begin Roche lobe overflow</span>
+<span class="go">0   72.504133  72.396628                      Hertzsprung Gap      MS, &gt; 0.7 M⊙   883.794364                    contact</span>
+<span class="go">0   72.504133  72.396628                      Hertzsprung Gap      MS, &gt; 0.7 M⊙   883.794364      begin common envelope</span>
+<span class="go">0  114.941973  72.396628                      Hertzsprung Gap  Massless Remnant     0.000000        end common envelope</span>
+<span class="go">0  114.827105   0.000000                  Core Helium Burning  Massless Remnant     0.000000               kstar change</span>
+<span class="go">0   64.562614   0.000000  Early Asymptotic Giant Branch (AGB)  Massless Remnant     0.000000               kstar change</span>
+<span class="go">0   62.286075   0.000000  Early Asymptotic Giant Branch (AGB)  Massless Remnant     0.000000       supernova of primary</span>
+<span class="go">0   44.500000   0.000000                           Black Hole  Massless Remnant     0.000000               kstar change</span>
+<span class="go">0   44.500000   0.000000                           Black Hole  Massless Remnant     0.000000         max evolution time</span>
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">utils.convert_kstar_evol_type</span></code> is only applicable to the bpp
 array.</p>
 <p>You can also use the built-in plotting function to see how the system evolves:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="kn">from</span> <span class="nn">cosmic.plotting</span> <span class="kn">import</span> <span class="n">evolve_and_plot</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">evolve_and_plot</span>
 
 <span class="gp">In [14]: </span><span class="n">single_binary</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">InitialBinaries</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="mf">85.543645</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="mf">84.99784</span><span class="p">,</span> <span class="n">porb</span><span class="o">=</span><span class="mf">446.795757</span><span class="p">,</span>
 <span class="gp">   ....: </span>                                                   <span class="n">ecc</span><span class="o">=</span><span class="mf">0.448872</span><span class="p">,</span> <span class="n">tphysf</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span>
@@ -497,8 +495,8 @@ array.</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

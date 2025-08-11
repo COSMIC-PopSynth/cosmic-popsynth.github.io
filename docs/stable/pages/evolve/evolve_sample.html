@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Dynamic time resolution" href="resolution.html" /><link rel="prev" title="Evolving a fixed grid of binaries" href="grid.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Evolving a Monte-Carlo sampled population - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Evolving a Monte-Carlo sampled population - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -303,9 +303,9 @@ You can read more about sampling initial binary populations in the <a class="ref
 <p>Note that the same process used other examples applies here as well: the <code class="docutils literal notranslate"><span class="pre">BSEDict</span></code> must be supplied,
 if the flags in the dictionary change from their defaults.</p>
 <p>First, let’s import the necessary modules from COSMIC:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.initialbinarytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
-<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">cosmic.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
+<span class="gp">In [2]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.evolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evolve</span>
 </pre></div>
 </div>
 <p>Now let’s use the independent sampler to generate an initial binary population. You can learn more
@@ -316,8 +316,8 @@ about the independent sampler in the <a class="reference internal" href="../samp
 <span class="gp">   ...: </span>      <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstars</span><span class="p">,</span> <span class="n">final_kstars</span><span class="p">,</span>
 <span class="gp">   ...: </span>                                 <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa01&#39;</span><span class="p">,</span>
 <span class="gp">   ...: </span>                                 <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">porb_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span>
-<span class="gp">   ...: </span>                                 <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m2_min</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span>
-<span class="gp">   ...: </span>                                 <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">   ...: </span>                                 <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span>
+<span class="gp">   ...: </span>                                 <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">keep_singles</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">   ...: </span>
 </pre></div>
 </div>
@@ -330,68 +330,35 @@ guides:</p>
 <span class="gp">   ...: </span>
 
 <span class="gp">In [7]: </span><span class="nb">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-<span class="go">     tphys  kstar_1   mass0_1    mass_1  ...  SN_2  bin_state  merger_type  bin_num</span>
-<span class="go">0      0.0        0  0.255572  0.255572  ...     0          0         -001        0</span>
-<span class="go">0  13700.0        0  0.255572  0.255572  ...     0          0         -001        0</span>
-<span class="go">1      0.0        0  0.091712  0.091712  ...     0          0         -001        1</span>
-<span class="go">1  13700.0        0  0.091712  0.091712  ...     0          0         -001        1</span>
-<span class="go">2      0.0        0  0.293307  0.293307  ...     0          0         -001        2</span>
-<span class="go">2  13700.0        0  0.293307  0.293307  ...     0          0         -001        2</span>
-<span class="go">3      0.0        0  0.347830  0.347830  ...     0          0         -001        3</span>
-<span class="go">3  13700.0        0  0.347830  0.347830  ...     0          0         -001        3</span>
-<span class="go">4      0.0        0  0.461164  0.461164  ...     0          0         -001        4</span>
-<span class="go">4  13700.0        0  0.461164  0.461164  ...     0          0         -001        4</span>
+<span class="go">     tphys  kstar_1   mass0_1    mass_1     lum_1     rad_1       teff_1   massc_1    radc_1  ...          sep       ecc  B_1  B_2  SN_1  SN_2  bin_state  merger_type  bin_num</span>
+<span class="go">0      0.0        0  0.540947  0.540947  0.047108  0.498024  3827.524280  0.000000  0.000000  ...    41.231595  0.257915  0.0  0.0     0     0          0         -001        0</span>
+<span class="go">0  13700.0        0  0.540947  0.540947  0.050400  0.510504  3844.833968  0.000000  0.000000  ...    41.231449  0.257913  0.0  0.0     0     0          0         -001        0</span>
+<span class="go">1      0.0        1  1.720935  1.720935  8.286040  1.527310  7959.627646  0.000000  0.000000  ...   277.005967  0.255143  0.0  0.0     0     0          0         -001        1</span>
+<span class="go">1  13700.0       10  0.438346  0.438346  0.000020  0.015245  3148.791969  0.438346  0.015245  ...     8.007995  0.000000  0.0  0.0     0     0          0         -001        1</span>
+<span class="go">2      0.0        1  0.850941  0.850941  0.310673  0.764895  4949.307941  0.000000  0.000000  ...  2750.334923  0.278934  0.0  0.0     0     0          0         -001        2</span>
+<span class="go">2  13700.0        1  0.850941  0.850941  0.582381  0.909136  5311.985496  0.000000  0.000000  ...  2750.334923  0.278934  0.0  0.0     0     0          0         -001        2</span>
+<span class="go">3      0.0        0  0.345433  0.345433  0.016927  0.333891  3619.172359  0.000000  0.000000  ...     5.461096  0.525869  0.0  0.0     0     0          0         -001        3</span>
+<span class="go">3  13700.0        0  0.345433  0.345433  0.017194  0.336799  3617.682879  0.000000  0.000000  ...     4.886211  0.459572  0.0  0.0     0     0          0         -001        3</span>
+<span class="go">4      0.0        0  0.205493  0.205493  0.005955  0.234964  3322.627172  0.000000  0.000000  ...     4.523477  0.022692  0.0  0.0     0     0          0         -001        4</span>
+<span class="go">4  13700.0        0  0.205493  0.205493  0.005985  0.235674  3321.889747  0.000000  0.000000  ...     4.521528  0.022669  0.0  0.0     0     0          0         -001        4</span>
 
 <span class="go">[10 rows x 39 columns]</span>
 
 <span class="gp">In [8]: </span><span class="nb">print</span><span class="p">(</span><span class="n">bpp</span><span class="p">)</span>
-<span class="go">           tphys    mass_1    mass_2  ...  bhspin_1  bhspin_2  bin_num</span>
-<span class="go">0       0.000000  0.255572  0.179063  ...       0.0       0.0        0</span>
-<span class="go">0   13700.000000  0.255572  0.179063  ...       0.0       0.0        0</span>
-<span class="go">1       0.000000  0.091712  0.081891  ...       0.0       0.0        1</span>
-<span class="go">1   13700.000000  0.091712  0.081891  ...       0.0       0.0        1</span>
-<span class="go">2       0.000000  0.293307  0.237122  ...       0.0       0.0        2</span>
-<span class="go">2   13700.000000  0.293307  0.237122  ...       0.0       0.0        2</span>
-<span class="go">3       0.000000  0.347830  0.308427  ...       0.0       0.0        3</span>
-<span class="go">3   13700.000000  0.347830  0.308427  ...       0.0       0.0        3</span>
-<span class="go">4       0.000000  0.461164  0.242963  ...       0.0       0.0        4</span>
-<span class="go">4   13700.000000  0.461164  0.242963  ...       0.0       0.0        4</span>
-<span class="go">5       0.000000  1.029643  0.521787  ...       0.0       0.0        5</span>
-<span class="go">5    9983.170365  1.029643  0.521787  ...       0.0       0.0        5</span>
-<span class="go">5   10509.048838  1.029147  0.521819  ...       0.0       0.0        5</span>
-<span class="go">5   10614.432939  1.029006  0.521830  ...       0.0       0.0        5</span>
-<span class="go">5   10614.432939  1.029006  0.521830  ...       0.0       0.0        5</span>
-<span class="go">5   10614.432939  1.466347  0.521830  ...       0.0       0.0        5</span>
-<span class="go">5   11227.389366  1.330269  0.000000  ...       0.0       0.0        5</span>
-<span class="go">5   11359.340271  1.299968  0.000000  ...       0.0       0.0        5</span>
-<span class="go">5   11363.277222  1.259815  0.000000  ...       0.0       0.0        5</span>
-<span class="go">5   11364.363684  0.561829  0.000000  ...       0.0       0.0        5</span>
-<span class="go">5   13700.000000  0.561829  0.000000  ...       0.0       0.0        5</span>
-<span class="go">6       0.000000  0.091909  0.085454  ...       0.0       0.0        6</span>
-<span class="go">6   13700.000000  0.091909  0.085454  ...       0.0       0.0        6</span>
-<span class="go">7       0.000000  0.088006  0.083843  ...       0.0       0.0        7</span>
-<span class="go">7   13700.000000  0.088006  0.083843  ...       0.0       0.0        7</span>
-<span class="go">8       0.000000  2.242855  0.615232  ...       0.0       0.0        8</span>
-<span class="go">8     845.714286  2.242855  0.615232  ...       0.0       0.0        8</span>
-<span class="go">8     851.956080  2.242721  0.615232  ...       0.0       0.0        8</span>
-<span class="go">8     862.540859  2.241321  0.615233  ...       0.0       0.0        8</span>
-<span class="go">8    1088.059473  2.217332  0.615241  ...       0.0       0.0        8</span>
-<span class="go">8    1092.529148  2.191505  0.615483  ...       0.0       0.0        8</span>
-<span class="go">8    1093.367548  2.044616  0.619699  ...       0.0       0.0        8</span>
-<span class="go">8    1093.367548  2.044616  0.619699  ...       0.0       0.0        8</span>
-<span class="go">8    1093.367548  0.604595  0.619699  ...       0.0       0.0        8</span>
-<span class="go">8    1093.367548  0.604595  0.619699  ...       0.0       0.0        8</span>
-<span class="go">8   13700.000000  0.604595  0.619699  ...       0.0       0.0        8</span>
-<span class="go">9       0.000000  0.100096  0.080205  ...       0.0       0.0        9</span>
-<span class="go">9   13700.000000  0.100096  0.080205  ...       0.0       0.0        9</span>
-<span class="go">10      0.000000  0.393327  0.200920  ...       0.0       0.0       10</span>
-<span class="go">10  13700.000000  0.393327  0.200920  ...       0.0       0.0       10</span>
-<span class="go">11      0.000000  0.143681  0.129484  ...       0.0       0.0       11</span>
-<span class="go">11  13700.000000  0.143681  0.129484  ...       0.0       0.0       11</span>
-<span class="go">12      0.000000  0.152135  0.131638  ...       0.0       0.0       12</span>
-<span class="go">12  13700.000000  0.152135  0.131638  ...       0.0       0.0       12</span>
+<span class="go">           tphys    mass_1    mass_2  kstar_1  kstar_2         sep        porb       ecc    RRLO_1  ...  bacc_1  bacc_2  tacc_1  tacc_2   epoch_1   epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">0       0.000000  0.540947  0.330351        0        0   41.231595   32.872586  0.257915  0.038550  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0        0</span>
+<span class="go">0   13700.000000  0.540947  0.330351        0        0   41.231449   32.872411  0.257913  0.039516  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0        0</span>
+<span class="go">1       0.000000  1.720935  0.648362        1        0  277.005967  347.133210  0.255143  0.015912  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0        1</span>
+<span class="go">1    1825.092426  1.720935  0.648362        2        0  277.005966  347.133209  0.255143  0.032845  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0        1</span>
+<span class="go">1    1850.330914  1.720776  0.648362        3        0  277.024453  347.179571  0.255143  0.045878  ...     0.0     0.0     0.0     0.0 -0.507675  0.000448       0.0       0.0        1</span>
+<span class="go">..           ...       ...       ...      ...      ...         ...         ...       ...       ...  ...     ...     ...     ...     ...       ...       ...       ...       ...      ...</span>
+<span class="go">37  13700.000000  0.135418  0.000000        0       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0       37</span>
+<span class="go">38      0.000000  0.265231  0.000000        0       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0       38</span>
+<span class="go">38  13700.000000  0.265231  0.000000        0       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0       38</span>
+<span class="go">39      0.000000  0.173066  0.000000        0       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0       39</span>
+<span class="go">39  13700.000000  0.173066  0.000000        0       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0       39</span>
 
-<span class="go">[44 rows x 44 columns]</span>
+<span class="go">[113 rows x 44 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -448,8 +415,8 @@ guides:</p>
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

@@ -3,7 +3,7 @@
 mu, sigma = 0, 0.1 # mean and standard deviation
 s = np.random.normal(mu, sigma, 1000)
 #
-# Verify the mean and the variance:
+# Verify the mean and the standard deviation:
 #
 abs(mu - np.mean(s))
 # Expected:
@@ -23,7 +23,8 @@ plt.plot(bins, 1/(sigma * np.sqrt(2 * np.pi)) *
          linewidth=2, color='r')
 plt.show()
 #
-# Two-by-four array of samples from N(3, 6.25):
+# Two-by-four array of samples from the normal distribution with
+# mean 3 and standard deviation 2.5:
 #
 np.random.normal(3, 2.5, size=(2, 4))
 # Expected:

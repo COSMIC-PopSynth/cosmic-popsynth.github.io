@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Understanding COSMIC outputs" href="output_info.html" /><link rel="prev" title="Configuration and output" href="reference_material.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Configuration files - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Configuration files - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -1020,12 +1020,12 @@ In each of the following sections you can edit the values of the parameter and t
 <p class="description">Sets the particular natal kick prescription to use. Note that <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>, <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>, <code class="docutils literal notranslate"><span class="pre">aic</span></code>, and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>, which are described below, are only used when <code class="docutils literal notranslate"><span class="pre">abs(kickflag)=1</span></code>. Positive values use the Pfahl+2002 prescription for handling natal kicks.</p>
 <p class="default">Default: 1</p>
 </div>
-<div class="col-3"><select class="form-control"><option selected="true" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="negative values">negative values</option></select></div>
+<div class="col-3"><select class="form-control"><option selected="true" value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="negative values">negative values</option></select></div>
 </div>
 <div class="options-expander" style="color: lightcoral;">Option details <i class="fa fa-chevron-down"></i></div>
 <div class="row options hide">
 <p class="options-preface"></p>
-<ul style="margin-left: 2rem; max-width: calc(100% - 2rem)"><li><code class="docutils literal notranslate"><span class="pre opt-val">1</span></code>: <span class="opt-desc">The standard COSMIC kick prescription, where kicks are drawn from a bimodal distribution with standard FeCCSN getting a kick drawn from a Maxwellian distribution with dispersion parameter <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and ECSN/USSN are drawn according to <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>. This setting has additional possible options for <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>, <code class="docutils literal notranslate"><span class="pre">aic</span></code> and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>.</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">2</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by the ejecta mass and remnant mass following Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a> with their default parameters (\(m_{\rm NS = 1.2 {\rm M_\odot}\), \(m_{\rm ej = 9 {\rm M_\odot}\))</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">3</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by just the ejecta mass following Eq. 2 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a>, which does not scale the kick by (\(m_{\rm NS\)</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">4</span></code>: <span class="opt-desc">Natal kicks are drawn according to Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016MNRAS.461.3747B/abstract">Bray &amp; Eldridge 2016</a>, with their default parameters (\(\alpha=70 \, {\rm km/s}, \beta = 120 \, {\rm km/s)}</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">negative values</span></code>: <span class="opt-desc">Same as above settings but using the old Kiel &amp; Hurley 2009 prescription for changing the orbital configuration of the binary, available for reproducibility purposes but not recommended for new work</span></li></ul>
+<ul style="margin-left: 2rem; max-width: calc(100% - 2rem)"><li><code class="docutils literal notranslate"><span class="pre opt-val">1</span></code>: <span class="opt-desc">The standard COSMIC kick prescription, where kicks are drawn from a bimodal distribution with standard FeCCSN getting a kick drawn from a Maxwellian distribution with dispersion parameter <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and ECSN/USSN are drawn according to <code class="docutils literal notranslate"><span class="pre">sigmadiv</span></code>. This setting has additional possible options for <code class="docutils literal notranslate"><span class="pre">bhflag</span></code>, <code class="docutils literal notranslate"><span class="pre">bhsigmafrac</span></code>, <code class="docutils literal notranslate"><span class="pre">aic</span></code> and <code class="docutils literal notranslate"><span class="pre">ussn</span></code>.</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">2</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by the ejecta mass and remnant mass following Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a> with their default parameters (\(m_{\rm NS = 1.2 {\rm M_\odot}\), \(m_{\rm ej = 9 {\rm M_\odot}\))</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">3</span></code>: <span class="opt-desc">Natal kicks are drawn according to <code class="docutils literal notranslate"><span class="pre">sigma</span></code> and scaled by just the ejecta mass following Eq. 2 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2020ApJ...891..141G/abstract">Giacobbo &amp; Mapelli 2020</a>, which does not scale the kick by (\(m_{\rm NS\)</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">4</span></code>: <span class="opt-desc">Natal kicks are drawn according to Eq. 1 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2016MNRAS.461.3747B/abstract">Bray &amp; Eldridge 2016</a>, with their default parameters (\(\alpha=70 \, {\rm km/s}, \beta = 120 \, {\rm km/s)}</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">5</span></code>: <span class="opt-desc">Follows the same prescription as 1, but uses the kick prescription described in <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2025arXiv250522102D/abstract">Disberg &amp; Mandel 2025</a> for CCSN.</span></li><li><code class="docutils literal notranslate"><span class="pre opt-val">negative values</span></code>: <span class="opt-desc">Same as above settings but using the old Kiel &amp; Hurley 2009 prescription for changing the orbital configuration of the binary, available for reproducibility purposes but not recommended for new work</span></li></ul>
 </div>
 </div><div class="setting">
 <div class="row align-items-center setting-chooser">
@@ -1659,8 +1659,8 @@ In each of the following sections you can edit the values of the parameter and t
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>

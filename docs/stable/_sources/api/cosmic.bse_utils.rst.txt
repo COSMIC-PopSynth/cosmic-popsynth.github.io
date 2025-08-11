@@ -15,5 +15,5 @@ Module contents
 
 .. automodule:: cosmic.bse_utils
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Evolving a fixed grid of binaries" href="grid.html" /><link rel="prev" title="Evolving a single binary" href="single.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Evolving multiple binaries - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Evolving multiple binaries - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -300,9 +300,9 @@
 <h1>Evolving multiple binaries<a class="headerlink" href="#evolving-multiple-binaries" title="Link to this heading">¶</a></h1>
 <p>Following on from <a class="reference external" href="single.html">evolving a single binary</a>, we can also evolve multiple binaries.
 Let’s start by importing the necessary modules:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.initialbinarytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
-<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">cosmic.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
+<span class="gp">In [2]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.evolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evolve</span>
 </pre></div>
 </div>
 <p>And use the same BSE dict as before:</p>
@@ -318,13 +318,13 @@ Let’s start by importing the necessary modules:</p>
 <span class="gp">   ...: </span>
 
 <span class="gp">In [5]: </span><span class="nb">print</span><span class="p">(</span><span class="n">binary_set</span><span class="p">)</span>
-<span class="go">   kstar_1  kstar_2     mass_1    mass_2  ...  bhspin_1  bhspin_2  tphys  binfrac</span>
-<span class="go">0      1.0      1.0  85.543645  84.99784  ...       0.0       0.0    0.0      1.0</span>
-<span class="go">1      1.0      1.0  11.171469   6.67305  ...       0.0       0.0    0.0      1.0</span>
+<span class="go">   kstar_1  kstar_2     mass_1    mass_2        porb       ecc  metallicity   tphysf    mass0_1   mass0_2  ...  tacc_1  tacc_2  epoch_1  epoch_2  tms_1  tms_2  bhspin_1  bhspin_2  tphys  binfrac</span>
+<span class="go">0      1.0      1.0  85.543645  84.99784  446.795757  0.448872        0.002  13700.0  85.543645  84.99784  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      1.0</span>
+<span class="go">1      1.0      1.0  11.171469   6.67305  170.758343  0.370000        0.020  13700.0  11.171469   6.67305  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      1.0</span>
 
 <span class="go">[2 rows x 38 columns]</span>
 
-<span class="gp">In [6]: </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">In [6]: </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="gp">In [7]: </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 
@@ -334,25 +334,25 @@ Let’s start by importing the necessary modules:</p>
 <p>As before, bpp, bcm, and initC are returned as pandas DataFrames which assign an
 index to each binary system we evolve. We can access each binary as follows:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="nb">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">          tphys      mass_1     mass_2  ...  bhspin_1  bhspin_2  bin_num</span>
-<span class="go">0      0.000000   85.543645  84.997840  ...       0.0       0.0        0</span>
-<span class="go">0      3.717075   72.720332  72.376321  ...       0.0       0.0        0</span>
-<span class="go">0      3.718373   72.589218  72.377845  ...       0.0       0.0        0</span>
-<span class="go">0      3.718911   72.504133  72.396628  ...       0.0       0.0        0</span>
-<span class="go">0      3.718911   72.504133  72.396628  ...       0.0       0.0        0</span>
-<span class="go">0      3.718911  114.941973  72.396628  ...       0.0       0.0        0</span>
-<span class="go">0      3.719677  114.827105   0.000000  ...       0.0       0.0        0</span>
-<span class="go">0      4.054774   64.562553   0.000000  ...       0.0       0.0        0</span>
-<span class="go">0      4.069950   62.286136   0.000000  ...       0.0       0.0        0</span>
-<span class="go">0      4.069950   44.500000   0.000000  ...       0.0       0.0        0</span>
-<span class="go">0  13700.000000   44.500000   0.000000  ...       0.0       0.0        0</span>
+<span class="go">          tphys      mass_1     mass_2  kstar_1  kstar_2          sep        porb       ecc    RRLO_1  ...  bacc_1  bacc_2  tacc_1  tacc_2   epoch_1   epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">0      0.000000   85.543645  84.997840        1        1  1363.435508  446.795757  0.448872  0.038788  ...     0.0     0.0     0.0     0.0  0.000000  0.000000       0.0       0.0        0</span>
+<span class="go">0      3.717075   72.720332  72.376321        2        1  1602.531512  617.238959  0.448872  0.107527  ...     0.0     0.0     0.0     0.0 -0.130492 -0.129941       0.0       0.0        0</span>
+<span class="go">0      3.718373   72.589218  72.377845        2        1   883.827396  252.923207  0.000000  1.000663  ...     0.0     0.0     0.0     0.0 -0.130492 -0.129911       0.0       0.0        0</span>
+<span class="go">0      3.718911   72.504133  72.396628        2        1   883.794364  252.966882  0.000000  2.522349  ...     0.0     0.0     0.0     0.0 -0.130492 -0.129306       0.0       0.0        0</span>
+<span class="go">0      3.718911   72.504133  72.396628        2        1   883.794364  252.966882  0.000000  2.522349  ...     0.0     0.0     0.0     0.0 -0.130492 -0.129306       0.0       0.0        0</span>
+<span class="go">0      3.718911  114.941973  72.396628        2       15     0.000000    0.000000  0.000000  0.990000  ...     0.0     0.0     0.0     0.0 -0.130492 -0.129306       0.0       0.0        0</span>
+<span class="go">0      3.719677  114.827105   0.000000        4       15     0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.335591 -0.129303       0.0       0.0        0</span>
+<span class="go">0      4.054773   64.562614   0.000000        5       15     0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.335591 -0.129303       0.0       0.0        0</span>
+<span class="go">0      4.069950   62.286075   0.000000        5       15     0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  0.335591 -0.129303       0.0       0.0        0</span>
+<span class="go">0      4.069950   44.500000   0.000000       14       15     0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  4.069950 -0.129303       0.0       0.0        0</span>
+<span class="go">0  13700.000000   44.500000   0.000000       14       15     0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  4.069950 -0.129303       0.0       0.0        0</span>
 
 <span class="go">[11 rows x 44 columns]</span>
 
 <span class="gp">In [10]: </span><span class="nb">print</span><span class="p">(</span><span class="n">bcm</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="go">     tphys  kstar_1     mass0_1  ...  bin_state  merger_type  bin_num</span>
-<span class="go">0      0.0        1   85.543645  ...          0         -001        0</span>
-<span class="go">0  13700.0       14  114.941973  ...          1         0201        0</span>
+<span class="go">     tphys  kstar_1     mass0_1     mass_1         lum_1      rad_1        teff_1  massc_1    radc_1  ...          sep       ecc  B_1  B_2  SN_1  SN_2  bin_state  merger_type  bin_num</span>
+<span class="go">0      0.0        1   85.543645  85.543645  9.416137e+05  11.060285  54306.854457      0.0  0.000000  ...  1363.435508  0.448872  0.0  0.0     0     0          0         -001        0</span>
+<span class="go">0  13700.0       14  114.941973  44.500000  1.000000e-10   0.000189   1334.770738     44.5  0.000189  ...     0.000000 -1.000000  0.0  0.0     6     0          1         0201        0</span>
 
 <span class="go">[2 rows x 39 columns]</span>
 
@@ -371,19 +371,19 @@ index to each binary system we evolve. We can access each binary as follows:</p>
 <span class="go">Name: 0, Length: 138, dtype: float64</span>
 
 <span class="gp">In [12]: </span><span class="nb">print</span><span class="p">(</span><span class="n">bpp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="go">          tphys     mass_1    mass_2  ...  bhspin_1  bhspin_2  bin_num</span>
-<span class="go">1      0.000000  11.171469  6.673050  ...       0.0       0.0        1</span>
-<span class="go">1     19.426981  10.768477  6.664659  ...       0.0       0.0        1</span>
-<span class="go">1     19.461132  10.766344  6.664703  ...       0.0       0.0        1</span>
-<span class="go">1     19.474363  10.651743  6.778363  ...       0.0       0.0        1</span>
-<span class="go">1     19.474363  10.651743  6.778363  ...       0.0       0.0        1</span>
-<span class="go">1     19.474363   9.193860  6.778363  ...       0.0       0.0        1</span>
-<span class="go">1     19.476609   9.193529  0.000000  ...       0.0       0.0        1</span>
-<span class="go">1     19.483502   9.190876  0.000000  ...       0.0       0.0        1</span>
-<span class="go">1     21.844016   8.282961  0.000000  ...       0.0       0.0        1</span>
-<span class="go">1     21.944214   7.152550  0.000000  ...       0.0       0.0        1</span>
-<span class="go">1     21.944214   1.277584  0.000000  ...       0.0       0.0        1</span>
-<span class="go">1  13700.000000   1.277584  0.000000  ...       0.0       0.0        1</span>
+<span class="go">          tphys     mass_1    mass_2  kstar_1  kstar_2         sep        porb       ecc    RRLO_1  ...  bacc_1  bacc_2  tacc_1  tacc_2    epoch_1   epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">1      0.000000  11.171469  6.673050        1        1  338.356712  170.758343  0.370000  0.049210  ...     0.0     0.0     0.0     0.0   0.000000  0.000000       0.0       0.0        1</span>
+<span class="go">1     19.426981  10.768477  6.664659        2        1  346.339604  178.911246  0.369999  0.115038  ...     0.0     0.0     0.0     0.0  -0.967443 -0.029114       0.0       0.0        1</span>
+<span class="go">1     19.461132  10.766344  6.664703        2        1  218.216976   89.483551  0.000000  1.000302  ...     0.0     0.0     0.0     0.0  -0.974685 -0.028824       0.0       0.0        1</span>
+<span class="go">1     19.474363  10.651743  6.778363        2        1  215.254261   87.669752  0.000000  2.345282  ...     0.0     0.0     0.0     0.0  -1.093884  1.004577       0.0       0.0        1</span>
+<span class="go">1     19.474363  10.651743  6.778363        2        1  215.254261   87.669752  0.000000  2.345282  ...     0.0     0.0     0.0     0.0  -1.093884  1.004577       0.0       0.0        1</span>
+<span class="go">1     19.474363   9.193860  6.778363        2       15    0.000000    0.000000  0.000000  0.990000  ...     0.0     0.0     0.0     0.0  -1.093884  1.004577       0.0       0.0        1</span>
+<span class="go">1     19.476609   9.193529  0.000000        3       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  -1.093884  1.004627       0.0       0.0        1</span>
+<span class="go">1     19.483502   9.190876  0.000000        4       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  -1.093884  1.004627       0.0       0.0        1</span>
+<span class="go">1     21.844018   8.282958  0.000000        5       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  -1.093884  1.004627       0.0       0.0        1</span>
+<span class="go">1     21.944216   7.152269  0.000000        5       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  -1.093884  1.004627       0.0       0.0        1</span>
+<span class="go">1     21.944216   1.277584  0.000000       13       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  21.944216  1.004627       0.0       0.0        1</span>
+<span class="go">1  13700.000000   1.277584  0.000000       13       15    0.000000    0.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  21.944216  1.004627       0.0       0.0        1</span>
 
 <span class="go">[12 rows x 44 columns]</span>
 </pre></div>
@@ -467,8 +467,8 @@ progenitor, we expect most of the evolution to take place in the first ~60 Myr.<
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

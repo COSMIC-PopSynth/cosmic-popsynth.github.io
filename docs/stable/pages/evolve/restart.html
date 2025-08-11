@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Sampling initial populations" href="../runpop.html" /><link rel="prev" title="Dynamic time resolution" href="resolution.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Restarting a binary - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Restarting a binary - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -299,9 +299,9 @@
           <section id="restarting-a-binary">
 <h1>Restarting a binary<a class="headerlink" href="#restarting-a-binary" title="Link to this heading">¶</a></h1>
 <p>COSMIC allows you to restart a binary from any point in its evolution from a COSMIC generated bpp array.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.initialbinarytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
-<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">cosmic.evolve</span> <span class="kn">import</span> <span class="n">Evolve</span>
+<span class="gp">In [2]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.evolve</span><span class="w"> </span><span class="kn">import</span> <span class="n">Evolve</span>
 </pre></div>
 </div>
 <p>Below we provide an example of the same evolutionary track
@@ -327,84 +327,84 @@ started from the beginning and three different points in the evolution:</p>
 <span class="gp">   ...: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">bpp_mid</span><span class="p">)</span>
 <span class="gp">   ...: </span>
 <span class="go">From beginning</span>
-<span class="go">          tphys     mass_1     mass_2  ...  bhspin_1  bhspin_2  bin_num</span>
-<span class="go">0      0.000000  25.543645  20.997840  ...       0.0       0.0        0</span>
-<span class="go">0      7.710210  24.912154  20.771614  ...       0.0       0.0        0</span>
-<span class="go">0      7.721745  24.907454  20.771066  ...       0.0       0.0        0</span>
-<span class="go">0      8.032373  24.637985  20.771096  ...       0.0       0.0        0</span>
-<span class="go">0      8.118834  23.485300  21.763718  ...       0.0       0.0        0</span>
-<span class="go">0      8.118834  23.485300  21.763718  ...       0.0       0.0        0</span>
-<span class="go">0      8.118834   8.667346  21.763718  ...       0.0       0.0        0</span>
-<span class="go">0      8.118834   8.667346  21.763718  ...       0.0       0.0        0</span>
-<span class="go">0      8.475465   8.308986  21.742361  ...       0.0       0.0        0</span>
-<span class="go">0      8.508776   8.257190  21.740508  ...       0.0       0.0        0</span>
-<span class="go">0      8.508776   7.757190  21.740508  ...       0.0       0.0        0</span>
-<span class="go">0      9.733484   7.757206  21.659308  ...       0.0       0.0        0</span>
-<span class="go">0      9.744085   7.757291  21.656867  ...       0.0       0.0        0</span>
-<span class="go">0      9.748186   7.758263  21.651144  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034   7.817984  19.332325  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034   7.817984  19.332325  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034   7.817984   6.622061  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034   7.817984   6.622061  ...       0.0       0.0        0</span>
-<span class="go">0     10.654655   7.835389   6.331263  ...       0.0       0.0        0</span>
-<span class="go">0     10.705711   7.838450   6.290103  ...       0.0       0.0        0</span>
-<span class="go">0     10.705711   7.838450   1.675145  ...       0.0       0.0        0</span>
-<span class="go">0  13700.000000   7.838450   1.675145  ...       0.0       0.0        0</span>
+<span class="go">          tphys     mass_1     mass_2  kstar_1  kstar_2         sep        porb       ecc    RRLO_1  ...  bacc_1  bacc_2  tacc_1  tacc_2   epoch_1    epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">0      0.000000  25.543645  20.997840        1        1  884.378139  446.795757  0.448872  0.028718  ...     0.0     0.0     0.0     0.0  0.000000   0.000000       0.0       0.0        0</span>
+<span class="go">0      7.710210  24.912154  20.771614        2        1  900.982085  463.730258  0.448872  0.069956  ...     0.0     0.0     0.0     0.0 -0.119527  -0.057630       0.0       0.0        0</span>
+<span class="go">0      7.721745  24.907454  20.771066        4        1  901.078093  463.831023  0.448870  0.443298  ...     0.0     0.0     0.0     0.0 -0.119527  -0.057862       0.0       0.0        0</span>
+<span class="go">0      8.032373  24.637985  20.771096        4        1  498.880188  191.643984  0.000000  1.000398  ...     0.0     0.0     0.0     0.0 -0.119527  -0.057781       0.0       0.0        0</span>
+<span class="go">0      8.118834  23.485300  21.763718        4        1  487.749949  185.593786  0.000000  2.570939  ...     0.0     0.0     0.0     0.0 -0.119527   0.700017       0.0       0.0        0</span>
+<span class="go">0      8.118834  23.485300  21.763718        4        1  487.749949  185.593786  0.000000  2.570939  ...     0.0     0.0     0.0     0.0 -0.119527   0.700017       0.0       0.0        0</span>
+<span class="go">0      8.118834   8.667346  21.763718        7        1   77.277935   14.272395  0.000000  0.990000  ...     0.0     0.0     0.0     0.0 -0.119527   0.700017       0.0       0.0        0</span>
+<span class="go">0      8.118834   8.667346  21.763718        7        1   77.277935   14.272395  0.000000  2.570939  ...     0.0     0.0     0.0     0.0  7.755716   0.701981       0.0       0.0        0</span>
+<span class="go">0      8.475465   8.308986  21.742361        8        1   78.254098   14.635273  0.000000  0.035647  ...     0.0     0.0     0.0     0.0  7.738107   0.693769       0.0       0.0        0</span>
+<span class="go">0      8.508776   8.257190  21.740508        8        1   78.393282   14.687452  0.000000  0.035647  ...     0.0     0.0     0.0     0.0  7.738107   0.693038       0.0       0.0        0</span>
+<span class="go">0      8.508776   7.757190  21.740508       14        1   79.744998   15.196139  0.016950  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.693038       0.0       0.0        0</span>
+<span class="go">0      9.733484   7.757206  21.659308       14        2   80.414971   15.409265  0.017207  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.744085   7.757291  21.656867       14        2   79.538903   15.158748  0.000000  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.748186   7.758263  21.651144       14        4   79.586218   15.173502  0.000000  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034   7.817984  19.332325       14        4   60.943332   10.582154  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034   7.817984  19.332325       14        4   60.943332   10.582154  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034   7.817984   6.622061       14        7    8.539843    0.761137  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034   7.817984   6.622061       14        7    8.539843    0.761137  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.511599   9.755041       0.0       0.0        0</span>
+<span class="go">0     10.654655   7.835389   6.331263       14        8    8.664570    0.785342  0.000000  0.000010  ...     0.0     0.0     0.0     0.0  8.511599   9.731731       0.0       0.0        0</span>
+<span class="go">0     10.705711   7.838450   6.290103       14        8    8.681056    0.788646  0.000000  0.000010  ...     0.0     0.0     0.0     0.0  8.511599   9.731731       0.0       0.0        0</span>
+<span class="go">0     10.705711   7.838450   1.675145       14       13   -1.000000   -1.000000 -1.000000  0.000000  ...     0.0     0.0     0.0     0.0  8.511599  10.705711       0.0       0.0        0</span>
+<span class="go">0  13700.000000   7.838450   1.675145       14       13   -1.000000   -1.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  8.511599  10.705711       0.0       0.0        0</span>
 
 <span class="go">[22 rows x 44 columns]</span>
 <span class="go">Started in middle at Index 3</span>
-<span class="go">          tphys     mass_1     mass_2  ...  bhspin_1  bhspin_2  bin_num</span>
-<span class="go">0      8.032373  24.637985  20.771096  ...       0.0       0.0        0</span>
-<span class="go">0      8.118986  23.475794  21.772953  ...       0.0       0.0        0</span>
-<span class="go">0      8.118986  23.475794  21.772953  ...       0.0       0.0        0</span>
-<span class="go">0      8.118986   8.667779  21.772953  ...       0.0       0.0        0</span>
-<span class="go">0      8.118986   8.667779  21.772953  ...       0.0       0.0        0</span>
-<span class="go">0      8.475461   8.309496  21.751553  ...       0.0       0.0        0</span>
-<span class="go">0      8.508770   8.257698  21.749694  ...       0.0       0.0        0</span>
-<span class="go">0      8.508770   7.757698  21.749694  ...       0.0       0.0        0</span>
-<span class="go">0      9.735862   7.757713  21.668160  ...       0.0       0.0        0</span>
-<span class="go">0      9.746470   7.757798  21.665712  ...       0.0       0.0        0</span>
-<span class="go">0      9.750553   7.758765  21.660049  ...       0.0       0.0        0</span>
-<span class="go">0      9.929751   7.819623  19.251575  ...       0.0       0.0        0</span>
-<span class="go">0      9.929751   7.819623  19.251575  ...       0.0       0.0        0</span>
-<span class="go">0      9.929751   7.819623   6.633627  ...       0.0       0.0        0</span>
-<span class="go">0      9.929751   7.819623   6.633627  ...       0.0       0.0        0</span>
-<span class="go">0     10.655673   7.836718   6.342619  ...       0.0       0.0        0</span>
-<span class="go">0     10.706576   7.839724   6.301393  ...       0.0       0.0        0</span>
-<span class="go">0     10.706576   7.839724   1.677151  ...       0.0       0.0        0</span>
-<span class="go">0  13708.032373   7.839724   1.677151  ...       0.0       0.0        0</span>
+<span class="go">          tphys     mass_1     mass_2  kstar_1  kstar_2         sep        porb       ecc    RRLO_1  ...  bacc_1  bacc_2  tacc_1  tacc_2   epoch_1    epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">0      8.032373  24.637985  20.771096        4        1  498.880188  191.643984  0.000000  1.000398  ...     0.0     0.0     0.0     0.0 -0.119527  -0.057781       0.0       0.0        0</span>
+<span class="go">0      8.118986  23.475794  21.772953        4        1  487.717284  185.575699  0.000000  2.577313  ...     0.0     0.0     0.0     0.0 -0.119527   0.706605       0.0       0.0        0</span>
+<span class="go">0      8.118986  23.475794  21.772953        4        1  487.717284  185.575699  0.000000  2.577313  ...     0.0     0.0     0.0     0.0 -0.119527   0.706605       0.0       0.0        0</span>
+<span class="go">0      8.118986   8.667779  21.772953        7        1   77.459035   14.320321  0.000000  0.990000  ...     0.0     0.0     0.0     0.0 -0.119527   0.706605       0.0       0.0        0</span>
+<span class="go">0      8.118986   8.667779  21.772953        7        1   77.459035   14.320321  0.000000  2.577313  ...     0.0     0.0     0.0     0.0  7.755743   0.708552       0.0       0.0        0</span>
+<span class="go">0      8.475461   8.309496  21.751553        8        1   78.436664   14.684148  0.000000  0.035569  ...     0.0     0.0     0.0     0.0  7.738137   0.700336       0.0       0.0        0</span>
+<span class="go">0      8.508770   8.257698  21.749694        8        1   78.576103   14.736480  0.000000  0.035569  ...     0.0     0.0     0.0     0.0  7.738137   0.699604       0.0       0.0        0</span>
+<span class="go">0      8.508770   7.757698  21.749694       14        1   79.930518   15.246694  0.016945  0.000001  ...     0.0     0.0     0.0     0.0  8.508770   0.699604       0.0       0.0        0</span>
+<span class="go">0      9.735862   7.757713  21.668160       14        2   80.595158   15.458627  0.017197  0.000001  ...     0.0     0.0     0.0     0.0  8.508770   0.664761       0.0       0.0        0</span>
+<span class="go">0      9.746470   7.757798  21.665712       14        2   79.716348   15.207086  0.000000  0.000001  ...     0.0     0.0     0.0     0.0  8.508770   0.664761       0.0       0.0        0</span>
+<span class="go">0      9.750553   7.758765  21.660049       14        4   79.763570   15.221815  0.000000  0.000001  ...     0.0     0.0     0.0     0.0  8.508770   0.664761       0.0       0.0        0</span>
+<span class="go">0      9.929751   7.819623  19.251575       14        4   60.467695   10.473782  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508770   0.664761       0.0       0.0        0</span>
+<span class="go">0      9.929751   7.819623  19.251575       14        4   60.467695   10.473782  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508770   0.664761       0.0       0.0        0</span>
+<span class="go">0      9.929751   7.819623   6.633627       14        7    8.653579    0.776038  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508770   0.664761       0.0       0.0        0</span>
+<span class="go">0      9.929751   7.819623   6.633627       14        7    8.653579    0.776038  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.511433   9.757515       0.0       0.0        0</span>
+<span class="go">0     10.655673   7.836718   6.342619       14        8    8.780924    0.800856  0.000000  0.000010  ...     0.0     0.0     0.0     0.0  8.511433   9.734241       0.0       0.0        0</span>
+<span class="go">0     10.706576   7.839724   6.301393       14        8    8.797818    0.804253  0.000000  0.000010  ...     0.0     0.0     0.0     0.0  8.511433   9.734241       0.0       0.0        0</span>
+<span class="go">0     10.706576   7.839724   1.677151       14       13   -1.000000   -1.000000 -1.000000  0.000000  ...     0.0     0.0     0.0     0.0  8.511433  10.706576       0.0       0.0        0</span>
+<span class="go">0  13708.032373   7.839724   1.677151       14       13   -1.000000   -1.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  8.511433  10.706576       0.0       0.0        0</span>
 
 <span class="go">[19 rows x 44 columns]</span>
 <span class="go">Started in middle at Index 7</span>
-<span class="go">          tphys    mass_1     mass_2  ...  bhspin_1  bhspin_2  bin_num</span>
-<span class="go">0      8.475465  8.308986  21.742361  ...       0.0       0.0        0</span>
-<span class="go">0      8.508776  8.257190  21.740508  ...       0.0       0.0        0</span>
-<span class="go">0      8.508776  7.757190  21.740508  ...       0.0       0.0        0</span>
-<span class="go">0      9.733484  7.757206  21.659308  ...       0.0       0.0        0</span>
-<span class="go">0      9.744085  7.757291  21.656867  ...       0.0       0.0        0</span>
-<span class="go">0      9.748186  7.758265  21.651121  ...       0.0       0.0        0</span>
-<span class="go">0      9.923706  7.817875  19.328905  ...       0.0       0.0        0</span>
-<span class="go">0      9.923706  7.817875  19.328905  ...       0.0       0.0        0</span>
-<span class="go">0      9.923706  7.817875   6.621344  ...       0.0       0.0        0</span>
-<span class="go">0      9.923706  7.817875   6.621344  ...       0.0       0.0        0</span>
-<span class="go">0     10.654718  7.835284   6.330535  ...       0.0       0.0        0</span>
-<span class="go">0     10.705783  7.838346   6.289379  ...       0.0       0.0        0</span>
-<span class="go">0     10.705783  7.838346   1.675016  ...       0.0       0.0        0</span>
-<span class="go">0  13708.118834  7.838346   1.675016  ...       0.0       0.0        0</span>
+<span class="go">          tphys    mass_1     mass_2  kstar_1  kstar_2        sep       porb       ecc    RRLO_1  ...  bacc_1  bacc_2  tacc_1  tacc_2   epoch_1    epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">0      8.475465  8.308986  21.742361        8        1  78.251768  14.634619  0.000000  0.035648  ...     0.0     0.0     0.0     0.0  7.738107   0.693769       0.0       0.0        0</span>
+<span class="go">0      8.508776  8.257190  21.740508        8        1  78.390675  14.686719  0.000000  0.035648  ...     0.0     0.0     0.0     0.0  7.738107   0.693038       0.0       0.0        0</span>
+<span class="go">0      8.508776  7.757190  21.740508       14        1  79.742346  15.195381  0.016950  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.693038       0.0       0.0        0</span>
+<span class="go">0      9.733484  7.757206  21.659308       14        2  80.362697  15.394242  0.017178  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.744085  7.757291  21.656867       14        2  79.492037  15.145353  0.000000  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.748186  7.758265  21.651121       14        4  79.540650  15.160478  0.000000  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.923706  7.817875  19.328905       14        4  60.884458  10.567510  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.923706  7.817875  19.328905       14        4  60.884458  10.567510  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.923706  7.817875   6.621344       14        7   8.538937   0.761037  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.923706  7.817875   6.621344       14        7   8.538937   0.761037  0.000000  0.000002  ...     0.0     0.0     0.0     0.0  8.511592   9.755010       0.0       0.0        0</span>
+<span class="go">0     10.654718  7.835284   6.330535       14        8   8.663655   0.785241  0.000000  0.000010  ...     0.0     0.0     0.0     0.0  8.511592   9.731697       0.0       0.0        0</span>
+<span class="go">0     10.705783  7.838346   6.289379       14        8   8.680136   0.788544  0.000000  0.000010  ...     0.0     0.0     0.0     0.0  8.511592   9.731697       0.0       0.0        0</span>
+<span class="go">0     10.705783  7.838346   1.675016       14       13  -1.000000  -1.000000 -1.000000  0.000000  ...     0.0     0.0     0.0     0.0  8.511592  10.705783       0.0       0.0        0</span>
+<span class="go">0  13708.118834  7.838346   1.675016       14       13  -1.000000  -1.000000 -1.000000  0.000100  ...     0.0     0.0     0.0     0.0  8.511592  10.705783       0.0       0.0        0</span>
 
 <span class="go">[14 rows x 44 columns]</span>
 <span class="go">Started in middle at Index 11</span>
-<span class="go">          tphys    mass_1     mass_2  ...  bhspin_1  bhspin_2  bin_num</span>
-<span class="go">0      9.744085  7.757291  21.656867  ...       0.0       0.0        0</span>
-<span class="go">0      9.748186  7.758263  21.651144  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034  7.817984  19.332325  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034  7.817984  19.332325  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034  7.817984   6.622061  ...       0.0       0.0        0</span>
-<span class="go">0      9.924034  7.817984   6.622061  ...       0.0       0.0        0</span>
-<span class="go">0     10.654655  7.835389   6.331263  ...       0.0       0.0        0</span>
-<span class="go">0     10.705711  7.838451   6.290103  ...       0.0       0.0        0</span>
-<span class="go">0     10.705711  7.838451   1.675145  ...       0.0       0.0        0</span>
-<span class="go">0  13709.733484  7.838451   1.675145  ...       0.0       0.0        0</span>
+<span class="go">          tphys    mass_1     mass_2  kstar_1  kstar_2        sep       porb  ecc    RRLO_1  ...  bacc_1  bacc_2  tacc_1  tacc_2   epoch_1    epoch_2  bhspin_1  bhspin_2  bin_num</span>
+<span class="go">0      9.744085  7.757291  21.656867       14        2  79.538903  15.158748  0.0  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.748186  7.758263  21.651144       14        4  79.586218  15.173502  0.0  0.000001  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034  7.817984  19.332325       14        4  60.943333  10.582154  0.0  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034  7.817984  19.332325       14        4  60.943333  10.582154  0.0  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034  7.817984   6.622061       14        7   8.539843   0.761137  0.0  0.000002  ...     0.0     0.0     0.0     0.0  8.508776   0.658292       0.0       0.0        0</span>
+<span class="go">0      9.924034  7.817984   6.622061       14        7   8.539843   0.761137  0.0  0.000002  ...     0.0     0.0     0.0     0.0  8.511599   9.755041       0.0       0.0        0</span>
+<span class="go">0     10.654655  7.835389   6.331263       14        8   8.664570   0.785342  0.0  0.000010  ...     0.0     0.0     0.0     0.0  8.511599   9.731731       0.0       0.0        0</span>
+<span class="go">0     10.705711  7.838451   6.290103       14        8   8.681056   0.788646  0.0  0.000010  ...     0.0     0.0     0.0     0.0  8.511599   9.731731       0.0       0.0        0</span>
+<span class="go">0     10.705711  7.838451   1.675145       14       13  -1.000000  -1.000000 -1.0  0.000000  ...     0.0     0.0     0.0     0.0  8.511599  10.705711       0.0       0.0        0</span>
+<span class="go">0  13709.733484  7.838451   1.675145       14       13  -1.000000  -1.000000 -1.0  0.000100  ...     0.0     0.0     0.0     0.0  8.511599  10.705711       0.0       0.0        0</span>
 
 <span class="go">[10 rows x 44 columns]</span>
 </pre></div>
@@ -418,8 +418,8 @@ particularly relevant for
 and <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2023MNRAS.521.4323E/abstract">Gaia BH2</a> which are difficult to produce through the standard common envelope
 channels. We can still study the effect of natal kicks on these binaries if we
 restart the evolution after the mass transfer would occur. We can do this by using a binary which gets us to the right masses given the metallicity, then overwrite some of the initial conditions to resample the natal kicks and pre-explosion separation.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="kn">from</span> <span class="nn">cosmic</span> <span class="kn">import</span> <span class="n">utils</span>
-<span class="gp">   ...: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic</span><span class="w"> </span><span class="kn">import</span> <span class="n">utils</span>
+<span class="gp">   ...: </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="gp">   ...: </span>
 
 <span class="gp">In [7]: </span><span class="n">single_binary</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">InitialBinaries</span><span class="p">(</span><span class="n">m1</span><span class="o">=</span><span class="mf">65.0</span><span class="p">,</span> <span class="n">m2</span><span class="o">=</span><span class="mf">0.93</span><span class="p">,</span> <span class="n">porb</span><span class="o">=</span><span class="mi">4500</span><span class="p">,</span> <span class="n">ecc</span><span class="o">=</span><span class="mf">0.448872</span><span class="p">,</span>
@@ -449,17 +449,17 @@ restart the evolution after the mass transfer would occur. We can do this by usi
 <span class="gp">In [13]: </span><span class="n">bpp_BH</span><span class="p">[[</span><span class="s1">&#39;tphys&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_1&#39;</span><span class="p">,</span> <span class="s1">&#39;mass_2&#39;</span><span class="p">,</span> <span class="s1">&#39;porb&#39;</span><span class="p">,</span> <span class="s1">&#39;ecc&#39;</span><span class="p">]]</span>
 <span class="gh">Out[13]: </span>
 <span class="go">        tphys    mass_1    mass_2         porb       ecc</span>
-<span class="go">0    4.558013  9.416665  0.931310   608.557515  0.254016</span>
-<span class="go">1    4.558013  9.416665  0.931310  9075.539664  0.901623</span>
-<span class="go">2    4.558013  9.416665  0.931311   742.645232  0.648649</span>
-<span class="go">3    4.558013  9.416665  0.931310   194.218144  0.824820</span>
-<span class="go">4    4.558013  9.416665  0.931311   186.672389  0.903305</span>
+<span class="go">0    4.558013  9.416669  0.931310   608.557088  0.254016</span>
+<span class="go">1    4.558013  9.416669  0.931310  9075.496384  0.901622</span>
+<span class="go">2    4.558013  9.416669  0.931311   742.644255  0.648648</span>
+<span class="go">3    4.558013  9.416669  0.931310   194.217982  0.824820</span>
+<span class="go">4    4.558013  9.416669  0.931311   186.672128  0.903305</span>
 <span class="go">..        ...       ...       ...          ...       ...</span>
-<span class="go">567  4.558013  9.416665  0.931310  1911.767648  0.696450</span>
-<span class="go">568  4.558013  9.416665  0.931310   847.020068  0.322726</span>
-<span class="go">569  4.558013  9.416665  0.931310  6586.733265  0.817416</span>
-<span class="go">570  4.558013  9.416665  0.931310   628.541452  0.221635</span>
-<span class="go">571  4.558013  9.416665  0.931311   869.108278  0.631821</span>
+<span class="go">567  4.558013  9.416669  0.931310  1911.764755  0.696450</span>
+<span class="go">568  4.558013  9.416669  0.931310   847.019445  0.322726</span>
+<span class="go">569  4.558013  9.416669  0.931310  6586.721151  0.817416</span>
+<span class="go">570  4.558013  9.416669  0.931310   628.540995  0.221635</span>
+<span class="go">571  4.558013  9.416669  0.931311   869.107339  0.631821</span>
 
 <span class="go">[572 rows x 5 columns]</span>
 </pre></div>
@@ -538,8 +538,8 @@ restart the evolution after the mass transfer would occur. We can do this by usi
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="ClusterMonteCarlo Sampling" href="cluster.html" /><link rel="prev" title="Independent distributions" href="independent.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Multidimensional distributions - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Multidimensional distributions - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -300,9 +300,9 @@
 <h1>Multidimensional distributions<a class="headerlink" href="#multidimensional-distributions" title="Link to this heading">¶</a></h1>
 <p>COSMIC implements multidimensionally distributed initial binaries according to <a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJS..230...15M">Moe &amp; Di Stefano 2017</a>. The python code used in COSMIC to create this sample was written by Mads Sorenson, and is based on the IDL codes written to accompany <a class="reference external" href="http://adsabs.harvard.edu/abs/2017ApJS..230...15M">Moe &amp; Di Stefano 2017</a>.</p>
 <p>The multidimensional initial binary data is sampled in COSMIC as follows:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.initialbinarytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
-<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.sampler</span> <span class="kn">import</span> <span class="n">multidim</span>
+<span class="gp">In [2]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.sampler</span><span class="w"> </span><span class="kn">import</span> <span class="n">multidim</span>
 </pre></div>
 </div>
 <p>To see the arguments necessary to call the multidimensional sampler use the help function:</p>
@@ -400,24 +400,29 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;multidim&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">final_kstar2</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">rand_seed</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">nproc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="gp">In [5]: </span><span class="nb">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">   kstar_1  kstar_2     mass_1    mass_2  ...  bhspin_1  bhspin_2  tphys   binfrac</span>
-<span class="go">0      1.0      1.0   1.496663  1.474208  ...       0.0       0.0    0.0  0.442176</span>
-<span class="go">1      1.0      1.0   4.476178  2.620572  ...       0.0       0.0    0.0  0.680490</span>
-<span class="go">2      1.0      1.0   2.983804  0.882177  ...       0.0       0.0    0.0  0.568435</span>
-<span class="go">3      1.0      1.0   2.313269  1.129829  ...       0.0       0.0    0.0  0.513600</span>
-<span class="go">4      1.0      1.0   5.096958  3.458565  ...       0.0       0.0    0.0  0.726095</span>
-<span class="go">5      1.0      1.0   1.252850  1.047598  ...       0.0       0.0    0.0  0.416627</span>
-<span class="go">6      1.0      1.0  16.446315  1.745968  ...       0.0       0.0    0.0  0.899057</span>
-<span class="go">7      1.0      1.0   1.185019  1.043142  ...       0.0       0.0    0.0  0.413086</span>
-<span class="go">8      1.0      1.0   9.969190  1.657964  ...       0.0       0.0    0.0  0.849914</span>
-<span class="go">9      1.0      1.0   1.398886  0.946875  ...       0.0       0.0    0.0  0.431419</span>
+<span class="go">     kstar_1  kstar_2    mass_1    mass_2           porb       ecc  metallicity   tphysf   mass0_1   mass0_2  ...  tacc_1  tacc_2  epoch_1  epoch_2  tms_1  tms_2  bhspin_1  bhspin_2  tphys   binfrac</span>
+<span class="go">0        1.0      1.0  1.496663  1.474208  153145.548650  0.617960         0.02  13700.0  1.496663  1.474208  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.442176</span>
+<span class="go">1        1.0      1.0  4.476178  2.620572     272.239945  0.290215         0.02  13700.0  4.476178  2.620572  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.680490</span>
+<span class="go">2        1.0      1.0  2.983804  0.882177  488349.651511  0.945957         0.02  13700.0  2.983804  0.882177  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.568435</span>
+<span class="go">3        1.0      1.0  2.313269  1.129829   48521.218408  0.393425         0.02  13700.0  2.313269  1.129829  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.513600</span>
+<span class="go">4        1.0      1.0  5.096958  3.458565     466.684668  0.481318         0.02  13700.0  5.096958  3.458565  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  0.726095</span>
+<span class="go">..       ...      ...       ...       ...            ...       ...          ...      ...       ...       ...  ...     ...     ...      ...      ...    ...    ...       ...       ...    ...       ...</span>
+<span class="go">127      1.0     15.0  1.368582  0.000000      -1.000000 -1.000000         0.02  13700.0  1.368582  0.000000  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  1.000000</span>
+<span class="go">128      0.0     15.0  0.281859  0.000000      -1.000000 -1.000000         0.02  13700.0  0.281859  0.000000  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  1.000000</span>
+<span class="go">129      1.0     15.0  0.912607  0.000000      -1.000000 -1.000000         0.02  13700.0  0.912607  0.000000  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  1.000000</span>
+<span class="go">130      0.0     15.0  0.104578  0.000000      -1.000000 -1.000000         0.02  13700.0  0.104578  0.000000  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  1.000000</span>
+<span class="go">131      0.0     15.0  0.082208  0.000000      -1.000000 -1.000000         0.02  13700.0  0.082208  0.000000  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0  1.000000</span>
 
-<span class="go">[10 rows x 38 columns]</span>
+<span class="go">[132 rows x 38 columns]</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>NOTE that in the multidimensional case, the binary fraction is a parameter in the sample. This results in the size of the initial binary data matching the size provided to the sampler. As in the independent sampling case, we keep track of the total sampled mass of singles and binaries as well as the total number of single and binary stars to scale the simulated population to astrophysical populations.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NOTE that you can also keep singles for the multidim sampelr as well. As with the independent sampler, the singles will be added onto the end of the InitialBinaryTable where <code class="docutils literal notranslate"><span class="pre">kstar_1</span></code> will host the singles, <code class="docutils literal notranslate"><span class="pre">kstar_2</span></code> will be filled with 15s only, and all orbital properties (e.g. <code class="docutils literal notranslate"><span class="pre">porb</span></code> or <code class="docutils literal notranslate"><span class="pre">ecc</span></code>) will be indicated with -1.</p>
 </div>
 </section>
 
@@ -473,8 +478,8 @@ As in the independent sampler, the final_kstar1 and final_kstar2 inputs are list
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

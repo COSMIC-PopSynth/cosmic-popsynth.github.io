@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Debugging COSMIC" href="debugging-vscode.html" /><link rel="prev" title="Creating new settings" href="new-settings.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Adding options to existing settings - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Adding options to existing settings - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -329,11 +329,11 @@ At the time of writing, this setting is used as follows:</p>
 <span class="linenos"> 3</span><span class="nl">     </span> <span class="k">if</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
 <span class="linenos"> 4</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.d0</span>
 <span class="linenos"> 5</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.d0</span>
-<span class="linenos"> 6</span><span class="nl">     </span> <span class="n">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
+<span class="linenos"> 6</span><span class="nl">     </span> <span class="k">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
 <span class="linenos"> 7</span><span class="nl">     </span> <span class="w">    </span><span class="n">fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MIN</span><span class="p">(</span><span class="n">fallback</span><span class="p">,</span><span class="mf">1.d0</span><span class="p">)</span>
 <span class="linenos"> 8</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MAX</span><span class="p">((</span><span class="mf">1.d0</span><span class="o">-</span><span class="n">fallback</span><span class="p">)</span><span class="o">*</span><span class="n">vk</span><span class="p">,</span><span class="mf">0.d0</span><span class="p">)</span>
 <span class="linenos"> 9</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="o">*</span><span class="n">vk</span>
-<span class="linenos">10</span><span class="nl">     </span> <span class="n">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="k">then</span>
+<span class="linenos">10</span><span class="nl">     </span> <span class="k">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="k">then</span>
 <span class="linenos">11</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mxns</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m1n</span>
 <span class="linenos">12</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="o">*</span><span class="n">vk</span>
 <span class="linenos">13</span><span class="nl">     </span> <span class="k">endif</span>
@@ -353,14 +353,14 @@ of course a rather contrived example, but it serves to illustrate the process).<
 <span class="linenos"> 3</span><span class="nl">     </span> <span class="k">if</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
 <span class="linenos"> 4</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.d0</span>
 <span class="linenos"> 5</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.d0</span>
-<span class="linenos"> 6</span><span class="nl">     </span> <span class="n">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
+<span class="linenos"> 6</span><span class="nl">     </span> <span class="k">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span><span class="k">then</span>
 <span class="linenos"> 7</span><span class="nl">     </span> <span class="w">    </span><span class="n">fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MIN</span><span class="p">(</span><span class="n">fallback</span><span class="p">,</span><span class="mf">1.d0</span><span class="p">)</span>
 <span class="linenos"> 8</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">MAX</span><span class="p">((</span><span class="mf">1.d0</span><span class="o">-</span><span class="n">fallback</span><span class="p">)</span><span class="o">*</span><span class="n">vk</span><span class="p">,</span><span class="mf">0.d0</span><span class="p">)</span>
 <span class="linenos"> 9</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="o">*</span><span class="n">vk</span>
-<span class="linenos">10</span><span class="nl">     </span> <span class="n">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="k">then</span>
+<span class="linenos">10</span><span class="nl">     </span> <span class="k">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span><span class="k">then</span>
 <span class="linenos">11</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mxns</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m1n</span>
 <span class="linenos">12</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="o">*</span><span class="n">vk</span>
-<span class="hll"><span class="linenos">13</span><span class="nl">     </span> <span class="n">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">4</span><span class="p">)</span><span class="k">then</span>
+<span class="hll"><span class="linenos">13</span><span class="nl">     </span> <span class="k">elseif</span><span class="p">(</span><span class="n">kw</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">1</span><span class="mf">4.</span><span class="nb">and</span><span class="p">.</span><span class="n">bhflag</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">4</span><span class="p">)</span><span class="k">then</span>
 </span><span class="hll"><span class="linenos">14</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.d0</span>
 </span><span class="hll"><span class="linenos">15</span><span class="nl">     </span> <span class="w">    </span><span class="n">vk2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vk</span><span class="o">*</span><span class="n">vk</span>
 </span><span class="linenos">16</span><span class="nl">     </span> <span class="k">endif</span>
@@ -490,8 +490,8 @@ a single place and this will propagate into the INI files and docs pages too (hu
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

@@ -17,5 +17,5 @@ Module contents
 
 .. automodule:: cosmic.sample.sampler
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:

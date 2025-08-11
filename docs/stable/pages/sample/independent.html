@@ -2,14 +2,14 @@
 <html class="no-js" lang="en" data-content_root="../../">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Multidimensional distributions" href="multidim.html" /><link rel="prev" title="Sampling initial populations" href="../runpop.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
-        <title>Independent distributions - COSMIC v3.6.0</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=e15ddae3" />
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Independent distributions - COSMIC v3.6.1</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
@@ -184,7 +184,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.0</div></a>
+      <a href="../../index.html"><div class="brand"><span class='hide-me'>COSMIC </span>v3.6.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -211,7 +211,7 @@
     <img class="sidebar-logo" src="https://cosmic-popsynth.github.io/images/cosmic-popsynth_1200.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.0</span>
+  <span class="sidebar-brand-text"><span class='hide-me'>COSMIC </span>v3.6.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -300,9 +300,9 @@
 <span id="independent"></span><h1>Independent distributions<a class="headerlink" href="#independent-distributions" title="Link to this heading">¶</a></h1>
 <p>This guide will show you how to sample an initial binary population using the independent sampler in COSMIC.
 First import the <a class="reference internal" href="../../api/cosmic.sample.initialbinarytable.html#cosmic.sample.initialbinarytable.InitialBinaryTable" title="cosmic.sample.initialbinarytable.InitialBinaryTable"><code class="xref py py-class docutils literal notranslate"><span class="pre">InitialBinaryTable</span></code></a> class and the independent sampler</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.initialbinarytable</span> <span class="kn">import</span> <span class="n">InitialBinaryTable</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.initialbinarytable</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitialBinaryTable</span>
 
-<span class="gp">In [2]: </span><span class="kn">from</span> <span class="nn">cosmic.sample.sampler</span> <span class="kn">import</span> <span class="n">independent</span>
+<span class="gp">In [2]: </span><span class="kn">from</span><span class="w"> </span><span class="nn">cosmic.sample.sampler</span><span class="w"> </span><span class="kn">import</span> <span class="n">independent</span>
 </pre></div>
 </div>
 <p>The independent sampler contains multiple models for each binary parameter.
@@ -445,10 +445,10 @@ However, we also keep track of the total mass of the single and binary stars as 
 If you don’t want to filter the binaries, you can supply final kstars as</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">final_kstars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
 
-<span class="gp">In [7]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstars</span><span class="p">,</span> <span class="n">final_kstars</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa01&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">porb_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m2_min</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<span class="gp">In [7]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstars</span><span class="p">,</span> <span class="n">final_kstars</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa01&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">porb_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Additionally if you are interested in single stars then you can specify <code class="docutils literal notranslate"><span class="pre">keep_singles=True</span></code>.</p>
+<p>Additionally if you are interested in single stars then you can specify <code class="docutils literal notranslate"><span class="pre">keep_singles=True</span></code>. In this case, the singles will be added onto the end of the InitialBinaryTable where <code class="docutils literal notranslate"><span class="pre">kstar_1</span></code> will host the singles, <code class="docutils literal notranslate"><span class="pre">kstar_2</span></code> will be filled with 15s only, and all orbital properties (e.g. <code class="docutils literal notranslate"><span class="pre">porb</span></code> or <code class="docutils literal notranslate"><span class="pre">ecc</span></code>) will be indicated with -1.</p>
 </section>
 <section id="understanding-parameter-sampling-models">
 <h2>Understanding parameter sampling models<a class="headerlink" href="#understanding-parameter-sampling-models" title="Link to this heading">¶</a></h2>
@@ -493,23 +493,23 @@ do this in one of two ways: (1) by specifying the number of binaries to sample, 
 <section id="number-of-binaries">
 <h3>Number of binaries<a class="headerlink" href="#number-of-binaries" title="Link to this heading">¶</a></h3>
 <p>Using the final kstar inputs we mentioned above, the initial binary population can be sampled based on the desired number of binaries (10000 in this case) as follows</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa01&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">porb_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m2_min</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa01&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">porb_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
 <span class="gp">In [10]: </span><span class="nb">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">       kstar_1  kstar_2    mass_1    mass_2  ...  bhspin_1  bhspin_2  tphys  binfrac</span>
-<span class="go">0          1.0      1.0  1.715988  1.490909  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">1          1.0      1.0  0.863649  0.803246  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">2          1.0      0.0  0.922107  0.699386  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">3          1.0      1.0  1.549598  0.993874  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">4          1.0      1.0  1.287078  0.772630  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">...        ...      ...       ...       ...  ...       ...       ...    ...      ...</span>
-<span class="go">10039      1.0      1.0  2.560260  1.892963  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">10040      1.0      1.0  0.983484  0.876515  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">10041      1.0      0.0  1.138245  0.550008  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">10042      1.0      1.0  1.269011  1.257934  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">10043      1.0      1.0  2.698330  1.800682  ...       0.0       0.0    0.0      0.5</span>
+<span class="go">       kstar_1  kstar_2    mass_1    mass_2           porb       ecc  metallicity   tphysf   mass0_1   mass0_2  ...  tacc_1  tacc_2  epoch_1  epoch_2  tms_1  tms_2  bhspin_1  bhspin_2  tphys  binfrac</span>
+<span class="go">0          1.0      1.0  3.405783  1.790220     125.037129  0.827402         0.02  13700.0  3.405783  1.790220  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">1          1.0      1.0  1.697957  1.468966    2040.391808  0.309109         0.02  13700.0  1.697957  1.468966  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">2          1.0      1.0  1.249914  0.986973       8.908751  0.351313         0.02  13700.0  1.249914  0.986973  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">3          1.0      1.0  5.484669  1.248933    1567.983636  0.716448         0.02  13700.0  5.484669  1.248933  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">4          1.0      0.0  1.010395  0.675212      72.221899  0.396177         0.02  13700.0  1.010395  0.675212  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">...        ...      ...       ...       ...            ...       ...          ...      ...       ...       ...  ...     ...     ...      ...      ...    ...    ...       ...       ...    ...      ...</span>
+<span class="go">10416      1.0      1.0  0.971809  0.748331      11.667117  0.261535         0.02  13700.0  0.971809  0.748331  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">10417      1.0      1.0  5.056296  2.449137  186430.310830  0.375461         0.02  13700.0  5.056296  2.449137  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">10418      1.0      1.0  3.550372  2.863884     502.900793  0.048959         0.02  13700.0  3.550372  2.863884  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">10419      1.0      1.0  1.035552  1.006066       4.796107  0.750188         0.02  13700.0  1.035552  1.006066  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">10420      1.0      1.0  3.780742  1.226972      96.244891  0.013328         0.02  13700.0  3.780742  1.226972  ...     0.0     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
 
-<span class="go">[10044 rows x 38 columns]</span>
+<span class="go">[10421 rows x 38 columns]</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -524,28 +524,28 @@ prescription in <a class="reference external" href="http://adsabs.harvard.edu/ab
 <section id="total-mass-sampled">
 <h3>Total mass sampled<a class="headerlink" href="#total-mass-sampled" title="Link to this heading">¶</a></h3>
 <p>Alternatively, we could do the same thing but now instead set our <code class="docutils literal notranslate"><span class="pre">sampling_target</span></code> to be the total mass and aim for 15000 solar masses. This is done by setting <code class="docutils literal notranslate"><span class="pre">sampling_target=&quot;total_mass&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">total_mass=15000</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa01&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">porb_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">m2_min</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">sampling_target</span><span class="o">=</span><span class="s2">&quot;total_mass&quot;</span><span class="p">,</span> <span class="n">total_mass</span><span class="o">=</span><span class="mi">15000</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">InitialBinaries</span><span class="p">,</span> <span class="n">mass_singles</span><span class="p">,</span> <span class="n">mass_binaries</span><span class="p">,</span> <span class="n">n_singles</span><span class="p">,</span> <span class="n">n_binaries</span> <span class="o">=</span> <span class="n">InitialBinaryTable</span><span class="o">.</span><span class="n">sampler</span><span class="p">(</span><span class="s1">&#39;independent&#39;</span><span class="p">,</span> <span class="n">final_kstar1</span><span class="p">,</span> <span class="n">final_kstar2</span><span class="p">,</span> <span class="n">binfrac_model</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">primary_model</span><span class="o">=</span><span class="s1">&#39;kroupa01&#39;</span><span class="p">,</span> <span class="n">ecc_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">porb_model</span><span class="o">=</span><span class="s1">&#39;sana12&#39;</span><span class="p">,</span> <span class="n">qmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">SF_start</span><span class="o">=</span><span class="mf">13700.0</span><span class="p">,</span> <span class="n">SF_duration</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">met</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">sampling_target</span><span class="o">=</span><span class="s2">&quot;total_mass&quot;</span><span class="p">,</span> <span class="n">total_mass</span><span class="o">=</span><span class="mi">15000</span><span class="p">)</span>
 
 <span class="gp">In [12]: </span><span class="nb">print</span><span class="p">(</span><span class="n">InitialBinaries</span><span class="p">)</span>
-<span class="go">      kstar_1  kstar_2    mass_1    mass_2  ...  bhspin_1  bhspin_2  tphys  binfrac</span>
-<span class="go">0         1.0      1.0  1.035583  0.835998  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">1         1.0      1.0  0.951510  0.924857  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">2         1.0      1.0  1.351939  0.727992  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">3         1.0      0.0  3.239166  0.629694  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">4         1.0      1.0  2.002929  0.921669  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">...       ...      ...       ...       ...  ...       ...       ...    ...      ...</span>
-<span class="go">1332      1.0      1.0  6.372072  0.769274  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">1333      1.0      1.0  2.239466  0.884469  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">1334      1.0      1.0  2.466188  2.383919  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">1335      1.0      0.0  1.632684  0.550748  ...       0.0       0.0    0.0      0.5</span>
-<span class="go">1336      1.0      1.0  1.214975  1.155442  ...       0.0       0.0    0.0      0.5</span>
+<span class="go">      kstar_1  kstar_2     mass_1    mass_2           porb       ecc  metallicity   tphysf    mass0_1  ...  tacc_2  epoch_1  epoch_2  tms_1  tms_2  bhspin_1  bhspin_2  tphys  binfrac</span>
+<span class="go">0         1.0      1.0   2.409293  1.476737       3.884698  0.001856         0.02  13700.0   2.409293  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">1         1.0      1.0   1.088080  0.766619   97622.935264  0.565808         0.02  13700.0   1.088080  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">2         1.0      1.0   2.303648  0.920767     147.367203  0.056543         0.02  13700.0   2.303648  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">3         1.0      1.0   2.128478  0.841482  204827.156785  0.240680         0.02  13700.0   2.128478  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">4         1.0      1.0   2.548870  1.178500      18.306057  0.088502         0.02  13700.0   2.548870  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">...       ...      ...        ...       ...            ...       ...          ...      ...        ...  ...     ...      ...      ...    ...    ...       ...       ...    ...      ...</span>
+<span class="go">1342      1.0      1.0   1.094012  0.721110       9.355770  0.444580         0.02  13700.0   1.094012  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">1343      1.0      1.0  12.815563  6.323273       8.945751  0.070234         0.02  13700.0  12.815563  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">1344      1.0      0.0   0.969117  0.535311       2.532704  0.578982         0.02  13700.0   0.969117  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">1345      1.0      1.0  11.990302  2.894143       1.826654  0.036411         0.02  13700.0  11.990302  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
+<span class="go">1346      1.0      1.0   3.062171  1.817080   46354.280812  0.389983         0.02  13700.0   3.062171  ...     0.0      0.0      0.0    0.0    0.0       0.0       0.0    0.0      0.5</span>
 
-<span class="go">[1337 rows x 38 columns]</span>
+<span class="go">[1347 rows x 38 columns]</span>
 </pre></div>
 </div>
 <p>And we can check what the total sampled mass was by looking at the sum of the <code class="docutils literal notranslate"><span class="pre">mass_singles</span></code> and <code class="docutils literal notranslate"><span class="pre">mass_binaries</span></code> variables</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="nb">print</span><span class="p">(</span><span class="n">mass_singles</span> <span class="o">+</span> <span class="n">mass_binaries</span><span class="p">)</span>
-<span class="go">22816.602858103794</span>
+<span class="go">21694.23776613504</span>
 </pre></div>
 </div>
 <div class="admonition tip">
@@ -646,8 +646,8 @@ the final binary drawn is the most massive primary with an equal mass ratio).</p
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=5349f462"></script>
-    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../../_static/documentation_options.js?v=f731707b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>

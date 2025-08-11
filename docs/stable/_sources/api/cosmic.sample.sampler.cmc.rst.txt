@@ -1,4 +1,4 @@
 .. automodule:: cosmic.sample.sampler.cmc
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
